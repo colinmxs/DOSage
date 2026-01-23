@@ -1,0 +1,24 @@
+/**
+ * Code Component Styles
+ *
+ * DOS-style inline code styles.
+ */
+
+.dos-code {
+  font-family: var(--dos-font-family);
+  color: var(--dos-color-fg);
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--dos-color-border);
+  padding: 2px 6px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Highlighted variant */
+.dos-code--highlighted {
+  background-color: var(--dos-color-primary);
+  color: var(--dos-color-bg);
+  border-color: var(--dos-color-primary);
+}

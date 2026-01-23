@@ -1,0 +1,25 @@
+.dos-definition-list {
+  font-family: var(--dos-font-family);
+  margin: var(--dos-space-md) 0;
+}
+
+.dos-definition-list___term {
+  color: var(--dos-color-primary);
+  font-weight: normal;
+  margin: 0;
+}
+
+.dos-definition-list___definition {
+  color: var(--dos-color-fg);
+  margin: 0 0 var(--dos-space-sm) 0;
+}
+
+.dos-definition-list--stacked .dos-definition-list___definition {
+  margin-left: var(--dos-space-lg);
+}
+
+.dos-definition-list--inline .dos-definition-list___term,
+.dos-definition-list--inline .dos-definition-list___definition {
+  display: inline;
+  margin-right: var(--dos-space-sm);
+}

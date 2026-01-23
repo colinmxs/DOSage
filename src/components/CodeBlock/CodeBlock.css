@@ -1,0 +1,85 @@
+/**
+ * CodeBlock Component Styles
+ *
+ * DOS-style code block styles with line numbers and highlighting.
+ */
+
+.dos-codeblock {
+  position: relative;
+  font-family: var(--dos-font-family);
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--dos-color-border);
+  margin: var(--dos-space-md) 0;
+}
+
+.dos-codeblock___pre {
+  margin: 0;
+  padding: var(--dos-space-sm);
+  overflow-x: auto;
+  font-family: inherit;
+}
+
+.dos-codeblock___code {
+  display: block;
+  font-family: inherit;
+  color: var(--dos-color-fg);
+  font-size: var(--dos-font-size);
+  line-height: var(--dos-line-height);
+}
+
+.dos-codeblock___line {
+  display: flex;
+  align-items: flex-start;
+  min-height: 1.5em;
+}
+
+.dos-codeblock___line--highlighted {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-left: 2px solid var(--dos-color-primary);
+}
+
+.dos-codeblock___line-number {
+  display: inline-block;
+  min-width: 3ch;
+  padding-right: var(--dos-space-sm);
+  color: var(--dos-color-border);
+  text-align: right;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.dos-codeblock___line-content {
+  flex: 1;
+  white-space: pre;
+  word-wrap: break-word;
+}
+
+.dos-codeblock___copy-btn {
+  position: absolute;
+  top: var(--dos-space-xs);
+  right: var(--dos-space-xs);
+  padding: 2px 8px;
+  background-color: var(--dos-color-bg);
+  color: var(--dos-color-fg);
+  border: 1px solid var(--dos-color-border);
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size-sm);
+  cursor: pointer;
+  user-select: none;
+}
+
+.dos-codeblock___copy-btn:hover {
+  background-color: var(--dos-color-primary);
+  color: var(--dos-color-bg);
+  border-color: var(--dos-color-primary);
+}
+
+.dos-codeblock___copy-btn:focus {
+  outline: 2px solid var(--dos-color-primary);
+  outline-offset: 2px;
+}
+
+.dos-codeblock___copy-btn:active {
+  background-color: var(--dos-color-fg);
+  color: var(--dos-color-bg);
+}

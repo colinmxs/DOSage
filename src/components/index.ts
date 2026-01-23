@@ -15,15 +15,15 @@ export * from './Divider';
 export * from './Separator';
 
 // Typography Components (Phase 3)
-// export * from './Heading';
-// export * from './Text';
-// export * from './Code';
-// export * from './CodeBlock';
-// export * from './Blockquote';
-// export * from './List';
-// export * from './DefinitionList';
-// export * from './Label';
-// export * from './ASCIIArt';
+export * from './Heading';
+export * from './Text';
+export * from './Code';
+export * from './CodeBlock';
+export * from './Blockquote';
+export * from './List';
+export * from './DefinitionList';
+export * from './Label';
+export * from './ASCIIArt';
 
 // Button & Link Components (Phase 4)
 // export * from './Button';

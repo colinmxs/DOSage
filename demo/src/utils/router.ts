@@ -28,7 +28,12 @@ export const ROUTES = {
   HEADING: 'heading',
   TEXT: 'text',
   CODE: 'code',
+  CODEBLOCK: 'codeblock',
+  BLOCKQUOTE: 'blockquote',
   LIST: 'list',
+  DEFINITION_LIST: 'definition-list',
+  LABEL: 'label',
+  ASCII_ART: 'ascii-art',
   // Form Controls
   BUTTON: 'button',
   INPUT: 'input',

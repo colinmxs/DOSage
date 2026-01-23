@@ -1,0 +1,96 @@
+/**
+ * Heading Component Styles
+ *
+ * DOS-style heading styles with proper semantic sizing and decorations.
+ */
+
+.dos-heading {
+  font-family: var(--dos-font-family);
+  color: var(--dos-color-fg);
+  margin: 0;
+  padding: 0;
+  line-height: var(--dos-line-height);
+  font-weight: normal;
+}
+
+/* Heading levels with DOS-appropriate sizing */
+.dos-heading--h1 {
+  font-size: calc(var(--dos-font-size) * 2);
+  margin-bottom: var(--dos-space-md);
+}
+
+.dos-heading--h2 {
+  font-size: calc(var(--dos-font-size) * 1.75);
+  margin-bottom: var(--dos-space-md);
+}
+
+.dos-heading--h3 {
+  font-size: calc(var(--dos-font-size) * 1.5);
+  margin-bottom: var(--dos-space-sm);
+}
+
+.dos-heading--h4 {
+  font-size: calc(var(--dos-font-size) * 1.25);
+  margin-bottom: var(--dos-space-sm);
+}
+
+.dos-heading--h5 {
+  font-size: var(--dos-font-size);
+  margin-bottom: var(--dos-space-sm);
+}
+
+.dos-heading--h6 {
+  font-size: calc(var(--dos-font-size) * 0.875);
+  margin-bottom: var(--dos-space-xs);
+}
+
+/* Text alignment */
+.dos-heading--left {
+  text-align: left;
+}
+
+.dos-heading--center {
+  text-align: center;
+}
+
+.dos-heading--right {
+  text-align: right;
+}
+
+/* Uppercase transformation */
+.dos-heading--uppercase {
+  text-transform: uppercase;
+}
+
+/* Decorated headings with underline */
+.dos-heading--decorated {
+  display: inline-block;
+  position: relative;
+}
+
+.dos-heading___decoration {
+  display: block;
+  color: var(--dos-color-primary);
+  margin-top: 2px;
+  line-height: 1;
+  font-size: inherit;
+  user-select: none;
+}
+
+/* Centered decorated headings */
+.dos-heading--center.dos-heading--decorated {
+  display: block;
+}
+
+.dos-heading--center .dos-heading___decoration {
+  text-align: center;
+}
+
+/* Right-aligned decorated headings */
+.dos-heading--right.dos-heading--decorated {
+  display: block;
+}
+
+.dos-heading--right .dos-heading___decoration {
+  text-align: right;
+}

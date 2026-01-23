@@ -13,6 +13,17 @@ import {
   renderGridPage,
   renderDividerPage,
 } from '../pages/layout';
+import {
+  renderHeadingPage,
+  renderTextPage,
+  renderCodePage,
+  renderCodeBlockPage,
+  renderBlockquotePage,
+  renderListPage,
+  renderDefinitionListPage,
+  renderLabelPage,
+  renderASCIIArtPage,
+} from '../pages/typography-components';
 
 /** Page content element reference */
 let contentElement: HTMLElement | null = null;
@@ -28,11 +39,16 @@ const pages: Record<string, () => HTMLElement> = {
   box: renderBoxPage,
   grid: renderGridPage,
   divider: renderDividerPage,
-  // Typography pages (to be implemented)
-  heading: () => createPlaceholderPage('Heading', 'Heading components H1-H6 with DOS styling.'),
-  text: () => createPlaceholderPage('Text', 'Text component with various sizes and styles.'),
-  code: () => createPlaceholderPage('Code', 'Inline and block code display.'),
-  list: () => createPlaceholderPage('List', 'Ordered and unordered lists with custom bullets.'),
+  // Typography pages
+  heading: renderHeadingPage,
+  text: renderTextPage,
+  code: renderCodePage,
+  codeblock: renderCodeBlockPage,
+  blockquote: renderBlockquotePage,
+  list: renderListPage,
+  'definition-list': renderDefinitionListPage,
+  label: renderLabelPage,
+  'ascii-art': renderASCIIArtPage,
   // Form controls (to be implemented)
   button: () => createPlaceholderPage('Button', 'DOS-style buttons with variants and states.'),
   input: () => createPlaceholderPage('TextInput', 'Text input field with blinking cursor.'),

@@ -28,7 +28,12 @@ const NAV_ITEMS = [
       { id: 'heading', label: 'Heading' },
       { id: 'text', label: 'Text' },
       { id: 'code', label: 'Code' },
+      { id: 'codeblock', label: 'CodeBlock' },
+      { id: 'blockquote', label: 'Blockquote' },
       { id: 'list', label: 'List' },
+      { id: 'definition-list', label: 'DefinitionList' },
+      { id: 'label', label: 'Label' },
+      { id: 'ascii-art', label: 'ASCIIArt' },
     ],
   },
   {

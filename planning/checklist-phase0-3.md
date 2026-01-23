@@ -787,40 +787,40 @@
 ### Heading
 
 **File:** `src/components/Heading/Heading.ts`
-**Styles:** `src/components/Heading/Heading.styles.css`
+**Styles:** `src/components/Heading/Heading.css`
 **Types:** `src/components/Heading/Heading.types.ts`
 **Tests:** `tests/components/Heading.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `HeadingProps`
-  - [ ] Prop: `level` (1 | 2 | 3 | 4 | 5 | 6) — heading level (h1-h6)
-  - [ ] Prop: `children` (string | HTMLElement) — heading content
-  - [ ] Prop: `align` ('left' | 'center' | 'right') — text alignment
-  - [ ] Prop: `uppercase` (boolean) — transform to uppercase
-  - [ ] Prop: `decorated` (boolean) — add DOS-style decoration (underline or box)
-  - [ ] Prop: `className` (string) — additional CSS classes
-- [ ] Implement base component
-  - [ ] Create heading element (h1-h6 based on level)
-  - [ ] Apply text content
-  - [ ] Apply alignment and decoration
-- [ ] Implement decoration variants
-  - [ ] Underline decoration: `═══════════`
-  - [ ] Box decoration: surround with box-drawing chars
-- [ ] Add CSS styles with class `.dos-heading`
-  - [ ] `.dos-heading--h1` through `.dos-heading--h6`
-  - [ ] `.dos-heading--center`, `.dos-heading--right`
-  - [ ] `.dos-heading--uppercase`
-  - [ ] `.dos-heading--decorated`
-  - [ ] Size scaling for each level
-- [ ] Write unit tests
-  - [ ] Test: renders correct heading level
-  - [ ] Test: applies alignment classes
-  - [ ] Test: uppercase transformation works
-  - [ ] Test: decoration renders correctly
-- [ ] Add to Kitchen Sink demo
-  - [ ] All heading levels (H1-H6)
-  - [ ] Alignment variations
-  - [ ] Decorated headings
+- [x] Create component directory structure
+- [x] Define TypeScript interface `HeadingProps`
+  - [x] Prop: `level` (1 | 2 | 3 | 4 | 5 | 6) — heading level (h1-h6)
+  - [x] Prop: `children` (string | HTMLElement) — heading content
+  - [x] Prop: `align` ('left' | 'center' | 'right') — text alignment
+  - [x] Prop: `uppercase` (boolean) — transform to uppercase
+  - [x] Prop: `decorated` (boolean) — add DOS-style decoration (underline or box)
+  - [x] Prop: `className` (string) — additional CSS classes
+- [x] Implement base component
+  - [x] Create heading element (h1-h6 based on level)
+  - [x] Apply text content
+  - [x] Apply alignment and decoration
+- [x] Implement decoration variants
+  - [x] Underline decoration: `═══════════`
+  - [x] Box decoration: surround with box-drawing chars
+- [x] Add CSS styles with class `.dos-heading`
+  - [x] `.dos-heading--h1` through `.dos-heading--h6`
+  - [x] `.dos-heading--center`, `.dos-heading--right`
+  - [x] `.dos-heading--uppercase`
+  - [x] `.dos-heading--decorated`
+  - [x] Size scaling for each level
+- [x] Write unit tests
+  - [x] Test: renders correct heading level
+  - [x] Test: applies alignment classes
+  - [x] Test: uppercase transformation works
+  - [x] Test: decoration renders correctly
+- [x] Add to Kitchen Sink demo
+  - [x] All heading levels (H1-H6)
+  - [x] Alignment variations
+  - [x] Decorated headings
 
 > **Accessibility:** Use semantic heading levels; ensure proper heading hierarchy.
 
@@ -829,38 +829,38 @@
 ### Text
 
 **File:** `src/components/Text/Text.ts`
-**Styles:** `src/components/Text/Text.styles.css`
+**Styles:** `src/components/Text/Text.css`
 **Types:** `src/components/Text/Text.types.ts`
 **Tests:** `tests/components/Text.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `TextProps`
-  - [ ] Prop: `children` (string | HTMLElement) — text content
-  - [ ] Prop: `size` ('sm' | 'base' | 'lg') — font size
-  - [ ] Prop: `weight` ('normal' | 'bold') — font weight (simulated for DOS)
-  - [ ] Prop: `color` (string) — text color override
-  - [ ] Prop: `align` ('left' | 'center' | 'right' | 'justify') — text alignment
-  - [ ] Prop: `truncate` (boolean) — truncate with ellipsis
-  - [ ] Prop: `as` ('p' | 'span' | 'div') — HTML element to render
-  - [ ] Prop: `className` (string) — additional CSS classes
-- [ ] Implement base component
-  - [ ] Create text element
-  - [ ] Apply styling props
-- [ ] Add CSS styles with class `.dos-text`
-  - [ ] `.dos-text--sm`, `.dos-text--lg`
-  - [ ] `.dos-text--bold` (brighter color or different character)
-  - [ ] `.dos-text--center`, `.dos-text--right`, `.dos-text--justify`
-  - [ ] `.dos-text--truncate`
-- [ ] Write unit tests
-  - [ ] Test: renders with default props
-  - [ ] Test: applies size classes
-  - [ ] Test: renders as correct element
-  - [ ] Test: truncate adds ellipsis styles
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic paragraph text
-  - [ ] Size variations
-  - [ ] Bold/emphasis variations
-  - [ ] Truncated text example
+- [x] Create component directory structure
+- [x] Define TypeScript interface `TextProps`
+  - [x] Prop: `children` (string | HTMLElement) — text content
+  - [x] Prop: `size` ('sm' | 'base' | 'lg') — font size
+  - [x] Prop: `weight` ('normal' | 'bold') — font weight (simulated for DOS)
+  - [x] Prop: `color` (string) — text color override
+  - [x] Prop: `align` ('left' | 'center' | 'right' | 'justify') — text alignment
+  - [x] Prop: `truncate` (boolean) — truncate with ellipsis
+  - [x] Prop: `as` ('p' | 'span' | 'div') — HTML element to render
+  - [x] Prop: `className` (string) — additional CSS classes
+- [x] Implement base component
+  - [x] Create text element
+  - [x] Apply styling props
+- [x] Add CSS styles with class `.dos-text`
+  - [x] `.dos-text--sm`, `.dos-text--lg`
+  - [x] `.dos-text--bold` (brighter color or different character)
+  - [x] `.dos-text--center`, `.dos-text--right`, `.dos-text--justify`
+  - [x] `.dos-text--truncate`
+- [x] Write unit tests
+  - [x] Test: renders with default props
+  - [x] Test: applies size classes
+  - [x] Test: renders as correct element
+  - [x] Test: truncate adds ellipsis styles
+- [x] Add to Kitchen Sink demo
+  - [x] Basic paragraph text
+  - [x] Size variations
+  - [x] Bold/emphasis variations
+  - [x] Truncated text example
 
 > **Accessibility:** Use semantic elements; ensure sufficient color contrast.
 
@@ -869,30 +869,30 @@
 ### Code
 
 **File:** `src/components/Code/Code.ts`
-**Styles:** `src/components/Code/Code.styles.css`
+**Styles:** `src/components/Code/Code.css`
 **Types:** `src/components/Code/Code.types.ts`
 **Tests:** `tests/components/Code.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `CodeProps`
-  - [ ] Prop: `children` (string) — code content
-  - [ ] Prop: `highlighted` (boolean) — apply highlight background
-  - [ ] Prop: `className` (string) — additional CSS classes
-- [ ] Implement base component
-  - [ ] Create `<code>` element
-  - [ ] Preserve whitespace
-- [ ] Add CSS styles with class `.dos-code`
-  - [ ] Monospace font (same as base, but explicit)
-  - [ ] Distinctive background or border
-  - [ ] `.dos-code--highlighted` — brighter/different background
-- [ ] Write unit tests
-  - [ ] Test: renders code element
-  - [ ] Test: preserves whitespace
-  - [ ] Test: highlighted variant applies styles
-- [ ] Add to Kitchen Sink demo
-  - [ ] Inline code in text
-  - [ ] Highlighted code
-  - [ ] Various code examples
+- [x] Create component directory structure
+- [x] Define TypeScript interface `CodeProps`
+  - [x] Prop: `children` (string) — code content
+  - [x] Prop: `highlighted` (boolean) — apply highlight background
+  - [x] Prop: `className` (string) — additional CSS classes
+- [x] Implement base component
+  - [x] Create `<code>` element
+  - [x] Preserve whitespace
+- [x] Add CSS styles with class `.dos-code`
+  - [x] Monospace font (same as base, but explicit)
+  - [x] Distinctive background or border
+  - [x] `.dos-code--highlighted` — brighter/different background
+- [x] Write unit tests
+  - [x] Test: renders code element
+  - [x] Test: preserves whitespace
+  - [x] Test: highlighted variant applies styles
+- [x] Add to Kitchen Sink demo
+  - [x] Inline code in text
+  - [x] Highlighted code
+  - [x] Various code examples
 
 > **Accessibility:** `<code>` element provides semantic meaning.
 
@@ -901,54 +901,54 @@
 ### CodeBlock
 
 **File:** `src/components/CodeBlock/CodeBlock.ts`
-**Styles:** `src/components/CodeBlock/CodeBlock.styles.css`
+**Styles:** `src/components/CodeBlock/CodeBlock.css`
 **Types:** `src/components/CodeBlock/CodeBlock.types.ts`
 **Tests:** `tests/components/CodeBlock.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `CodeBlockProps`
-  - [ ] Prop: `code` (string) — code content
-  - [ ] Prop: `language` (string) — language hint (for future syntax highlighting)
-  - [ ] Prop: `lineNumbers` (boolean) — show line numbers
-  - [ ] Prop: `startLine` (number) — starting line number
-  - [ ] Prop: `highlightLines` (number[]) — lines to highlight
-  - [ ] Prop: `maxHeight` (string | number) — max height with scroll
-  - [ ] Prop: `copyButton` (boolean) — show copy to clipboard button
-  - [ ] Prop: `className` (string) — additional CSS classes
-- [ ] Implement base component
-  - [ ] Create `<pre><code>` structure
-  - [ ] Split code into lines
-  - [ ] Render line numbers if enabled
-  - [ ] Apply line highlighting
-  - [ ] Add copy button if enabled
-- [ ] Implement copy functionality
-  - [ ] Copy code to clipboard on button click
-  - [ ] Show brief "Copied!" feedback
-- [ ] Add CSS styles with class `.dos-codeblock`
-  - [ ] `.dos-codeblock___pre` — preformatted wrapper
-  - [ ] `.dos-codeblock___code` — code content
-  - [ ] `.dos-codeblock___line-numbers` — line number gutter
-  - [ ] `.dos-codeblock___line` — individual line
-  - [ ] `.dos-codeblock___line--highlighted` — highlighted line
-  - [ ] `.dos-codeblock___copy-btn` — copy button
-  - [ ] Overflow handling with scroll
-- [ ] Add keyboard navigation
-  - [ ] Key: `Tab` — focus copy button
-  - [ ] Key: `Enter`/`Space` on button — copy code
-- [ ] Add ARIA attributes
-  - [ ] `role="region"` for code block
-  - [ ] `aria-label="Code block"`
-  - [ ] Copy button: `aria-label="Copy code to clipboard"`
-- [ ] Write unit tests
-  - [ ] Test: renders code content
-  - [ ] Test: line numbers display correctly
-  - [ ] Test: highlighted lines have correct class
-  - [ ] Test: copy button copies to clipboard
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic code block
-  - [ ] Code with line numbers
-  - [ ] Highlighted lines example
-  - [ ] With copy button
+- [x] Create component directory structure
+- [x] Define TypeScript interface `CodeBlockProps`
+  - [x] Prop: `code` (string) — code content
+  - [x] Prop: `language` (string) — language hint (for future syntax highlighting)
+  - [x] Prop: `lineNumbers` (boolean) — show line numbers
+  - [x] Prop: `startLine` (number) — starting line number
+  - [x] Prop: `highlightLines` (number[]) — lines to highlight
+  - [x] Prop: `maxHeight` (string | number) — max height with scroll
+  - [x] Prop: `copyButton` (boolean) — show copy to clipboard button
+  - [x] Prop: `className` (string) — additional CSS classes
+- [x] Implement base component
+  - [x] Create `<pre><code>` structure
+  - [x] Split code into lines
+  - [x] Render line numbers if enabled
+  - [x] Apply line highlighting
+  - [x] Add copy button if enabled
+- [x] Implement copy functionality
+  - [x] Copy code to clipboard on button click
+  - [x] Show brief "Copied!" feedback
+- [x] Add CSS styles with class `.dos-codeblock`
+  - [x] `.dos-codeblock___pre` — preformatted wrapper
+  - [x] `.dos-codeblock___code` — code content
+  - [x] `.dos-codeblock___line-numbers` — line number gutter
+  - [x] `.dos-codeblock___line` — individual line
+  - [x] `.dos-codeblock___line--highlighted` — highlighted line
+  - [x] `.dos-codeblock___copy-btn` — copy button
+  - [x] Overflow handling with scroll
+- [x] Add keyboard navigation
+  - [x] Key: `Tab` — focus copy button
+  - [x] Key: `Enter`/`Space` on button — copy code
+- [x] Add ARIA attributes
+  - [x] `role="region"` for code block
+  - [x] `aria-label="Code block"`
+  - [x] Copy button: `aria-label="Copy code to clipboard"`
+- [x] Write unit tests
+  - [x] Test: renders code content
+  - [x] Test: line numbers display correctly
+  - [x] Test: highlighted lines have correct class
+  - [x] Test: copy button copies to clipboard
+- [x] Add to Kitchen Sink demo
+  - [x] Basic code block
+  - [x] Code with line numbers
+  - [x] Highlighted lines example
+  - [x] With copy button
 
 > **Accessibility:** Ensure code is readable by screen readers; copy button should be keyboard accessible.
 > **Keyboard:** `Tab` to copy button, `Enter`/`Space` to activate.
@@ -958,33 +958,33 @@
 ### Blockquote
 
 **File:** `src/components/Blockquote/Blockquote.ts`
-**Styles:** `src/components/Blockquote/Blockquote.styles.css`
+**Styles:** `src/components/Blockquote/Blockquote.css`
 **Types:** `src/components/Blockquote/Blockquote.types.ts`
 **Tests:** `tests/components/Blockquote.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `BlockquoteProps`
-  - [ ] Prop: `children` (string | HTMLElement) — quote content
-  - [ ] Prop: `cite` (string) — citation/attribution
-  - [ ] Prop: `indicator` (string) — character for left indicator (default: `│` or `▌`)
-  - [ ] Prop: `className` (string) — additional CSS classes
-- [ ] Implement base component
-  - [ ] Create `<blockquote>` element
-  - [ ] Add left indicator (repeated on each line for DOS look)
-  - [ ] Add citation if provided
-- [ ] Add CSS styles with class `.dos-blockquote`
-  - [ ] Left border/indicator styling
-  - [ ] `.dos-blockquote___content` — quote text
-  - [ ] `.dos-blockquote___cite` — citation styling
-  - [ ] Indentation from left
-- [ ] Write unit tests
-  - [ ] Test: renders blockquote element
-  - [ ] Test: displays citation
-  - [ ] Test: custom indicator character works
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic blockquote
-  - [ ] With citation
-  - [ ] Custom indicator characters
+- [x] Create component directory structure
+- [x] Define TypeScript interface `BlockquoteProps`
+  - [x] Prop: `children` (string | HTMLElement) — quote content
+  - [x] Prop: `cite` (string) — citation/attribution
+  - [x] Prop: `indicator` (string) — character for left indicator (default: `│` or `▌`)
+  - [x] Prop: `className` (string) — additional CSS classes
+- [x] Implement base component
+  - [x] Create `<blockquote>` element
+  - [x] Add left indicator (repeated on each line for DOS look)
+  - [x] Add citation if provided
+- [x] Add CSS styles with class `.dos-blockquote`
+  - [x] Left border/indicator styling
+  - [x] `.dos-blockquote___content` — quote text
+  - [x] `.dos-blockquote___cite` — citation styling
+  - [x] Indentation from left
+- [x] Write unit tests
+  - [x] Test: renders blockquote element
+  - [x] Test: displays citation
+  - [x] Test: custom indicator character works
+- [x] Add to Kitchen Sink demo
+  - [x] Basic blockquote
+  - [x] With citation
+  - [x] Custom indicator characters
 
 > **Accessibility:** Use semantic `<blockquote>` and `<cite>` elements.
 
@@ -997,41 +997,41 @@
 **Types:** `src/components/List/List.types.ts`
 **Tests:** `tests/components/List.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `ListProps`
-  - [ ] Prop: `items` (ListItem[]) — array of list items
-  - [ ] Prop: `type` ('unordered' | 'ordered') — list type
-  - [ ] Prop: `bullet` (string) — custom bullet character for unordered
-  - [ ] Prop: `nested` (boolean) — is this a nested list
-  - [ ] Prop: `className` (string) — additional CSS classes
-- [ ] Define `ListItem` interface
-  - [ ] `content` (string | HTMLElement) — item content
-  - [ ] `children` (ListItem[]) — nested items
-- [ ] Implement base component
-  - [ ] Create `<ul>` or `<ol>` element based on type
-  - [ ] Render items recursively for nesting
-  - [ ] Apply custom bullets:
-    - [ ] Default: `■` (U+25A0) Black Square
-    - [ ] Alternate: `►` (U+25BA) Right Pointer
-    - [ ] Circle: `•` (U+2022) Bullet
-    - [ ] Arrow: `→` (U+2192) Arrow
-- [ ] Add CSS styles with class `.dos-list`
-  - [ ] `.dos-list--unordered`
-  - [ ] `.dos-list--ordered`
-  - [ ] `.dos-list___item` — list item
-  - [ ] `.dos-list___bullet` — bullet character
-  - [ ] Nested list indentation
-  - [ ] Different bullets for nesting levels
-- [ ] Write unit tests
-  - [ ] Test: renders unordered list
-  - [ ] Test: renders ordered list
-  - [ ] Test: custom bullet character works
-  - [ ] Test: nested lists render correctly
-- [ ] Add to Kitchen Sink demo
-  - [ ] Unordered list with different bullets
-  - [ ] Ordered list
-  - [ ] Nested lists
-  - [ ] Mixed nested lists
+- [x] Create component directory structure
+- [x] Define TypeScript interface `ListProps`
+  - [x] Prop: `items` (ListItem[]) — array of list items
+  - [x] Prop: `type` ('unordered' | 'ordered') — list type
+  - [x] Prop: `bullet` (string) — custom bullet character for unordered
+  - [x] Prop: `nested` (boolean) — is this a nested list
+  - [x] Prop: `className` (string) — additional CSS classes
+- [x] Define `ListItem` interface
+  - [x] `content` (string | HTMLElement) — item content
+  - [x] `children` (ListItem[]) — nested items
+- [x] Implement base component
+  - [x] Create `<ul>` or `<ol>` element based on type
+  - [x] Render items recursively for nesting
+  - [x] Apply custom bullets:
+    - [x] Default: `■` (U+25A0) Black Square
+    - [x] Alternate: `►` (U+25BA) Right Pointer
+    - [x] Circle: `•` (U+2022) Bullet
+    - [x] Arrow: `→` (U+2192) Arrow
+- [x] Add CSS styles with class `.dos-list`
+  - [x] `.dos-list--unordered`
+  - [x] `.dos-list--ordered`
+  - [x] `.dos-list___item` — list item
+  - [x] `.dos-list___bullet` — bullet character
+  - [x] Nested list indentation
+  - [x] Different bullets for nesting levels
+- [x] Write unit tests
+  - [x] Test: renders unordered list
+  - [x] Test: renders ordered list
+  - [x] Test: custom bullet character works
+  - [x] Test: nested lists render correctly
+- [x] Add to Kitchen Sink demo
+  - [x] Unordered list with different bullets
+  - [x] Ordered list
+  - [x] Nested lists
+  - [x] Mixed nested lists
 
 > **Accessibility:** Use semantic `<ul>`, `<ol>`, `<li>` elements.
 
@@ -1040,37 +1040,37 @@
 ### DefinitionList
 
 **File:** `src/components/DefinitionList/DefinitionList.ts`
-**Styles:** `src/components/DefinitionList/DefinitionList.styles.css`
+**Styles:** `src/components/DefinitionList/DefinitionList.css`
 **Types:** `src/components/DefinitionList/DefinitionList.types.ts`
 **Tests:** `tests/components/DefinitionList.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `DefinitionListProps`
-  - [ ] Prop: `items` (DefinitionItem[]) — array of term/definition pairs
-  - [ ] Prop: `layout` ('stacked' | 'inline') — layout mode
-  - [ ] Prop: `className` (string) — additional CSS classes
-- [ ] Define `DefinitionItem` interface
-  - [ ] `term` (string) — the term (dt)
-  - [ ] `definition` (string | HTMLElement) — the definition (dd)
-- [ ] Implement base component
-  - [ ] Create `<dl>` element
-  - [ ] Render `<dt>` and `<dd>` pairs
-- [ ] Implement layout variants
-  - [ ] Stacked: term above definition
-  - [ ] Inline: term and definition on same line
-- [ ] Add CSS styles with class `.dos-definition-list`
-  - [ ] `.dos-definition-list--stacked`
-  - [ ] `.dos-definition-list--inline`
-  - [ ] `.dos-definition-list___term` — term styling (bold/highlighted)
-  - [ ] `.dos-definition-list___definition` — definition styling
-- [ ] Write unit tests
-  - [ ] Test: renders dl, dt, dd structure
-  - [ ] Test: stacked layout works
-  - [ ] Test: inline layout works
-- [ ] Add to Kitchen Sink demo
-  - [ ] Stacked definition list
-  - [ ] Inline definition list
-  - [ ] Styled terms example
+- [x] Create component directory structure
+- [x] Define TypeScript interface `DefinitionListProps`
+  - [x] Prop: `items` (DefinitionItem[]) — array of term/definition pairs
+  - [x] Prop: `layout` ('stacked' | 'inline') — layout mode
+  - [x] Prop: `className` (string) — additional CSS classes
+- [x] Define `DefinitionItem` interface
+  - [x] `term` (string) — the term (dt)
+  - [x] `definition` (string | HTMLElement) — the definition (dd)
+- [x] Implement base component
+  - [x] Create `<dl>` element
+  - [x] Render `<dt>` and `<dd>` pairs
+- [x] Implement layout variants
+  - [x] Stacked: term above definition
+  - [x] Inline: term and definition on same line
+- [x] Add CSS styles with class `.dos-definition-list`
+  - [x] `.dos-definition-list--stacked`
+  - [x] `.dos-definition-list--inline`
+  - [x] `.dos-definition-list___term` — term styling (bold/highlighted)
+  - [x] `.dos-definition-list___definition` — definition styling
+- [x] Write unit tests
+  - [x] Test: renders dl, dt, dd structure
+  - [x] Test: stacked layout works
+  - [x] Test: inline layout works
+- [x] Add to Kitchen Sink demo
+  - [x] Stacked definition list
+  - [x] Inline definition list
+  - [x] Styled terms example
 
 > **Accessibility:** Use semantic `<dl>`, `<dt>`, `<dd>` elements.
 
@@ -1079,36 +1079,36 @@
 ### Label
 
 **File:** `src/components/Label/Label.ts`
-**Styles:** `src/components/Label/Label.styles.css`
+**Styles:** `src/components/Label/Label.css`
 **Types:** `src/components/Label/Label.types.ts`
 **Tests:** `tests/components/Label.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `LabelProps`
-  - [ ] Prop: `text` (string) — label text
-  - [ ] Prop: `for` (string) — id of associated form control
-  - [ ] Prop: `required` (boolean) — show required indicator
-  - [ ] Prop: `requiredIndicator` (string) — custom required indicator (default: `*`)
-  - [ ] Prop: `disabled` (boolean) — show as disabled
-  - [ ] Prop: `className` (string) — additional CSS classes
-- [ ] Implement base component
-  - [ ] Create `<label>` element
-  - [ ] Set `for` attribute
-  - [ ] Add required indicator if needed
-- [ ] Add CSS styles with class `.dos-label`
-  - [ ] `.dos-label--required` — required indicator styling
-  - [ ] `.dos-label--disabled` — disabled appearance
-  - [ ] `.dos-label___required-indicator` — the asterisk or indicator
-- [ ] Write unit tests
-  - [ ] Test: renders label element
-  - [ ] Test: for attribute is set
-  - [ ] Test: required indicator shows
-  - [ ] Test: disabled styling applies
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic label
-  - [ ] Required label
-  - [ ] Disabled label
-  - [ ] Label with form control
+- [x] Create component directory structure
+- [x] Define TypeScript interface `LabelProps`
+  - [x] Prop: `text` (string) — label text
+  - [x] Prop: `for` (string) — id of associated form control
+  - [x] Prop: `required` (boolean) — show required indicator
+  - [x] Prop: `requiredIndicator` (string) — custom required indicator (default: `*`)
+  - [x] Prop: `disabled` (boolean) — show as disabled
+  - [x] Prop: `className` (string) — additional CSS classes
+- [x] Implement base component
+  - [x] Create `<label>` element
+  - [x] Set `for` attribute
+  - [x] Add required indicator if needed
+- [x] Add CSS styles with class `.dos-label`
+  - [x] `.dos-label--required` — required indicator styling
+  - [x] `.dos-label--disabled` — disabled appearance
+  - [x] `.dos-label___required-indicator` — the asterisk or indicator
+- [x] Write unit tests
+  - [x] Test: renders label element
+  - [x] Test: for attribute is set
+  - [x] Test: required indicator shows
+  - [x] Test: disabled styling applies
+- [x] Add to Kitchen Sink demo
+  - [x] Basic label
+  - [x] Required label
+  - [x] Disabled label
+  - [x] Label with form control
 
 > **Accessibility:** Always use `for` attribute to associate with form controls.
 
@@ -1117,48 +1117,48 @@
 ### ASCIIArt
 
 **File:** `src/components/ASCIIArt/ASCIIArt.ts`
-**Styles:** `src/components/ASCIIArt/ASCIIArt.styles.css`
+**Styles:** `src/components/ASCIIArt/ASCIIArt.css`
 **Types:** `src/components/ASCIIArt/ASCIIArt.types.ts`
 **Tests:** `tests/components/ASCIIArt.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `ASCIIArtProps`
-  - [ ] Prop: `art` (string) — pre-formatted ASCII art string
-  - [ ] Prop: `text` (string) — text to convert to ASCII (if using generator)
-  - [ ] Prop: `font` ('standard' | 'banner' | 'block' | 'mini') — ASCII font style for text
-  - [ ] Prop: `color` (string) — text color override
-  - [ ] Prop: `animate` (boolean) — typewriter-style animation
-  - [ ] Prop: `animationSpeed` (number) — ms per character for animation
-  - [ ] Prop: `className` (string) — additional CSS classes
-- [ ] Implement base component
-  - [ ] Create `<pre>` wrapper element
-  - [ ] Render art string preserving whitespace
-  - [ ] If `text` prop, convert to ASCII art (simple implementation)
-- [ ] Implement basic ASCII font converters
-  - [ ] Standard: basic block letters
-  - [ ] Banner: large banner-style letters
-  - [ ] Block: solid block letters
-  - [ ] Mini: small 3-line letters
-- [ ] Implement animation (optional)
-  - [ ] Typewriter effect: reveal character by character
-  - [ ] Use requestAnimationFrame for smooth animation
-- [ ] Add CSS styles with class `.dos-ascii-art`
-  - [ ] Preserve whitespace (white-space: pre)
-  - [ ] Monospace font
-  - [ ] Optional color overrides
-- [ ] Add ARIA attributes
-  - [ ] `role="img"`
-  - [ ] `aria-label` with text description
-- [ ] Write unit tests
-  - [ ] Test: renders pre element
-  - [ ] Test: art string displays correctly
-  - [ ] Test: text conversion works
-  - [ ] Test: ARIA attributes present
-- [ ] Add to Kitchen Sink demo
-  - [ ] Pre-made ASCII art
-  - [ ] Text converted to ASCII
-  - [ ] Different font styles
-  - [ ] Animated example
+- [x] Create component directory structure
+- [x] Define TypeScript interface `ASCIIArtProps`
+  - [x] Prop: `art` (string) — pre-formatted ASCII art string
+  - [x] Prop: `text` (string) — text to convert to ASCII (if using generator)
+  - [x] Prop: `font` ('standard' | 'banner' | 'block' | 'mini') — ASCII font style for text
+  - [x] Prop: `color` (string) — text color override
+  - [x] Prop: `animate` (boolean) — typewriter-style animation
+  - [x] Prop: `animationSpeed` (number) — ms per character for animation
+  - [x] Prop: `className` (string) — additional CSS classes
+- [x] Implement base component
+  - [x] Create `<pre>` wrapper element
+  - [x] Render art string preserving whitespace
+  - [x] If `text` prop, convert to ASCII art (simple implementation)
+- [x] Implement basic ASCII font converters
+  - [x] Standard: basic block letters
+  - [x] Banner: large banner-style letters
+  - [x] Block: solid block letters
+  - [x] Mini: small 3-line letters
+- [x] Implement animation
+  - [x] Typewriter effect: reveal character by character
+  - [x] Use requestAnimationFrame for smooth animation
+- [x] Add CSS styles with class `.dos-ascii-art`
+  - [x] Preserve whitespace (white-space: pre)
+  - [x] Monospace font
+  - [x] Optional color overrides
+- [x] Add ARIA attributes
+  - [x] `role="img"`
+  - [x] `aria-label` with text description
+- [x] Write unit tests
+  - [x] Test: renders pre element
+  - [x] Test: art string displays correctly
+  - [x] Test: text conversion works
+  - [x] Test: ARIA attributes present
+- [x] Add to Kitchen Sink demo
+  - [x] Pre-made ASCII art
+  - [x] Text converted to ASCII
+  - [x] Different font styles
+  - [x] Animated example
 
 > **Accessibility:** Use `role="img"` and provide `aria-label` describing the art.
 > **Note:** Text-to-ASCII conversion can be basic; focus on displaying pre-made art.
@@ -1167,41 +1167,41 @@
 
 ### Export Typography Components
 
-- [ ] Create `src/components/Heading/index.ts` — barrel export
-- [ ] Create `src/components/Text/index.ts` — barrel export
-- [ ] Create `src/components/Code/index.ts` — barrel export
-- [ ] Create `src/components/CodeBlock/index.ts` — barrel export
-- [ ] Create `src/components/Blockquote/index.ts` — barrel export
-- [ ] Create `src/components/List/index.ts` — barrel export
-- [ ] Create `src/components/DefinitionList/index.ts` — barrel export
-- [ ] Create `src/components/Label/index.ts` — barrel export
-- [ ] Create `src/components/ASCIIArt/index.ts` — barrel export
-- [ ] Update `src/index.ts` to export all typography components
-- [ ] Update `src/types/index.ts` to export all typography types
+- [x] Create `src/components/Heading/index.ts` — barrel export
+- [x] Create `src/components/Text/index.ts` — barrel export
+- [x] Create `src/components/Code/index.ts` — barrel export
+- [x] Create `src/components/CodeBlock/index.ts` — barrel export
+- [x] Create `src/components/Blockquote/index.ts` — barrel export
+- [x] Create `src/components/List/index.ts` — barrel export
+- [x] Create `src/components/DefinitionList/index.ts` — barrel export
+- [x] Create `src/components/Label/index.ts` — barrel export
+- [x] Create `src/components/ASCIIArt/index.ts` — barrel export
+- [x] Update `src/index.ts` to export all typography components
+- [x] Update `src/types/index.ts` to export all typography types
 
 ---
 
 ### Kitchen Sink Demo Pages
 
-- [ ] Create `demo/src/pages/layout.ts`
-  - [ ] Add Container examples
-  - [ ] Add Panel examples
-  - [ ] Add Box examples
-  - [ ] Add Grid examples
-  - [ ] Add Divider examples
-  - [ ] Add Separator examples
-- [ ] Create `demo/src/pages/typography.ts`
-  - [ ] Add Heading examples (H1-H6)
-  - [ ] Add Text examples
-  - [ ] Add Code examples
-  - [ ] Add CodeBlock examples
-  - [ ] Add Blockquote examples
-  - [ ] Add List examples
-  - [ ] Add DefinitionList examples
-  - [ ] Add Label examples
-  - [ ] Add ASCIIArt examples
-- [ ] Update navigation to link to new pages
-- [ ] Add code snippets for each example
+- [x] Create `demo/src/pages/layout.ts`
+  - [x] Add Container examples
+  - [x] Add Panel examples
+  - [x] Add Box examples
+  - [x] Add Grid examples
+  - [x] Add Divider examples
+  - [x] Add Separator examples
+- [x] Create `demo/src/pages/typography-components.ts`
+  - [x] Add Heading examples (H1-H6)
+  - [x] Add Text examples
+  - [x] Add Code examples
+  - [x] Add CodeBlock examples
+  - [x] Add Blockquote examples
+  - [x] Add List examples
+  - [x] Add DefinitionList examples
+  - [x] Add Label examples
+  - [x] Add ASCIIArt examples
+- [x] Update navigation to link to new pages
+- [x] Add code snippets for each example
 
 ---
 

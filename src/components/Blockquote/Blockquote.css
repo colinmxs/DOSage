@@ -1,0 +1,41 @@
+/**
+ * Blockquote Component Styles
+ *
+ * DOS-style blockquote styles with left indicator.
+ */
+
+.dos-blockquote {
+  display: flex;
+  margin: var(--dos-space-md) 0;
+  font-family: var(--dos-font-family);
+  color: var(--dos-color-fg);
+  position: relative;
+}
+
+.dos-blockquote___indicator {
+  color: var(--dos-color-primary);
+  font-size: var(--dos-font-size);
+  line-height: var(--dos-line-height);
+  padding-right: var(--dos-space-sm);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.dos-blockquote___content-container {
+  flex: 1;
+}
+
+.dos-blockquote___content {
+  margin: 0;
+  padding: 0;
+  font-style: italic;
+  line-height: var(--dos-line-height);
+}
+
+.dos-blockquote___cite {
+  display: block;
+  margin-top: var(--dos-space-sm);
+  font-style: normal;
+  color: var(--dos-color-border);
+  font-size: var(--dos-font-size-sm);
+}

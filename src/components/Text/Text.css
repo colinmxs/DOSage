@@ -1,0 +1,71 @@
+/**
+ * Text Component Styles
+ *
+ * DOS-style text styles with size and weight variations.
+ */
+
+.dos-text {
+  font-family: var(--dos-font-family);
+  color: var(--dos-color-fg);
+  margin: 0;
+  padding: 0;
+  line-height: var(--dos-line-height);
+  font-weight: normal;
+}
+
+/* Size variations */
+.dos-text--sm {
+  font-size: var(--dos-font-size-sm);
+}
+
+.dos-text--base {
+  font-size: var(--dos-font-size);
+}
+
+.dos-text--lg {
+  font-size: var(--dos-font-size-lg);
+}
+
+/* Weight variations - simulated with brighter color for DOS aesthetic */
+.dos-text--bold {
+  color: var(--dos-color-primary);
+  font-weight: normal; /* DOS fonts don't support bold, use color instead */
+}
+
+/* Alignment */
+.dos-text--left {
+  text-align: left;
+}
+
+.dos-text--center {
+  text-align: center;
+}
+
+.dos-text--right {
+  text-align: right;
+}
+
+.dos-text--justify {
+  text-align: justify;
+}
+
+/* Truncation */
+.dos-text--truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Paragraph default spacing */
+p.dos-text {
+  margin-bottom: var(--dos-space-md);
+}
+
+p.dos-text:last-child {
+  margin-bottom: 0;
+}
+
+/* Span has no default margins */
+span.dos-text {
+  display: inline;
+}

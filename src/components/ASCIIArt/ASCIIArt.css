@@ -1,0 +1,27 @@
+.dos-ascii-art {
+  font-family: var(--dos-font-family);
+  color: var(--dos-color-primary);
+  white-space: pre;
+  margin: var(--dos-space-md) 0;
+  line-height: 1.2;
+  overflow-x: auto;
+}
+
+/* Animation styles */
+.dos-ascii-art--animated {
+  min-height: 1.2em;
+}
+
+.dos-ascii-art--animating {
+  /* Ensure consistent rendering during animation */
+}
+
+.dos-ascii-art___cursor {
+  display: inline;
+  animation: dos-blink var(--dos-cursor-blink-rate, 530ms) step-end infinite;
+  color: var(--dos-color-fg);
+}
+
+.dos-ascii-art--animation-complete {
+  /* Animation finished state */
+}

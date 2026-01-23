@@ -1,0 +1,49 @@
+/**
+ * List Component Styles
+ */
+
+.dos-list {
+  font-family: var(--dos-font-family);
+  color: var(--dos-color-fg);
+  margin: var(--dos-space-md) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dos-list--nested {
+  margin: var(--dos-space-xs) 0;
+  padding-left: var(--dos-space-lg);
+}
+
+.dos-list___item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--dos-space-xs);
+  line-height: var(--dos-line-height);
+}
+
+.dos-list___bullet {
+  color: var(--dos-color-primary);
+  margin-right: var(--dos-space-sm);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.dos-list___content {
+  flex: 1;
+}
+
+.dos-list--ordered .dos-list___item {
+  counter-increment: list-item;
+}
+
+.dos-list--ordered .dos-list___item::before {
+  content: counter(list-item) '. ';
+  color: var(--dos-color-primary);
+  margin-right: var(--dos-space-sm);
+  flex-shrink: 0;
+}
+
+ol.dos-list {
+  counter-reset: list-item;
+}

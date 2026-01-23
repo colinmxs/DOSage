@@ -1,0 +1,16 @@
+.dos-label {
+  font-family: var(--dos-font-family);
+  color: var(--dos-color-fg);
+  display: block;
+  margin-bottom: var(--dos-space-xs);
+  cursor: pointer;
+}
+
+.dos-label--required .dos-label___required-indicator {
+  color: var(--dos-color-error, #FF5555);
+}
+
+.dos-label--disabled {
+  color: var(--dos-color-disabled);
+  cursor: not-allowed;
+}
