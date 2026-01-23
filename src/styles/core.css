@@ -1,0 +1,168 @@
+/**
+ * DOSage Core Styles
+ * 
+ * Base CSS for the DOSage component library.
+ * Includes CSS reset, theme variables, and foundational styles.
+ */
+
+/* ============================================================================
+   CSS Custom Properties (Theme Variables)
+   ========================================================================= */
+
+:root {
+  /* Colors - will be overridden by theme system */
+  --dosage-color-background: #0000AA;
+  --dosage-color-foreground: #FFFFFF;
+  --dosage-color-primary: #00AAAA;
+  --dosage-color-secondary: #AAAAAA;
+  --dosage-color-accent: #FFFF55;
+  --dosage-color-border: #FFFFFF;
+  --dosage-color-selection: #FFFFFF;
+  --dosage-color-focus: #55FFFF;
+  --dosage-color-disabled: #555555;
+  --dosage-color-error: #FF5555;
+  --dosage-color-warning: #FFAA00;
+  --dosage-color-success: #55FF55;
+
+  /* Fonts */
+  --dosage-font-mono: 'Courier New', Courier, monospace;
+
+  /* Spacing */
+  --dosage-spacing-xs: 4px;
+  --dosage-spacing-sm: 8px;
+  --dosage-spacing-md: 16px;
+  --dosage-spacing-lg: 24px;
+  --dosage-spacing-xl: 32px;
+
+  /* Borders */
+  --dosage-border-width: 2px;
+  --dosage-border-style: solid;
+  --dosage-border: var(--dosage-border-width) var(--dosage-border-style) var(--dosage-color-border);
+
+  /* Animation */
+  --dosage-transition-fast: 0.1s;
+  --dosage-transition-normal: 0.2s;
+  --dosage-transition-slow: 0.3s;
+
+  /* Cursor */
+  --dosage-cursor-blink-speed: 0.8s;
+}
+
+/* ============================================================================
+   CSS Reset
+   ========================================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================================================
+   Base Styles
+   ========================================================================= */
+
+.dosage {
+  font-family: var(--dosage-font-mono);
+  background-color: var(--dosage-color-background);
+  color: var(--dosage-color-foreground);
+  line-height: 1.5;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: none;
+  text-rendering: optimizeSpeed;
+}
+
+.dosage * {
+  font-family: inherit;
+}
+
+/* ============================================================================
+   Selection
+   ========================================================================= */
+
+.dosage ::selection {
+  background-color: var(--dosage-color-selection);
+  color: var(--dosage-color-background);
+}
+
+/* ============================================================================
+   Focus Styles
+   ========================================================================= */
+
+.dosage *:focus {
+  outline: var(--dosage-border-width) solid var(--dosage-color-focus);
+  outline-offset: 2px;
+}
+
+.dosage *:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================================================
+   Effects
+   ========================================================================= */
+
+/* Scanlines Effect */
+[data-dosage-scanlines='true'] .dosage::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  z-index: 9999;
+}
+
+/* CRT Effect */
+[data-dosage-crt='true'] .dosage {
+  text-shadow: 0.5px 0 0 rgba(255, 0, 0, 0.2),
+               -0.5px 0 0 rgba(0, 255, 255, 0.2);
+}
+
+/* ============================================================================
+   Cursor Animation
+   ========================================================================= */
+
+.dosage-cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1em;
+  background-color: var(--dosage-color-foreground);
+  animation: dosage-blink var(--dosage-cursor-blink-speed) step-end infinite;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+}
+
+@keyframes dosage-blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  50.01%, 100% {
+    opacity: 0;
+  }
+}
+
+/* ============================================================================
+   Utility Classes
+   ========================================================================= */
+
+.dosage-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

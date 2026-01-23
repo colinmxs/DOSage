@@ -1,0 +1,254 @@
+/**
+ * Kitchen Sink Styles
+ */
+
+@import '../../src/styles/core.css';
+
+/* ============================================================================
+   Kitchen Sink Layout
+   ========================================================================= */
+
+.kitchen-sink {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.kitchen-sink-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ============================================================================
+   Header
+   ========================================================================= */
+
+.kitchen-sink-header {
+  background-color: var(--dosage-color-primary);
+  color: var(--dosage-color-background);
+  padding: var(--dosage-spacing-md);
+  border-bottom: var(--dosage-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.kitchen-sink-header h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.kitchen-sink-header-info {
+  font-size: 0.875rem;
+}
+
+/* ============================================================================
+   Navigation
+   ========================================================================= */
+
+.kitchen-sink-nav {
+  width: 250px;
+  background-color: var(--dosage-color-background);
+  border-right: var(--dosage-border);
+  padding: var(--dosage-spacing-md);
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.kitchen-sink-nav h2 {
+  font-size: 1rem;
+  margin-bottom: var(--dosage-spacing-sm);
+  color: var(--dosage-color-accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.kitchen-sink-nav-section {
+  margin-bottom: var(--dosage-spacing-lg);
+}
+
+.kitchen-sink-nav-list {
+  list-style: none;
+}
+
+.kitchen-sink-nav-item {
+  margin-bottom: var(--dosage-spacing-xs);
+}
+
+.kitchen-sink-nav-link {
+  display: block;
+  padding: var(--dosage-spacing-xs) var(--dosage-spacing-sm);
+  color: var(--dosage-color-foreground);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--dosage-transition-fast);
+}
+
+.kitchen-sink-nav-link:hover {
+  background-color: var(--dosage-color-primary);
+  color: var(--dosage-color-background);
+}
+
+.kitchen-sink-nav-link.active {
+  background-color: var(--dosage-color-selection);
+  color: var(--dosage-color-background);
+  font-weight: bold;
+}
+
+/* ============================================================================
+   Content Area
+   ========================================================================= */
+
+.kitchen-sink-content {
+  flex: 1;
+  padding: var(--dosage-spacing-lg);
+  overflow-y: auto;
+}
+
+/* ============================================================================
+   Theme Switcher
+   ========================================================================= */
+
+.theme-switcher {
+  position: sticky;
+  top: 0;
+  background-color: var(--dosage-color-background);
+  padding: var(--dosage-spacing-md);
+  border: var(--dosage-border);
+  margin-bottom: var(--dosage-spacing-lg);
+  z-index: 100;
+}
+
+.theme-switcher h2 {
+  font-size: 1rem;
+  margin-bottom: var(--dosage-spacing-sm);
+  color: var(--dosage-color-accent);
+}
+
+.theme-buttons {
+  display: flex;
+  gap: var(--dosage-spacing-sm);
+  flex-wrap: wrap;
+}
+
+.theme-button {
+  padding: var(--dosage-spacing-xs) var(--dosage-spacing-md);
+  background-color: var(--dosage-color-background);
+  color: var(--dosage-color-foreground);
+  border: var(--dosage-border);
+  font-family: var(--dosage-font-mono);
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all var(--dosage-transition-fast);
+}
+
+.theme-button:hover {
+  background-color: var(--dosage-color-primary);
+  color: var(--dosage-color-background);
+}
+
+.theme-button.active {
+  background-color: var(--dosage-color-selection);
+  color: var(--dosage-color-background);
+  font-weight: bold;
+}
+
+/* ============================================================================
+   Component Showcase
+   ========================================================================= */
+
+.component-showcase {
+  max-width: 1200px;
+}
+
+.component-section {
+  margin-bottom: var(--dosage-spacing-xl);
+}
+
+.component-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: var(--dosage-spacing-md);
+  color: var(--dosage-color-accent);
+  border-bottom: var(--dosage-border);
+  padding-bottom: var(--dosage-spacing-sm);
+}
+
+.component-section h3 {
+  font-size: 1.25rem;
+  margin-top: var(--dosage-spacing-lg);
+  margin-bottom: var(--dosage-spacing-md);
+  color: var(--dosage-color-primary);
+}
+
+.component-demo {
+  border: var(--dosage-border);
+  padding: var(--dosage-spacing-md);
+  margin-bottom: var(--dosage-spacing-md);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.component-code {
+  border: var(--dosage-border);
+  padding: var(--dosage-spacing-md);
+  margin-bottom: var(--dosage-spacing-lg);
+  background-color: rgba(0, 0, 0, 0.4);
+  overflow-x: auto;
+}
+
+.component-code pre {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--dosage-color-secondary);
+}
+
+.component-code code {
+  font-family: var(--dosage-font-mono);
+}
+
+/* ============================================================================
+   Welcome Page
+   ========================================================================= */
+
+.welcome-content {
+  max-width: 800px;
+}
+
+.welcome-content h1 {
+  font-size: 2rem;
+  margin-bottom: var(--dosage-spacing-md);
+  color: var(--dosage-color-accent);
+}
+
+.welcome-content h2 {
+  font-size: 1.5rem;
+  margin-top: var(--dosage-spacing-lg);
+  margin-bottom: var(--dosage-spacing-md);
+  color: var(--dosage-color-primary);
+}
+
+.welcome-content p {
+  margin-bottom: var(--dosage-spacing-md);
+  line-height: 1.6;
+}
+
+.welcome-content ul {
+  margin-left: var(--dosage-spacing-lg);
+  margin-bottom: var(--dosage-spacing-md);
+}
+
+.welcome-content li {
+  margin-bottom: var(--dosage-spacing-xs);
+}
+
+.ascii-logo {
+  font-size: 0.75rem;
+  line-height: 1.2;
+  color: var(--dosage-color-accent);
+  margin-bottom: var(--dosage-spacing-lg);
+  white-space: pre;
+  overflow-x: auto;
+}
