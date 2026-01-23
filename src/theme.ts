@@ -145,7 +145,16 @@ export const presetThemes = {
  * Apply a theme to the document
  */
 export function applyTheme(theme: DOSageTheme | string): void {
-  const themeObj = typeof theme === 'string' ? presetThemes[theme as keyof typeof presetThemes] : theme;
+  let themeObj: DOSageTheme | undefined;
+  
+  if (typeof theme === 'string') {
+    // Type-safe theme lookup with validation
+    if (theme in presetThemes) {
+      themeObj = presetThemes[theme as keyof typeof presetThemes];
+    }
+  } else {
+    themeObj = theme;
+  }
   
   if (!themeObj) {
     console.error(`Theme not found: ${theme}`);

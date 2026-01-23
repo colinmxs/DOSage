@@ -103,7 +103,7 @@
    Effects
    ========================================================================= */
 
-/* Scanlines Effect */
+/* Scanlines Effect - Optimized for performance */
 [data-dosage-scanlines='true'] .dosage::before {
   content: '';
   position: fixed;
@@ -120,6 +120,10 @@
     transparent 2px
   );
   z-index: 9999;
+  /* Performance optimization: use will-change sparingly */
+  will-change: transform;
+  /* Reduce paint complexity on lower-end devices */
+  transform: translateZ(0);
 }
 
 /* CRT Effect */

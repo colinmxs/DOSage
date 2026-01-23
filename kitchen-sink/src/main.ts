@@ -75,6 +75,10 @@ render();
 // Hot module replacement for Vite
 if (import.meta.hot) {
   import.meta.hot.accept(() => {
-    render();
+    try {
+      render();
+    } catch (error) {
+      console.error('Error during hot module replacement:', error);
+    }
   });
 }
