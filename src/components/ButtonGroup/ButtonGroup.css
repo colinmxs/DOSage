@@ -1,0 +1,59 @@
+/**
+ * ButtonGroup Component Styles
+ *
+ * Styles for grouping DOS-style buttons together.
+ */
+
+.dos-button-group {
+  display: inline-flex;
+  align-items: stretch;
+}
+
+/* Orientation */
+.dos-button-group--horizontal {
+  flex-direction: row;
+}
+
+.dos-button-group--vertical {
+  flex-direction: column;
+}
+
+/* Separated mode - buttons have gaps */
+.dos-button-group--separated {
+  gap: var(--dos-space-sm);
+}
+
+.dos-button-group--separated .dos-button {
+  /* Buttons keep their individual borders */
+}
+
+/* Connected mode - buttons share borders */
+.dos-button-group--connected {
+  gap: 0;
+}
+
+/* Horizontal connected */
+.dos-button-group--horizontal.dos-button-group--connected .dos-button {
+  /* Remove right border except for last child */
+  border-right-width: 0;
+}
+
+.dos-button-group--horizontal.dos-button-group--connected .dos-button:last-child {
+  border-right-width: 2px;
+}
+
+/* Vertical connected */
+.dos-button-group--vertical.dos-button-group--connected .dos-button {
+  /* Remove bottom border except for last child */
+  border-bottom-width: 0;
+}
+
+.dos-button-group--vertical.dos-button-group--connected .dos-button:last-child {
+  border-bottom-width: 2px;
+}
+
+/* Focus within connected group */
+.dos-button-group--connected .dos-button:focus-visible {
+  z-index: 1;
+  position: relative;
+}

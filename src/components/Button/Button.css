@@ -1,0 +1,202 @@
+/**
+ * Button Component Styles
+ *
+ * DOS-style button with thick borders and various states.
+ */
+
+.dos-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dos-space-xs);
+  position: relative;
+  box-sizing: border-box;
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size);
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 2px solid var(--dos-color-border);
+  border-radius: 0;
+  background-color: var(--dos-color-bg);
+  color: var(--dos-color-fg);
+  padding: var(--dos-space-sm) var(--dos-space-md);
+  margin: 0;
+  vertical-align: middle;
+  user-select: none;
+  transition: none; /* DOS-style instant response */
+}
+
+/* Focus visible state - high contrast for accessibility */
+.dos-button:focus {
+  outline: none;
+}
+
+.dos-button:focus-visible {
+  outline: 2px solid var(--dos-color-primary);
+  outline-offset: 2px;
+}
+
+/* ===== SIZE VARIANTS ===== */
+
+.dos-button--small {
+  font-size: var(--dos-font-size-sm);
+  padding: var(--dos-space-xs) var(--dos-space-sm);
+}
+
+.dos-button--medium {
+  font-size: var(--dos-font-size);
+  padding: var(--dos-space-sm) var(--dos-space-md);
+}
+
+.dos-button--large {
+  font-size: var(--dos-font-size-lg);
+  padding: var(--dos-space-md) var(--dos-space-lg);
+}
+
+/* ===== VARIANT STYLES ===== */
+
+/* Primary - highlighted action */
+.dos-button--primary {
+  background-color: var(--dos-color-primary);
+  color: var(--dos-color-bg);
+  border-color: var(--dos-color-primary);
+}
+
+.dos-button--primary:hover:not(.dos-button--disabled):not(.dos-button--loading) {
+  background-color: var(--dos-color-highlight);
+  color: var(--dos-color-bg);
+}
+
+.dos-button--primary:active:not(.dos-button--disabled):not(.dos-button--loading) {
+  background-color: var(--dos-color-fg);
+  color: var(--dos-color-bg);
+}
+
+/* Secondary - standard action (default) */
+.dos-button--secondary {
+  background-color: var(--dos-color-bg);
+  color: var(--dos-color-fg);
+  border-color: var(--dos-color-border);
+}
+
+.dos-button--secondary:hover:not(.dos-button--disabled):not(.dos-button--loading) {
+  background-color: var(--dos-color-border);
+  color: var(--dos-color-bg);
+}
+
+.dos-button--secondary:active:not(.dos-button--disabled):not(.dos-button--loading) {
+  background-color: var(--dos-color-fg);
+  color: var(--dos-color-bg);
+}
+
+/* Danger - destructive action */
+.dos-button--danger {
+  background-color: var(--dos-color-error);
+  color: var(--dos-color-fg);
+  border-color: var(--dos-color-error);
+}
+
+.dos-button--danger:hover:not(.dos-button--disabled):not(.dos-button--loading) {
+  background-color: var(--dos-color-fg);
+  color: var(--dos-color-error);
+  border-color: var(--dos-color-fg);
+}
+
+.dos-button--danger:active:not(.dos-button--disabled):not(.dos-button--loading) {
+  background-color: var(--dos-color-bg);
+  color: var(--dos-color-error);
+}
+
+/* Ghost - minimal/text-only appearance */
+.dos-button--ghost {
+  background-color: transparent;
+  color: var(--dos-color-fg);
+  border-color: transparent;
+}
+
+.dos-button--ghost:hover:not(.dos-button--disabled):not(.dos-button--loading) {
+  background-color: transparent;
+  color: var(--dos-color-primary);
+  border-color: var(--dos-color-border);
+}
+
+.dos-button--ghost:active:not(.dos-button--disabled):not(.dos-button--loading) {
+  background-color: var(--dos-color-bg);
+  color: var(--dos-color-highlight);
+}
+
+/* ===== STATE STYLES ===== */
+
+/* Disabled state */
+.dos-button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.dos-button--disabled:hover {
+  /* Ensure no hover effects when disabled */
+  background-color: inherit;
+  color: inherit;
+  border-color: inherit;
+}
+
+/* Loading state */
+.dos-button--loading {
+  cursor: wait;
+  position: relative;
+}
+
+.dos-button--loading .dos-button__label {
+  opacity: 0.5;
+}
+
+.dos-button__spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: inherit;
+}
+
+/* Full width */
+.dos-button--full-width {
+  display: flex;
+  width: 100%;
+}
+
+/* ===== ICON STYLES ===== */
+
+.dos-button__icon {
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.dos-button__icon--left {
+  order: -1;
+}
+
+.dos-button__icon--right {
+  order: 1;
+}
+
+.dos-button__label {
+  display: inline-block;
+}
+
+/* ASCII Spinner Animation */
+@keyframes dos-spinner {
+  0% { content: '|'; }
+  25% { content: '/'; }
+  50% { content: '—'; }
+  75% { content: '\\'; }
+  100% { content: '|'; }
+}
+
+.dos-button__spinner::before {
+  content: '|';
+  animation: dos-spinner 500ms steps(1) infinite;
+}

@@ -24,6 +24,12 @@ import {
   renderLabelPage,
   renderASCIIArtPage,
 } from '../pages/typography-components';
+import {
+  renderButtonPage,
+  renderButtonGroupPage,
+  renderIconButtonPage,
+  renderLinkPage,
+} from '../pages/buttons';
 
 /** Page content element reference */
 let contentElement: HTMLElement | null = null;
@@ -49,8 +55,12 @@ const pages: Record<string, () => HTMLElement> = {
   'definition-list': renderDefinitionListPage,
   label: renderLabelPage,
   'ascii-art': renderASCIIArtPage,
+  // Button & Link pages (Phase 4)
+  button: renderButtonPage,
+  'button-group': renderButtonGroupPage,
+  'icon-button': renderIconButtonPage,
+  link: renderLinkPage,
   // Form controls (to be implemented)
-  button: () => createPlaceholderPage('Button', 'DOS-style buttons with variants and states.'),
   input: () => createPlaceholderPage('TextInput', 'Text input field with blinking cursor.'),
   select: () => createPlaceholderPage('Select', 'Dropdown select component.'),
   checkbox: () => createPlaceholderPage('Checkbox', 'Checkbox and radio button components.'),

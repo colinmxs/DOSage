@@ -26,10 +26,10 @@ export * from './Label';
 export * from './ASCIIArt';
 
 // Button & Link Components (Phase 4)
-// export * from './Button';
-// export * from './ButtonGroup';
-// export * from './IconButton';
-// export * from './Link';
+export * from './Button';
+export * from './ButtonGroup';
+export * from './IconButton';
+export * from './Link';
 
 // Form Controls (Phases 5-6)
 // export * from './TextInput';

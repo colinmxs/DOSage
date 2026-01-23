@@ -37,9 +37,17 @@ const NAV_ITEMS = [
     ],
   },
   {
-    category: 'Form Controls',
+    category: 'Buttons & Links',
     items: [
       { id: 'button', label: 'Button' },
+      { id: 'button-group', label: 'ButtonGroup' },
+      { id: 'icon-button', label: 'IconButton' },
+      { id: 'link', label: 'Link' },
+    ],
+  },
+  {
+    category: 'Form Controls',
+    items: [
       { id: 'input', label: 'TextInput' },
       { id: 'select', label: 'Select' },
       { id: 'checkbox', label: 'Checkbox' },

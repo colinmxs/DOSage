@@ -9,68 +9,68 @@
 ### 4.1 Button
 
 **File:** `src/components/Button/Button.ts`
-**Styles:** `src/components/Button/Button.styles.css`
+**Styles:** `src/components/Button/Button.css`
 **Types:** `src/components/Button/Button.types.ts`
 **Tests:** `tests/components/Button.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `ButtonProps`
-  - [ ] Prop: `label` (string) — button text content
-  - [ ] Prop: `variant` (ButtonVariant) — 'primary' | 'secondary' | 'danger' | 'ghost'
-  - [ ] Prop: `size` (ButtonSize) — 'small' | 'medium' | 'large'
-  - [ ] Prop: `disabled` (boolean) — disables interaction
-  - [ ] Prop: `loading` (boolean) — shows loading state
-  - [ ] Prop: `type` (string) — 'button' | 'submit' | 'reset'
-  - [ ] Prop: `icon` (string) — optional icon/character prefix
-  - [ ] Prop: `iconPosition` ('left' | 'right') — icon placement
-  - [ ] Prop: `fullWidth` (boolean) — expand to container width
-  - [ ] Prop: `onClick` (function) — click handler
-- [ ] Implement base component with thick DOS-style borders
-- [ ] Implement variants
-  - [ ] Variant: `primary` — highlighted action, uses `--dos-color-primary`
-  - [ ] Variant: `secondary` — standard action, uses `--dos-color-fg`
-  - [ ] Variant: `danger` — destructive action, uses `--dos-color-error`
-  - [ ] Variant: `ghost` — minimal/text-only appearance
-- [ ] Implement sizes
-  - [ ] Size: `small` — compact padding, `--dos-font-size-sm`
-  - [ ] Size: `medium` — default size, `--dos-font-size`
-  - [ ] Size: `large` — generous padding, `--dos-font-size-lg`
-- [ ] Implement states: default, hover, focus, active, disabled, loading
-- [ ] Add loading state with ASCII spinner animation
-- [ ] Add CSS styles with class `.dos-button`
-  - [ ] `.dos-button--primary`
-  - [ ] `.dos-button--secondary`
-  - [ ] `.dos-button--danger`
-  - [ ] `.dos-button--ghost`
-  - [ ] `.dos-button--small`
-  - [ ] `.dos-button--medium`
-  - [ ] `.dos-button--large`
-  - [ ] `.dos-button--loading`
-  - [ ] `.dos-button--disabled`
-  - [ ] `.dos-button--full-width`
-- [ ] Add keyboard navigation
-  - [ ] `Enter` — activate button
-  - [ ] `Space` — activate button
-- [ ] Add ARIA attributes
-  - [ ] `role="button"` (if not using `<button>`)
-  - [ ] `aria-disabled` — when disabled
-  - [ ] `aria-busy` — when loading
-  - [ ] `aria-label` — when icon-only
-- [ ] Write unit tests
-  - [ ] Test: renders with correct label
-  - [ ] Test: applies variant classes correctly
-  - [ ] Test: applies size classes correctly
-  - [ ] Test: handles click events
-  - [ ] Test: respects disabled state
-  - [ ] Test: shows loading state
-  - [ ] Test: keyboard activation works
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic example
-  - [ ] All variants showcase
-  - [ ] All sizes showcase
-  - [ ] States demonstration (loading, disabled)
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `ButtonProps`
+  - [x] Prop: `label` (string) — button text content
+  - [x] Prop: `variant` (ButtonVariant) — 'primary' | 'secondary' | 'danger' | 'ghost'
+  - [x] Prop: `size` (ButtonSize) — 'small' | 'medium' | 'large'
+  - [x] Prop: `disabled` (boolean) — disables interaction
+  - [x] Prop: `loading` (boolean) — shows loading state
+  - [x] Prop: `type` (string) — 'button' | 'submit' | 'reset'
+  - [x] Prop: `icon` (string) — optional icon/character prefix
+  - [x] Prop: `iconPosition` ('left' | 'right') — icon placement
+  - [x] Prop: `fullWidth` (boolean) — expand to container width
+  - [x] Prop: `onClick` (function) — click handler
+- [x] Implement base component with thick DOS-style borders
+- [x] Implement variants
+  - [x] Variant: `primary` — highlighted action, uses `--dos-color-primary`
+  - [x] Variant: `secondary` — standard action, uses `--dos-color-fg`
+  - [x] Variant: `danger` — destructive action, uses `--dos-color-error`
+  - [x] Variant: `ghost` — minimal/text-only appearance
+- [x] Implement sizes
+  - [x] Size: `small` — compact padding, `--dos-font-size-sm`
+  - [x] Size: `medium` — default size, `--dos-font-size`
+  - [x] Size: `large` — generous padding, `--dos-font-size-lg`
+- [x] Implement states: default, hover, focus, active, disabled, loading
+- [x] Add loading state with ASCII spinner animation
+- [x] Add CSS styles with class `.dos-button`
+  - [x] `.dos-button--primary`
+  - [x] `.dos-button--secondary`
+  - [x] `.dos-button--danger`
+  - [x] `.dos-button--ghost`
+  - [x] `.dos-button--small`
+  - [x] `.dos-button--medium`
+  - [x] `.dos-button--large`
+  - [x] `.dos-button--loading`
+  - [x] `.dos-button--disabled`
+  - [x] `.dos-button--full-width`
+- [x] Add keyboard navigation
+  - [x] `Enter` — activate button
+  - [x] `Space` — activate button
+- [x] Add ARIA attributes
+  - [x] `role="button"` (if not using `<button>`)
+  - [x] `aria-disabled` — when disabled
+  - [x] `aria-busy` — when loading
+  - [x] `aria-label` — when icon-only
+- [x] Write unit tests
+  - [x] Test: renders with correct label
+  - [x] Test: applies variant classes correctly
+  - [x] Test: applies size classes correctly
+  - [x] Test: handles click events
+  - [x] Test: respects disabled state
+  - [x] Test: shows loading state
+  - [x] Test: keyboard activation works
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic example
+  - [x] All variants showcase
+  - [x] All sizes showcase
+  - [x] States demonstration (loading, disabled)
+  - [x] Code snippet displayed
 
 > **Accessibility:** Ensure visible focus indicator with high contrast. Loading state announced to screen readers.
 > **Keyboard:** `Enter`, `Space` to activate
@@ -80,45 +80,45 @@
 ### 4.2 ButtonGroup
 
 **File:** `src/components/ButtonGroup/ButtonGroup.ts`
-**Styles:** `src/components/ButtonGroup/ButtonGroup.styles.css`
+**Styles:** `src/components/ButtonGroup/ButtonGroup.css`
 **Types:** `src/components/ButtonGroup/ButtonGroup.types.ts`
 **Tests:** `tests/components/ButtonGroup.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `ButtonGroupProps`
-  - [ ] Prop: `orientation` ('horizontal' | 'vertical') — layout direction
-  - [ ] Prop: `connected` (boolean) — buttons share borders
-  - [ ] Prop: `size` (ButtonSize) — applies to all children
-  - [ ] Prop: `variant` (ButtonVariant) — applies to all children
-  - [ ] Prop: `children` (Button[]) — button components
-- [ ] Implement base component as flex container
-- [ ] Implement orientation modes
-  - [ ] Horizontal: buttons in a row
-  - [ ] Vertical: buttons in a column
-- [ ] Implement connection modes
-  - [ ] Connected: shared borders, rounded only on outer edges
-  - [ ] Separated: gap between buttons
-- [ ] Add CSS styles with class `.dos-button-group`
-  - [ ] `.dos-button-group--horizontal`
-  - [ ] `.dos-button-group--vertical`
-  - [ ] `.dos-button-group--connected`
-  - [ ] `.dos-button-group--separated`
-- [ ] Add keyboard navigation
-  - [ ] `Tab` — move between buttons
-  - [ ] `Arrow keys` — navigate within connected group
-- [ ] Add ARIA attributes
-  - [ ] `role="group"`
-  - [ ] `aria-label` — group description
-- [ ] Write unit tests
-  - [ ] Test: renders children correctly
-  - [ ] Test: applies orientation class
-  - [ ] Test: connected mode removes inner borders
-  - [ ] Test: keyboard navigation works
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Horizontal connected example
-  - [ ] Vertical separated example
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `ButtonGroupProps`
+  - [x] Prop: `orientation` ('horizontal' | 'vertical') — layout direction
+  - [x] Prop: `connected` (boolean) — buttons share borders
+  - [x] Prop: `size` (ButtonSize) — applies to all children
+  - [x] Prop: `variant` (ButtonVariant) — applies to all children
+  - [x] Prop: `children` (Button[]) — button components
+- [x] Implement base component as flex container
+- [x] Implement orientation modes
+  - [x] Horizontal: buttons in a row
+  - [x] Vertical: buttons in a column
+- [x] Implement connection modes
+  - [x] Connected: shared borders, rounded only on outer edges
+  - [x] Separated: gap between buttons
+- [x] Add CSS styles with class `.dos-button-group`
+  - [x] `.dos-button-group--horizontal`
+  - [x] `.dos-button-group--vertical`
+  - [x] `.dos-button-group--connected`
+  - [x] `.dos-button-group--separated`
+- [x] Add keyboard navigation
+  - [x] `Tab` — move between buttons
+  - [x] `Arrow keys` — navigate within connected group
+- [x] Add ARIA attributes
+  - [x] `role="group"`
+  - [x] `aria-label` — group description
+- [x] Write unit tests
+  - [x] Test: renders children correctly
+  - [x] Test: applies orientation class
+  - [x] Test: connected mode removes inner borders
+  - [x] Test: keyboard navigation works
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Horizontal connected example
+  - [x] Vertical separated example
+  - [x] Code snippet displayed
 
 > **Accessibility:** Group announced as toolbar/group. Arrow key navigation for connected groups.
 > **Keyboard:** `Tab` between groups, `Arrow keys` within connected group
@@ -128,41 +128,41 @@
 ### 4.3 IconButton
 
 **File:** `src/components/IconButton/IconButton.ts`
-**Styles:** `src/components/IconButton/IconButton.styles.css`
+**Styles:** `src/components/IconButton/IconButton.css`
 **Types:** `src/components/IconButton/IconButton.types.ts`
 **Tests:** `tests/components/IconButton.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `IconButtonProps`
-  - [ ] Prop: `icon` (string) — icon character or ASCII art
-  - [ ] Prop: `label` (string) — accessible label (required)
-  - [ ] Prop: `variant` (ButtonVariant) — same as Button
-  - [ ] Prop: `size` (ButtonSize) — same as Button
-  - [ ] Prop: `disabled` (boolean) — disables interaction
-  - [ ] Prop: `onClick` (function) — click handler
-- [ ] Implement square button with centered icon
-- [ ] Implement variants (inherit from Button)
-- [ ] Implement states: default, hover, focus, active, disabled
-- [ ] Add CSS styles with class `.dos-icon-button`
-  - [ ] Ensure square aspect ratio
-  - [ ] Center icon content
-  - [ ] Inherit variant styles from Button
-- [ ] Add keyboard navigation
-  - [ ] `Enter` — activate button
-  - [ ] `Space` — activate button
-- [ ] Add ARIA attributes
-  - [ ] `aria-label` — required, describes action
-  - [ ] `aria-disabled` — when disabled
-- [ ] Write unit tests
-  - [ ] Test: renders icon correctly
-  - [ ] Test: maintains square shape
-  - [ ] Test: applies variant classes
-  - [ ] Test: requires accessible label
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Common icon examples (`X`, `?`, `i`, `▲`, `▼`)
-  - [ ] All variants showcase
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `IconButtonProps`
+  - [x] Prop: `icon` (string) — icon character or ASCII art
+  - [x] Prop: `label` (string) — accessible label (required)
+  - [x] Prop: `variant` (ButtonVariant) — same as Button
+  - [x] Prop: `size` (ButtonSize) — same as Button
+  - [x] Prop: `disabled` (boolean) — disables interaction
+  - [x] Prop: `onClick` (function) — click handler
+- [x] Implement square button with centered icon
+- [x] Implement variants (inherit from Button)
+- [x] Implement states: default, hover, focus, active, disabled
+- [x] Add CSS styles with class `.dos-icon-button`
+  - [x] Ensure square aspect ratio
+  - [x] Center icon content
+  - [x] Inherit variant styles from Button
+- [x] Add keyboard navigation
+  - [x] `Enter` — activate button
+  - [x] `Space` — activate button
+- [x] Add ARIA attributes
+  - [x] `aria-label` — required, describes action
+  - [x] `aria-disabled` — when disabled
+- [x] Write unit tests
+  - [x] Test: renders icon correctly
+  - [x] Test: maintains square shape
+  - [x] Test: applies variant classes
+  - [x] Test: requires accessible label
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Common icon examples (`X`, `?`, `i`, `▲`, `▼`)
+  - [x] All variants showcase
+  - [x] Code snippet displayed
 
 > **Accessibility:** MUST have aria-label since no visible text. Announce as button.
 > **Keyboard:** `Enter`, `Space` to activate
@@ -172,48 +172,48 @@
 ### 4.4 Link
 
 **File:** `src/components/Link/Link.ts`
-**Styles:** `src/components/Link/Link.styles.css`
+**Styles:** `src/components/Link/Link.css`
 **Types:** `src/components/Link/Link.types.ts`
 **Tests:** `tests/components/Link.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `LinkProps`
-  - [ ] Prop: `href` (string) — link destination
-  - [ ] Prop: `label` (string) — link text
-  - [ ] Prop: `target` (string) — '_blank', '_self', etc.
-  - [ ] Prop: `external` (boolean) — opens in new tab with icon
-  - [ ] Prop: `underline` ('always' | 'hover' | 'none') — underline style
-  - [ ] Prop: `disabled` (boolean) — prevents navigation
-  - [ ] Prop: `onClick` (function) — optional click handler
-- [ ] Implement base component using `<a>` element
-- [ ] Implement DOS-style appearance
-  - [ ] Primary color for link text
-  - [ ] Underline using low-line or box characters
-  - [ ] Visited state with different color
-- [ ] Implement states: default, hover, focus, active, visited, disabled
-- [ ] Add CSS styles with class `.dos-link`
-  - [ ] `.dos-link--underline-always`
-  - [ ] `.dos-link--underline-hover`
-  - [ ] `.dos-link--underline-none`
-  - [ ] `.dos-link--external`
-  - [ ] `.dos-link--disabled`
-  - [ ] `.dos-link--visited`
-- [ ] Add keyboard navigation
-  - [ ] `Enter` — activate link
-- [ ] Add ARIA attributes
-  - [ ] `aria-disabled` — when disabled
-  - [ ] `rel="noopener noreferrer"` — for external links
-- [ ] Write unit tests
-  - [ ] Test: renders anchor with correct href
-  - [ ] Test: applies underline styles
-  - [ ] Test: handles external links correctly
-  - [ ] Test: respects disabled state
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic link example
-  - [ ] External link with icon
-  - [ ] Underline variants
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `LinkProps`
+  - [x] Prop: `href` (string) — link destination
+  - [x] Prop: `label` (string) — link text
+  - [x] Prop: `target` (string) — '_blank', '_self', etc.
+  - [x] Prop: `external` (boolean) — opens in new tab with icon
+  - [x] Prop: `underline` ('always' | 'hover' | 'none') — underline style
+  - [x] Prop: `disabled` (boolean) — prevents navigation
+  - [x] Prop: `onClick` (function) — optional click handler
+- [x] Implement base component using `<a>` element
+- [x] Implement DOS-style appearance
+  - [x] Primary color for link text
+  - [x] Underline using low-line or box characters
+  - [x] Visited state with different color
+- [x] Implement states: default, hover, focus, active, visited, disabled
+- [x] Add CSS styles with class `.dos-link`
+  - [x] `.dos-link--underline-always`
+  - [x] `.dos-link--underline-hover`
+  - [x] `.dos-link--underline-none`
+  - [x] `.dos-link--external`
+  - [x] `.dos-link--disabled`
+  - [x] `.dos-link--visited`
+- [x] Add keyboard navigation
+  - [x] `Enter` — activate link
+- [x] Add ARIA attributes
+  - [x] `aria-disabled` — when disabled
+  - [x] `rel="noopener noreferrer"` — for external links
+- [x] Write unit tests
+  - [x] Test: renders anchor with correct href
+  - [x] Test: applies underline styles
+  - [x] Test: handles external links correctly
+  - [x] Test: respects disabled state
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic link example
+  - [x] External link with icon
+  - [x] Underline variants
+  - [x] Code snippet displayed
 
 > **Accessibility:** Use semantic `<a>` element. External links should indicate opening in new window.
 > **Keyboard:** `Enter` to activate

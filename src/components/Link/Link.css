@@ -1,0 +1,109 @@
+/**
+ * Link Component Styles
+ *
+ * DOS-style hyperlinks with various underline options.
+ */
+
+.dos-link {
+  display: inline;
+  font-family: var(--dos-font-family);
+  font-size: inherit;
+  line-height: inherit;
+  color: var(--dos-color-primary);
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 0;
+  transition: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Focus state - high contrast outline */
+.dos-link:focus {
+  outline: none;
+}
+
+.dos-link:focus-visible {
+  outline: 2px solid var(--dos-color-primary);
+  outline-offset: 2px;
+}
+
+/* ===== UNDERLINE VARIANTS ===== */
+
+/* Always show underline */
+.dos-link--underline-always {
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-underline-offset: 2px;
+}
+
+/* Show underline only on hover */
+.dos-link--underline-hover {
+  text-decoration: none;
+}
+
+.dos-link--underline-hover:hover:not(.dos-link--disabled) {
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-underline-offset: 2px;
+}
+
+/* Never show underline */
+.dos-link--underline-none {
+  text-decoration: none;
+}
+
+/* ===== STATES ===== */
+
+/* Hover state */
+.dos-link:hover:not(.dos-link--disabled) {
+  color: var(--dos-color-highlight);
+}
+
+/* Active state */
+.dos-link:active:not(.dos-link--disabled) {
+  color: var(--dos-color-secondary);
+}
+
+/* Visited state */
+.dos-link--visited,
+.dos-link:visited {
+  color: var(--dos-color-secondary);
+}
+
+.dos-link:visited:hover:not(.dos-link--disabled) {
+  color: var(--dos-color-highlight);
+}
+
+/* Disabled state */
+.dos-link--disabled {
+  color: var(--dos-color-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.dos-link--disabled:hover {
+  color: var(--dos-color-disabled);
+  text-decoration: none;
+}
+
+/* ===== EXTERNAL LINK ===== */
+
+.dos-link--external {
+  /* External links have indicator */
+}
+
+.dos-link__external-icon {
+  display: inline;
+  margin-left: 0.25em;
+  font-size: 0.8em;
+  vertical-align: super;
+}
+
+/* ===== LINK CONTENT ===== */
+
+.dos-link__text {
+  display: inline;
+}

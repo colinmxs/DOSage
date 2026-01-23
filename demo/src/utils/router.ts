@@ -34,8 +34,12 @@ export const ROUTES = {
   DEFINITION_LIST: 'definition-list',
   LABEL: 'label',
   ASCII_ART: 'ascii-art',
-  // Form Controls
+  // Button & Link
   BUTTON: 'button',
+  BUTTON_GROUP: 'button-group',
+  ICON_BUTTON: 'icon-button',
+  LINK: 'link',
+  // Form Controls
   INPUT: 'input',
   SELECT: 'select',
   CHECKBOX: 'checkbox',
