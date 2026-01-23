@@ -1,0 +1,113 @@
+/**
+ * Grid Component Styles
+ *
+ * CSS Grid layout component for DOS-style interfaces.
+ */
+
+.dos-grid {
+  display: grid;
+  box-sizing: border-box;
+}
+
+/* Gap utilities - single value */
+.dos-grid--gap-xs {
+  gap: var(--dos-space-xs);
+}
+
+.dos-grid--gap-sm {
+  gap: var(--dos-space-sm);
+}
+
+.dos-grid--gap-md {
+  gap: var(--dos-space-md);
+}
+
+.dos-grid--gap-lg {
+  gap: var(--dos-space-lg);
+}
+
+.dos-grid--gap-xl {
+  gap: var(--dos-space-xl);
+}
+
+/* Row gap utilities */
+.dos-grid--row-gap-xs {
+  row-gap: var(--dos-space-xs);
+}
+
+.dos-grid--row-gap-sm {
+  row-gap: var(--dos-space-sm);
+}
+
+.dos-grid--row-gap-md {
+  row-gap: var(--dos-space-md);
+}
+
+.dos-grid--row-gap-lg {
+  row-gap: var(--dos-space-lg);
+}
+
+.dos-grid--row-gap-xl {
+  row-gap: var(--dos-space-xl);
+}
+
+/* Column gap utilities */
+.dos-grid--column-gap-xs {
+  column-gap: var(--dos-space-xs);
+}
+
+.dos-grid--column-gap-sm {
+  column-gap: var(--dos-space-sm);
+}
+
+.dos-grid--column-gap-md {
+  column-gap: var(--dos-space-md);
+}
+
+.dos-grid--column-gap-lg {
+  column-gap: var(--dos-space-lg);
+}
+
+.dos-grid--column-gap-xl {
+  column-gap: var(--dos-space-xl);
+}
+
+/* Align items utilities */
+.dos-grid--align-start {
+  align-items: start;
+}
+
+.dos-grid--align-center {
+  align-items: center;
+}
+
+.dos-grid--align-end {
+  align-items: end;
+}
+
+.dos-grid--align-stretch {
+  align-items: stretch;
+}
+
+/* Justify items utilities */
+.dos-grid--justify-start {
+  justify-items: start;
+}
+
+.dos-grid--justify-center {
+  justify-items: center;
+}
+
+.dos-grid--justify-end {
+  justify-items: end;
+}
+
+.dos-grid--justify-stretch {
+  justify-items: stretch;
+}
+
+/* Grid item */
+.dos-grid__item {
+  box-sizing: border-box;
+  min-width: 0; /* Prevent overflow */
+}

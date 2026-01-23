@@ -1,0 +1,89 @@
+/**
+ * Container Component Styles
+ *
+ * DOS-style container for wrapping content with consistent spacing.
+ */
+
+.dos-container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Centered container */
+.dos-container--centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Padding variants - single value */
+.dos-container--padding-xs {
+  padding: var(--dos-space-xs);
+}
+
+.dos-container--padding-sm {
+  padding: var(--dos-space-sm);
+}
+
+.dos-container--padding-md {
+  padding: var(--dos-space-md);
+}
+
+.dos-container--padding-lg {
+  padding: var(--dos-space-lg);
+}
+
+.dos-container--padding-xl {
+  padding: var(--dos-space-xl);
+}
+
+/* Horizontal padding variants */
+.dos-container--padding-x-xs {
+  padding-left: var(--dos-space-xs);
+  padding-right: var(--dos-space-xs);
+}
+
+.dos-container--padding-x-sm {
+  padding-left: var(--dos-space-sm);
+  padding-right: var(--dos-space-sm);
+}
+
+.dos-container--padding-x-md {
+  padding-left: var(--dos-space-md);
+  padding-right: var(--dos-space-md);
+}
+
+.dos-container--padding-x-lg {
+  padding-left: var(--dos-space-lg);
+  padding-right: var(--dos-space-lg);
+}
+
+.dos-container--padding-x-xl {
+  padding-left: var(--dos-space-xl);
+  padding-right: var(--dos-space-xl);
+}
+
+/* Vertical padding variants */
+.dos-container--padding-y-xs {
+  padding-top: var(--dos-space-xs);
+  padding-bottom: var(--dos-space-xs);
+}
+
+.dos-container--padding-y-sm {
+  padding-top: var(--dos-space-sm);
+  padding-bottom: var(--dos-space-sm);
+}
+
+.dos-container--padding-y-md {
+  padding-top: var(--dos-space-md);
+  padding-bottom: var(--dos-space-md);
+}
+
+.dos-container--padding-y-lg {
+  padding-top: var(--dos-space-lg);
+  padding-bottom: var(--dos-space-lg);
+}
+
+.dos-container--padding-y-xl {
+  padding-top: var(--dos-space-xl);
+  padding-bottom: var(--dos-space-xl);
+}

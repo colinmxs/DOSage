@@ -1,0 +1,76 @@
+/**
+ * Box Component Styles
+ *
+ * Generic DOS-style box container with flexible styling options.
+ */
+
+.dos-box {
+  box-sizing: border-box;
+  background-color: transparent;
+  color: var(--dos-color-fg);
+  font-family: var(--dos-font-family);
+}
+
+/* Display modes */
+.dos-box--block {
+  display: block;
+}
+
+.dos-box--inline-block {
+  display: inline-block;
+}
+
+.dos-box--flex {
+  display: flex;
+}
+
+.dos-box--inline-flex {
+  display: inline-flex;
+}
+
+/* Border style */
+.dos-box--bordered {
+  border: var(--dos-border-width) var(--dos-border-style) var(--dos-color-border);
+}
+
+/* Padding variants */
+.dos-box--padding-xs {
+  padding: var(--dos-space-xs);
+}
+
+.dos-box--padding-sm {
+  padding: var(--dos-space-sm);
+}
+
+.dos-box--padding-md {
+  padding: var(--dos-space-md);
+}
+
+.dos-box--padding-lg {
+  padding: var(--dos-space-lg);
+}
+
+.dos-box--padding-xl {
+  padding: var(--dos-space-xl);
+}
+
+/* Margin variants */
+.dos-box--margin-xs {
+  margin: var(--dos-space-xs);
+}
+
+.dos-box--margin-sm {
+  margin: var(--dos-space-sm);
+}
+
+.dos-box--margin-md {
+  margin: var(--dos-space-md);
+}
+
+.dos-box--margin-lg {
+  margin: var(--dos-space-lg);
+}
+
+.dos-box--margin-xl {
+  margin: var(--dos-space-xl);
+}

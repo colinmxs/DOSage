@@ -1,0 +1,109 @@
+/**
+ * Divider Component Styles
+ *
+ * DOS-style divider using box-drawing characters.
+ */
+
+.dos-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dos-color-border);
+  font-family: var(--dos-font-family);
+  overflow: hidden;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+/* Horizontal divider */
+.dos-divider--horizontal {
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  line-height: 1;
+}
+
+/* Vertical divider */
+.dos-divider--vertical {
+  flex-direction: column;
+  width: auto;
+  height: 100%;
+  writing-mode: vertical-lr;
+  line-height: 1;
+}
+
+/* The character line */
+.dos-divider__line {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.dos-divider--horizontal .dos-divider__line {
+  width: 100%;
+  text-align: center;
+  letter-spacing: 0;
+}
+
+.dos-divider--vertical .dos-divider__line {
+  height: 100%;
+}
+
+/* Margin utilities */
+.dos-divider--margin-xs {
+  margin: var(--dos-space-xs) 0;
+}
+
+.dos-divider--margin-sm {
+  margin: var(--dos-space-sm) 0;
+}
+
+.dos-divider--margin-md {
+  margin: var(--dos-space-md) 0;
+}
+
+.dos-divider--margin-lg {
+  margin: var(--dos-space-lg) 0;
+}
+
+.dos-divider--margin-xl {
+  margin: var(--dos-space-xl) 0;
+}
+
+/* Vertical margin */
+.dos-divider--vertical.dos-divider--margin-xs {
+  margin: 0 var(--dos-space-xs);
+}
+
+.dos-divider--vertical.dos-divider--margin-sm {
+  margin: 0 var(--dos-space-sm);
+}
+
+.dos-divider--vertical.dos-divider--margin-md {
+  margin: 0 var(--dos-space-md);
+}
+
+.dos-divider--vertical.dos-divider--margin-lg {
+  margin: 0 var(--dos-space-lg);
+}
+
+.dos-divider--vertical.dos-divider--margin-xl {
+  margin: 0 var(--dos-space-xl);
+}
+
+/* Variant colors */
+.dos-divider--single {
+  color: var(--dos-color-border);
+}
+
+.dos-divider--double {
+  color: var(--dos-color-border);
+}
+
+.dos-divider--thick {
+  color: var(--dos-color-border);
+}
+
+.dos-divider--dashed {
+  color: var(--dos-color-border);
+}

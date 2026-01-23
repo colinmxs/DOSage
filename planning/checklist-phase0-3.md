@@ -512,31 +512,31 @@
 **Types:** `src/components/Container/Container.types.ts`
 **Tests:** `tests/components/Container.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `ContainerProps`
-  - [ ] Prop: `padding` (SpacingValue | { x?: SpacingValue, y?: SpacingValue }) — padding around content
-  - [ ] Prop: `maxWidth` (string | number) — maximum width constraint
-  - [ ] Prop: `centered` (boolean) — center container horizontally
-  - [ ] Prop: `className` (string) — additional CSS classes
-  - [ ] Prop: `as` (keyof HTMLElementTagNameMap) — HTML element to render as
-- [ ] Implement base component
-  - [ ] Create container element
-  - [ ] Apply padding based on props
-  - [ ] Apply max-width if specified
-  - [ ] Apply centering if specified
-- [ ] Add CSS styles with class `.dos-container`
-  - [ ] Default padding using CSS custom properties
-  - [ ] Width: 100% by default
-  - [ ] Responsive max-width handling
-- [ ] Write unit tests
-  - [ ] Test: renders with default props
-  - [ ] Test: applies custom padding
-  - [ ] Test: centers when centered=true
-  - [ ] Test: respects maxWidth prop
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic example with content
-  - [ ] Padding variations
-  - [ ] Centered vs full-width
+- [x] Create component directory structure
+- [x] Define TypeScript interface `ContainerProps`
+  - [x] Prop: `padding` (SpacingValue | { x?: SpacingValue, y?: SpacingValue }) — padding around content
+  - [x] Prop: `maxWidth` (string | number) — maximum width constraint
+  - [x] Prop: `centered` (boolean) — center container horizontally
+  - [x] Prop: `className` (string) — additional CSS classes
+  - [x] Prop: `as` (keyof HTMLElementTagNameMap) — HTML element to render as
+- [x] Implement base component
+  - [x] Create container element
+  - [x] Apply padding based on props
+  - [x] Apply max-width if specified
+  - [x] Apply centering if specified
+- [x] Add CSS styles with class `.dos-container`
+  - [x] Default padding using CSS custom properties
+  - [x] Width: 100% by default
+  - [x] Responsive max-width handling
+- [x] Write unit tests
+  - [x] Test: renders with default props
+  - [x] Test: applies custom padding
+  - [x] Test: centers when centered=true
+  - [x] Test: respects maxWidth prop
+- [x] Add to Kitchen Sink demo
+  - [x] Basic example with content
+  - [x] Padding variations
+  - [x] Centered vs full-width
 
 > **Accessibility:** Container is a structural element; ensure semantic HTML with appropriate landmark roles if needed.
 
@@ -549,43 +549,43 @@
 **Types:** `src/components/Panel/Panel.types.ts`
 **Tests:** `tests/components/Panel.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `PanelProps`
-  - [ ] Prop: `title` (string) — optional panel title
-  - [ ] Prop: `borderStyle` ('single' | 'double' | 'thick' | 'none') — box-drawing border style
-  - [ ] Prop: `padding` (SpacingValue) — internal padding
-  - [ ] Prop: `shadow` (boolean) — show DOS-style shadow
-  - [ ] Prop: `className` (string) — additional CSS classes
-- [ ] Implement base component
-  - [ ] Create panel wrapper element
-  - [ ] Render title in top border if provided
-  - [ ] Create content area
-- [ ] Implement border variants
-  - [ ] Variant: `single` — uses `┌─┐│└─┘` characters
-  - [ ] Variant: `double` — uses `╔═╗║╚═╝` characters
-  - [ ] Variant: `thick` — uses `█▀█▌▐█▄█` block characters
-  - [ ] Variant: `none` — no visible border
-- [ ] Add CSS styles with class `.dos-panel`
-  - [ ] `.dos-panel--single`
-  - [ ] `.dos-panel--double`
-  - [ ] `.dos-panel--thick`
-  - [ ] `.dos-panel___title` — title styling
-  - [ ] `.dos-panel___content` — content area
-  - [ ] `.dos-panel--shadow` — drop shadow effect
-- [ ] Add ARIA attributes
-  - [ ] `role="region"` when title present
-  - [ ] `aria-labelledby` pointing to title element
-- [ ] Write unit tests
-  - [ ] Test: renders with default border
-  - [ ] Test: displays title correctly
-  - [ ] Test: applies border style variants
-  - [ ] Test: shadow renders when enabled
-  - [ ] Test: ARIA attributes present with title
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic panel with content
-  - [ ] Panel with title
-  - [ ] All border style variants
-  - [ ] Panel with shadow
+- [x] Create component directory structure
+- [x] Define TypeScript interface `PanelProps`
+  - [x] Prop: `title` (string) — optional panel title
+  - [x] Prop: `borderStyle` ('single' | 'double' | 'thick' | 'none') — box-drawing border style
+  - [x] Prop: `padding` (SpacingValue) — internal padding
+  - [x] Prop: `shadow` (boolean) — show DOS-style shadow
+  - [x] Prop: `className` (string) — additional CSS classes
+- [x] Implement base component
+  - [x] Create panel wrapper element
+  - [x] Render title in top border if provided
+  - [x] Create content area
+- [x] Implement border variants
+  - [x] Variant: `single` — uses `┌─┐│└─┘` characters
+  - [x] Variant: `double` — uses `╔═╗║╚═╝` characters
+  - [x] Variant: `thick` — uses `█▀█▌▐█▄█` block characters
+  - [x] Variant: `none` — no visible border
+- [x] Add CSS styles with class `.dos-panel`
+  - [x] `.dos-panel--single`
+  - [x] `.dos-panel--double`
+  - [x] `.dos-panel--thick`
+  - [x] `.dos-panel___title` — title styling
+  - [x] `.dos-panel___content` — content area
+  - [x] `.dos-panel--shadow` — drop shadow effect
+- [x] Add ARIA attributes
+  - [x] `role="region"` when title present
+  - [x] `aria-labelledby` pointing to title element
+- [x] Write unit tests
+  - [x] Test: renders with default border
+  - [x] Test: displays title correctly
+  - [x] Test: applies border style variants
+  - [x] Test: shadow renders when enabled
+  - [x] Test: ARIA attributes present with title
+- [x] Add to Kitchen Sink demo
+  - [x] Basic panel with content
+  - [x] Panel with title
+  - [x] All border style variants
+  - [x] Panel with shadow
 
 > **Accessibility:** Use region role with aria-labelledby when panel has a title.
 > **Visual:** Box-drawing characters create authentic DOS look.
@@ -599,38 +599,38 @@
 **Types:** `src/components/Box/Box.types.ts`
 **Tests:** `tests/components/Box.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `BoxProps`
-  - [ ] Prop: `border` (boolean | BorderConfig) — border configuration
-  - [ ] Prop: `padding` (SpacingValue) — internal padding
-  - [ ] Prop: `margin` (SpacingValue) — external margin
-  - [ ] Prop: `display` ('block' | 'inline-block' | 'flex' | 'inline-flex') — display mode
-  - [ ] Prop: `width` (string | number) — width
-  - [ ] Prop: `height` (string | number) — height
-  - [ ] Prop: `backgroundColor` (string) — background color override
-  - [ ] Prop: `className` (string) — additional CSS classes
-- [ ] Define `BorderConfig` interface
-  - [ ] `width` (number) — border width
-  - [ ] `style` ('solid' | 'dashed' | 'dotted') — CSS border style
-  - [ ] `color` (string) — border color
-  - [ ] `sides` ('all' | 'top' | 'bottom' | 'left' | 'right' | array) — which sides
-- [ ] Implement base component
-  - [ ] Create box element
-  - [ ] Apply all spacing and size props
-  - [ ] Apply border configuration
-- [ ] Add CSS styles with class `.dos-box`
-  - [ ] Default box styling
-  - [ ] Border variants
-  - [ ] Display mode classes
-- [ ] Write unit tests
-  - [ ] Test: renders with default props
-  - [ ] Test: applies border correctly
-  - [ ] Test: respects padding/margin props
-  - [ ] Test: handles different display modes
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic box examples
-  - [ ] Border configurations
-  - [ ] Size variations
+- [x] Create component directory structure
+- [x] Define TypeScript interface `BoxProps`
+  - [x] Prop: `border` (boolean | BorderConfig) — border configuration
+  - [x] Prop: `padding` (SpacingValue) — internal padding
+  - [x] Prop: `margin` (SpacingValue) — external margin
+  - [x] Prop: `display` ('block' | 'inline-block' | 'flex' | 'inline-flex') — display mode
+  - [x] Prop: `width` (string | number) — width
+  - [x] Prop: `height` (string | number) — height
+  - [x] Prop: `backgroundColor` (string) — background color override
+  - [x] Prop: `className` (string) — additional CSS classes
+- [x] Define `BorderConfig` interface
+  - [x] `width` (number) — border width
+  - [x] `style` ('solid' | 'dashed' | 'dotted') — CSS border style
+  - [x] `color` (string) — border color
+  - [x] `sides` ('all' | 'top' | 'bottom' | 'left' | 'right' | array) — which sides
+- [x] Implement base component
+  - [x] Create box element
+  - [x] Apply all spacing and size props
+  - [x] Apply border configuration
+- [x] Add CSS styles with class `.dos-box`
+  - [x] Default box styling
+  - [x] Border variants
+  - [x] Display mode classes
+- [x] Write unit tests
+  - [x] Test: renders with default props
+  - [x] Test: applies border correctly
+  - [x] Test: respects padding/margin props
+  - [x] Test: handles different display modes
+- [x] Add to Kitchen Sink demo
+  - [x] Basic box examples
+  - [x] Border configurations
+  - [x] Size variations
 
 > **Accessibility:** Box is a generic container; no specific ARIA needed unless used as a landmark.
 
@@ -643,39 +643,39 @@
 **Types:** `src/components/Grid/Grid.types.ts`
 **Tests:** `tests/components/Grid.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `GridProps`
-  - [ ] Prop: `columns` (number | string) — number of columns or grid-template-columns value
-  - [ ] Prop: `rows` (number | string) — number of rows or grid-template-rows value
-  - [ ] Prop: `gap` (SpacingValue | { row?: SpacingValue, column?: SpacingValue }) — grid gap
-  - [ ] Prop: `alignItems` ('start' | 'center' | 'end' | 'stretch') — vertical alignment
-  - [ ] Prop: `justifyItems` ('start' | 'center' | 'end' | 'stretch') — horizontal alignment
-  - [ ] Prop: `className` (string) — additional CSS classes
-- [ ] Define TypeScript interface `GridItemProps`
-  - [ ] Prop: `column` (number | string) — grid-column value
-  - [ ] Prop: `row` (number | string) — grid-row value
-  - [ ] Prop: `colSpan` (number) — column span
-  - [ ] Prop: `rowSpan` (number) — row span
-- [ ] Implement Grid component
-  - [ ] Create grid container element
-  - [ ] Apply CSS Grid properties
-- [ ] Implement GridItem component
-  - [ ] Create grid item wrapper
-  - [ ] Apply placement props
-- [ ] Add CSS styles
-  - [ ] `.dos-grid` — base grid container
-  - [ ] `.dos-grid___item` — grid item
-  - [ ] Gap utilities
-  - [ ] Alignment utilities
-- [ ] Write unit tests
-  - [ ] Test: renders grid with correct columns
-  - [ ] Test: applies gap correctly
-  - [ ] Test: GridItem positions correctly
-  - [ ] Test: span props work correctly
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic grid layout
-  - [ ] Different column configurations
-  - [ ] Grid with spanning items
+- [x] Create component directory structure
+- [x] Define TypeScript interface `GridProps`
+  - [x] Prop: `columns` (number | string) — number of columns or grid-template-columns value
+  - [x] Prop: `rows` (number | string) — number of rows or grid-template-rows value
+  - [x] Prop: `gap` (SpacingValue | { row?: SpacingValue, column?: SpacingValue }) — grid gap
+  - [x] Prop: `alignItems` ('start' | 'center' | 'end' | 'stretch') — vertical alignment
+  - [x] Prop: `justifyItems` ('start' | 'center' | 'end' | 'stretch') — horizontal alignment
+  - [x] Prop: `className` (string) — additional CSS classes
+- [x] Define TypeScript interface `GridItemProps`
+  - [x] Prop: `column` (number | string) — grid-column value
+  - [x] Prop: `row` (number | string) — grid-row value
+  - [x] Prop: `colSpan` (number) — column span
+  - [x] Prop: `rowSpan` (number) — row span
+- [x] Implement Grid component
+  - [x] Create grid container element
+  - [x] Apply CSS Grid properties
+- [x] Implement GridItem component
+  - [x] Create grid item wrapper
+  - [x] Apply placement props
+- [x] Add CSS styles
+  - [x] `.dos-grid` — base grid container
+  - [x] `.dos-grid___item` — grid item
+  - [x] Gap utilities
+  - [x] Alignment utilities
+- [x] Write unit tests
+  - [x] Test: renders grid with correct columns
+  - [x] Test: applies gap correctly
+  - [x] Test: GridItem positions correctly
+  - [x] Test: span props work correctly
+- [x] Add to Kitchen Sink demo
+  - [x] Basic grid layout
+  - [x] Different column configurations
+  - [x] Grid with spanning items
 
 > **Accessibility:** Grid is a layout utility; ensure content within has proper structure.
 
@@ -688,43 +688,43 @@
 **Types:** `src/components/Divider/Divider.types.ts`
 **Tests:** `tests/components/Divider.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `DividerProps`
-  - [ ] Prop: `orientation` ('horizontal' | 'vertical') — divider direction
-  - [ ] Prop: `variant` ('single' | 'double' | 'thick' | 'dashed') — line style
-  - [ ] Prop: `character` (string) — custom character to use (overrides variant)
-  - [ ] Prop: `length` (string | number | 'full') — divider length
-  - [ ] Prop: `margin` (SpacingValue) — margin around divider
-  - [ ] Prop: `className` (string) — additional CSS classes
-- [ ] Implement base component
-  - [ ] Create divider element
-  - [ ] Render using appropriate character:
-    - [ ] Single horizontal: `─` (U+2500)
-    - [ ] Single vertical: `│` (U+2502)
-    - [ ] Double horizontal: `═` (U+2550)
-    - [ ] Double vertical: `║` (U+2551)
-    - [ ] Thick: `█` (U+2588)
-    - [ ] Dashed: `┄` or `┆`
-- [ ] Add CSS styles with class `.dos-divider`
-  - [ ] `.dos-divider--horizontal`
-  - [ ] `.dos-divider--vertical`
-  - [ ] `.dos-divider--single`
-  - [ ] `.dos-divider--double`
-  - [ ] `.dos-divider--thick`
-  - [ ] `.dos-divider--dashed`
-- [ ] Add ARIA attributes
-  - [ ] `role="separator"`
-  - [ ] `aria-orientation` attribute
-- [ ] Write unit tests
-  - [ ] Test: renders horizontal by default
-  - [ ] Test: renders correct character for variant
-  - [ ] Test: custom character overrides variant
-  - [ ] Test: has correct ARIA attributes
-- [ ] Add to Kitchen Sink demo
-  - [ ] Horizontal divider examples
-  - [ ] Vertical divider examples
-  - [ ] All variant styles
-  - [ ] Custom character example
+- [x] Create component directory structure
+- [x] Define TypeScript interface `DividerProps`
+  - [x] Prop: `orientation` ('horizontal' | 'vertical') — divider direction
+  - [x] Prop: `variant` ('single' | 'double' | 'thick' | 'dashed') — line style
+  - [x] Prop: `character` (string) — custom character to use (overrides variant)
+  - [x] Prop: `length` (string | number | 'full') — divider length
+  - [x] Prop: `margin` (SpacingValue) — margin around divider
+  - [x] Prop: `className` (string) — additional CSS classes
+- [x] Implement base component
+  - [x] Create divider element
+  - [x] Render using appropriate character:
+    - [x] Single horizontal: `─` (U+2500)
+    - [x] Single vertical: `│` (U+2502)
+    - [x] Double horizontal: `═` (U+2550)
+    - [x] Double vertical: `║` (U+2551)
+    - [x] Thick: `█` (U+2588)
+    - [x] Dashed: `┄` or `┆`
+- [x] Add CSS styles with class `.dos-divider`
+  - [x] `.dos-divider--horizontal`
+  - [x] `.dos-divider--vertical`
+  - [x] `.dos-divider--single`
+  - [x] `.dos-divider--double`
+  - [x] `.dos-divider--thick`
+  - [x] `.dos-divider--dashed`
+- [x] Add ARIA attributes
+  - [x] `role="separator"`
+  - [x] `aria-orientation` attribute
+- [x] Write unit tests
+  - [x] Test: renders horizontal by default
+  - [x] Test: renders correct character for variant
+  - [x] Test: custom character overrides variant
+  - [x] Test: has correct ARIA attributes
+- [x] Add to Kitchen Sink demo
+  - [x] Horizontal divider examples
+  - [x] Vertical divider examples
+  - [x] All variant styles
+  - [x] Custom character example
 
 > **Accessibility:** `role="separator"` and `aria-orientation` are required.
 > **Keyboard:** Divider is not interactive.
@@ -738,28 +738,28 @@
 **Types:** `src/components/Separator/Separator.types.ts`
 **Tests:** `tests/components/Separator.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `SeparatorProps`
-  - [ ] Prop: `spacing` (SpacingValue) — vertical space around separator
-  - [ ] Prop: `visible` (boolean) — show visual line or just space
-  - [ ] Prop: `className` (string) — additional CSS classes
-- [ ] Implement base component
-  - [ ] Create separator element (blank line or subtle visual)
-  - [ ] Apply spacing
-- [ ] Add CSS styles with class `.dos-separator`
-  - [ ] `.dos-separator--visible` — shows subtle line
-  - [ ] `.dos-separator--hidden` — spacing only
-- [ ] Add ARIA attributes
-  - [ ] `role="separator"` when visible
-  - [ ] `aria-hidden="true"` when purely decorative
-- [ ] Write unit tests
-  - [ ] Test: renders with default props
-  - [ ] Test: applies spacing correctly
-  - [ ] Test: visible prop shows/hides line
-- [ ] Add to Kitchen Sink demo
-  - [ ] Visible separator
-  - [ ] Invisible spacer
-  - [ ] Different spacing values
+- [x] Create component directory structure
+- [x] Define TypeScript interface `SeparatorProps`
+  - [x] Prop: `spacing` (SpacingValue) — vertical space around separator
+  - [x] Prop: `visible` (boolean) — show visual line or just space
+  - [x] Prop: `className` (string) — additional CSS classes
+- [x] Implement base component
+  - [x] Create separator element (blank line or subtle visual)
+  - [x] Apply spacing
+- [x] Add CSS styles with class `.dos-separator`
+  - [x] `.dos-separator--visible` — shows subtle line
+  - [x] `.dos-separator--hidden` — spacing only
+- [x] Add ARIA attributes
+  - [x] `role="separator"` when visible
+  - [x] `aria-hidden="true"` when purely decorative
+- [x] Write unit tests
+  - [x] Test: renders with default props
+  - [x] Test: applies spacing correctly
+  - [x] Test: visible prop shows/hides line
+- [x] Add to Kitchen Sink demo
+  - [x] Visible separator
+  - [x] Invisible spacer
+  - [x] Different spacing values
 
 > **Accessibility:** Visible separators should have `role="separator"`.
 
@@ -767,14 +767,14 @@
 
 ### Export Layout Components
 
-- [ ] Create `src/components/Container/index.ts` — barrel export
-- [ ] Create `src/components/Panel/index.ts` — barrel export
-- [ ] Create `src/components/Box/index.ts` — barrel export
-- [ ] Create `src/components/Grid/index.ts` — barrel export
-- [ ] Create `src/components/Divider/index.ts` — barrel export
-- [ ] Create `src/components/Separator/index.ts` — barrel export
-- [ ] Update `src/index.ts` to export all layout components
-- [ ] Update `src/types/index.ts` to export all layout types
+- [x] Create `src/components/Container/index.ts` — barrel export
+- [x] Create `src/components/Panel/index.ts` — barrel export
+- [x] Create `src/components/Box/index.ts` — barrel export
+- [x] Create `src/components/Grid/index.ts` — barrel export
+- [x] Create `src/components/Divider/index.ts` — barrel export
+- [x] Create `src/components/Separator/index.ts` — barrel export
+- [x] Update `src/index.ts` to export all layout components
+- [x] Update `src/types/index.ts` to export all layout types
 
 ---
 

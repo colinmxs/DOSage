@@ -1,0 +1,99 @@
+/**
+ * Panel Component Styles
+ *
+ * DOS-style panel with box-drawing character borders.
+ */
+
+.dos-panel {
+  position: relative;
+  display: block;
+  background-color: var(--dos-color-bg);
+  color: var(--dos-color-fg);
+  font-family: var(--dos-font-family);
+}
+
+/* Panel content area */
+.dos-panel__content {
+  padding: var(--dos-space-md);
+}
+
+/* Padding variants */
+.dos-panel--padding-xs .dos-panel__content {
+  padding: var(--dos-space-xs);
+}
+
+.dos-panel--padding-sm .dos-panel__content {
+  padding: var(--dos-space-sm);
+}
+
+.dos-panel--padding-md .dos-panel__content {
+  padding: var(--dos-space-md);
+}
+
+.dos-panel--padding-lg .dos-panel__content {
+  padding: var(--dos-space-lg);
+}
+
+.dos-panel--padding-xl .dos-panel__content {
+  padding: var(--dos-space-xl);
+}
+
+/* Panel title */
+.dos-panel__title {
+  position: absolute;
+  top: -0.6em;
+  left: 1em;
+  padding: 0 0.5em;
+  background-color: var(--dos-color-bg);
+  color: var(--dos-color-primary);
+  font-weight: normal;
+  font-size: inherit;
+  line-height: 1;
+  margin: 0;
+}
+
+/* Border variants using CSS borders (characters rendered via pseudo-elements in complex cases) */
+/* Single border - uses standard CSS */
+.dos-panel--single {
+  border: var(--dos-border-width) var(--dos-border-style) var(--dos-color-border);
+}
+
+/* Double border - uses double border style or thicker visual */
+.dos-panel--double {
+  border: 3px double var(--dos-color-border);
+}
+
+/* Thick border - solid thick border */
+.dos-panel--thick {
+  border: 4px solid var(--dos-color-border);
+}
+
+/* No border */
+.dos-panel--none {
+  border: none;
+}
+
+/* Shadow effect - DOS-style offset shadow */
+.dos-panel--shadow {
+  box-shadow:
+    4px 4px 0 0 var(--dos-color-shadow),
+    4px 4px 0 0 var(--dos-color-shadow);
+}
+
+/* Alternative shadow using pseudo-element for more authentic look */
+.dos-panel--shadow::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: -4px;
+  bottom: -4px;
+  background-color: var(--dos-color-shadow);
+  z-index: -1;
+}
+
+/* Ensure panel is positioned for shadow pseudo-element */
+.dos-panel--shadow {
+  position: relative;
+  z-index: 1;
+}

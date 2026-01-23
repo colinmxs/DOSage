@@ -13,10 +13,5 @@ export * from './themes';
 // Type exports
 export * from './types';
 
-// Component exports (will be added as components are implemented)
-// Layout components
-// Typography components
-// Form controls
-// Feedback components
-// Navigation components
-// Data display components
+// Component exports
+export * from './components';

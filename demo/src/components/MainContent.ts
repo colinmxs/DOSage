@@ -6,6 +6,13 @@
 
 import { onRouteChange, getCurrentRoute } from '../utils/router';
 import { renderHomePage } from '../pages/home';
+import {
+  renderContainerPage,
+  renderPanelPage,
+  renderBoxPage,
+  renderGridPage,
+  renderDividerPage,
+} from '../pages/layout';
 
 /** Page content element reference */
 let contentElement: HTMLElement | null = null;
@@ -15,12 +22,12 @@ let contentElement: HTMLElement | null = null;
  */
 const pages: Record<string, () => HTMLElement> = {
   home: renderHomePage,
-  // Layout pages (to be implemented)
-  container: () => createPlaceholderPage('Container', 'Content container with padding and max-width options.'),
-  panel: () => createPlaceholderPage('Panel', 'Bordered panel with title support and DOS-style box drawing.'),
-  box: () => createPlaceholderPage('Box', 'Flexible box component for layout.'),
-  grid: () => createPlaceholderPage('Grid', 'CSS Grid-based layout component.'),
-  divider: () => createPlaceholderPage('Divider', 'Visual separator using box-drawing characters.'),
+  // Layout pages
+  container: renderContainerPage,
+  panel: renderPanelPage,
+  box: renderBoxPage,
+  grid: renderGridPage,
+  divider: renderDividerPage,
   // Typography pages (to be implemented)
   heading: () => createPlaceholderPage('Heading', 'Heading components H1-H6 with DOS styling.'),
   text: () => createPlaceholderPage('Text', 'Text component with various sizes and styles.'),

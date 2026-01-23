@@ -1,0 +1,61 @@
+/**
+ * Separator Component Styles
+ *
+ * DOS-style separator for adding vertical spacing with optional visible line.
+ */
+
+.dos-separator {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Spacing variants */
+.dos-separator--spacing-xs {
+  height: var(--dos-space-xs);
+  margin: var(--dos-space-xs) 0;
+}
+
+.dos-separator--spacing-sm {
+  height: var(--dos-space-sm);
+  margin: var(--dos-space-sm) 0;
+}
+
+.dos-separator--spacing-md {
+  height: var(--dos-space-md);
+  margin: var(--dos-space-md) 0;
+}
+
+.dos-separator--spacing-lg {
+  height: var(--dos-space-lg);
+  margin: var(--dos-space-lg) 0;
+}
+
+.dos-separator--spacing-xl {
+  height: var(--dos-space-xl);
+  margin: var(--dos-space-xl) 0;
+}
+
+/* Visible separator - subtle line in the middle */
+.dos-separator--visible {
+  position: relative;
+  border: none;
+  background: transparent;
+}
+
+.dos-separator--visible::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background-color: var(--dos-color-border);
+  opacity: 0.3;
+}
+
+/* Hidden separator - just spacing */
+.dos-separator--hidden {
+  border: none;
+  background: transparent;
+}
