@@ -1,0 +1,10 @@
+/**
+ * DOSage Theme Presets
+ *
+ * Import all preset themes for easy bundling.
+ */
+
+@import './dos-blue.css';
+@import './amber.css';
+@import './green-phosphor.css';
+@import './cga.css';

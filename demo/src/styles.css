@@ -1,0 +1,249 @@
+/**
+ * DOSage Kitchen Sink Demo Styles
+ */
+
+/* Import library base styles */
+@import '../../src/themes/base.css';
+@import '../../src/themes/presets/index.css';
+
+/* ===== RESET ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== BASE STYLES ===== */
+html {
+  font-size: var(--dos-font-size);
+}
+
+body {
+  font-family: var(--dos-font-family);
+  background-color: var(--dos-color-bg);
+  color: var(--dos-color-fg);
+  line-height: var(--dos-line-height);
+  min-height: 100vh;
+}
+
+/* ===== APP SHELL ===== */
+.dos-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.dos-app___header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--dos-space-sm) var(--dos-space-md);
+  background-color: var(--dos-color-shadow);
+  border-bottom: 2px solid var(--dos-color-border);
+}
+
+.dos-app___title {
+  font-size: var(--dos-font-size-lg);
+  font-weight: normal;
+  color: var(--dos-color-primary);
+  letter-spacing: 0.1em;
+}
+
+.dos-app___layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ===== SIDEBAR ===== */
+.dos-sidebar {
+  width: 240px;
+  min-width: 240px;
+  background-color: var(--dos-color-shadow);
+  border-right: 2px solid var(--dos-color-border);
+  overflow-y: auto;
+  padding: var(--dos-space-sm);
+}
+
+.dos-sidebar___title {
+  font-size: var(--dos-font-size);
+  color: var(--dos-color-secondary);
+  padding: var(--dos-space-xs) var(--dos-space-sm);
+  margin-bottom: var(--dos-space-sm);
+  border-bottom: 1px solid var(--dos-color-border);
+}
+
+.dos-sidebar___nav {
+  list-style: none;
+}
+
+.dos-sidebar___category {
+  margin-bottom: var(--dos-space-sm);
+}
+
+.dos-sidebar___category-title {
+  font-size: var(--dos-font-size-sm);
+  color: var(--dos-color-border);
+  padding: var(--dos-space-xs) var(--dos-space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.dos-sidebar___item {
+  display: block;
+  padding: var(--dos-space-xs) var(--dos-space-sm);
+  color: var(--dos-color-fg);
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.dos-sidebar___item:hover {
+  background-color: var(--dos-color-border);
+  color: var(--dos-color-bg);
+}
+
+.dos-sidebar___item:focus {
+  outline: 2px solid var(--dos-color-primary);
+  outline-offset: -2px;
+}
+
+.dos-sidebar___item--active {
+  background-color: var(--dos-color-primary);
+  color: var(--dos-color-bg);
+}
+
+.dos-sidebar___item::before {
+  content: '► ';
+  opacity: 0;
+}
+
+.dos-sidebar___item:hover::before,
+.dos-sidebar___item--active::before {
+  opacity: 1;
+}
+
+/* ===== MAIN CONTENT ===== */
+.dos-main {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--dos-space-md);
+}
+
+.dos-main___header {
+  margin-bottom: var(--dos-space-lg);
+  padding-bottom: var(--dos-space-sm);
+  border-bottom: 2px double var(--dos-color-border);
+}
+
+.dos-main___title {
+  font-size: var(--dos-font-size-lg);
+  font-weight: normal;
+  color: var(--dos-color-primary);
+}
+
+.dos-main___description {
+  margin-top: var(--dos-space-sm);
+  color: var(--dos-color-border);
+}
+
+.dos-main___content {
+  /* Content area styling */
+}
+
+/* ===== DEMO SECTION ===== */
+.dos-demo-section {
+  margin-bottom: var(--dos-space-xl);
+  border: 1px solid var(--dos-color-border);
+  padding: var(--dos-space-md);
+}
+
+.dos-demo-section___title {
+  font-size: var(--dos-font-size);
+  color: var(--dos-color-secondary);
+  margin-bottom: var(--dos-space-sm);
+}
+
+.dos-demo-section___description {
+  color: var(--dos-color-border);
+  margin-bottom: var(--dos-space-md);
+  font-size: var(--dos-font-size-sm);
+}
+
+.dos-demo-section___examples {
+  margin-bottom: var(--dos-space-md);
+  padding: var(--dos-space-md);
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px dashed var(--dos-color-border);
+}
+
+.dos-demo-section___code {
+  background-color: var(--dos-color-shadow);
+  padding: var(--dos-space-sm);
+  border: 1px solid var(--dos-color-border);
+  overflow-x: auto;
+}
+
+.dos-demo-section___code pre {
+  margin: 0;
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size-sm);
+  white-space: pre;
+}
+
+.dos-demo-section___code code {
+  color: var(--dos-color-primary);
+}
+
+/* ===== THEME PICKER ===== */
+.dos-theme-picker {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-sm);
+}
+
+.dos-theme-picker___label {
+  color: var(--dos-color-fg);
+  font-size: var(--dos-font-size-sm);
+}
+
+.dos-theme-picker___select {
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size-sm);
+  background-color: var(--dos-color-bg);
+  color: var(--dos-color-fg);
+  border: 1px solid var(--dos-color-border);
+  padding: var(--dos-space-xs) var(--dos-space-sm);
+  cursor: pointer;
+}
+
+.dos-theme-picker___select:focus {
+  outline: 2px solid var(--dos-color-primary);
+  outline-offset: -2px;
+}
+
+.dos-theme-picker___select option {
+  background-color: var(--dos-color-bg);
+  color: var(--dos-color-fg);
+}
+
+/* ===== UTILITY CLASSES ===== */
+.dos-row {
+  display: flex;
+  gap: var(--dos-space-md);
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.dos-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dos-space-sm);
+}

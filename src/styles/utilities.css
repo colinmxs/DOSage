@@ -1,0 +1,174 @@
+/**
+ * DOSage Utility Classes
+ *
+ * Common utility classes for spacing, display, and transitions.
+ */
+
+/* ===== TRANSITIONS ===== */
+.dos-transition-none {
+  transition: none !important;
+}
+
+.dos-transition-fast {
+  transition-duration: var(--dos-timing-fast);
+  transition-timing-function: step-end;
+}
+
+.dos-transition-normal {
+  transition-duration: var(--dos-timing-normal);
+  transition-timing-function: step-end;
+}
+
+/* Specific transition properties */
+.dos-transition-colors {
+  transition-property: color, background-color, border-color;
+}
+
+.dos-transition-opacity {
+  transition-property: opacity;
+}
+
+.dos-transition-transform {
+  transition-property: transform;
+}
+
+/* ===== DISPLAY ===== */
+.dos-block { display: block; }
+.dos-inline-block { display: inline-block; }
+.dos-inline { display: inline; }
+.dos-flex { display: flex; }
+.dos-inline-flex { display: inline-flex; }
+.dos-grid { display: grid; }
+.dos-hidden { display: none; }
+
+/* ===== FLEX UTILITIES ===== */
+.dos-flex-row { flex-direction: row; }
+.dos-flex-col { flex-direction: column; }
+.dos-flex-wrap { flex-wrap: wrap; }
+.dos-flex-nowrap { flex-wrap: nowrap; }
+
+.dos-items-start { align-items: flex-start; }
+.dos-items-center { align-items: center; }
+.dos-items-end { align-items: flex-end; }
+.dos-items-stretch { align-items: stretch; }
+
+.dos-justify-start { justify-content: flex-start; }
+.dos-justify-center { justify-content: center; }
+.dos-justify-end { justify-content: flex-end; }
+.dos-justify-between { justify-content: space-between; }
+.dos-justify-around { justify-content: space-around; }
+
+.dos-flex-1 { flex: 1; }
+.dos-flex-auto { flex: auto; }
+.dos-flex-none { flex: none; }
+
+/* ===== GAP ===== */
+.dos-gap-xs { gap: var(--dos-space-xs); }
+.dos-gap-sm { gap: var(--dos-space-sm); }
+.dos-gap-md { gap: var(--dos-space-md); }
+.dos-gap-lg { gap: var(--dos-space-lg); }
+.dos-gap-xl { gap: var(--dos-space-xl); }
+
+/* ===== SPACING ===== */
+/* Padding */
+.dos-p-0 { padding: 0; }
+.dos-p-xs { padding: var(--dos-space-xs); }
+.dos-p-sm { padding: var(--dos-space-sm); }
+.dos-p-md { padding: var(--dos-space-md); }
+.dos-p-lg { padding: var(--dos-space-lg); }
+.dos-p-xl { padding: var(--dos-space-xl); }
+
+.dos-px-xs { padding-left: var(--dos-space-xs); padding-right: var(--dos-space-xs); }
+.dos-px-sm { padding-left: var(--dos-space-sm); padding-right: var(--dos-space-sm); }
+.dos-px-md { padding-left: var(--dos-space-md); padding-right: var(--dos-space-md); }
+.dos-px-lg { padding-left: var(--dos-space-lg); padding-right: var(--dos-space-lg); }
+.dos-px-xl { padding-left: var(--dos-space-xl); padding-right: var(--dos-space-xl); }
+
+.dos-py-xs { padding-top: var(--dos-space-xs); padding-bottom: var(--dos-space-xs); }
+.dos-py-sm { padding-top: var(--dos-space-sm); padding-bottom: var(--dos-space-sm); }
+.dos-py-md { padding-top: var(--dos-space-md); padding-bottom: var(--dos-space-md); }
+.dos-py-lg { padding-top: var(--dos-space-lg); padding-bottom: var(--dos-space-lg); }
+.dos-py-xl { padding-top: var(--dos-space-xl); padding-bottom: var(--dos-space-xl); }
+
+/* Margin */
+.dos-m-0 { margin: 0; }
+.dos-m-xs { margin: var(--dos-space-xs); }
+.dos-m-sm { margin: var(--dos-space-sm); }
+.dos-m-md { margin: var(--dos-space-md); }
+.dos-m-lg { margin: var(--dos-space-lg); }
+.dos-m-xl { margin: var(--dos-space-xl); }
+
+.dos-mx-auto { margin-left: auto; margin-right: auto; }
+
+.dos-mb-xs { margin-bottom: var(--dos-space-xs); }
+.dos-mb-sm { margin-bottom: var(--dos-space-sm); }
+.dos-mb-md { margin-bottom: var(--dos-space-md); }
+.dos-mb-lg { margin-bottom: var(--dos-space-lg); }
+.dos-mb-xl { margin-bottom: var(--dos-space-xl); }
+
+.dos-mt-xs { margin-top: var(--dos-space-xs); }
+.dos-mt-sm { margin-top: var(--dos-space-sm); }
+.dos-mt-md { margin-top: var(--dos-space-md); }
+.dos-mt-lg { margin-top: var(--dos-space-lg); }
+.dos-mt-xl { margin-top: var(--dos-space-xl); }
+
+/* ===== TEXT ===== */
+.dos-text-left { text-align: left; }
+.dos-text-center { text-align: center; }
+.dos-text-right { text-align: right; }
+
+.dos-text-sm { font-size: var(--dos-font-size-sm); }
+.dos-text-base { font-size: var(--dos-font-size); }
+.dos-text-lg { font-size: var(--dos-font-size-lg); }
+
+.dos-text-uppercase { text-transform: uppercase; }
+.dos-text-lowercase { text-transform: lowercase; }
+.dos-text-capitalize { text-transform: capitalize; }
+
+.dos-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ===== WIDTH ===== */
+.dos-w-full { width: 100%; }
+.dos-w-auto { width: auto; }
+
+/* ===== COLORS (using theme variables) ===== */
+.dos-bg-primary { background-color: var(--dos-color-bg); }
+.dos-bg-secondary { background-color: var(--dos-color-shadow); }
+
+.dos-text-primary { color: var(--dos-color-fg); }
+.dos-text-secondary { color: var(--dos-color-border); }
+.dos-text-accent { color: var(--dos-color-primary); }
+.dos-text-success { color: var(--dos-color-success); }
+.dos-text-error { color: var(--dos-color-error); }
+
+/* ===== BORDERS ===== */
+.dos-border {
+  border: var(--dos-border-width) var(--dos-border-style) var(--dos-color-border);
+}
+
+.dos-border-0 { border: none; }
+.dos-border-t { border-top: var(--dos-border-width) var(--dos-border-style) var(--dos-color-border); }
+.dos-border-b { border-bottom: var(--dos-border-width) var(--dos-border-style) var(--dos-color-border); }
+.dos-border-l { border-left: var(--dos-border-width) var(--dos-border-style) var(--dos-color-border); }
+.dos-border-r { border-right: var(--dos-border-width) var(--dos-border-style) var(--dos-color-border); }
+
+/* ===== POSITION ===== */
+.dos-relative { position: relative; }
+.dos-absolute { position: absolute; }
+.dos-fixed { position: fixed; }
+.dos-sticky { position: sticky; }
+
+/* ===== CURSOR ===== */
+.dos-cursor-pointer { cursor: pointer; }
+.dos-cursor-default { cursor: default; }
+.dos-cursor-not-allowed { cursor: not-allowed; }
+
+/* ===== OVERFLOW ===== */
+.dos-overflow-auto { overflow: auto; }
+.dos-overflow-hidden { overflow: hidden; }
+.dos-overflow-visible { overflow: visible; }
+.dos-overflow-scroll { overflow: scroll; }

@@ -1,0 +1,21 @@
+/**
+ * Amber Monochrome Theme
+ *
+ * Emulates vintage amber monochrome monitors.
+ * Background: Dark brown/black (#1A1000)
+ * Foreground: Warm amber (#FFB000)
+ */
+
+[data-dos-theme="amber"] {
+  /* Colors */
+  --dos-color-bg: #1A1000;
+  --dos-color-fg: #FFB000;
+  --dos-color-primary: #FFCC00;
+  --dos-color-secondary: #CC8800;
+  --dos-color-border: #805800;
+  --dos-color-highlight: #FFDD44;
+  --dos-color-shadow: #0D0800;
+  --dos-color-disabled: #664400;
+  --dos-color-error: #FF4400;
+  --dos-color-success: #88CC00;
+}

@@ -1,0 +1,141 @@
+/**
+ * MainContent Component
+ *
+ * Main content area for the Kitchen Sink demo.
+ */
+
+import { onRouteChange, getCurrentRoute } from '../utils/router';
+import { renderHomePage } from '../pages/home';
+
+/** Page content element reference */
+let contentElement: HTMLElement | null = null;
+
+/**
+ * Page registry - maps route IDs to page render functions
+ */
+const pages: Record<string, () => HTMLElement> = {
+  home: renderHomePage,
+  // Layout pages (to be implemented)
+  container: () => createPlaceholderPage('Container', 'Content container with padding and max-width options.'),
+  panel: () => createPlaceholderPage('Panel', 'Bordered panel with title support and DOS-style box drawing.'),
+  box: () => createPlaceholderPage('Box', 'Flexible box component for layout.'),
+  grid: () => createPlaceholderPage('Grid', 'CSS Grid-based layout component.'),
+  divider: () => createPlaceholderPage('Divider', 'Visual separator using box-drawing characters.'),
+  // Typography pages (to be implemented)
+  heading: () => createPlaceholderPage('Heading', 'Heading components H1-H6 with DOS styling.'),
+  text: () => createPlaceholderPage('Text', 'Text component with various sizes and styles.'),
+  code: () => createPlaceholderPage('Code', 'Inline and block code display.'),
+  list: () => createPlaceholderPage('List', 'Ordered and unordered lists with custom bullets.'),
+  // Form controls (to be implemented)
+  button: () => createPlaceholderPage('Button', 'DOS-style buttons with variants and states.'),
+  input: () => createPlaceholderPage('TextInput', 'Text input field with blinking cursor.'),
+  select: () => createPlaceholderPage('Select', 'Dropdown select component.'),
+  checkbox: () => createPlaceholderPage('Checkbox', 'Checkbox and radio button components.'),
+  // Feedback (to be implemented)
+  alert: () => createPlaceholderPage('Alert', 'Alert messages and notifications.'),
+  progress: () => createPlaceholderPage('Progress', 'Progress bar with ASCII art.'),
+  spinner: () => createPlaceholderPage('Spinner', 'Loading spinner animation.'),
+  // Navigation (to be implemented)
+  menu: () => createPlaceholderPage('Menu', 'Dropdown and context menus.'),
+  tabs: () => createPlaceholderPage('Tabs', 'Tabbed interface component.'),
+  breadcrumb: () => createPlaceholderPage('Breadcrumb', 'Navigation breadcrumb trail.'),
+  // Themes
+  themes: () => createPlaceholderPage('Theme Showcase', 'Preview all available themes.'),
+};
+
+/**
+ * Creates a placeholder page for components not yet implemented
+ */
+function createPlaceholderPage(title: string, description: string): HTMLElement {
+  const page = document.createElement('div');
+
+  const header = document.createElement('header');
+  header.className = 'dos-main___header';
+
+  const h1 = document.createElement('h1');
+  h1.className = 'dos-main___title';
+  h1.textContent = title;
+
+  const desc = document.createElement('p');
+  desc.className = 'dos-main___description';
+  desc.textContent = description;
+
+  header.appendChild(h1);
+  header.appendChild(desc);
+
+  const content = document.createElement('div');
+  content.className = 'dos-main___content';
+
+  const placeholder = document.createElement('div');
+  placeholder.className = 'dos-demo-section';
+  placeholder.innerHTML = `
+    <div class="dos-demo-section___title">🚧 Coming Soon</div>
+    <div class="dos-demo-section___description">
+      This component is planned for implementation. Check the checklist for progress.
+    </div>
+    <div class="dos-demo-section___examples">
+      <pre>
+╔══════════════════════════════════════════╗
+║                                          ║
+║   Component under construction...        ║
+║                                          ║
+║   ████████░░░░░░░░░░░░░░  33%           ║
+║                                          ║
+╚══════════════════════════════════════════╝
+      </pre>
+    </div>
+  `;
+
+  content.appendChild(placeholder);
+
+  page.appendChild(header);
+  page.appendChild(content);
+
+  return page;
+}
+
+/**
+ * Renders the current route's page
+ */
+function renderCurrentPage(): void {
+  if (!contentElement) return;
+
+  const route = getCurrentRoute() || 'home';
+  const renderPage = pages[route] ?? (() => createPlaceholderPage('Not Found', 'Page not found.'));
+
+  // Clear existing content
+  contentElement.innerHTML = '';
+
+  // Render new page
+  const page = renderPage();
+  contentElement.appendChild(page);
+
+  // Scroll to top
+  contentElement.scrollTop = 0;
+}
+
+/**
+ * Creates the main content area element
+ */
+export function createMainContent(): HTMLElement {
+  const main = document.createElement('main');
+  main.className = 'dos-main';
+  main.setAttribute('role', 'main');
+
+  contentElement = main;
+
+  // Listen for route changes
+  onRouteChange(renderCurrentPage);
+
+  // Initial render
+  renderCurrentPage();
+
+  return main;
+}
+
+/**
+ * Register a page renderer for a route
+ */
+export function registerPage(route: string, renderer: () => HTMLElement): void {
+  pages[route] = renderer;
+}

@@ -1,0 +1,101 @@
+/**
+ * DOSage Base Theme - CSS Custom Properties
+ *
+ * These properties define the theming foundation for all DOSage components.
+ * Override these values in theme presets or custom themes.
+ */
+
+:root,
+[data-dos-theme] {
+  /* ===== COLORS ===== */
+  /* Primary background - the main screen color */
+  --dos-color-bg: #0000AA;
+
+  /* Primary foreground - main text color */
+  --dos-color-fg: #FFFFFF;
+
+  /* Primary accent - highlights, links, important elements */
+  --dos-color-primary: #FFFF55;
+
+  /* Secondary accent - alternate highlights */
+  --dos-color-secondary: #55FFFF;
+
+  /* Border color - panels, inputs, dividers */
+  --dos-color-border: #AAAAAA;
+
+  /* Highlight/selection color */
+  --dos-color-highlight: #FFFFFF;
+
+  /* Shadow color */
+  --dos-color-shadow: #000000;
+
+  /* Disabled state color */
+  --dos-color-disabled: #555555;
+
+  /* Error/danger color */
+  --dos-color-error: #FF5555;
+
+  /* Success color */
+  --dos-color-success: #55FF55;
+
+  /* ===== TYPOGRAPHY ===== */
+  /* Primary font family - DOS-style monospace */
+  --dos-font-family: 'Perfect DOS VGA 437', 'Consolas', 'Monaco', 'Courier New', monospace;
+
+  /* Base font size */
+  --dos-font-size: 16px;
+
+  /* Small font size */
+  --dos-font-size-sm: 14px;
+
+  /* Large font size */
+  --dos-font-size-lg: 18px;
+
+  /* Base line height */
+  --dos-line-height: 1.4;
+
+  /* ===== SPACING ===== */
+  /* Base spacing unit (8px grid) */
+  --dos-space-unit: 8px;
+
+  /* Extra small spacing */
+  --dos-space-xs: 4px;
+
+  /* Small spacing */
+  --dos-space-sm: 8px;
+
+  /* Medium spacing (default) */
+  --dos-space-md: 16px;
+
+  /* Large spacing */
+  --dos-space-lg: 24px;
+
+  /* Extra large spacing */
+  --dos-space-xl: 32px;
+
+  /* ===== BORDERS ===== */
+  /* Default border width */
+  --dos-border-width: 1px;
+
+  /* Default border style */
+  --dos-border-style: solid;
+
+  /* ===== CURSOR & ANIMATION ===== */
+  /* Cursor width (block cursor) */
+  --dos-cursor-width: 0.6em;
+
+  /* Cursor height */
+  --dos-cursor-height: 1.2em;
+
+  /* Cursor blink rate */
+  --dos-cursor-blink-rate: 530ms;
+
+  /* Instant timing (no transition) */
+  --dos-timing-instant: 0ms;
+
+  /* Fast timing */
+  --dos-timing-fast: 100ms;
+
+  /* Normal timing */
+  --dos-timing-normal: 200ms;
+}

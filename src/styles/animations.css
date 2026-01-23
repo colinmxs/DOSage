@@ -1,0 +1,147 @@
+/**
+ * DOSage Animation Utilities
+ *
+ * Keyframe animations and animation classes for DOS effects.
+ */
+
+/* ===== CURSOR BLINK ===== */
+@keyframes dos-blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Block cursor (█) */
+.dos-cursor {
+  display: inline-block;
+  width: var(--dos-cursor-width);
+  height: var(--dos-cursor-height);
+  background-color: currentColor;
+  animation: dos-blink var(--dos-cursor-blink-rate) step-end infinite;
+}
+
+/* Underline cursor (_) */
+.dos-cursor--underline {
+  width: var(--dos-cursor-width);
+  height: 0.15em;
+  vertical-align: bottom;
+}
+
+/* ===== TYPING ANIMATION ===== */
+@keyframes dos-typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.dos-typing {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: dos-typing 2s steps(40) forwards;
+}
+
+/* ===== SCANLINE EFFECT (Optional CRT look) ===== */
+.dos-scanlines {
+  position: relative;
+}
+
+.dos-scanlines::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1) 0px,
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
+/* ===== CRT EFFECT (Optional vignette) ===== */
+.dos-crt {
+  position: relative;
+}
+
+.dos-crt::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+}
+
+/* ===== SPINNER ===== */
+@keyframes dos-spin {
+  0% { content: '|'; }
+  25% { content: '/'; }
+  50% { content: '─'; }
+  75% { content: '\\'; }
+  100% { content: '|'; }
+}
+
+.dos-spinner::after {
+  content: '|';
+  animation: dos-spin 0.5s steps(1) infinite;
+}
+
+/* Alternative spinner using rotation */
+@keyframes dos-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.dos-spinner-rotate {
+  display: inline-block;
+  animation: dos-rotate 1s linear infinite;
+}
+
+/* ===== PULSE ===== */
+@keyframes dos-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.dos-pulse {
+  animation: dos-pulse 1.5s ease-in-out infinite;
+}
+
+/* ===== FLASH ===== */
+@keyframes dos-flash {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+.dos-flash {
+  animation: dos-flash 1s ease-in-out infinite;
+}

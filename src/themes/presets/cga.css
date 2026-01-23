@@ -1,0 +1,22 @@
+/**
+ * CGA Theme
+ *
+ * Emulates the IBM Color Graphics Adapter palette.
+ * Uses the classic 16-color CGA palette.
+ * Background: Black (#000000)
+ * Foreground: White (#FFFFFF)
+ */
+
+[data-dos-theme="cga"] {
+  /* Colors - CGA 16-color palette inspired */
+  --dos-color-bg: #000000;
+  --dos-color-fg: #FFFFFF;
+  --dos-color-primary: #FF55FF;
+  --dos-color-secondary: #55FFFF;
+  --dos-color-border: #AAAAAA;
+  --dos-color-highlight: #FFFF55;
+  --dos-color-shadow: #555555;
+  --dos-color-disabled: #555555;
+  --dos-color-error: #FF5555;
+  --dos-color-success: #55FF55;
+}

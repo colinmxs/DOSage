@@ -1,0 +1,21 @@
+/**
+ * Green Phosphor Theme
+ *
+ * Emulates classic green phosphor CRT monitors.
+ * Background: Deep dark green (#001100)
+ * Foreground: Bright green (#00FF00)
+ */
+
+[data-dos-theme="green-phosphor"] {
+  /* Colors */
+  --dos-color-bg: #001100;
+  --dos-color-fg: #00FF00;
+  --dos-color-primary: #33FF33;
+  --dos-color-secondary: #00CC00;
+  --dos-color-border: #006600;
+  --dos-color-highlight: #66FF66;
+  --dos-color-shadow: #000800;
+  --dos-color-disabled: #004400;
+  --dos-color-error: #FF3300;
+  --dos-color-success: #00FF66;
+}

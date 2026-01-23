@@ -10,106 +10,106 @@
 
 #### Package Configuration
 
-- [ ] Initialize npm package
-  - [ ] Create `package.json` with name `dosage`
-  - [ ] Set version to `0.1.0`
-  - [ ] Add description: "A TypeScript component library recreating DOS-era interfaces"
-  - [ ] Set `"type": "module"`
-  - [ ] Configure `main`, `module`, `types`, and `exports` fields
-  - [ ] Add `sideEffects: ["*.css"]`
-- [ ] Create `tsconfig.json`
-  - [ ] Target: `ES2020`
-  - [ ] Module: `ESNext`
-  - [ ] ModuleResolution: `bundler`
-  - [ ] Enable `strict` mode
-  - [ ] Enable `declaration` and `declarationMap`
-  - [ ] Set `outDir` to `dist`
-  - [ ] Include `src/**/*`
-- [ ] Create `tsconfig.build.json` extending base config
-  - [ ] Exclude test files
-  - [ ] Exclude demo files
+- [x] Initialize npm package
+  - [x] Create `package.json` with name `dosage`
+  - [x] Set version to `0.1.0`
+  - [x] Add description: "A TypeScript component library recreating DOS-era interfaces"
+  - [x] Set `"type": "module"`
+  - [x] Configure `main`, `module`, `types`, and `exports` fields
+  - [x] Add `sideEffects: ["*.css"]`
+- [x] Create `tsconfig.json`
+  - [x] Target: `ES2020`
+  - [x] Module: `ESNext`
+  - [x] ModuleResolution: `bundler`
+  - [x] Enable `strict` mode
+  - [x] Enable `declaration` and `declarationMap`
+  - [x] Set `outDir` to `dist`
+  - [x] Include `src/**/*`
+- [x] Create `tsconfig.build.json` extending base config
+  - [x] Exclude test files
+  - [x] Exclude demo files
 
 > **Note:** The package.json exports field should follow the structure in project-foundation.md
 
 #### Directory Structure
 
-- [ ] Create source directories
-  - [ ] `src/`
-  - [ ] `src/components/`
-  - [ ] `src/core/`
-  - [ ] `src/themes/`
-  - [ ] `src/themes/presets/`
-  - [ ] `src/styles/`
-  - [ ] `src/types/`
-- [ ] Create test directories
-  - [ ] `tests/`
-  - [ ] `tests/components/`
-  - [ ] `tests/core/`
-  - [ ] `tests/themes/`
-  - [ ] `tests/utils/`
-- [ ] Create demo directories
-  - [ ] `demo/`
-  - [ ] `demo/src/`
-  - [ ] `demo/src/pages/`
-  - [ ] `demo/src/components/`
-  - [ ] `demo/src/utils/`
-  - [ ] `demo/public/`
-  - [ ] `demo/public/fonts/`
-- [ ] Create documentation directories
-  - [ ] `docs/`
-  - [ ] `docs/components/`
-  - [ ] `docs/api/`
+- [x] Create source directories
+  - [x] `src/`
+  - [x] `src/components/`
+  - [x] `src/core/`
+  - [x] `src/themes/`
+  - [x] `src/themes/presets/`
+  - [x] `src/styles/`
+  - [x] `src/types/`
+- [x] Create test directories
+  - [x] `tests/`
+  - [x] `tests/components/`
+  - [x] `tests/core/`
+  - [x] `tests/themes/`
+  - [x] `tests/utils/`
+- [x] Create demo directories
+  - [x] `demo/`
+  - [x] `demo/src/`
+  - [x] `demo/src/pages/`
+  - [x] `demo/src/components/`
+  - [x] `demo/src/utils/`
+  - [x] `demo/public/`
+  - [x] `demo/public/fonts/`
+- [x] Create documentation directories
+  - [x] `docs/`
+  - [x] `docs/components/`
+  - [x] `docs/api/`
 
 #### Build Tooling Setup
 
-- [ ] Install Vite as dev dependency
-- [ ] Create `vite.config.ts` for library build
-  - [ ] Configure library mode entry point
-  - [ ] Set output formats: `es` and `cjs`
-  - [ ] Configure `preserveModules` for tree-shaking
-  - [ ] Set up CSS extraction
-- [ ] Create `demo/vite.config.ts` for demo app
-  - [ ] Configure dev server
-  - [ ] Set up alias for local library import
-- [ ] Add npm scripts to `package.json`
-  - [ ] `"dev"`: Run demo in development mode
-  - [ ] `"build"`: Build library for production
-  - [ ] `"build:demo"`: Build demo app
-  - [ ] `"preview"`: Preview production build
-  - [ ] `"test"`: Run tests
-  - [ ] `"test:watch"`: Run tests in watch mode
-  - [ ] `"lint"`: Run ESLint
-  - [ ] `"format"`: Run Prettier
-  - [ ] `"typecheck"`: Run TypeScript type checking
+- [x] Install Vite as dev dependency
+- [x] Create `vite.config.ts` for library build
+  - [x] Configure library mode entry point
+  - [x] Set output formats: `es` and `cjs`
+  - [x] Configure `preserveModules` for tree-shaking
+  - [x] Set up CSS extraction
+- [x] Create `demo/vite.config.ts` for demo app
+  - [x] Configure dev server
+  - [x] Set up alias for local library import
+- [x] Add npm scripts to `package.json`
+  - [x] `"dev"`: Run demo in development mode
+  - [x] `"build"`: Build library for production
+  - [x] `"build:demo"`: Build demo app
+  - [x] `"preview"`: Preview production build
+  - [x] `"test"`: Run tests
+  - [x] `"test:watch"`: Run tests in watch mode
+  - [x] `"lint"`: Run ESLint
+  - [x] `"format"`: Run Prettier
+  - [x] `"typecheck"`: Run TypeScript type checking
 
 #### Linting and Formatting
 
-- [ ] Install ESLint and TypeScript ESLint
-- [ ] Create `.eslintrc.cjs` or `eslint.config.js`
-  - [ ] Extend `@typescript-eslint/recommended`
-  - [ ] Configure rules for project conventions
-  - [ ] Set up ignore patterns for dist, node_modules
-- [ ] Install Prettier
-- [ ] Create `.prettierrc`
-  - [ ] Set `semi: true`
-  - [ ] Set `singleQuote: true`
-  - [ ] Set `tabWidth: 2`
-  - [ ] Set `trailingComma: 'es5'`
-- [ ] Create `.prettierignore`
-- [ ] Create `.editorconfig`
+- [x] Install ESLint and TypeScript ESLint
+- [x] Create `.eslintrc.cjs` or `eslint.config.js`
+  - [x] Extend `@typescript-eslint/recommended`
+  - [x] Configure rules for project conventions
+  - [x] Set up ignore patterns for dist, node_modules
+- [x] Install Prettier
+- [x] Create `.prettierrc`
+  - [x] Set `semi: true`
+  - [x] Set `singleQuote: true`
+  - [x] Set `tabWidth: 2`
+  - [x] Set `trailingComma: 'es5'`
+- [x] Create `.prettierignore`
+- [x] Create `.editorconfig`
 
 #### Git Configuration
 
-- [ ] Create `.gitignore`
-  - [ ] Ignore `node_modules/`
-  - [ ] Ignore `dist/`
-  - [ ] Ignore `.vite/`
-  - [ ] Ignore `coverage/`
-  - [ ] Ignore `*.log`
-  - [ ] Ignore `.env*` (except examples)
-  - [ ] Ignore IDE-specific files
-- [ ] Create `.gitattributes`
-- [ ] Initialize git repository (if not exists)
+- [x] Create `.gitignore`
+  - [x] Ignore `node_modules/`
+  - [x] Ignore `dist/`
+  - [x] Ignore `.vite/`
+  - [x] Ignore `coverage/`
+  - [x] Ignore `*.log`
+  - [x] Ignore `.env*` (except examples)
+  - [x] Ignore IDE-specific files
+- [x] Create `.gitattributes`
+- [x] Initialize git repository (if not exists)
 
 ---
 
@@ -117,87 +117,87 @@
 
 #### HTML Shell
 
-- [ ] Create `demo/index.html`
-  - [ ] Set DOCTYPE and lang attribute
-  - [ ] Add meta charset UTF-8
-  - [ ] Add viewport meta tag
-  - [ ] Set title "DOSage Kitchen Sink"
-  - [ ] Link to main CSS
-  - [ ] Add root container div with id `app`
-  - [ ] Add script module entry point
-- [ ] Apply DOS-style base styling
-  - [ ] Black/blue background
-  - [ ] Monospace font family
-  - [ ] Remove default margins/padding
+- [x] Create `demo/index.html`
+  - [x] Set DOCTYPE and lang attribute
+  - [x] Add meta charset UTF-8
+  - [x] Add viewport meta tag
+  - [x] Set title "DOSage Kitchen Sink"
+  - [x] Link to main CSS
+  - [x] Add root container div with id `app`
+  - [x] Add script module entry point
+- [x] Apply DOS-style base styling
+  - [x] Black/blue background
+  - [x] Monospace font family
+  - [x] Remove default margins/padding
 
 #### Navigation Sidebar
 
-- [ ] Create `demo/src/components/Sidebar.ts`
-  - [ ] Create sidebar container element
-  - [ ] Add navigation header with title "DOSage"
-  - [ ] Create nav list structure
-  - [ ] Add navigation items for each component category:
-    - [ ] Home/Overview
-    - [ ] Layout (Container, Panel, Box, Grid, Divider)
-    - [ ] Typography (Heading, Text, Code, List)
-    - [ ] Form Controls (placeholder)
-    - [ ] Feedback (placeholder)
-    - [ ] Navigation (placeholder)
-    - [ ] Themes
-  - [ ] Style with DOS-appropriate borders
-  - [ ] Add highlight style for active item
+- [x] Create `demo/src/components/Sidebar.ts`
+  - [x] Create sidebar container element
+  - [x] Add navigation header with title "DOSage"
+  - [x] Create nav list structure
+  - [x] Add navigation items for each component category:
+    - [x] Home/Overview
+    - [x] Layout (Container, Panel, Box, Grid, Divider)
+    - [x] Typography (Heading, Text, Code, List)
+    - [x] Form Controls (placeholder)
+    - [x] Feedback (placeholder)
+    - [x] Navigation (placeholder)
+    - [x] Themes
+  - [x] Style with DOS-appropriate borders
+  - [x] Add highlight style for active item
 
 #### Main Content Area
 
-- [ ] Create `demo/src/components/MainContent.ts`
-  - [ ] Create main content container
-  - [ ] Add header area for page title
-  - [ ] Add content area for component demos
-  - [ ] Style with appropriate padding and borders
-- [ ] Create `demo/src/components/DemoSection.ts`
-  - [ ] Create wrapper for individual demos
-  - [ ] Add title/heading slot
-  - [ ] Add description slot
-  - [ ] Add live example area
-  - [ ] Add code display area
-  - [ ] Style with visual separation
+- [x] Create `demo/src/components/MainContent.ts`
+  - [x] Create main content container
+  - [x] Add header area for page title
+  - [x] Add content area for component demos
+  - [x] Style with appropriate padding and borders
+- [x] Create `demo/src/components/DemoSection.ts`
+  - [x] Create wrapper for individual demos
+  - [x] Add title/heading slot
+  - [x] Add description slot
+  - [x] Add live example area
+  - [x] Add code display area
+  - [x] Style with visual separation
 
 #### Router Setup
 
-- [ ] Create `demo/src/utils/router.ts`
-  - [ ] Implement hash-based routing
-  - [ ] Create `navigate(path)` function
-  - [ ] Create `getCurrentRoute()` function
-  - [ ] Add route change event listener
-  - [ ] Export route constants
+- [x] Create `demo/src/utils/router.ts`
+  - [x] Implement hash-based routing
+  - [x] Create `navigate(path)` function
+  - [x] Create `getCurrentRoute()` function
+  - [x] Add route change event listener
+  - [x] Export route constants
 
 #### Theme Switcher UI
 
-- [ ] Create `demo/src/components/ThemePicker.ts`
-  - [ ] Create dropdown/select container
-  - [ ] Add label "Theme:"
-  - [ ] Add options for each preset theme:
-    - [ ] DOS Blue (default)
-    - [ ] Amber Monochrome
-    - [ ] Green Phosphor
-    - [ ] CGA
-  - [ ] Style as DOS-style dropdown
-  - [ ] Add change event handler (placeholder for now)
-- [ ] Position theme picker in header/toolbar area
+- [x] Create `demo/src/components/ThemePicker.ts`
+  - [x] Create dropdown/select container
+  - [x] Add label "Theme:"
+  - [x] Add options for each preset theme:
+    - [x] DOS Blue (default)
+    - [x] Amber Monochrome
+    - [x] Green Phosphor
+    - [x] CGA
+  - [x] Style as DOS-style dropdown
+  - [x] Add change event handler (placeholder for now)
+- [x] Position theme picker in header/toolbar area
 
 #### Demo Entry Point
 
-- [ ] Create `demo/src/main.ts`
-  - [ ] Import styles
-  - [ ] Import and initialize router
-  - [ ] Import and mount Sidebar
-  - [ ] Import and mount MainContent
-  - [ ] Import and mount ThemePicker
-  - [ ] Set up initial route handling
-- [ ] Create `demo/src/styles.css`
-  - [ ] Import library base styles
-  - [ ] Add demo-specific layout styles
-  - [ ] Style app shell (sidebar + main layout)
+- [x] Create `demo/src/main.ts`
+  - [x] Import styles
+  - [x] Import and initialize router
+  - [x] Import and mount Sidebar
+  - [x] Import and mount MainContent
+  - [x] Import and mount ThemePicker
+  - [x] Set up initial route handling
+- [x] Create `demo/src/styles.css`
+  - [x] Import library base styles
+  - [x] Add demo-specific layout styles
+  - [x] Style app shell (sidebar + main layout)
 
 ---
 
@@ -205,97 +205,97 @@
 
 #### CSS Custom Properties
 
-- [ ] Create `src/themes/base.css`
-  - [ ] Define all color properties under `:root, [data-dos-theme]`
-    - [ ] `--dos-color-bg`
-    - [ ] `--dos-color-fg`
-    - [ ] `--dos-color-primary`
-    - [ ] `--dos-color-secondary`
-    - [ ] `--dos-color-border`
-    - [ ] `--dos-color-highlight`
-    - [ ] `--dos-color-shadow`
-    - [ ] `--dos-color-disabled`
-    - [ ] `--dos-color-error`
-    - [ ] `--dos-color-success`
-  - [ ] Define typography properties
-    - [ ] `--dos-font-family`
-    - [ ] `--dos-font-size`
-    - [ ] `--dos-font-size-sm`
-    - [ ] `--dos-font-size-lg`
-    - [ ] `--dos-line-height`
-  - [ ] Define spacing properties
-    - [ ] `--dos-space-unit` (8px base)
-    - [ ] `--dos-space-xs`
-    - [ ] `--dos-space-sm`
-    - [ ] `--dos-space-md`
-    - [ ] `--dos-space-lg`
-    - [ ] `--dos-space-xl`
-  - [ ] Define border properties
-    - [ ] `--dos-border-width`
-    - [ ] `--dos-border-style`
-  - [ ] Define cursor/animation properties
-    - [ ] `--dos-cursor-width`
-    - [ ] `--dos-cursor-height`
-    - [ ] `--dos-cursor-blink-rate`
-    - [ ] `--dos-timing-instant`
-    - [ ] `--dos-timing-fast`
-    - [ ] `--dos-timing-normal`
+- [x] Create `src/themes/base.css`
+  - [x] Define all color properties under `:root, [data-dos-theme]`
+    - [x] `--dos-color-bg`
+    - [x] `--dos-color-fg`
+    - [x] `--dos-color-primary`
+    - [x] `--dos-color-secondary`
+    - [x] `--dos-color-border`
+    - [x] `--dos-color-highlight`
+    - [x] `--dos-color-shadow`
+    - [x] `--dos-color-disabled`
+    - [x] `--dos-color-error`
+    - [x] `--dos-color-success`
+  - [x] Define typography properties
+    - [x] `--dos-font-family`
+    - [x] `--dos-font-size`
+    - [x] `--dos-font-size-sm`
+    - [x] `--dos-font-size-lg`
+    - [x] `--dos-line-height`
+  - [x] Define spacing properties
+    - [x] `--dos-space-unit` (8px base)
+    - [x] `--dos-space-xs`
+    - [x] `--dos-space-sm`
+    - [x] `--dos-space-md`
+    - [x] `--dos-space-lg`
+    - [x] `--dos-space-xl`
+  - [x] Define border properties
+    - [x] `--dos-border-width`
+    - [x] `--dos-border-style`
+  - [x] Define cursor/animation properties
+    - [x] `--dos-cursor-width`
+    - [x] `--dos-cursor-height`
+    - [x] `--dos-cursor-blink-rate`
+    - [x] `--dos-timing-instant`
+    - [x] `--dos-timing-fast`
+    - [x] `--dos-timing-normal`
 
 #### Theme Type Definitions
 
-- [ ] Create `src/themes/index.ts`
-  - [ ] Export ThemeManager
-  - [ ] Export theme types
-- [ ] Create `src/types/theme.ts`
-  - [ ] Define `ThemeColors` interface
-  - [ ] Define `ThemeSpacing` interface
-  - [ ] Define `ThemeTypography` interface
-  - [ ] Define `ThemeConfig` interface
-  - [ ] Define `ThemePreset` type union
+- [x] Create `src/themes/index.ts`
+  - [x] Export ThemeManager
+  - [x] Export theme types
+- [x] Create `src/types/theme.ts`
+  - [x] Define `ThemeColors` interface
+  - [x] Define `ThemeSpacing` interface
+  - [x] Define `ThemeTypography` interface
+  - [x] Define `ThemeConfig` interface
+  - [x] Define `ThemePreset` type union
 
 #### Default DOS Blue Theme
 
-- [ ] Create `src/themes/presets/dos-blue.css`
-  - [ ] Set `[data-dos-theme="dos-blue"]` selector
-  - [ ] Define DOS Blue color values:
-    - [ ] Background: `#0000AA`
-    - [ ] Foreground: `#FFFFFF`
-    - [ ] Primary: `#FFFF55`
-    - [ ] Secondary: `#55FFFF`
-    - [ ] Border: `#AAAAAA`
-    - [ ] Highlight: `#FFFFFF`
-    - [ ] Shadow: `#000000`
+- [x] Create `src/themes/presets/dos-blue.css`
+  - [x] Set `[data-dos-theme="dos-blue"]` selector
+  - [x] Define DOS Blue color values:
+    - [x] Background: `#0000AA`
+    - [x] Foreground: `#FFFFFF`
+    - [x] Primary: `#FFFF55`
+    - [x] Secondary: `#55FFFF`
+    - [x] Border: `#AAAAAA`
+    - [x] Highlight: `#FFFFFF`
+    - [x] Shadow: `#000000`
 
 #### Main Entry Point
 
-- [ ] Create `src/index.ts`
-  - [ ] Add placeholder exports
-  - [ ] Add comment structure for future exports
-- [ ] Create `src/types/index.ts`
-  - [ ] Export all types from theme.ts
-  - [ ] Add placeholder for component types
+- [x] Create `src/index.ts`
+  - [x] Add placeholder exports
+  - [x] Add comment structure for future exports
+- [x] Create `src/types/index.ts`
+  - [x] Export all types from theme.ts
+  - [x] Add placeholder for component types
 
 ---
 
 ### Testing Infrastructure
 
-- [ ] Install Vitest
-- [ ] Install `@testing-library/dom`
-- [ ] Install `jsdom`
-- [ ] Install `vitest-axe` for accessibility testing
-- [ ] Create `vitest.config.ts`
-  - [ ] Configure jsdom environment
-  - [ ] Set up test file patterns
-  - [ ] Configure coverage options
-- [ ] Create `tests/setup.ts`
-  - [ ] Import jsdom setup
-  - [ ] Add global test utilities
-  - [ ] Configure vitest-axe matchers
-- [ ] Create `tests/utils/render.ts`
-  - [ ] Create `render()` helper function
-  - [ ] Create `cleanup()` helper function
-- [ ] Create placeholder test file `tests/setup.test.ts`
-  - [ ] Add simple test to verify setup works
+- [x] Install Vitest
+- [x] Install `@testing-library/dom`
+- [x] Install `jsdom`
+- [x] Install `vitest-axe` for accessibility testing
+- [x] Create `vitest.config.ts`
+  - [x] Configure jsdom environment
+  - [x] Set up test file patterns
+  - [x] Configure coverage options
+- [x] Create `tests/setup.ts`
+  - [x] Import jsdom setup
+  - [x] Add global test utilities
+  - [x] Configure vitest-axe matchers
+- [x] Create `tests/utils/render.ts`
+  - [x] Create `render()` helper function
+  - [x] Create `cleanup()` helper function
+- [x] Create placeholder test file `tests/setup.test.ts`
+  - [x] Add simple test to verify setup works
 
 ---
 
