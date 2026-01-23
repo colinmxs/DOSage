@@ -2,7 +2,10 @@
  * ThemePicker Component
  *
  * Dropdown for selecting themes in the Kitchen Sink demo.
+ * Uses ThemeManager from the library for proper theme switching.
  */
+
+import { ThemeManager } from 'dosage';
 
 // Theme options
 const THEMES = [
@@ -35,28 +38,14 @@ export function createThemePicker(): HTMLElement {
     select.appendChild(option);
   });
 
-  // Set initial value from document
-  const currentTheme = document.documentElement.getAttribute('data-dos-theme') ?? 'dos-blue';
+  // Set initial value from ThemeManager
+  const currentTheme = ThemeManager.getTheme();
   select.value = currentTheme;
 
-  // Handle theme change
+  // Handle theme change using ThemeManager
   select.addEventListener('change', () => {
     const theme = select.value;
-    document.documentElement.setAttribute('data-dos-theme', theme);
-
-    // Persist to localStorage
-    try {
-      localStorage.setItem('dos-theme', theme);
-    } catch {
-      // localStorage may not be available
-    }
-
-    // Dispatch custom event
-    const event = new CustomEvent('dos:theme:change', {
-      detail: { theme },
-      bubbles: true,
-    });
-    document.dispatchEvent(event);
+    ThemeManager.setTheme(theme);
   });
 
   container.appendChild(label);

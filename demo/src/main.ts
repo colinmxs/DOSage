@@ -7,9 +7,13 @@ import { createSidebar } from './components/Sidebar';
 import { createMainContent } from './components/MainContent';
 import { createThemePicker } from './components/ThemePicker';
 import { initRouter, navigate, getCurrentRoute } from './utils/router';
+import { initTheme } from 'dosage';
 
 // Initialize the application
 function init(): void {
+  // Initialize theme system (loads from localStorage or applies default)
+  initTheme();
+
   const app = document.getElementById('app');
   if (!app) {
     console.error('App container not found');
