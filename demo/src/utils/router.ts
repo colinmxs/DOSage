@@ -54,9 +54,15 @@ export const ROUTES = {
   DATE_PICKER: 'date-picker',
   TIME_PICKER: 'time-picker',
   // Feedback
+  MODAL: 'modal',
+  WINDOW: 'window',
   ALERT: 'alert',
+  TOAST: 'toast',
+  TOOLTIP: 'tooltip',
+  POPOVER: 'popover',
   PROGRESS: 'progress',
   SPINNER: 'spinner',
+  SKELETON: 'skeleton',
   // Navigation
   MENU: 'menu',
   DROPDOWN_MENU: 'dropdown-menu',

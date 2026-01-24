@@ -1,0 +1,180 @@
+/**
+ * Alert Component Styles
+ *
+ * DOS-style banner notification with type-specific colors and icons.
+ */
+
+/* Base Alert Styles */
+.dos-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--dos-space-sm);
+  padding: var(--dos-space-sm) var(--dos-space-md);
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size-base);
+  line-height: var(--dos-line-height-base);
+  border: 2px solid var(--dos-color-border);
+  background-color: var(--dos-color-bg-primary);
+  color: var(--dos-color-text-primary);
+  position: relative;
+}
+
+/* Icon */
+.dos-alert__icon {
+  flex-shrink: 0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.dos-alert__icon::before {
+  content: '[';
+}
+
+.dos-alert__icon::after {
+  content: ']';
+}
+
+/* Content Container */
+.dos-alert__content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Title */
+.dos-alert__title {
+  font-weight: bold;
+  margin-bottom: var(--dos-space-xs);
+}
+
+/* Message */
+.dos-alert__message {
+  word-wrap: break-word;
+}
+
+/* Dismiss Button */
+.dos-alert__dismiss {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid transparent;
+  padding: 0 var(--dos-space-xs);
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+  line-height: 1;
+  margin-left: auto;
+}
+
+.dos-alert__dismiss::before {
+  content: '[';
+}
+
+.dos-alert__dismiss::after {
+  content: ']';
+}
+
+.dos-alert__dismiss:hover,
+.dos-alert__dismiss:focus {
+  background-color: var(--dos-color-text-primary);
+  color: var(--dos-color-bg-primary);
+  outline: none;
+  border-color: var(--dos-color-text-primary);
+}
+
+.dos-alert__dismiss:focus-visible {
+  outline: 2px solid var(--dos-color-focus);
+  outline-offset: 2px;
+}
+
+/* Type Variants */
+
+/* Info (default) */
+.dos-alert--info {
+  border-color: var(--dos-color-primary);
+  background-color: var(--dos-color-bg-secondary);
+  color: var(--dos-color-text-secondary);
+}
+
+.dos-alert--info .dos-alert__icon {
+  color: var(--dos-color-primary);
+}
+
+/* Success */
+.dos-alert--success {
+  border-color: var(--dos-color-success);
+  background-color: var(--dos-color-bg-primary);
+  color: var(--dos-color-text-primary);
+}
+
+.dos-alert--success .dos-alert__icon {
+  color: var(--dos-color-success);
+}
+
+.dos-alert--success .dos-alert__dismiss:hover,
+.dos-alert--success .dos-alert__dismiss:focus {
+  background-color: var(--dos-color-success);
+  color: var(--dos-color-bg-primary);
+  border-color: var(--dos-color-success);
+}
+
+/* Warning */
+.dos-alert--warning {
+  border-color: var(--dos-color-warning);
+  background-color: var(--dos-color-bg-primary);
+  color: var(--dos-color-text-primary);
+}
+
+.dos-alert--warning .dos-alert__icon {
+  color: var(--dos-color-warning);
+}
+
+.dos-alert--warning .dos-alert__dismiss:hover,
+.dos-alert--warning .dos-alert__dismiss:focus {
+  background-color: var(--dos-color-warning);
+  color: var(--dos-color-bg-primary);
+  border-color: var(--dos-color-warning);
+}
+
+/* Error */
+.dos-alert--error {
+  border-color: var(--dos-color-error);
+  background-color: var(--dos-color-bg-primary);
+  color: var(--dos-color-text-primary);
+}
+
+.dos-alert--error .dos-alert__icon {
+  color: var(--dos-color-error);
+}
+
+.dos-alert--error .dos-alert__dismiss:hover,
+.dos-alert--error .dos-alert__dismiss:focus {
+  background-color: var(--dos-color-error);
+  color: var(--dos-color-bg-primary);
+  border-color: var(--dos-color-error);
+}
+
+/* Double-line border style (DOS aesthetic) */
+.dos-alert--double-border {
+  border-width: 3px;
+  border-style: double;
+}
+
+/* Compact variant */
+.dos-alert--compact {
+  padding: var(--dos-space-xs) var(--dos-space-sm);
+}
+
+/* Hidden state for dismissing */
+.dos-alert--hidden {
+  display: none;
+}
+
+/* Animation for dismissing */
+.dos-alert--dismissing {
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+}

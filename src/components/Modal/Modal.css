@@ -1,0 +1,200 @@
+/**
+ * Modal Component Styles
+ *
+ * DOS-style modal/dialog with box-drawing borders.
+ */
+
+/* ===== OVERLAY ===== */
+
+.dos-modal__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  visibility: hidden;
+  transition: none; /* DOS-style instant response */
+}
+
+.dos-modal__overlay--open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===== DIALOG ===== */
+
+.dos-modal__dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - var(--dos-space-xl) * 2);
+  background-color: var(--dos-color-bg);
+  color: var(--dos-color-fg);
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size);
+  line-height: var(--dos-line-height);
+  border: 2px solid var(--dos-color-border);
+  box-shadow: 4px 4px 0 var(--dos-color-shadow);
+}
+
+/* Size variants */
+.dos-modal--small .dos-modal__dialog {
+  width: 300px;
+  max-width: 90vw;
+}
+
+.dos-modal--medium .dos-modal__dialog {
+  width: 500px;
+  max-width: 90vw;
+}
+
+.dos-modal--large .dos-modal__dialog {
+  width: 800px;
+  max-width: 90vw;
+}
+
+.dos-modal--fullscreen .dos-modal__dialog {
+  width: calc(100vw - var(--dos-space-lg) * 2);
+  height: calc(100vh - var(--dos-space-lg) * 2);
+  max-width: none;
+  max-height: none;
+}
+
+/* ===== HEADER ===== */
+
+.dos-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--dos-space-xs) var(--dos-space-sm);
+  background-color: var(--dos-color-primary);
+  color: var(--dos-color-bg);
+  border-bottom: 2px solid var(--dos-color-border);
+}
+
+.dos-modal__title {
+  margin: 0;
+  font-size: var(--dos-font-size);
+  font-weight: normal;
+  font-family: var(--dos-font-family);
+  line-height: 1;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dos-modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5em;
+  height: 1.5em;
+  padding: 0;
+  margin: 0;
+  margin-left: var(--dos-space-sm);
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size);
+  line-height: 1;
+  color: var(--dos-color-bg);
+  background-color: transparent;
+  border: 1px solid var(--dos-color-bg);
+  cursor: pointer;
+}
+
+.dos-modal__close:hover {
+  background-color: var(--dos-color-bg);
+  color: var(--dos-color-primary);
+}
+
+.dos-modal__close:focus {
+  outline: none;
+}
+
+.dos-modal__close:focus-visible {
+  outline: 2px solid var(--dos-color-bg);
+  outline-offset: 1px;
+}
+
+/* ===== BODY ===== */
+
+.dos-modal__body {
+  flex: 1;
+  padding: var(--dos-space-md);
+  overflow-y: auto;
+}
+
+.dos-modal__body:empty {
+  display: none;
+}
+
+/* ===== FOOTER ===== */
+
+.dos-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--dos-space-sm);
+  padding: var(--dos-space-sm) var(--dos-space-md);
+  border-top: 2px solid var(--dos-color-border);
+}
+
+.dos-modal__footer:empty {
+  display: none;
+}
+
+/* ===== BOX-DRAWING BORDER VARIANT ===== */
+
+/* Double-line border decoration */
+.dos-modal__dialog::before {
+  content: '╔' attr(data-top-border) '╗';
+  position: absolute;
+  top: -1em;
+  left: 0;
+  right: 0;
+  text-align: center;
+  pointer-events: none;
+  color: var(--dos-color-border);
+  font-family: var(--dos-font-family);
+}
+
+/* ===== FOCUS TRAP INDICATOR ===== */
+
+.dos-modal__focus-trap {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes dos-modal-appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Optional: Enable animations if user prefers */
+@media (prefers-reduced-motion: no-preference) {
+  .dos-modal__overlay--open {
+    animation: dos-modal-appear 0.1s ease-out;
+  }
+}
+
+/* ===== BODY SCROLL LOCK ===== */
+
+body.dos-modal-open {
+  overflow: hidden;
+}

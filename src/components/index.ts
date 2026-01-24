@@ -58,12 +58,15 @@ export * from './Pagination';
 export * from './Stepper';
 
 // Feedback & Overlay Components (Phase 8)
-// export * from './Modal';
-// export * from './Window';
-// export * from './Alert';
-// export * from './Tabs';
-// export * from './Breadcrumb';
-// export * from './Pagination';
+export * from './Modal';
+export * from './Window';
+export * from './Alert';
+export * from './Toast';
+export * from './Tooltip';
+export * from './Popover';
+export * from './ProgressBar';
+export * from './LoadingSpinner';
+export * from './SkeletonLoader';
 
 // Data Display Components (Phase 9)
 // export * from './Table';

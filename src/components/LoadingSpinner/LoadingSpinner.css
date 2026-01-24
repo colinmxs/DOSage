@@ -1,0 +1,103 @@
+/**
+ * @file LoadingSpinner styles
+ * @description DOS-style ASCII loading spinner animations
+ */
+
+/* Base spinner container */
+.dos-loading-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--dos-font-family);
+  line-height: 1;
+  color: var(--dos-color-primary, #5555ff);
+}
+
+/* Character display element */
+.dos-loading-spinner__character {
+  display: inline-block;
+  text-align: center;
+}
+
+/* ===== SIZE VARIANTS ===== */
+
+/* Small size */
+.dos-loading-spinner--small {
+  font-size: var(--dos-font-size-sm, 0.875rem);
+}
+
+.dos-loading-spinner--small .dos-loading-spinner__character {
+  min-width: 1em;
+  min-height: 1em;
+}
+
+/* Medium size (default) */
+.dos-loading-spinner--medium {
+  font-size: var(--dos-font-size-md, 1rem);
+}
+
+.dos-loading-spinner--medium .dos-loading-spinner__character {
+  min-width: 1.25em;
+  min-height: 1.25em;
+}
+
+/* Large size */
+.dos-loading-spinner--large {
+  font-size: var(--dos-font-size-xl, 1.5rem);
+}
+
+.dos-loading-spinner--large .dos-loading-spinner__character {
+  min-width: 1.5em;
+  min-height: 1.5em;
+}
+
+/* ===== STYLE VARIANTS ===== */
+
+/* ASCII style (default): | / - \ */
+.dos-loading-spinner--ascii .dos-loading-spinner__character {
+  font-weight: bold;
+}
+
+/* Block style: ▖ ▘ ▝ ▗ */
+.dos-loading-spinner--block .dos-loading-spinner__character {
+  /* Block characters render well in monospace */
+}
+
+/* Dots style (braille): ⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏ */
+.dos-loading-spinner--dots .dos-loading-spinner__character {
+  /* Braille characters may need slight adjustment */
+}
+
+/* ===== STOPPED STATE ===== */
+
+.dos-loading-spinner--stopped {
+  opacity: 0.5;
+}
+
+/* ===== ACCESSIBILITY ===== */
+
+/* Visually hidden label for screen readers */
+.dos-loading-spinner__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .dos-loading-spinner--stopped {
+    opacity: 1;
+  }
+
+  /* Show static character when motion is reduced */
+  .dos-loading-spinner .dos-loading-spinner__character::before {
+    content: '○';
+  }
+}

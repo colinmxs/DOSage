@@ -1,0 +1,297 @@
+/**
+ * Toast Component Styles
+ *
+ * DOS-style temporary notification toasts with positions and animations.
+ */
+
+/* Toast Container */
+.dos-toast-container {
+  position: fixed;
+  z-index: var(--dos-z-toast, 9000);
+  display: flex;
+  flex-direction: column;
+  gap: var(--dos-space-sm);
+  padding: var(--dos-space-md);
+  pointer-events: none;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+/* Container Position Variants */
+.dos-toast-container--top-left {
+  top: 0;
+  left: 0;
+  align-items: flex-start;
+}
+
+.dos-toast-container--top-right {
+  top: 0;
+  right: 0;
+  align-items: flex-end;
+}
+
+.dos-toast-container--top-center {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+}
+
+.dos-toast-container--bottom-left {
+  bottom: 0;
+  left: 0;
+  align-items: flex-start;
+  flex-direction: column-reverse;
+}
+
+.dos-toast-container--bottom-right {
+  bottom: 0;
+  right: 0;
+  align-items: flex-end;
+  flex-direction: column-reverse;
+}
+
+.dos-toast-container--bottom-center {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+  flex-direction: column-reverse;
+}
+
+/* Base Toast Styles */
+.dos-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--dos-space-sm);
+  padding: var(--dos-space-sm) var(--dos-space-md);
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size-base);
+  line-height: var(--dos-line-height-base);
+  border: 2px solid var(--dos-color-border);
+  background-color: var(--dos-color-bg-primary);
+  color: var(--dos-color-text-primary);
+  pointer-events: auto;
+  max-width: 350px;
+  min-width: 200px;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Toast Icon */
+.dos-toast__icon {
+  flex-shrink: 0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.dos-toast__icon::before {
+  content: '[';
+}
+
+.dos-toast__icon::after {
+  content: ']';
+}
+
+/* Toast Content */
+.dos-toast__content {
+  flex: 1;
+  min-width: 0;
+  word-wrap: break-word;
+}
+
+/* Toast Message */
+.dos-toast__message {
+  margin: 0;
+}
+
+/* Toast Dismiss Button */
+.dos-toast__dismiss {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid transparent;
+  padding: 0 var(--dos-space-xs);
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+  line-height: 1;
+  margin-left: auto;
+}
+
+.dos-toast__dismiss::before {
+  content: '[';
+}
+
+.dos-toast__dismiss::after {
+  content: ']';
+}
+
+.dos-toast__dismiss:hover,
+.dos-toast__dismiss:focus {
+  background-color: var(--dos-color-text-primary);
+  color: var(--dos-color-bg-primary);
+  outline: none;
+  border-color: var(--dos-color-text-primary);
+}
+
+.dos-toast__dismiss:focus-visible {
+  outline: 2px solid var(--dos-color-focus);
+  outline-offset: 2px;
+}
+
+/* Toast Progress Bar */
+.dos-toast__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background-color: var(--dos-color-primary);
+  transition: width linear;
+}
+
+/* Type Variants */
+
+/* Info */
+.dos-toast--info {
+  border-color: var(--dos-color-primary);
+}
+
+.dos-toast--info .dos-toast__icon {
+  color: var(--dos-color-primary);
+}
+
+.dos-toast--info .dos-toast__progress {
+  background-color: var(--dos-color-primary);
+}
+
+/* Success */
+.dos-toast--success {
+  border-color: var(--dos-color-success);
+}
+
+.dos-toast--success .dos-toast__icon {
+  color: var(--dos-color-success);
+}
+
+.dos-toast--success .dos-toast__progress {
+  background-color: var(--dos-color-success);
+}
+
+.dos-toast--success .dos-toast__dismiss:hover,
+.dos-toast--success .dos-toast__dismiss:focus {
+  background-color: var(--dos-color-success);
+  border-color: var(--dos-color-success);
+}
+
+/* Warning */
+.dos-toast--warning {
+  border-color: var(--dos-color-warning);
+}
+
+.dos-toast--warning .dos-toast__icon {
+  color: var(--dos-color-warning);
+}
+
+.dos-toast--warning .dos-toast__progress {
+  background-color: var(--dos-color-warning);
+}
+
+.dos-toast--warning .dos-toast__dismiss:hover,
+.dos-toast--warning .dos-toast__dismiss:focus {
+  background-color: var(--dos-color-warning);
+  border-color: var(--dos-color-warning);
+}
+
+/* Error */
+.dos-toast--error {
+  border-color: var(--dos-color-error);
+}
+
+.dos-toast--error .dos-toast__icon {
+  color: var(--dos-color-error);
+}
+
+.dos-toast--error .dos-toast__progress {
+  background-color: var(--dos-color-error);
+}
+
+.dos-toast--error .dos-toast__dismiss:hover,
+.dos-toast--error .dos-toast__dismiss:focus {
+  background-color: var(--dos-color-error);
+  border-color: var(--dos-color-error);
+}
+
+/* Animation States */
+.dos-toast--entering {
+  animation: dos-toast-enter 0.2s ease-out forwards;
+}
+
+.dos-toast--exiting {
+  animation: dos-toast-exit 0.15s ease-in forwards;
+}
+
+@keyframes dos-toast-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dos-toast-exit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* Bottom position reverse animation */
+.dos-toast-container--bottom-left .dos-toast--entering,
+.dos-toast-container--bottom-right .dos-toast--entering,
+.dos-toast-container--bottom-center .dos-toast--entering {
+  animation: dos-toast-enter-bottom 0.2s ease-out forwards;
+}
+
+.dos-toast-container--bottom-left .dos-toast--exiting,
+.dos-toast-container--bottom-right .dos-toast--exiting,
+.dos-toast-container--bottom-center .dos-toast--exiting {
+  animation: dos-toast-exit-bottom 0.15s ease-in forwards;
+}
+
+@keyframes dos-toast-enter-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dos-toast-exit-bottom {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* Paused state */
+.dos-toast--paused .dos-toast__progress {
+  animation-play-state: paused;
+}

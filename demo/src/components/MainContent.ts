@@ -46,6 +46,17 @@ import {
   renderTimePickerPage,
 } from '../pages/form-controls';
 import { renderMenuBarPage, renderDropdownMenuPage, renderContextMenuPage, renderSidebarPage, renderBreadcrumbsPage, renderPaginationPage, renderStepperPage } from '../pages/navigation';
+import {
+  renderModalPage,
+  renderWindowPage,
+  renderAlertPage,
+  renderToastPage,
+  renderTooltipPage,
+  renderPopoverPage,
+  renderProgressBarPage,
+  renderLoadingSpinnerPage,
+  renderSkeletonLoaderPage,
+} from '../pages/feedback';
 
 /** Page content element reference */
 let contentElement: HTMLElement | null = null;
@@ -90,10 +101,16 @@ const pages: Record<string, () => HTMLElement> = {
   'file-input': renderFileInputPage,
   'date-picker': renderDatePickerPage,
   'time-picker': renderTimePickerPage,
-  // Feedback (to be implemented)
-  alert: () => createPlaceholderPage('Alert', 'Alert messages and notifications.'),
-  progress: () => createPlaceholderPage('Progress', 'Progress bar with ASCII art.'),
-  spinner: () => createPlaceholderPage('Spinner', 'Loading spinner animation.'),
+  // Feedback (Phase 8)
+  modal: renderModalPage,
+  window: renderWindowPage,
+  alert: renderAlertPage,
+  toast: renderToastPage,
+  tooltip: renderTooltipPage,
+  popover: renderPopoverPage,
+  progress: renderProgressBarPage,
+  spinner: renderLoadingSpinnerPage,
+  skeleton: renderSkeletonLoaderPage,
   // Navigation
   menu: renderMenuBarPage,
   'dropdown-menu': renderDropdownMenuPage,

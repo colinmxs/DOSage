@@ -1,0 +1,128 @@
+/**
+ * Tooltip Component Styles
+ *
+ * DOS-style tooltip with arrow and position variants.
+ */
+
+/* Base tooltip */
+.dos-tooltip {
+  position: absolute;
+  z-index: var(--dos-z-tooltip, 1070);
+  max-width: 250px;
+  padding: var(--dos-space-xs) var(--dos-space-sm);
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size-sm);
+  line-height: var(--dos-line-height-tight);
+  color: var(--dos-color-bg-primary);
+  background-color: var(--dos-color-text-secondary);
+  border: 1px solid var(--dos-color-text-primary);
+  box-shadow: 2px 2px 0 var(--dos-color-bg-tertiary);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease-in-out, visibility 0.15s ease-in-out;
+  word-wrap: break-word;
+}
+
+/* Visible state */
+.dos-tooltip--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Content container */
+.dos-tooltip__content {
+  display: block;
+}
+
+/* Arrow base */
+.dos-tooltip__arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+/* Arrow for top position (points down) */
+.dos-tooltip--top .dos-tooltip__arrow {
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px 6px 0 6px;
+  border-color: var(--dos-color-text-primary) transparent transparent transparent;
+}
+
+.dos-tooltip--top .dos-tooltip__arrow::after {
+  content: '';
+  position: absolute;
+  bottom: 1px;
+  left: -5px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 5px 0 5px;
+  border-color: var(--dos-color-text-secondary) transparent transparent transparent;
+}
+
+/* Arrow for bottom position (points up) */
+.dos-tooltip--bottom .dos-tooltip__arrow {
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 6px 6px 6px;
+  border-color: transparent transparent var(--dos-color-text-primary) transparent;
+}
+
+.dos-tooltip--bottom .dos-tooltip__arrow::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: -5px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 5px 5px 5px;
+  border-color: transparent transparent var(--dos-color-text-secondary) transparent;
+}
+
+/* Arrow for left position (points right) */
+.dos-tooltip--left .dos-tooltip__arrow {
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 0 6px 6px;
+  border-color: transparent transparent transparent var(--dos-color-text-primary);
+}
+
+.dos-tooltip--left .dos-tooltip__arrow::after {
+  content: '';
+  position: absolute;
+  right: 1px;
+  top: -5px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-color: transparent transparent transparent var(--dos-color-text-secondary);
+}
+
+/* Arrow for right position (points left) */
+.dos-tooltip--right .dos-tooltip__arrow {
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 6px 6px 0;
+  border-color: transparent var(--dos-color-text-primary) transparent transparent;
+}
+
+.dos-tooltip--right .dos-tooltip__arrow::after {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: -5px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 5px 5px 0;
+  border-color: transparent var(--dos-color-text-secondary) transparent transparent;
+}

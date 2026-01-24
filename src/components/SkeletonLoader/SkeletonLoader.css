@@ -1,0 +1,123 @@
+/**
+ * @file SkeletonLoader styles
+ * @description DOS-style content placeholder with ASCII block characters
+ */
+
+/* Base skeleton container */
+.dos-skeleton {
+  display: block;
+  font-family: var(--dos-font-family);
+  line-height: 1.4;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Skeleton line element (for text variant) */
+.dos-skeleton__line {
+  display: block;
+  background-color: transparent;
+  color: var(--dos-color-text-disabled, #555);
+  margin-bottom: 0.4em;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.dos-skeleton__line:last-child {
+  margin-bottom: 0;
+}
+
+/* Block content (for rectangle/circle) */
+.dos-skeleton__block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--dos-color-text-disabled, #555);
+  overflow: hidden;
+}
+
+/* Fill content - block characters */
+.dos-skeleton__fill {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* ===== VARIANT STYLES ===== */
+
+/* Text variant */
+.dos-skeleton--text .dos-skeleton__line {
+  height: 1em;
+}
+
+/* Rectangle variant */
+.dos-skeleton--rectangle .dos-skeleton__block {
+  width: 100%;
+  height: 100%;
+}
+
+/* Circle variant */
+.dos-skeleton--circle {
+  border-radius: 0; /* DOS aesthetic - no rounded corners */
+}
+
+.dos-skeleton--circle .dos-skeleton__block {
+  width: 100%;
+  height: 100%;
+  /* Use ASCII art to suggest circular shape */
+}
+
+/* ===== ANIMATION ===== */
+
+.dos-skeleton--animated .dos-skeleton__line,
+.dos-skeleton--animated .dos-skeleton__block {
+  animation: dos-skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes dos-skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* Alternative shimmer animation using character change */
+.dos-skeleton--animated .dos-skeleton__fill {
+  animation: dos-skeleton-shimmer 2s linear infinite;
+}
+
+@keyframes dos-skeleton-shimmer {
+  0% {
+    color: var(--dos-color-text-disabled, #555);
+  }
+  25% {
+    color: var(--dos-color-text-secondary, #888);
+  }
+  50% {
+    color: var(--dos-color-text-disabled, #555);
+  }
+  75% {
+    color: var(--dos-color-border, #666);
+  }
+  100% {
+    color: var(--dos-color-text-disabled, #555);
+  }
+}
+
+/* ===== HIDDEN STATE ===== */
+
+.dos-skeleton--hidden {
+  display: none;
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .dos-skeleton--animated .dos-skeleton__line,
+  .dos-skeleton--animated .dos-skeleton__block,
+  .dos-skeleton--animated .dos-skeleton__fill {
+    animation: none;
+  }
+}

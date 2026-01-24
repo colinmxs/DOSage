@@ -1,0 +1,166 @@
+/**
+ * Popover Component Styles
+ *
+ * DOS-style popover with rich content support.
+ */
+
+/* Base popover */
+.dos-popover {
+  position: absolute;
+  z-index: var(--dos-z-popover, 1060);
+  min-width: 150px;
+  max-width: 300px;
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size-base);
+  line-height: var(--dos-line-height-base);
+  color: var(--dos-color-text-primary);
+  background-color: var(--dos-color-bg-secondary);
+  border: 2px solid var(--dos-color-text-primary);
+  box-shadow: 4px 4px 0 var(--dos-color-bg-tertiary);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease-in-out, visibility 0.15s ease-in-out;
+}
+
+/* Open state */
+.dos-popover--open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Header */
+.dos-popover__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--dos-space-xs) var(--dos-space-sm);
+  font-weight: var(--dos-font-weight-bold);
+  color: var(--dos-color-text-inverse);
+  background-color: var(--dos-color-bg-primary);
+  border-bottom: 1px solid var(--dos-color-text-primary);
+}
+
+.dos-popover__title {
+  margin: 0;
+  font-size: var(--dos-font-size-base);
+  font-weight: var(--dos-font-weight-bold);
+}
+
+.dos-popover__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size-base);
+  font-weight: var(--dos-font-weight-bold);
+  color: var(--dos-color-text-inverse);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.dos-popover__close:hover,
+.dos-popover__close:focus {
+  color: var(--dos-color-danger-light);
+  outline: none;
+}
+
+/* Content */
+.dos-popover__content {
+  padding: var(--dos-space-sm);
+}
+
+/* Arrow base */
+.dos-popover__arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+/* Arrow for top position (points down) */
+.dos-popover--top .dos-popover__arrow {
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px 8px 0 8px;
+  border-color: var(--dos-color-text-primary) transparent transparent transparent;
+}
+
+.dos-popover--top .dos-popover__arrow::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: -6px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 6px 0 6px;
+  border-color: var(--dos-color-bg-secondary) transparent transparent transparent;
+}
+
+/* Arrow for bottom position (points up) */
+.dos-popover--bottom .dos-popover__arrow {
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 8px 8px 8px;
+  border-color: transparent transparent var(--dos-color-text-primary) transparent;
+}
+
+.dos-popover--bottom .dos-popover__arrow::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: -6px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 6px 6px 6px;
+  border-color: transparent transparent var(--dos-color-bg-secondary) transparent;
+}
+
+/* Arrow for left position (points right) */
+.dos-popover--left .dos-popover__arrow {
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 8px 0 8px 8px;
+  border-color: transparent transparent transparent var(--dos-color-text-primary);
+}
+
+.dos-popover--left .dos-popover__arrow::after {
+  content: '';
+  position: absolute;
+  right: 2px;
+  top: -6px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 0 6px 6px;
+  border-color: transparent transparent transparent var(--dos-color-bg-secondary);
+}
+
+/* Arrow for right position (points left) */
+.dos-popover--right .dos-popover__arrow {
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 8px 8px 8px 0;
+  border-color: transparent var(--dos-color-text-primary) transparent transparent;
+}
+
+.dos-popover--right .dos-popover__arrow::after {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: -6px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 6px 6px 0;
+  border-color: transparent var(--dos-color-bg-secondary) transparent transparent;
+}

@@ -1,0 +1,193 @@
+/**
+ * @file ProgressBar styles
+ * @description DOS-style progress bar with block characters
+ */
+
+/* Base progress bar container */
+.dos-progress-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dos-space-sm);
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size-md);
+  line-height: 1;
+}
+
+/* Track container */
+.dos-progress-bar__track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--dos-color-bg-tertiary, #333);
+  overflow: hidden;
+}
+
+/* Fill element */
+.dos-progress-bar__fill {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  background-color: var(--dos-color-primary, #5555ff);
+  color: var(--dos-color-text-inverse, #000);
+  transition: width 0.2s ease-out;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Value display */
+.dos-progress-bar__value {
+  color: var(--dos-color-text-primary, #aaa);
+  white-space: nowrap;
+  min-width: 4ch;
+  text-align: right;
+}
+
+/* ===== SIZE VARIANTS ===== */
+
+/* Small size */
+.dos-progress-bar--small {
+  font-size: var(--dos-font-size-sm);
+}
+
+.dos-progress-bar--small .dos-progress-bar__track {
+  height: 0.75em;
+  min-width: 10em;
+}
+
+/* Medium size (default) */
+.dos-progress-bar--medium .dos-progress-bar__track {
+  height: 1em;
+  min-width: 16em;
+}
+
+/* Large size */
+.dos-progress-bar--large {
+  font-size: var(--dos-font-size-lg);
+}
+
+.dos-progress-bar--large .dos-progress-bar__track {
+  height: 1.25em;
+  min-width: 20em;
+}
+
+/* ===== STYLE VARIANTS ===== */
+
+/* Blocks style (default): ████████░░░░░░░░ */
+.dos-progress-bar--blocks .dos-progress-bar__track {
+  background-color: transparent;
+}
+
+.dos-progress-bar--blocks .dos-progress-bar__track::before {
+  content: '░░░░░░░░░░░░░░░░░░░░';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--dos-color-text-disabled, #555);
+  letter-spacing: 0;
+}
+
+.dos-progress-bar--blocks .dos-progress-bar__fill {
+  background-color: transparent;
+  color: var(--dos-color-primary, #5555ff);
+}
+
+.dos-progress-bar--blocks .dos-progress-bar__fill::before {
+  content: '████████████████████';
+  letter-spacing: 0;
+}
+
+/* Boxed style: [████████        ] */
+.dos-progress-bar--boxed .dos-progress-bar__track {
+  background-color: transparent;
+  border: none;
+}
+
+.dos-progress-bar--boxed .dos-progress-bar__track::before {
+  content: '[                    ]';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--dos-color-border, #aaa);
+  letter-spacing: 0;
+}
+
+.dos-progress-bar--boxed .dos-progress-bar__fill {
+  background-color: transparent;
+  color: var(--dos-color-primary, #5555ff);
+  margin-left: 1ch;
+}
+
+.dos-progress-bar--boxed .dos-progress-bar__fill::before {
+  content: '████████████████████';
+  letter-spacing: 0;
+}
+
+/* ===== INDETERMINATE STATE ===== */
+
+.dos-progress-bar--indeterminate .dos-progress-bar__fill {
+  width: 30% !important;
+  animation: dos-progress-bar-indeterminate 1.5s ease-in-out infinite;
+}
+
+@keyframes dos-progress-bar-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Blocks style indeterminate */
+.dos-progress-bar--blocks.dos-progress-bar--indeterminate .dos-progress-bar__track::before {
+  content: '────────────────────';
+}
+
+.dos-progress-bar--blocks.dos-progress-bar--indeterminate .dos-progress-bar__fill::before {
+  content: '████';
+}
+
+/* Boxed style indeterminate */
+.dos-progress-bar--boxed.dos-progress-bar--indeterminate .dos-progress-bar__track::before {
+  content: '[--------------------]';
+}
+
+.dos-progress-bar--boxed.dos-progress-bar--indeterminate .dos-progress-bar__fill::before {
+  content: '████';
+}
+
+/* ===== CUSTOM COLOR ===== */
+
+.dos-progress-bar--custom-color .dos-progress-bar__fill {
+  color: inherit;
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .dos-progress-bar__fill {
+    transition: none;
+  }
+
+  .dos-progress-bar--indeterminate .dos-progress-bar__fill {
+    animation: dos-progress-bar-indeterminate-reduced 2s steps(3) infinite;
+  }
+
+  @keyframes dos-progress-bar-indeterminate-reduced {
+    0% {
+      transform: translateX(-100%);
+    }
+    33% {
+      transform: translateX(50%);
+    }
+    66% {
+      transform: translateX(200%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+}

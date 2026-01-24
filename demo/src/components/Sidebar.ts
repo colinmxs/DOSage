@@ -66,9 +66,15 @@ const NAV_ITEMS = [
   {
     category: 'Feedback',
     items: [
+      { id: 'modal', label: 'Modal' },
+      { id: 'window', label: 'Window' },
       { id: 'alert', label: 'Alert' },
-      { id: 'progress', label: 'Progress' },
-      { id: 'spinner', label: 'Spinner' },
+      { id: 'toast', label: 'Toast' },
+      { id: 'tooltip', label: 'Tooltip' },
+      { id: 'popover', label: 'Popover' },
+      { id: 'progress', label: 'ProgressBar' },
+      { id: 'spinner', label: 'LoadingSpinner' },
+      { id: 'skeleton', label: 'SkeletonLoader' },
     ],
   },
   {

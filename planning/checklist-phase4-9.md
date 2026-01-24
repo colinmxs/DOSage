@@ -1490,24 +1490,24 @@
 ### 8.1 Modal / Dialog
 
 **File:** `src/components/Modal/Modal.ts`
-**Styles:** `src/components/Modal/Modal.styles.css`
+**Styles:** `src/components/Modal/Modal.css`
 **Types:** `src/components/Modal/Modal.types.ts`
 **Tests:** `tests/components/Modal.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `ModalProps`
-  - [ ] Prop: `open` (boolean) — visibility state
-  - [ ] Prop: `title` (string) — dialog title
-  - [ ] Prop: `content` (string | Element) — dialog body
-  - [ ] Prop: `footer` (Element) — footer content (buttons)
-  - [ ] Prop: `size` ('small' | 'medium' | 'large' | 'fullscreen') — modal size
-  - [ ] Prop: `closable` (boolean) — show close button
-  - [ ] Prop: `closeOnEscape` (boolean) — close on Escape key
-  - [ ] Prop: `closeOnOverlay` (boolean) — close on overlay click
-  - [ ] Prop: `onClose` (function) — close handler
-  - [ ] Prop: `onOpen` (function) — open handler
-- [ ] Implement centered overlay dialog
-- [ ] Implement DOS-style box-drawing border
+- [x] Create component directory structure
+- [x] Define TypeScript interface `ModalProps`
+  - [x] Prop: `open` (boolean) — visibility state
+  - [x] Prop: `title` (string) — dialog title
+  - [x] Prop: `content` (string | Element) — dialog body
+  - [x] Prop: `footer` (Element) — footer content (buttons)
+  - [x] Prop: `size` ('small' | 'medium' | 'large' | 'fullscreen') — modal size
+  - [x] Prop: `closable` (boolean) — show close button
+  - [x] Prop: `closeOnEscape` (boolean) — close on Escape key
+  - [x] Prop: `closeOnOverlay` (boolean) — close on overlay click
+  - [x] Prop: `onClose` (function) — close handler
+  - [x] Prop: `onOpen` (function) — open handler
+- [x] Implement centered overlay dialog
+- [x] Implement DOS-style box-drawing border
   ```
   ╔══════════════════════════╗
   ║ Dialog Title         [X] ║
@@ -1520,41 +1520,45 @@
   ║         [OK] [Cancel]    ║
   ╚══════════════════════════╝
   ```
-- [ ] Implement focus trap (focus stays within modal)
-- [ ] Implement scroll lock on body
-- [ ] Implement states: closed, open
-- [ ] Add CSS styles with class `.dos-modal`
-  - [ ] `.dos-modal___overlay`
-  - [ ] `.dos-modal___dialog`
-  - [ ] `.dos-modal___header`
-  - [ ] `.dos-modal___title`
-  - [ ] `.dos-modal___close`
-  - [ ] `.dos-modal___body`
-  - [ ] `.dos-modal___footer`
-  - [ ] `.dos-modal--small`
-  - [ ] `.dos-modal--medium`
-  - [ ] `.dos-modal--large`
-  - [ ] `.dos-modal--fullscreen`
-- [ ] Add keyboard navigation
-  - [ ] `Escape` — close modal
-  - [ ] `Tab` — cycle through focusable elements
-  - [ ] Focus returns to trigger on close
-- [ ] Add ARIA attributes
-  - [ ] `role="dialog"`
-  - [ ] `aria-modal="true"`
-  - [ ] `aria-labelledby` — points to title
-  - [ ] `aria-describedby` — points to content
-- [ ] Write unit tests
-  - [ ] Test: opens and closes correctly
-  - [ ] Test: focus trap works
-  - [ ] Test: Escape closes modal
-  - [ ] Test: overlay click closes (when enabled)
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic modal
-  - [ ] Different sizes
-  - [ ] With form content
-  - [ ] Code snippet displayed
+- [x] Implement focus trap (focus stays within modal)
+- [x] Implement scroll lock on body
+- [x] Implement states: closed, open
+- [x] Add CSS styles with class `.dos-modal`
+  - [x] `.dos-modal__overlay`
+  - [x] `.dos-modal__dialog`
+  - [x] `.dos-modal__header`
+  - [x] `.dos-modal__title`
+  - [x] `.dos-modal__close`
+  - [x] `.dos-modal__body`
+  - [x] `.dos-modal__footer`
+  - [x] `.dos-modal--small`
+  - [x] `.dos-modal--medium`
+  - [x] `.dos-modal--large`
+  - [x] `.dos-modal--fullscreen`
+- [x] Add keyboard navigation
+  - [x] `Escape` — close modal
+  - [x] `Tab` — cycle through focusable elements
+  - [x] Focus returns to trigger on close
+- [x] Add ARIA attributes
+  - [x] `role="dialog"`
+  - [x] `aria-modal="true"`
+  - [x] `aria-labelledby` — points to title
+  - [x] `aria-describedby` — points to content
+- [x] Write unit tests
+  - [x] Test: opens and closes correctly
+  - [x] Test: focus trap works
+  - [x] Test: Escape closes modal
+  - [x] Test: overlay click closes (when enabled)
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic modal
+  - [x] Different sizes
+  - [x] With form content
+  - [x] Code snippet displayed
+- [x] Implement helper functions
+  - [x] `showAlert()` — simple alert dialog
+  - [x] `showConfirm()` — confirmation dialog (returns Promise<boolean>)
+  - [x] `showPrompt()` — prompt dialog (returns Promise<string | null>)
 
 > **Accessibility:** Focus trapped. Escape to close. Announced as dialog.
 > **Keyboard:** `Escape` to close, `Tab` to navigate within
@@ -1568,27 +1572,27 @@
 **Types:** `src/components/Window/Window.types.ts`
 **Tests:** `tests/components/Window.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `WindowProps`
-  - [ ] Prop: `title` (string) — window title
-  - [ ] Prop: `content` (Element) — window content
-  - [ ] Prop: `width` (number | string) — initial width
-  - [ ] Prop: `height` (number | string) — initial height
-  - [ ] Prop: `x` (number) — initial X position
-  - [ ] Prop: `y` (number) — initial Y position
-  - [ ] Prop: `minimized` (boolean) — minimized state
-  - [ ] Prop: `maximized` (boolean) — maximized state
-  - [ ] Prop: `draggable` (boolean) — can be dragged
-  - [ ] Prop: `resizable` (boolean) — can be resized
-  - [ ] Prop: `showMinimize` (boolean) — show minimize button
-  - [ ] Prop: `showMaximize` (boolean) — show maximize button
-  - [ ] Prop: `showClose` (boolean) — show close button
-  - [ ] Prop: `onClose` (function) — close handler
-  - [ ] Prop: `onMinimize` (function) — minimize handler
-  - [ ] Prop: `onMaximize` (function) — maximize handler
-  - [ ] Prop: `onMove` (function) — move handler
-  - [ ] Prop: `onResize` (function) — resize handler
-- [ ] Implement full DOS window frame
+- [x] Create component directory structure
+- [x] Define TypeScript interface `WindowProps`
+  - [x] Prop: `title` (string) — window title
+  - [x] Prop: `content` (Element) — window content
+  - [x] Prop: `width` (number | string) — initial width
+  - [x] Prop: `height` (number | string) — initial height
+  - [x] Prop: `x` (number) — initial X position
+  - [x] Prop: `y` (number) — initial Y position
+  - [x] Prop: `minimized` (boolean) — minimized state
+  - [x] Prop: `maximized` (boolean) — maximized state
+  - [x] Prop: `draggable` (boolean) — can be dragged
+  - [x] Prop: `resizable` (boolean) — can be resized
+  - [x] Prop: `showMinimize` (boolean) — show minimize button
+  - [x] Prop: `showMaximize` (boolean) — show maximize button
+  - [x] Prop: `showClose` (boolean) — show close button
+  - [x] Prop: `onClose` (function) — close handler
+  - [x] Prop: `onMinimize` (function) — minimize handler
+  - [x] Prop: `onMaximize` (function) — maximize handler
+  - [x] Prop: `onMove` (function) — move handler
+  - [x] Prop: `onResize` (function) — resize handler
+- [x] Implement full DOS window frame
   ```
   ┌──────────────────────────────────────┐
   │ [─] Window Title             [□] [X] │
@@ -1599,45 +1603,45 @@
   │                                      │
   └──────────────────────────────────────┘
   ```
-- [ ] Implement title bar with controls
-  - [ ] Minimize: `[─]` or `[_]`
-  - [ ] Maximize/Restore: `[□]` or `[↕]`
-  - [ ] Close: `[X]`
-- [ ] Implement drag to move (when enabled)
-- [ ] Implement resize handles (when enabled)
-- [ ] Implement states: normal, minimized, maximized, focused
-- [ ] Add CSS styles with class `.dos-window`
-  - [ ] `.dos-window___frame`
-  - [ ] `.dos-window___title-bar`
-  - [ ] `.dos-window___title`
-  - [ ] `.dos-window___controls`
-  - [ ] `.dos-window___control`
-  - [ ] `.dos-window___content`
-  - [ ] `.dos-window___resize-handle`
-  - [ ] `.dos-window--minimized`
-  - [ ] `.dos-window--maximized`
-  - [ ] `.dos-window--focused`
-  - [ ] `.dos-window--dragging`
-- [ ] Add keyboard navigation
-  - [ ] Title bar buttons keyboard accessible
-  - [ ] `Alt+F4` — close (optional)
-  - [ ] Focus management
-- [ ] Add ARIA attributes
-  - [ ] `role="dialog"` or appropriate landmark
-  - [ ] `aria-labelledby` — title
-  - [ ] Button labels for controls
-- [ ] Write unit tests
-  - [ ] Test: renders window frame
-  - [ ] Test: drag to move works
-  - [ ] Test: resize works
-  - [ ] Test: minimize/maximize/close work
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic window
-  - [ ] Draggable window
-  - [ ] Resizable window
-  - [ ] Multiple windows
-  - [ ] Code snippet displayed
+- [x] Implement title bar with controls
+  - [x] Minimize: `[─]` or `[_]`
+  - [x] Maximize/Restore: `[□]` or `[↕]`
+  - [x] Close: `[X]`
+- [x] Implement drag to move (when enabled)
+- [x] Implement resize handles (when enabled)
+- [x] Implement states: normal, minimized, maximized, focused
+- [x] Add CSS styles with class `.dos-window`
+  - [x] `.dos-window___frame`
+  - [x] `.dos-window___title-bar`
+  - [x] `.dos-window___title`
+  - [x] `.dos-window___controls`
+  - [x] `.dos-window___control`
+  - [x] `.dos-window___content`
+  - [x] `.dos-window___resize-handle`
+  - [x] `.dos-window--minimized`
+  - [x] `.dos-window--maximized`
+  - [x] `.dos-window--focused`
+  - [x] `.dos-window--dragging`
+- [x] Add keyboard navigation
+  - [x] Title bar buttons keyboard accessible
+  - [x] `Alt+F4` — close (optional)
+  - [x] Focus management
+- [x] Add ARIA attributes
+  - [x] `role="dialog"` or appropriate landmark
+  - [x] `aria-labelledby` — title
+  - [x] Button labels for controls
+- [x] Write unit tests
+  - [x] Test: renders window frame
+  - [x] Test: drag to move works
+  - [x] Test: resize works
+  - [x] Test: minimize/maximize/close work
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic window
+  - [x] Draggable window
+  - [x] Resizable window
+  - [x] Multiple windows
+  - [x] Code snippet displayed
 
 > **Accessibility:** Title bar controls labeled. Focus management for window.
 > **Keyboard:** Control buttons keyboard accessible
@@ -1651,51 +1655,51 @@
 **Types:** `src/components/Alert/Alert.types.ts`
 **Tests:** `tests/components/Alert.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `AlertProps`
-  - [ ] Prop: `message` (string | Element) — alert content
-  - [ ] Prop: `type` ('info' | 'success' | 'warning' | 'error') — alert type
-  - [ ] Prop: `title` (string) — optional title
-  - [ ] Prop: `icon` (boolean | string) — show/custom icon
-  - [ ] Prop: `dismissible` (boolean) — can be dismissed
-  - [ ] Prop: `onDismiss` (function) — dismiss handler
-- [ ] Implement banner-style notification
+- [x] Create component directory structure
+- [x] Define TypeScript interface `AlertProps`
+  - [x] Prop: `message` (string | Element) — alert content
+  - [x] Prop: `type` ('info' | 'success' | 'warning' | 'error') — alert type
+  - [x] Prop: `title` (string) — optional title
+  - [x] Prop: `icon` (boolean | string) — show/custom icon
+  - [x] Prop: `dismissible` (boolean) — can be dismissed
+  - [x] Prop: `onDismiss` (function) — dismiss handler
+- [x] Implement banner-style notification
   ```
   ╔══[!]════════════════════════════════════════╗
   ║ Warning: This action cannot be undone.  [X] ║
   ╚═════════════════════════════════════════════╝
   ```
-- [ ] Implement type-specific icons and colors
-  - [ ] Info: `[i]`, primary/secondary color
-  - [ ] Success: `[✓]`, success color
-  - [ ] Warning: `[!]`, warning color
-  - [ ] Error: `[✗]`, error color
-- [ ] Implement dismissible with close button
-- [ ] Add CSS styles with class `.dos-alert`
-  - [ ] `.dos-alert___icon`
-  - [ ] `.dos-alert___title`
-  - [ ] `.dos-alert___message`
-  - [ ] `.dos-alert___dismiss`
-  - [ ] `.dos-alert--info`
-  - [ ] `.dos-alert--success`
-  - [ ] `.dos-alert--warning`
-  - [ ] `.dos-alert--error`
-- [ ] Add keyboard navigation
-  - [ ] Dismiss button keyboard accessible
-- [ ] Add ARIA attributes
-  - [ ] `role="alert"` — for important messages
-  - [ ] `role="status"` — for informational
-  - [ ] `aria-live` — appropriate politeness
-- [ ] Write unit tests
-  - [ ] Test: renders message correctly
-  - [ ] Test: applies type-specific styles
-  - [ ] Test: dismisses on button click
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] All alert types
-  - [ ] Dismissible alerts
-  - [ ] With titles
-  - [ ] Code snippet displayed
+- [x] Implement type-specific icons and colors
+  - [x] Info: `[i]`, primary/secondary color
+  - [x] Success: `[✓]`, success color
+  - [x] Warning: `[!]`, warning color
+  - [x] Error: `[✗]`, error color
+- [x] Implement dismissible with close button
+- [x] Add CSS styles with class `.dos-alert`
+  - [x] `.dos-alert___icon`
+  - [x] `.dos-alert___title`
+  - [x] `.dos-alert___message`
+  - [x] `.dos-alert___dismiss`
+  - [x] `.dos-alert--info`
+  - [x] `.dos-alert--success`
+  - [x] `.dos-alert--warning`
+  - [x] `.dos-alert--error`
+- [x] Add keyboard navigation
+  - [x] Dismiss button keyboard accessible
+- [x] Add ARIA attributes
+  - [x] `role="alert"` — for important messages
+  - [x] `role="status"` — for informational
+  - [x] `aria-live` — appropriate politeness
+- [x] Write unit tests
+  - [x] Test: renders message correctly
+  - [x] Test: applies type-specific styles
+  - [x] Test: dismisses on button click
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] All alert types
+  - [x] Dismissible alerts
+  - [x] With titles
+  - [x] Code snippet displayed
 
 > **Accessibility:** Uses appropriate role based on urgency. Announced to screen readers.
 > **Keyboard:** Dismiss button focusable
@@ -1709,49 +1713,49 @@
 **Types:** `src/components/Toast/Toast.types.ts`
 **Tests:** `tests/components/Toast.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `ToastProps`
-  - [ ] Prop: `message` (string) — toast content
-  - [ ] Prop: `type` ('info' | 'success' | 'warning' | 'error') — toast type
-  - [ ] Prop: `duration` (number) — auto-dismiss time (ms)
-  - [ ] Prop: `position` ('top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'top-center' | 'bottom-center') — screen position
-  - [ ] Prop: `dismissible` (boolean) — can be manually dismissed
-  - [ ] Prop: `onDismiss` (function) — dismiss handler
-- [ ] Define TypeScript interface `ToastContainerProps`
-  - [ ] Prop: `position` — default position
-  - [ ] Prop: `maxToasts` (number) — max visible toasts
-- [ ] Implement temporary notification
-- [ ] Implement ToastContainer for managing multiple toasts
-- [ ] Implement auto-dismiss with countdown
-- [ ] Implement stack/queue behavior
-- [ ] Add CSS styles with class `.dos-toast`
-  - [ ] `.dos-toast___message`
-  - [ ] `.dos-toast___dismiss`
-  - [ ] `.dos-toast--info`
-  - [ ] `.dos-toast--success`
-  - [ ] `.dos-toast--warning`
-  - [ ] `.dos-toast--error`
-  - [ ] `.dos-toast--entering`
-  - [ ] `.dos-toast--exiting`
-- [ ] Add CSS styles with class `.dos-toast-container`
-  - [ ] Position variants
-- [ ] Add keyboard navigation
-  - [ ] Dismiss button keyboard accessible
-  - [ ] Focus management for stacked toasts
-- [ ] Add ARIA attributes
-  - [ ] `role="status"` or `role="alert"`
-  - [ ] `aria-live="polite"` or `"assertive"`
-- [ ] Write unit tests
-  - [ ] Test: displays toast message
-  - [ ] Test: auto-dismisses after duration
-  - [ ] Test: manual dismiss works
-  - [ ] Test: stacks multiple toasts
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Trigger various toasts
-  - [ ] Different positions
-  - [ ] Stacked toasts
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `ToastProps`
+  - [x] Prop: `message` (string) — toast content
+  - [x] Prop: `type` ('info' | 'success' | 'warning' | 'error') — toast type
+  - [x] Prop: `duration` (number) — auto-dismiss time (ms)
+  - [x] Prop: `position` ('top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'top-center' | 'bottom-center') — screen position
+  - [x] Prop: `dismissible` (boolean) — can be manually dismissed
+  - [x] Prop: `onDismiss` (function) — dismiss handler
+- [x] Define TypeScript interface `ToastContainerProps`
+  - [x] Prop: `position` — default position
+  - [x] Prop: `maxToasts` (number) — max visible toasts
+- [x] Implement temporary notification
+- [x] Implement ToastContainer for managing multiple toasts
+- [x] Implement auto-dismiss with countdown
+- [x] Implement stack/queue behavior
+- [x] Add CSS styles with class `.dos-toast`
+  - [x] `.dos-toast___message`
+  - [x] `.dos-toast___dismiss`
+  - [x] `.dos-toast--info`
+  - [x] `.dos-toast--success`
+  - [x] `.dos-toast--warning`
+  - [x] `.dos-toast--error`
+  - [x] `.dos-toast--entering`
+  - [x] `.dos-toast--exiting`
+- [x] Add CSS styles with class `.dos-toast-container`
+  - [x] Position variants
+- [x] Add keyboard navigation
+  - [x] Dismiss button keyboard accessible
+  - [x] Focus management for stacked toasts
+- [x] Add ARIA attributes
+  - [x] `role="status"` or `role="alert"`
+  - [x] `aria-live="polite"` or `"assertive"`
+- [x] Write unit tests
+  - [x] Test: displays toast message
+  - [x] Test: auto-dismisses after duration
+  - [x] Test: manual dismiss works
+  - [x] Test: stacks multiple toasts
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Trigger various toasts
+  - [x] Different positions
+  - [x] Stacked toasts
+  - [x] Code snippet displayed
 
 > **Accessibility:** Announced via live region. Pause auto-dismiss on hover.
 > **Keyboard:** Dismiss button focusable, focus management
@@ -1765,43 +1769,43 @@
 **Types:** `src/components/Tooltip/Tooltip.types.ts`
 **Tests:** `tests/components/Tooltip.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `TooltipProps`
-  - [ ] Prop: `content` (string) — tooltip text
-  - [ ] Prop: `position` ('top' | 'bottom' | 'left' | 'right') — preferred position
-  - [ ] Prop: `trigger` ('hover' | 'focus' | 'both') — trigger method
-  - [ ] Prop: `delay` (number) — show delay (ms)
-  - [ ] Prop: `arrow` (boolean) — show arrow pointer
-  - [ ] Prop: `target` (Element) — element to attach to
-- [ ] Implement hover-triggered info overlay
-- [ ] Implement arrow pointing to target
-- [ ] Handle viewport boundary collision (flip position)
-- [ ] Implement show delay to prevent flicker
-- [ ] Add CSS styles with class `.dos-tooltip`
-  - [ ] `.dos-tooltip___content`
-  - [ ] `.dos-tooltip___arrow`
-  - [ ] `.dos-tooltip--top`
-  - [ ] `.dos-tooltip--bottom`
-  - [ ] `.dos-tooltip--left`
-  - [ ] `.dos-tooltip--right`
-  - [ ] `.dos-tooltip--visible`
-- [ ] Add keyboard navigation
-  - [ ] Show on focus (for focus trigger)
-  - [ ] `Escape` — hide tooltip
-- [ ] Add ARIA attributes
-  - [ ] `role="tooltip"`
-  - [ ] `aria-describedby` — on target element
-- [ ] Write unit tests
-  - [ ] Test: shows on hover
-  - [ ] Test: shows on focus
-  - [ ] Test: positions correctly
-  - [ ] Test: handles boundary collision
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic tooltips
-  - [ ] All positions
-  - [ ] Trigger variants
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `TooltipProps`
+  - [x] Prop: `content` (string) — tooltip text
+  - [x] Prop: `position` ('top' | 'bottom' | 'left' | 'right') — preferred position
+  - [x] Prop: `trigger` ('hover' | 'focus' | 'both') — trigger method
+  - [x] Prop: `delay` (number) — show delay (ms)
+  - [x] Prop: `arrow` (boolean) — show arrow pointer
+  - [x] Prop: `target` (Element) — element to attach to
+- [x] Implement hover-triggered info overlay
+- [x] Implement arrow pointing to target
+- [x] Handle viewport boundary collision (flip position)
+- [x] Implement show delay to prevent flicker
+- [x] Add CSS styles with class `.dos-tooltip`
+  - [x] `.dos-tooltip___content`
+  - [x] `.dos-tooltip___arrow`
+  - [x] `.dos-tooltip--top`
+  - [x] `.dos-tooltip--bottom`
+  - [x] `.dos-tooltip--left`
+  - [x] `.dos-tooltip--right`
+  - [x] `.dos-tooltip--visible`
+- [x] Add keyboard navigation
+  - [x] Show on focus (for focus trigger)
+  - [x] `Escape` — hide tooltip
+- [x] Add ARIA attributes
+  - [x] `role="tooltip"`
+  - [x] `aria-describedby` — on target element
+- [x] Write unit tests
+  - [x] Test: shows on hover
+  - [x] Test: shows on focus
+  - [x] Test: positions correctly
+  - [x] Test: handles boundary collision
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic tooltips
+  - [x] All positions
+  - [x] Trigger variants
+  - [x] Code snippet displayed
 
 > **Accessibility:** Associated via `aria-describedby`. Keyboard accessible via focus.
 > **Keyboard:** `Escape` to dismiss, focusable trigger shows tooltip
@@ -1815,49 +1819,49 @@
 **Types:** `src/components/Popover/Popover.types.ts`
 **Tests:** `tests/components/Popover.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `PopoverProps`
-  - [ ] Prop: `content` (Element) — popover content
-  - [ ] Prop: `title` (string) — optional header
-  - [ ] Prop: `position` ('top' | 'bottom' | 'left' | 'right') — preferred position
-  - [ ] Prop: `trigger` ('click' | 'hover' | 'focus') — trigger method
-  - [ ] Prop: `arrow` (boolean) — show arrow pointer
-  - [ ] Prop: `closeOnClickOutside` (boolean) — dismiss on outside click
-  - [ ] Prop: `target` (Element) — element to attach to
-  - [ ] Prop: `onOpen` (function) — open handler
-  - [ ] Prop: `onClose` (function) — close handler
-- [ ] Implement click-triggered overlay
-- [ ] Support richer content than tooltip
-- [ ] Implement arrow pointing to target
-- [ ] Handle viewport boundary collision
-- [ ] Add CSS styles with class `.dos-popover`
-  - [ ] `.dos-popover___header`
-  - [ ] `.dos-popover___content`
-  - [ ] `.dos-popover___arrow`
-  - [ ] `.dos-popover--top`
-  - [ ] `.dos-popover--bottom`
-  - [ ] `.dos-popover--left`
-  - [ ] `.dos-popover--right`
-  - [ ] `.dos-popover--open`
-- [ ] Add keyboard navigation
-  - [ ] `Enter` / `Space` — toggle popover
-  - [ ] `Escape` — close popover
-  - [ ] Focus management within popover
-- [ ] Add ARIA attributes
-  - [ ] `aria-haspopup="dialog"` — on trigger
-  - [ ] `aria-expanded` — on trigger
-  - [ ] Popover labeled appropriately
-- [ ] Write unit tests
-  - [ ] Test: opens on click
-  - [ ] Test: closes on outside click
-  - [ ] Test: keyboard toggle works
-  - [ ] Test: positions correctly
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic popover
-  - [ ] With form content
-  - [ ] Different positions
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `PopoverProps`
+  - [x] Prop: `content` (Element) — popover content
+  - [x] Prop: `title` (string) — optional header
+  - [x] Prop: `position` ('top' | 'bottom' | 'left' | 'right') — preferred position
+  - [x] Prop: `trigger` ('click' | 'hover' | 'focus') — trigger method
+  - [x] Prop: `arrow` (boolean) — show arrow pointer
+  - [x] Prop: `closeOnClickOutside` (boolean) — dismiss on outside click
+  - [x] Prop: `target` (Element) — element to attach to
+  - [x] Prop: `onOpen` (function) — open handler
+  - [x] Prop: `onClose` (function) — close handler
+- [x] Implement click-triggered overlay
+- [x] Support richer content than tooltip
+- [x] Implement arrow pointing to target
+- [x] Handle viewport boundary collision
+- [x] Add CSS styles with class `.dos-popover`
+  - [x] `.dos-popover___header`
+  - [x] `.dos-popover___content`
+  - [x] `.dos-popover___arrow`
+  - [x] `.dos-popover--top`
+  - [x] `.dos-popover--bottom`
+  - [x] `.dos-popover--left`
+  - [x] `.dos-popover--right`
+  - [x] `.dos-popover--open`
+- [x] Add keyboard navigation
+  - [x] `Enter` / `Space` — toggle popover
+  - [x] `Escape` — close popover
+  - [x] Focus management within popover
+- [x] Add ARIA attributes
+  - [x] `aria-haspopup="dialog"` — on trigger
+  - [x] `aria-expanded` — on trigger
+  - [x] Popover labeled appropriately
+- [x] Write unit tests
+  - [x] Test: opens on click
+  - [x] Test: closes on outside click
+  - [x] Test: keyboard toggle works
+  - [x] Test: positions correctly
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic popover
+  - [x] With form content
+  - [x] Different positions
+  - [x] Code snippet displayed
 
 > **Accessibility:** Focus managed within. Escape to close.
 > **Keyboard:** `Enter`/`Space` to toggle, `Escape` to close
@@ -1871,49 +1875,49 @@
 **Types:** `src/components/ProgressBar/ProgressBar.types.ts`
 **Tests:** `tests/components/ProgressBar.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `ProgressBarProps`
-  - [ ] Prop: `value` (number) — current value (0-100)
-  - [ ] Prop: `max` (number) — maximum value (default 100)
-  - [ ] Prop: `showValue` (boolean) — display percentage
-  - [ ] Prop: `valueFormat` (function) — custom value formatter
-  - [ ] Prop: `indeterminate` (boolean) — unknown progress
-  - [ ] Prop: `size` ('small' | 'medium' | 'large') — bar height
-  - [ ] Prop: `color` (string) — custom fill color
-  - [ ] Prop: `label` (string) — accessible label
-- [ ] Implement DOS-style progress bar
-  - [ ] Style A: `████████░░░░░░░░` (blocks)
-  - [ ] Style B: `[████████        ]` (boxed)
-  - [ ] Percentage: `[████████        ] 50%`
-- [ ] Implement indeterminate animation
-- [ ] Add CSS styles with class `.dos-progress-bar`
-  - [ ] `.dos-progress-bar___track`
-  - [ ] `.dos-progress-bar___fill`
-  - [ ] `.dos-progress-bar___value`
-  - [ ] `.dos-progress-bar--small`
-  - [ ] `.dos-progress-bar--medium`
-  - [ ] `.dos-progress-bar--large`
-  - [ ] `.dos-progress-bar--indeterminate`
-- [ ] Add keyboard navigation
-  - [ ] Not interactive (display only)
-- [ ] Add ARIA attributes
-  - [ ] `role="progressbar"`
-  - [ ] `aria-valuemin="0"`
-  - [ ] `aria-valuemax`
-  - [ ] `aria-valuenow`
-  - [ ] `aria-valuetext` — human-readable value
-  - [ ] `aria-label` — description
-- [ ] Write unit tests
-  - [ ] Test: renders correct fill percentage
-  - [ ] Test: displays value when enabled
-  - [ ] Test: indeterminate mode works
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic progress bars
-  - [ ] With percentage display
-  - [ ] Indeterminate state
-  - [ ] Different sizes
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `ProgressBarProps`
+  - [x] Prop: `value` (number) — current value (0-100)
+  - [x] Prop: `max` (number) — maximum value (default 100)
+  - [x] Prop: `showValue` (boolean) — display percentage
+  - [x] Prop: `valueFormat` (function) — custom value formatter
+  - [x] Prop: `indeterminate` (boolean) — unknown progress
+  - [x] Prop: `size` ('small' | 'medium' | 'large') — bar height
+  - [x] Prop: `color` (string) — custom fill color
+  - [x] Prop: `label` (string) — accessible label
+- [x] Implement DOS-style progress bar
+  - [x] Style A: `████████░░░░░░░░` (blocks)
+  - [x] Style B: `[████████        ]` (boxed)
+  - [x] Percentage: `[████████        ] 50%`
+- [x] Implement indeterminate animation
+- [x] Add CSS styles with class `.dos-progress-bar`
+  - [x] `.dos-progress-bar___track`
+  - [x] `.dos-progress-bar___fill`
+  - [x] `.dos-progress-bar___value`
+  - [x] `.dos-progress-bar--small`
+  - [x] `.dos-progress-bar--medium`
+  - [x] `.dos-progress-bar--large`
+  - [x] `.dos-progress-bar--indeterminate`
+- [x] Add keyboard navigation
+  - [x] Not interactive (display only)
+- [x] Add ARIA attributes
+  - [x] `role="progressbar"`
+  - [x] `aria-valuemin="0"`
+  - [x] `aria-valuemax`
+  - [x] `aria-valuenow`
+  - [x] `aria-valuetext` — human-readable value
+  - [x] `aria-label` — description
+- [x] Write unit tests
+  - [x] Test: renders correct fill percentage
+  - [x] Test: displays value when enabled
+  - [x] Test: indeterminate mode works
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic progress bars
+  - [x] With percentage display
+  - [x] Indeterminate state
+  - [x] Different sizes
+  - [x] Code snippet displayed
 
 > **Accessibility:** Proper progressbar role with value attributes.
 > **Keyboard:** Not interactive
@@ -1927,36 +1931,36 @@
 **Types:** `src/components/LoadingSpinner/LoadingSpinner.types.ts`
 **Tests:** `tests/components/LoadingSpinner.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `LoadingSpinnerProps`
-  - [ ] Prop: `size` ('small' | 'medium' | 'large') — spinner size
-  - [ ] Prop: `label` (string) — accessible label
-  - [ ] Prop: `style` ('ascii' | 'block' | 'dots') — animation style
-- [ ] Implement ASCII animation spinner
-  - [ ] ASCII cycle: `|`, `/`, `-`, `\` (rotating)
-  - [ ] Block: `▖`, `▘`, `▝`, `▗` (rotating)
-  - [ ] Dots: `⠋`, `⠙`, `⠹`, `⠸`, `⠼`, `⠴`, `⠦`, `⠧`, `⠇`, `⠏` (braille)
-- [ ] Implement animation timing
-- [ ] Add CSS styles with class `.dos-loading-spinner`
-  - [ ] `.dos-loading-spinner___character`
-  - [ ] `.dos-loading-spinner--small`
-  - [ ] `.dos-loading-spinner--medium`
-  - [ ] `.dos-loading-spinner--large`
-  - [ ] CSS animation for frame switching
-- [ ] Add ARIA attributes
-  - [ ] `role="status"`
-  - [ ] `aria-live="polite"`
-  - [ ] `aria-label` — loading description
-- [ ] Write unit tests
-  - [ ] Test: renders spinner
-  - [ ] Test: animates correctly
-  - [ ] Test: applies size
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] All animation styles
-  - [ ] Different sizes
-  - [ ] In context (button loading, etc.)
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `LoadingSpinnerProps`
+  - [x] Prop: `size` ('small' | 'medium' | 'large') — spinner size
+  - [x] Prop: `label` (string) — accessible label
+  - [x] Prop: `style` ('ascii' | 'block' | 'dots') — animation style
+- [x] Implement ASCII animation spinner
+  - [x] ASCII cycle: `|`, `/`, `-`, `\` (rotating)
+  - [x] Block: `▖`, `▘`, `▝`, `▗` (rotating)
+  - [x] Dots: `⠋`, `⠙`, `⠹`, `⠸`, `⠼`, `⠴`, `⠦`, `⠧`, `⠇`, `⠏` (braille)
+- [x] Implement animation timing
+- [x] Add CSS styles with class `.dos-loading-spinner`
+  - [x] `.dos-loading-spinner___character`
+  - [x] `.dos-loading-spinner--small`
+  - [x] `.dos-loading-spinner--medium`
+  - [x] `.dos-loading-spinner--large`
+  - [x] CSS animation for frame switching
+- [x] Add ARIA attributes
+  - [x] `role="status"`
+  - [x] `aria-live="polite"`
+  - [x] `aria-label` — loading description
+- [x] Write unit tests
+  - [x] Test: renders spinner
+  - [x] Test: animates correctly
+  - [x] Test: applies size
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] All animation styles
+  - [x] Different sizes
+  - [x] In context (button loading, etc.)
+  - [x] Code snippet displayed
 
 > **Accessibility:** Status role announces loading. Label describes what's loading.
 > **Keyboard:** Not interactive
@@ -1970,36 +1974,36 @@
 **Types:** `src/components/SkeletonLoader/SkeletonLoader.types.ts`
 **Tests:** `tests/components/SkeletonLoader.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `SkeletonLoaderProps`
-  - [ ] Prop: `variant` ('text' | 'rectangle' | 'circle') — shape variant
-  - [ ] Prop: `width` (string | number) — element width
-  - [ ] Prop: `height` (string | number) — element height
-  - [ ] Prop: `lines` (number) — for text variant, number of lines
-  - [ ] Prop: `animate` (boolean) — show shimmer animation
-  - [ ] Prop: `label` (string) — accessible label
-- [ ] Implement DOS-style content placeholder
-  - [ ] Use block characters: `░░░░░░░░░░░░░░`
-  - [ ] Shimmer effect with `▒` or changing shade
-- [ ] Implement shapes for different content types
-- [ ] Add CSS styles with class `.dos-skeleton`
-  - [ ] `.dos-skeleton--text`
-  - [ ] `.dos-skeleton--rectangle`
-  - [ ] `.dos-skeleton--circle`
-  - [ ] `.dos-skeleton--animated`
-  - [ ] CSS animation for shimmer
-- [ ] Add ARIA attributes
-  - [ ] `aria-busy="true"`
-  - [ ] `aria-label` — describes loading content
-- [ ] Write unit tests
-  - [ ] Test: renders correct shape
-  - [ ] Test: animates when enabled
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Text skeleton
-  - [ ] Card skeleton
-  - [ ] Avatar skeleton
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `SkeletonLoaderProps`
+  - [x] Prop: `variant` ('text' | 'rectangle' | 'circle') — shape variant
+  - [x] Prop: `width` (string | number) — element width
+  - [x] Prop: `height` (string | number) — element height
+  - [x] Prop: `lines` (number) — for text variant, number of lines
+  - [x] Prop: `animate` (boolean) — show shimmer animation
+  - [x] Prop: `label` (string) — accessible label
+- [x] Implement DOS-style content placeholder
+  - [x] Use block characters: `░░░░░░░░░░░░░░`
+  - [x] Shimmer effect with `▒` or changing shade
+- [x] Implement shapes for different content types
+- [x] Add CSS styles with class `.dos-skeleton`
+  - [x] `.dos-skeleton--text`
+  - [x] `.dos-skeleton--rectangle`
+  - [x] `.dos-skeleton--circle`
+  - [x] `.dos-skeleton--animated`
+  - [x] CSS animation for shimmer
+- [x] Add ARIA attributes
+  - [x] `aria-busy="true"`
+  - [x] `aria-label` — describes loading content
+- [x] Write unit tests
+  - [x] Test: renders correct shape
+  - [x] Test: animates when enabled
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Text skeleton
+  - [x] Card skeleton
+  - [x] Avatar skeleton
+  - [x] Code snippet displayed
 
 > **Accessibility:** `aria-busy` indicates loading state.
 > **Keyboard:** Not interactive
