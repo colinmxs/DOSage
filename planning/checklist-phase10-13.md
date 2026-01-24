@@ -398,23 +398,23 @@
 **Types:** `src/components/Portal/Portal.types.ts`
 **Tests:** `tests/components/Portal.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interfaces:
-  - [ ] `PortalProps` - configuration options
-  - [ ] `PortalContainer` - target container type
-- [ ] Implement base Portal component
-- [ ] Add default portal target (document.body)
-- [ ] Implement custom portal target support
-- [ ] Add portal container creation if needed
-- [ ] Implement portal cleanup on destroy
-- [ ] Handle multiple portals
-- [ ] Preserve event bubbling through portal
-- [ ] Add CSS styles (minimal, for portal container)
-- [ ] Write unit tests:
-  - [ ] Content renders in target
-  - [ ] Events bubble correctly
-  - [ ] Cleanup on destroy
-- [ ] Document usage patterns (modals, tooltips, etc.)
+- [x] Create component directory structure
+- [x] Define TypeScript interfaces:
+  - [x] `PortalProps` - configuration options
+  - [x] `PortalContainer` - target container type
+- [x] Implement base Portal component
+- [x] Add default portal target (document.body)
+- [x] Implement custom portal target support
+- [x] Add portal container creation if needed
+- [x] Implement portal cleanup on destroy
+- [x] Handle multiple portals
+- [x] Preserve event bubbling through portal
+- [x] Add CSS styles (minimal, for portal container)
+- [x] Write unit tests:
+  - [x] Content renders in target
+  - [x] Events bubble correctly
+  - [x] Cleanup on destroy
+- [x] Document usage patterns (modals, tooltips, etc.)
 
 > **Accessibility:** Maintains DOM order for screen readers when used with FocusTrap
 > **Keyboard:** N/A (utility component)
@@ -430,25 +430,25 @@
 **Types:** `src/components/FocusTrap/FocusTrap.types.ts`
 **Tests:** `tests/components/FocusTrap.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interfaces:
-  - [ ] `FocusTrapProps` - configuration options
-  - [ ] `FocusTrapOptions` - behavior options
-- [ ] Implement base FocusTrap component
-- [ ] Add focus containment within element
-- [ ] Implement Tab / Shift+Tab cycling at boundaries
-- [ ] Add initial focus element option
-- [ ] Implement focus return on deactivate
-- [ ] Add escape key handling option
-- [ ] Handle dynamically added focusable elements
-- [ ] Implement pause/resume functionality
-- [ ] Add sentinel elements (hidden start/end focusables)
-- [ ] Write unit tests:
-  - [ ] Focus stays within trap
-  - [ ] Tab cycles correctly
-  - [ ] Initial focus works
-  - [ ] Focus returns on deactivate
-- [ ] Document usage with modals and dialogs
+- [x] Create component directory structure
+- [x] Define TypeScript interfaces:
+  - [x] `FocusTrapProps` - configuration options
+  - [x] `FocusTrapOptions` - behavior options
+- [x] Implement base FocusTrap component
+- [x] Add focus containment within element
+- [x] Implement Tab / Shift+Tab cycling at boundaries
+- [x] Add initial focus element option
+- [x] Implement focus return on deactivate
+- [x] Add escape key handling option
+- [x] Handle dynamically added focusable elements
+- [x] Implement pause/resume functionality
+- [x] Add sentinel elements (hidden start/end focusables)
+- [x] Write unit tests:
+  - [x] Focus stays within trap
+  - [x] Tab cycles correctly
+  - [x] Initial focus works
+  - [x] Focus returns on deactivate
+- [x] Document usage with modals and dialogs
 
 > **Accessibility:** Essential for modal dialogs; prevents focus escape; manages focus return
 > **Keyboard:** Tab/Shift+Tab cycle within trap; configurable Escape handling
@@ -464,31 +464,31 @@
 **Types:** `src/components/KeyboardShortcutHandler/KeyboardShortcutHandler.types.ts`
 **Tests:** `tests/components/KeyboardShortcutHandler.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interfaces:
-  - [ ] `KeyboardShortcutHandlerProps` - configuration options
-  - [ ] `ShortcutDefinition` - shortcut configuration
-  - [ ] `ShortcutCallback` - action callback type
-  - [ ] `ModifierKeys` - ctrl, alt, shift, meta
-- [ ] Implement base KeyboardShortcutHandler
-- [ ] Add shortcut registration API:
-  - [ ] `register(shortcut, callback)`
-  - [ ] `unregister(shortcut)`
-  - [ ] `enable()` / `disable()`
-- [ ] Implement shortcut parsing (`Ctrl+Shift+P`, `Alt+F4`)
-- [ ] Add global scope (document level)
-- [ ] Add local scope (element level)
-- [ ] Implement shortcut conflict detection
-- [ ] Add shortcut hint display component
-- [ ] Handle platform differences (Ctrl vs Cmd)
-- [ ] Implement shortcut sequences (`g g`, `Ctrl+K Ctrl+C`)
-- [ ] Add CSS styles for hint display
-- [ ] Write unit tests:
-  - [ ] Shortcuts trigger correctly
-  - [ ] Scoping works
-  - [ ] Conflicts handled
-  - [ ] Platform detection works
-- [ ] Add to Kitchen Sink demo with examples
+- [x] Create component directory structure
+- [x] Define TypeScript interfaces:
+  - [x] `KeyboardShortcutHandlerProps` - configuration options
+  - [x] `ShortcutDefinition` - shortcut configuration
+  - [x] `ShortcutCallback` - action callback type
+  - [x] `ModifierKeys` - ctrl, alt, shift, meta
+- [x] Implement base KeyboardShortcutHandler
+- [x] Add shortcut registration API:
+  - [x] `register(shortcut, callback)`
+  - [x] `unregister(shortcut)`
+  - [x] `enable()` / `disable()`
+- [x] Implement shortcut parsing (`Ctrl+Shift+P`, `Alt+F4`)
+- [x] Add global scope (document level)
+- [x] Add local scope (element level)
+- [x] Implement shortcut conflict detection
+- [x] Add shortcut hint display component
+- [x] Handle platform differences (Ctrl vs Cmd)
+- [x] Implement shortcut sequences (`g g`, `Ctrl+K Ctrl+C`)
+- [x] Add CSS styles for hint display
+- [x] Write unit tests:
+  - [x] Shortcuts trigger correctly
+  - [x] Scoping works
+  - [x] Conflicts handled
+  - [x] Platform detection works
+- [x] Add to Kitchen Sink demo with examples
 
 > **Accessibility:** Provides keyboard alternatives; hints can be announced
 > **Keyboard:** Configurable shortcuts; supports modifiers and sequences
@@ -504,36 +504,36 @@
 **Types:** `src/components/ScrollArea/ScrollArea.types.ts`
 **Tests:** `tests/components/ScrollArea.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interfaces:
-  - [ ] `ScrollAreaProps` - configuration options
-  - [ ] `ScrollAreaOrientation` - `'vertical' | 'horizontal' | 'both'`
-- [ ] Implement base ScrollArea component
-- [ ] Add DOS-style custom scrollbar:
-  - [ ] Vertical: `▲` (up) `█` (thumb) `░` (track) `▼` (down)
-  - [ ] Horizontal: `◄` (left) `█` (thumb) `░` (track) `►` (right)
-- [ ] Implement vertical scrollbar
-- [ ] Implement horizontal scrollbar
-- [ ] Add scroll position tracking
-- [ ] Implement thumb dragging
-- [ ] Add button click scrolling (arrows)
-- [ ] Implement track click scrolling (page up/down)
-- [ ] Add auto-hide scrollbar option
-- [ ] Handle content resize (ResizeObserver)
-- [ ] Add CSS styles
-- [ ] Add keyboard navigation:
-  - [ ] `↑` / `↓` - scroll vertically
-  - [ ] `←` / `→` - scroll horizontally
-  - [ ] `Page Up` / `Page Down` - page scroll
-  - [ ] `Home` / `End` - scroll to start/end
-- [ ] Add ARIA attributes:
-  - [ ] `role="scrollbar"` on scrollbar
-  - [ ] `aria-controls` pointing to content
-  - [ ] `aria-valuenow`, `aria-valuemin`, `aria-valuemax`
-  - [ ] `aria-orientation`
-- [ ] Add `dos:scrollarea:scroll` custom event
-- [ ] Write unit tests
-- [ ] Add to Kitchen Sink demo
+- [x] Create component directory structure
+- [x] Define TypeScript interfaces:
+  - [x] `ScrollAreaProps` - configuration options
+  - [x] `ScrollAreaOrientation` - `'vertical' | 'horizontal' | 'both'`
+- [x] Implement base ScrollArea component
+- [x] Add DOS-style custom scrollbar:
+  - [x] Vertical: `▲` (up) `█` (thumb) `░` (track) `▼` (down)
+  - [x] Horizontal: `◄` (left) `█` (thumb) `░` (track) `►` (right)
+- [x] Implement vertical scrollbar
+- [x] Implement horizontal scrollbar
+- [x] Add scroll position tracking
+- [x] Implement thumb dragging
+- [x] Add button click scrolling (arrows)
+- [x] Implement track click scrolling (page up/down)
+- [x] Add auto-hide scrollbar option
+- [x] Handle content resize (ResizeObserver)
+- [x] Add CSS styles
+- [x] Add keyboard navigation:
+  - [x] `↑` / `↓` - scroll vertically
+  - [x] `←` / `→` - scroll horizontally
+  - [x] `Page Up` / `Page Down` - page scroll
+  - [x] `Home` / `End` - scroll to start/end
+- [x] Add ARIA attributes:
+  - [x] `role="scrollbar"` on scrollbar
+  - [x] `aria-controls` pointing to content
+  - [x] `aria-valuenow`, `aria-valuemin`, `aria-valuemax`
+  - [x] `aria-orientation`
+- [x] Add `dos:scrollarea:scroll` custom event
+- [x] Write unit tests
+- [x] Add to Kitchen Sink demo
 
 > **Accessibility:** Custom scrollbars maintain keyboard scrolling; ARIA scrollbar semantics
 > **Keyboard:** Arrows scroll; Page Up/Down for pages; Home/End for extremes
@@ -549,34 +549,34 @@
 **Types:** `src/components/Resizable/Resizable.types.ts`
 **Tests:** `tests/components/Resizable.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interfaces:
-  - [ ] `ResizableProps` - configuration options
-  - [ ] `ResizeDirection` - enabled resize directions
-  - [ ] `ResizeConstraints` - min/max width/height
-- [ ] Implement base Resizable component
-- [ ] Add resize handles:
-  - [ ] Corner handles: `◢` (bottom-right), etc.
-  - [ ] Edge handles: `═` (horizontal), `║` (vertical)
-- [ ] Implement 8-direction resize (corners + edges)
-- [ ] Add direction restriction options
-- [ ] Implement min/max size constraints
-- [ ] Add aspect ratio lock option
-- [ ] Implement grid snapping option
-- [ ] Add resize preview/ghost option
-- [ ] Add CSS styles with appropriate cursors
-- [ ] Add keyboard navigation:
-  - [ ] `Arrow keys` - resize when handle focused
-  - [ ] `Shift+Arrow` - larger resize increments
-- [ ] Add ARIA attributes:
-  - [ ] `role="separator"` on handles (where appropriate)
-  - [ ] `aria-grabbed` during drag
-- [ ] Add custom events:
-  - [ ] `dos:resizable:start`
-  - [ ] `dos:resizable:resize`
-  - [ ] `dos:resizable:end`
-- [ ] Write unit tests
-- [ ] Add to Kitchen Sink demo
+- [x] Create component directory structure
+- [x] Define TypeScript interfaces:
+  - [x] `ResizableProps` - configuration options
+  - [x] `ResizeDirection` - enabled resize directions
+  - [x] `ResizeConstraints` - min/max width/height
+- [x] Implement base Resizable component
+- [x] Add resize handles:
+  - [x] Corner handles: `◢` (bottom-right), etc.
+  - [x] Edge handles: `═` (horizontal), `║` (vertical)
+- [x] Implement 8-direction resize (corners + edges)
+- [x] Add direction restriction options
+- [x] Implement min/max size constraints
+- [x] Add aspect ratio lock option
+- [x] Implement grid snapping option
+- [x] Add resize preview/ghost option
+- [x] Add CSS styles with appropriate cursors
+- [x] Add keyboard navigation:
+  - [x] `Arrow keys` - resize when handle focused
+  - [x] `Shift+Arrow` - larger resize increments
+- [x] Add ARIA attributes:
+  - [x] `role="separator"` on handles (where appropriate)
+  - [x] `aria-grabbed` during drag
+- [x] Add custom events:
+  - [x] `dos:resizable:start`
+  - [x] `dos:resizable:resize`
+  - [x] `dos:resizable:end`
+- [x] Write unit tests
+- [x] Add to Kitchen Sink demo
 
 > **Accessibility:** Resize handles are keyboard accessible; announces resize state
 > **Keyboard:** Arrow keys resize when handle focused; Shift for larger increments
@@ -592,33 +592,33 @@
 **Types:** `src/components/Draggable/Draggable.types.ts`
 **Tests:** `tests/components/Draggable.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interfaces:
-  - [ ] `DraggableProps` - configuration options
-  - [ ] `DragConstraints` - containment bounds
-  - [ ] `DragAxis` - `'x' | 'y' | 'both'`
-- [ ] Implement base Draggable component
-- [ ] Add drag handle support (specific element to grab)
-- [ ] Implement containment bounds (parent, viewport, custom)
-- [ ] Add axis restriction (x-only, y-only)
-- [ ] Implement grid snapping
-- [ ] Add drag threshold (minimum movement to start)
-- [ ] Implement drag preview/ghost option
-- [ ] Add CSS styles with grab cursor
-- [ ] Add keyboard navigation:
-  - [ ] `Arrow keys` - move element
-  - [ ] `Shift+Arrow` - larger movement increments
-  - [ ] `Escape` - cancel drag
-- [ ] Add ARIA attributes:
-  - [ ] `aria-grabbed`
-  - [ ] `aria-dropeffect` (if applicable)
-  - [ ] Announce position changes
-- [ ] Add custom events:
-  - [ ] `dos:draggable:start`
-  - [ ] `dos:draggable:drag`
-  - [ ] `dos:draggable:end`
-- [ ] Write unit tests
-- [ ] Add to Kitchen Sink demo
+- [x] Create component directory structure
+- [x] Define TypeScript interfaces:
+  - [x] `DraggableProps` - configuration options
+  - [x] `DragConstraints` - containment bounds
+  - [x] `DragAxis` - `'x' | 'y' | 'both'`
+- [x] Implement base Draggable component
+- [x] Add drag handle support (specific element to grab)
+- [x] Implement containment bounds (parent, viewport, custom)
+- [x] Add axis restriction (x-only, y-only)
+- [x] Implement grid snapping
+- [x] Add drag threshold (minimum movement to start)
+- [x] Implement drag preview/ghost option
+- [x] Add CSS styles with grab cursor
+- [x] Add keyboard navigation:
+  - [x] `Arrow keys` - move element
+  - [x] `Shift+Arrow` - larger movement increments
+  - [x] `Escape` - cancel drag
+- [x] Add ARIA attributes:
+  - [x] `aria-grabbed`
+  - [x] `aria-dropeffect` (if applicable)
+  - [x] Announce position changes
+- [x] Add custom events:
+  - [x] `dos:draggable:start`
+  - [x] `dos:draggable:drag`
+  - [x] `dos:draggable:end`
+- [x] Write unit tests
+- [x] Add to Kitchen Sink demo
 
 > **Accessibility:** Keyboard alternative for drag; announces position; grab state communicated
 > **Keyboard:** Arrow keys move; Shift for larger increments; Escape cancels
@@ -634,12 +634,12 @@
 **Types:** `src/components/VisuallyHidden/VisuallyHidden.types.ts`
 **Tests:** `tests/components/VisuallyHidden.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interfaces:
-  - [ ] `VisuallyHiddenProps` - configuration options
-  - [ ] `VisuallyHiddenElement` - wrapper element type
-- [ ] Implement base VisuallyHidden component
-- [ ] Add proper CSS for visual hiding:
+- [x] Create component directory structure
+- [x] Define TypeScript interfaces:
+  - [x] `VisuallyHiddenProps` - configuration options
+  - [x] `VisuallyHiddenElement` - wrapper element type
+- [x] Implement base VisuallyHidden component
+- [x] Add proper CSS for visual hiding:
   ```css
   .dos-visually-hidden {
     position: absolute;
@@ -653,14 +653,14 @@
     border: 0;
   }
   ```
-- [ ] Add focusable option (visible on focus)
-- [ ] Implement as wrapper or standalone
-- [ ] Add CSS styles
-- [ ] Write unit tests:
-  - [ ] Content hidden visually
-  - [ ] Content accessible to screen readers
-  - [ ] Focusable variant shows on focus
-- [ ] Document usage patterns (skip links, form hints, etc.)
+- [x] Add focusable option (visible on focus)
+- [x] Implement as wrapper or standalone
+- [x] Add CSS styles
+- [x] Write unit tests:
+  - [x] Content hidden visually
+  - [x] Content accessible to screen readers
+  - [x] Focusable variant shows on focus
+- [x] Document usage patterns (skip links, form hints, etc.)
 
 > **Accessibility:** Provides screen reader only content; essential for accessible UIs
 > **Keyboard:** Focusable variant becomes visible on focus (for skip links)
@@ -669,11 +669,11 @@
 
 ### Phase 11 Checkpoint
 
-- [ ] All Phase 11 utility components implemented
-- [ ] All Phase 11 tests passing
-- [ ] Utilities integrated with existing components (Portal with Dialog, FocusTrap with Modal, etc.)
-- [ ] Documentation for each utility complete
-- [ ] Code review completed
+- [x] All Phase 11 utility components implemented
+- [x] All Phase 11 tests passing
+- [x] Utilities integrated with existing components (Portal with Dialog, FocusTrap with Modal, etc.)
+- [x] Documentation for each utility complete
+- [x] Code review completed
 
 - [ ] ⛔ HUMAN ONLY: I have reviewed and verified Phase 11
 

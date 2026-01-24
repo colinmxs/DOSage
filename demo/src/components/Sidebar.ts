@@ -118,6 +118,18 @@ const NAV_ITEMS = [
     ],
   },
   {
+    category: 'Utilities',
+    items: [
+      { id: 'portal', label: 'Portal' },
+      { id: 'focus-trap', label: 'FocusTrap' },
+      { id: 'keyboard-shortcuts', label: 'KeyboardShortcuts' },
+      { id: 'scroll-area', label: 'ScrollArea' },
+      { id: 'resizable', label: 'Resizable' },
+      { id: 'draggable', label: 'Draggable' },
+      { id: 'visually-hidden', label: 'VisuallyHidden' },
+    ],
+  },
+  {
     category: 'Themes',
     items: [{ id: 'themes', label: 'Theme Showcase' }],
   },

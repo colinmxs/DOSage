@@ -1,0 +1,326 @@
+/**
+ * ScrollArea Component Styles
+ *
+ * DOS-style custom scrollbars with ASCII characters.
+ */
+
+/* Main container */
+.dos-scroll-area {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
+
+/* Scrollable viewport */
+.dos-scroll-area___viewport {
+  flex: 1;
+  overflow: scroll;
+  /* Hide native scrollbars */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.dos-scroll-area___viewport::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
+}
+
+/* Content wrapper */
+.dos-scroll-area___content {
+  display: block;
+}
+
+/* ========================
+   VERTICAL SCROLLBAR
+   ======================== */
+
+.dos-scroll-area___scrollbar--vertical {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--dos-scrollbar-size, 16px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--dos-color-bg, #0000AA);
+  border-left: 1px solid var(--dos-color-border, #AAAAAA);
+}
+
+/* Up arrow button */
+.dos-scroll-area___button--up {
+  width: 100%;
+  height: var(--dos-scrollbar-size, 16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dos-color-bg, #0000AA);
+  color: var(--dos-color-fg, #FFFFFF);
+  border: none;
+  border-bottom: 1px solid var(--dos-color-border, #AAAAAA);
+  cursor: pointer;
+  font-family: var(--dos-font-family, monospace);
+  font-size: var(--dos-font-size-sm, 12px);
+  padding: 0;
+}
+
+.dos-scroll-area___button--up:hover {
+  background-color: var(--dos-color-highlight, #FFFFFF);
+  color: var(--dos-color-bg, #0000AA);
+}
+
+.dos-scroll-area___button--up:active {
+  background-color: var(--dos-color-primary, #FFFF55);
+}
+
+/* Down arrow button */
+.dos-scroll-area___button--down {
+  width: 100%;
+  height: var(--dos-scrollbar-size, 16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dos-color-bg, #0000AA);
+  color: var(--dos-color-fg, #FFFFFF);
+  border: none;
+  border-top: 1px solid var(--dos-color-border, #AAAAAA);
+  cursor: pointer;
+  font-family: var(--dos-font-family, monospace);
+  font-size: var(--dos-font-size-sm, 12px);
+  padding: 0;
+}
+
+.dos-scroll-area___button--down:hover {
+  background-color: var(--dos-color-highlight, #FFFFFF);
+  color: var(--dos-color-bg, #0000AA);
+}
+
+.dos-scroll-area___button--down:active {
+  background-color: var(--dos-color-primary, #FFFF55);
+}
+
+/* Vertical track */
+.dos-scroll-area___track--vertical {
+  flex: 1;
+  position: relative;
+  background-color: var(--dos-color-bg, #0000AA);
+  cursor: pointer;
+  /* ASCII track pattern using gradient */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 7px,
+    var(--dos-color-border, #AAAAAA) 7px,
+    var(--dos-color-border, #AAAAAA) 8px
+  );
+}
+
+/* Vertical thumb */
+.dos-scroll-area___thumb--vertical {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  min-height: var(--dos-scrollbar-min-thumb, 20px);
+  background-color: var(--dos-color-border, #AAAAAA);
+  border: 1px solid var(--dos-color-fg, #FFFFFF);
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dos-color-bg, #0000AA);
+  font-family: var(--dos-font-family, monospace);
+  font-size: 10px;
+}
+
+.dos-scroll-area___thumb--vertical:hover {
+  background-color: var(--dos-color-highlight, #FFFFFF);
+}
+
+.dos-scroll-area___thumb--vertical:active,
+.dos-scroll-area___thumb--vertical.dos-scroll-area___thumb--dragging {
+  cursor: grabbing;
+  background-color: var(--dos-color-primary, #FFFF55);
+}
+
+/* ========================
+   HORIZONTAL SCROLLBAR
+   ======================== */
+
+.dos-scroll-area___scrollbar--horizontal {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--dos-scrollbar-size, 16px);
+  display: flex;
+  flex-direction: row;
+  background-color: var(--dos-color-bg, #0000AA);
+  border-top: 1px solid var(--dos-color-border, #AAAAAA);
+}
+
+/* Horizontal scrollbar adjusts when vertical is present */
+.dos-scroll-area--both .dos-scroll-area___scrollbar--horizontal {
+  width: calc(100% - var(--dos-scrollbar-size, 16px));
+}
+
+/* Left arrow button */
+.dos-scroll-area___button--left {
+  width: var(--dos-scrollbar-size, 16px);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dos-color-bg, #0000AA);
+  color: var(--dos-color-fg, #FFFFFF);
+  border: none;
+  border-right: 1px solid var(--dos-color-border, #AAAAAA);
+  cursor: pointer;
+  font-family: var(--dos-font-family, monospace);
+  font-size: var(--dos-font-size-sm, 12px);
+  padding: 0;
+}
+
+.dos-scroll-area___button--left:hover {
+  background-color: var(--dos-color-highlight, #FFFFFF);
+  color: var(--dos-color-bg, #0000AA);
+}
+
+.dos-scroll-area___button--left:active {
+  background-color: var(--dos-color-primary, #FFFF55);
+}
+
+/* Right arrow button */
+.dos-scroll-area___button--right {
+  width: var(--dos-scrollbar-size, 16px);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dos-color-bg, #0000AA);
+  color: var(--dos-color-fg, #FFFFFF);
+  border: none;
+  border-left: 1px solid var(--dos-color-border, #AAAAAA);
+  cursor: pointer;
+  font-family: var(--dos-font-family, monospace);
+  font-size: var(--dos-font-size-sm, 12px);
+  padding: 0;
+}
+
+.dos-scroll-area___button--right:hover {
+  background-color: var(--dos-color-highlight, #FFFFFF);
+  color: var(--dos-color-bg, #0000AA);
+}
+
+.dos-scroll-area___button--right:active {
+  background-color: var(--dos-color-primary, #FFFF55);
+}
+
+/* Horizontal track */
+.dos-scroll-area___track--horizontal {
+  flex: 1;
+  position: relative;
+  background-color: var(--dos-color-bg, #0000AA);
+  cursor: pointer;
+  /* ASCII track pattern */
+  background-image: repeating-linear-gradient(
+    to right,
+    transparent 0px,
+    transparent 7px,
+    var(--dos-color-border, #AAAAAA) 7px,
+    var(--dos-color-border, #AAAAAA) 8px
+  );
+}
+
+/* Horizontal thumb */
+.dos-scroll-area___thumb--horizontal {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  min-width: var(--dos-scrollbar-min-thumb, 20px);
+  background-color: var(--dos-color-border, #AAAAAA);
+  border: 1px solid var(--dos-color-fg, #FFFFFF);
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dos-color-bg, #0000AA);
+  font-family: var(--dos-font-family, monospace);
+  font-size: 10px;
+}
+
+.dos-scroll-area___thumb--horizontal:hover {
+  background-color: var(--dos-color-highlight, #FFFFFF);
+}
+
+.dos-scroll-area___thumb--horizontal:active,
+.dos-scroll-area___thumb--horizontal.dos-scroll-area___thumb--dragging {
+  cursor: grabbing;
+  background-color: var(--dos-color-primary, #FFFF55);
+}
+
+/* ========================
+   CORNER (when both scrollbars)
+   ======================== */
+
+.dos-scroll-area___corner {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: var(--dos-scrollbar-size, 16px);
+  height: var(--dos-scrollbar-size, 16px);
+  background-color: var(--dos-color-bg, #0000AA);
+  border-left: 1px solid var(--dos-color-border, #AAAAAA);
+  border-top: 1px solid var(--dos-color-border, #AAAAAA);
+}
+
+/* ========================
+   AUTO-HIDE STATES
+   ======================== */
+
+.dos-scroll-area--auto-hide .dos-scroll-area___scrollbar--vertical,
+.dos-scroll-area--auto-hide .dos-scroll-area___scrollbar--horizontal,
+.dos-scroll-area--auto-hide .dos-scroll-area___corner {
+  opacity: 0;
+  transition: opacity var(--dos-timing-fast, 100ms);
+}
+
+.dos-scroll-area--auto-hide:hover .dos-scroll-area___scrollbar--vertical,
+.dos-scroll-area--auto-hide:hover .dos-scroll-area___scrollbar--horizontal,
+.dos-scroll-area--auto-hide:hover .dos-scroll-area___corner,
+.dos-scroll-area--scrollbars-visible .dos-scroll-area___scrollbar--vertical,
+.dos-scroll-area--scrollbars-visible .dos-scroll-area___scrollbar--horizontal,
+.dos-scroll-area--scrollbars-visible .dos-scroll-area___corner {
+  opacity: 1;
+}
+
+/* ========================
+   ORIENTATION MODIFIERS
+   ======================== */
+
+.dos-scroll-area--vertical .dos-scroll-area___viewport {
+  padding-right: var(--dos-scrollbar-size, 16px);
+}
+
+.dos-scroll-area--horizontal .dos-scroll-area___viewport {
+  padding-bottom: var(--dos-scrollbar-size, 16px);
+}
+
+.dos-scroll-area--both .dos-scroll-area___viewport {
+  padding-right: var(--dos-scrollbar-size, 16px);
+  padding-bottom: var(--dos-scrollbar-size, 16px);
+}
+
+/* ========================
+   ACCESSIBILITY
+   ======================== */
+
+.dos-scroll-area___scrollbar--vertical:focus-within,
+.dos-scroll-area___scrollbar--horizontal:focus-within {
+  outline: 2px solid var(--dos-color-primary, #FFFF55);
+  outline-offset: -2px;
+}
+
+/* Focus visible on thumb for keyboard navigation */
+.dos-scroll-area___thumb--vertical:focus,
+.dos-scroll-area___thumb--horizontal:focus {
+  outline: 2px solid var(--dos-color-primary, #FFFF55);
+  outline-offset: -2px;
+}

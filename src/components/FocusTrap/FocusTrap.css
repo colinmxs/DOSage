@@ -1,0 +1,37 @@
+/**
+ * FocusTrap Component Styles
+ *
+ * Minimal styles for the focus trap utility component.
+ * Focus traps are primarily behavioral, so styling is minimal.
+ */
+
+/* Sentinel elements - visually hidden but focusable */
+.dos-focus-trap___sentinel {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  /* Ensure it doesn't interfere with layout */
+  pointer-events: none;
+}
+
+/* When sentinel is focused (shouldn't happen but just in case) */
+.dos-focus-trap___sentinel:focus {
+  outline: none;
+}
+
+/* Focus trap container marker (optional visual indicator in debug mode) */
+[data-dos-focus-trap="active"] {
+  /* Can be used for debugging - outline the trapped area */
+  /* outline: 2px dashed var(--dos-color-primary, #FFFF55); */
+}
+
+/* Paused state */
+[data-dos-focus-trap="paused"] {
+  /* Visual indicator that trap is paused */
+}

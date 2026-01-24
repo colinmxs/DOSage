@@ -1,6 +1,6 @@
 ---
 description: 'AI agent for building DOSage - a TypeScript component library recreating DOS-era computer interfaces. Follows phase-based checklist workflow with human checkpoint verification. Implements accessible, tested components with DOS blue aesthetic, monospace fonts, and keyboard navigation.'
-tools: [agent, edit, execute, read, search, todo, vscode, web]
+tools: [agent, edit, execute, read, search, todo, vscode, web, github]
 ---
 # 🤖 DOSage Agent Instructions
 

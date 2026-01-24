@@ -1,0 +1,86 @@
+/**
+ * @file VisuallyHidden.css
+ * @description Styles for the VisuallyHidden component
+ * Uses the standard visually-hidden technique that hides content visually
+ * while keeping it accessible to screen readers
+ */
+
+/**
+ * The visually hidden class uses a combination of techniques to hide content:
+ * - Clip to a 1px area
+ * - Position absolutely off-screen
+ * - Hide overflow
+ * - Prevent wrapping
+ * 
+ * This ensures the content is:
+ * - Not visible on screen
+ * - Readable by screen readers
+ * - Not clickable or interactable (unless focusable)
+ */
+.dos-visually-hidden {
+  /* Position absolutely so it doesn't affect layout */
+  position: absolute;
+  
+  /* Clip to a tiny area (1px x 1px) */
+  width: 1px;
+  height: 1px;
+  
+  /* Ensure no padding/margin affects sizing */
+  padding: 0;
+  margin: -1px;
+  
+  /* Hide any overflow */
+  overflow: hidden;
+  
+  /* Modern clipping */
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  
+  /* Prevent text wrapping */
+  white-space: nowrap;
+  
+  /* Remove from border box calculations */
+  border: 0;
+}
+
+/**
+ * When focusable is enabled and the element receives focus,
+ * make it visible. This is useful for skip links.
+ */
+.dos-visually-hidden--focusable:focus,
+.dos-visually-hidden--focusable:focus-within {
+  /* Reset all the hidden properties */
+  position: static;
+  width: auto;
+  height: auto;
+  padding: var(--dos-spacing-sm, 4px) var(--dos-spacing-md, 8px);
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  clip-path: none;
+  white-space: normal;
+  
+  /* DOS-style visible state */
+  background-color: var(--dos-bg-primary, #0000AA);
+  color: var(--dos-text-primary, #FFFFFF);
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', 'Consolas', monospace);
+  
+  /* Focus indicator */
+  outline: 2px solid var(--dos-color-yellow, #FFFF55);
+  outline-offset: 2px;
+}
+
+/**
+ * Visible state (when show() is called or visible prop is true)
+ */
+.dos-visually-hidden--visible {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  clip-path: none;
+  white-space: normal;
+}

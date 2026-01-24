@@ -1,0 +1,276 @@
+/**
+ * Resizable Component Styles
+ *
+ * DOS-style resizable container with ASCII-style resize handles.
+ */
+
+/* ==========================================================================
+   Base Container
+   ========================================================================== */
+
+.dos-resizable {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.dos-resizable--disabled {
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Content Wrapper
+   ========================================================================== */
+
+.dos-resizable___content {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Resize Handles
+   ========================================================================== */
+
+.dos-resizable___handle {
+  position: absolute;
+  background-color: transparent;
+  z-index: 10;
+  user-select: none;
+  touch-action: none;
+}
+
+/* Show handles on hover mode */
+.dos-resizable--hover-handles .dos-resizable___handle {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.dos-resizable--hover-handles:hover .dos-resizable___handle,
+.dos-resizable--resizing .dos-resizable___handle {
+  opacity: 1;
+}
+
+/* Edge handles */
+.dos-resizable___handle--top {
+  top: 0;
+  left: var(--dos-resize-handle-size, 8px);
+  right: var(--dos-resize-handle-size, 8px);
+  height: var(--dos-resize-handle-size, 8px);
+  cursor: n-resize;
+}
+
+.dos-resizable___handle--right {
+  top: var(--dos-resize-handle-size, 8px);
+  right: 0;
+  bottom: var(--dos-resize-handle-size, 8px);
+  width: var(--dos-resize-handle-size, 8px);
+  cursor: e-resize;
+}
+
+.dos-resizable___handle--bottom {
+  bottom: 0;
+  left: var(--dos-resize-handle-size, 8px);
+  right: var(--dos-resize-handle-size, 8px);
+  height: var(--dos-resize-handle-size, 8px);
+  cursor: s-resize;
+}
+
+.dos-resizable___handle--left {
+  top: var(--dos-resize-handle-size, 8px);
+  left: 0;
+  bottom: var(--dos-resize-handle-size, 8px);
+  width: var(--dos-resize-handle-size, 8px);
+  cursor: w-resize;
+}
+
+/* Corner handles */
+.dos-resizable___handle--top-left {
+  top: 0;
+  left: 0;
+  width: var(--dos-resize-handle-size, 8px);
+  height: var(--dos-resize-handle-size, 8px);
+  cursor: nw-resize;
+}
+
+.dos-resizable___handle--top-right {
+  top: 0;
+  right: 0;
+  width: var(--dos-resize-handle-size, 8px);
+  height: var(--dos-resize-handle-size, 8px);
+  cursor: ne-resize;
+}
+
+.dos-resizable___handle--bottom-left {
+  bottom: 0;
+  left: 0;
+  width: var(--dos-resize-handle-size, 8px);
+  height: var(--dos-resize-handle-size, 8px);
+  cursor: sw-resize;
+}
+
+.dos-resizable___handle--bottom-right {
+  bottom: 0;
+  right: 0;
+  width: var(--dos-resize-handle-size, 8px);
+  height: var(--dos-resize-handle-size, 8px);
+  cursor: se-resize;
+}
+
+/* ==========================================================================
+   Handle Visuals (DOS-style)
+   ========================================================================== */
+
+/* Corner handles - diagonal lines pattern */
+.dos-resizable___handle--top-left::after,
+.dos-resizable___handle--top-right::after,
+.dos-resizable___handle--bottom-left::after,
+.dos-resizable___handle--bottom-right::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background-image:
+    linear-gradient(
+      45deg,
+      var(--dos-border-color, #aaaaaa) 25%,
+      transparent 25%
+    ),
+    linear-gradient(
+      -45deg,
+      var(--dos-border-color, #aaaaaa) 25%,
+      transparent 25%
+    ),
+    linear-gradient(
+      45deg,
+      transparent 75%,
+      var(--dos-border-color, #aaaaaa) 75%
+    ),
+    linear-gradient(
+      -45deg,
+      transparent 75%,
+      var(--dos-border-color, #aaaaaa) 75%
+    );
+  background-size: 3px 3px;
+  background-position: 0 0, 0 1.5px, 1.5px -1.5px, -1.5px 0px;
+}
+
+/* Edge handles - dots pattern */
+.dos-resizable___handle--top::after,
+.dos-resizable___handle--bottom::after {
+  content: '···';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--dos-border-color, #aaaaaa);
+  font-size: 8px;
+  letter-spacing: 2px;
+}
+
+.dos-resizable___handle--left::after,
+.dos-resizable___handle--right::after {
+  content: '⋮';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--dos-border-color, #aaaaaa);
+  font-size: 10px;
+}
+
+/* ==========================================================================
+   Hover/Active States
+   ========================================================================== */
+
+.dos-resizable___handle:hover {
+  background-color: var(--dos-bg-hover, rgba(85, 85, 255, 0.2));
+}
+
+.dos-resizable___handle--active,
+.dos-resizable___handle:active {
+  background-color: var(--dos-bg-active, rgba(85, 85, 255, 0.3));
+}
+
+/* ==========================================================================
+   Resizing State
+   ========================================================================== */
+
+.dos-resizable--resizing {
+  user-select: none;
+}
+
+.dos-resizable--resizing .dos-resizable___content {
+  pointer-events: none;
+}
+
+/* Global cursor override during resize */
+body.dos-resizing-n,
+body.dos-resizing-n * {
+  cursor: n-resize !important;
+}
+
+body.dos-resizing-s,
+body.dos-resizing-s * {
+  cursor: s-resize !important;
+}
+
+body.dos-resizing-e,
+body.dos-resizing-e * {
+  cursor: e-resize !important;
+}
+
+body.dos-resizing-w,
+body.dos-resizing-w * {
+  cursor: w-resize !important;
+}
+
+body.dos-resizing-nw,
+body.dos-resizing-nw * {
+  cursor: nw-resize !important;
+}
+
+body.dos-resizing-ne,
+body.dos-resizing-ne * {
+  cursor: ne-resize !important;
+}
+
+body.dos-resizing-sw,
+body.dos-resizing-sw * {
+  cursor: sw-resize !important;
+}
+
+body.dos-resizing-se,
+body.dos-resizing-se * {
+  cursor: se-resize !important;
+}
+
+/* ==========================================================================
+   Focus States (Accessibility)
+   ========================================================================== */
+
+.dos-resizable___handle:focus {
+  outline: 2px solid var(--dos-focus-color, #ffff55);
+  outline-offset: -2px;
+}
+
+.dos-resizable___handle:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.dos-resizable___handle:focus-visible {
+  outline: 2px solid var(--dos-focus-color, #ffff55);
+  outline-offset: -2px;
+}
+
+/* ==========================================================================
+   Disabled State
+   ========================================================================== */
+
+.dos-resizable--disabled .dos-resizable___handle {
+  display: none;
+}

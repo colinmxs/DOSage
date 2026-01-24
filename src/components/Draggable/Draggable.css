@@ -1,0 +1,144 @@
+/**
+ * Draggable Component Styles
+ *
+ * DOS-style draggable element with cursor feedback.
+ */
+
+/* ==========================================================================
+   Base Container
+   ========================================================================== */
+
+.dos-draggable {
+  position: absolute;
+  user-select: none;
+  touch-action: none;
+}
+
+.dos-draggable--relative {
+  position: relative;
+}
+
+/* ==========================================================================
+   Cursor States
+   ========================================================================== */
+
+.dos-draggable:not(.dos-draggable--disabled) {
+  cursor: move;
+  cursor: grab;
+}
+
+.dos-draggable--dragging {
+  cursor: grabbing;
+  z-index: 9999;
+}
+
+/* ==========================================================================
+   Handle Element
+   ========================================================================== */
+
+.dos-draggable___handle {
+  cursor: move;
+  cursor: grab;
+}
+
+.dos-draggable--dragging .dos-draggable___handle {
+  cursor: grabbing;
+}
+
+/* ==========================================================================
+   Disabled State
+   ========================================================================== */
+
+.dos-draggable--disabled {
+  cursor: default;
+}
+
+.dos-draggable--disabled .dos-draggable___handle {
+  cursor: default;
+}
+
+/* ==========================================================================
+   Visual Feedback During Drag
+   ========================================================================== */
+
+.dos-draggable--dragging {
+  opacity: 0.9;
+}
+
+/* Ghost effect - optional class */
+.dos-draggable--ghost {
+  opacity: 0.5;
+  outline: 2px dashed var(--dos-border-color, #aaaaaa);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   DOS-style Drag Indicator
+   ========================================================================== */
+
+.dos-draggable__drag-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--dos-border-color, #aaaaaa) 0px,
+    var(--dos-border-color, #aaaaaa) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.dos-draggable:hover .dos-draggable__drag-indicator,
+.dos-draggable--dragging .dos-draggable__drag-indicator {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Focus States (Accessibility)
+   ========================================================================== */
+
+.dos-draggable:focus {
+  outline: 2px solid var(--dos-focus-color, #ffff55);
+  outline-offset: 2px;
+}
+
+.dos-draggable:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.dos-draggable:focus-visible {
+  outline: 2px solid var(--dos-focus-color, #ffff55);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Global Cursor Override During Drag
+   ========================================================================== */
+
+body.dos-dragging,
+body.dos-dragging * {
+  cursor: grabbing !important;
+}
+
+/* ==========================================================================
+   Axis Constraints Visual Feedback
+   ========================================================================== */
+
+.dos-draggable--axis-x {
+  cursor: ew-resize;
+}
+
+.dos-draggable--axis-y {
+  cursor: ns-resize;
+}
+
+.dos-draggable--axis-x.dos-draggable--dragging,
+.dos-draggable--axis-y.dos-draggable--dragging {
+  cursor: grabbing;
+}

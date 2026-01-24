@@ -1,0 +1,98 @@
+/**
+ * KeyboardShortcutHandler Component Styles
+ *
+ * Styles for shortcut hints and related UI elements.
+ */
+
+/* Shortcut hint - inline variant (default) */
+.dos-shortcut-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dos-space-xs, 2px);
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', monospace);
+  font-size: var(--dos-font-size-sm, 12px);
+}
+
+/* Individual key in shortcut */
+.dos-shortcut-hint___key {
+  display: inline-block;
+  padding: 0 var(--dos-space-xs, 4px);
+  background-color: var(--dos-color-bg, #0000AA);
+  color: var(--dos-color-fg, #FFFFFF);
+  border: 1px solid var(--dos-color-border, #AAAAAA);
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+/* Separator between keys (e.g., "+") */
+.dos-shortcut-hint___separator {
+  color: var(--dos-color-secondary, #AAAAAA);
+  font-size: var(--dos-font-size-sm, 12px);
+}
+
+/* Badge variant - more prominent display */
+.dos-shortcut-hint--badge {
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  background-color: var(--dos-color-secondary, #55FFFF);
+  color: var(--dos-color-bg, #0000AA);
+  border: 2px solid var(--dos-color-border, #AAAAAA);
+}
+
+.dos-shortcut-hint--badge .dos-shortcut-hint___key {
+  background-color: var(--dos-color-bg, #0000AA);
+  color: var(--dos-color-fg, #FFFFFF);
+  border-color: var(--dos-color-fg, #FFFFFF);
+}
+
+/* Compact variant - minimal spacing */
+.dos-shortcut-hint--compact {
+  gap: 0;
+}
+
+.dos-shortcut-hint--compact .dos-shortcut-hint___key {
+  padding: 0 2px;
+  border-width: 1px;
+}
+
+.dos-shortcut-hint--compact .dos-shortcut-hint___separator {
+  display: none;
+}
+
+/* Shortcut list (for command palette, help dialogs) */
+.dos-shortcut-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dos-space-sm, 8px);
+}
+
+.dos-shortcut-list___item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--dos-space-xs, 4px) 0;
+  border-bottom: 1px dashed var(--dos-color-border, #AAAAAA);
+}
+
+.dos-shortcut-list___description {
+  flex: 1;
+  color: var(--dos-color-fg, #FFFFFF);
+}
+
+.dos-shortcut-list___shortcut {
+  flex-shrink: 0;
+  margin-left: var(--dos-space-md, 16px);
+}
+
+/* Category grouping */
+.dos-shortcut-category {
+  margin-top: var(--dos-space-md, 16px);
+}
+
+.dos-shortcut-category___title {
+  color: var(--dos-color-primary, #FFFF55);
+  font-weight: bold;
+  margin-bottom: var(--dos-space-sm, 8px);
+  text-transform: uppercase;
+}

@@ -1,0 +1,58 @@
+/**
+ * Portal Component Styles
+ *
+ * Minimal styles for the portal utility component.
+ * Portals are primarily structural, so styling is minimal.
+ */
+
+/* Portal container base styles */
+.dos-portal {
+  /* Portal containers are invisible wrappers by default */
+  display: contents;
+}
+
+/* Portal with explicit container (createContainer: true) */
+.dos-portal--container {
+  display: block;
+  position: relative;
+}
+
+/* Portal in fixed position (for modals, tooltips, etc.) */
+.dos-portal--fixed {
+  position: fixed;
+  z-index: var(--dos-z-index-portal, 9000);
+}
+
+/* Portal in absolute position */
+.dos-portal--absolute {
+  position: absolute;
+  z-index: var(--dos-z-index-portal, 9000);
+}
+
+/* Portal overlay style (for modal backdrops) */
+.dos-portal--overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--dos-z-index-portal, 9000);
+}
+
+/* Hidden portal (for preserving content without display) */
+.dos-portal--hidden {
+  display: none;
+}
+
+/* Focus management helper - visually hidden but focusable sentinel */
+.dos-portal___sentinel {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

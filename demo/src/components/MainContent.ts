@@ -78,6 +78,15 @@ import {
   renderMultiSelectPage,
   renderTagInputPage,
 } from '../pages/advanced-components';
+import {
+  renderPortalPage,
+  renderFocusTrapPage,
+  renderKeyboardShortcutsPage,
+  renderScrollAreaPage,
+  renderResizablePage,
+  renderDraggablePage,
+  renderVisuallyHiddenPage,
+} from '../pages/utility-components';
 
 /** Page content element reference */
 let contentElement: HTMLElement | null = null;
@@ -160,6 +169,14 @@ const pages: Record<string, () => HTMLElement> = {
   combobox: renderComboboxPage,
   'multi-select': renderMultiSelectPage,
   'tag-input': renderTagInputPage,
+  // Utility Components (Phase 11)
+  portal: renderPortalPage,
+  'focus-trap': renderFocusTrapPage,
+  'keyboard-shortcuts': renderKeyboardShortcutsPage,
+  'scroll-area': renderScrollAreaPage,
+  resizable: renderResizablePage,
+  draggable: renderDraggablePage,
+  'visually-hidden': renderVisuallyHiddenPage,
   // Themes
   themes: () => createPlaceholderPage('Theme Showcase', 'Preview all available themes.'),
 };

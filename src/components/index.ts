@@ -89,8 +89,11 @@ export * from './Combobox';
 export * from './MultiSelect';
 export * from './TagInput';
 
-// Specialized Components (Phase 11)
-// export * from './Terminal';
-// export * from './FileTree';
-// export * from './Editor';
-// export * from './Calendar';
+// Utility Components (Phase 11)
+export * from './Portal';
+export * from './FocusTrap';
+export * from './KeyboardShortcutHandler';
+export * from './ScrollArea';
+export * from './Resizable';
+export * from './Draggable';
+export * from './VisuallyHidden';
