@@ -1,0 +1,286 @@
+/**
+ * @file Timeline component styles
+ * @description DOS-style timeline with events and connecting lines
+ */
+
+/* Base timeline container */
+.dos-timeline {
+  display: flex;
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', 'Consolas', monospace);
+  font-size: var(--dos-font-size, 16px);
+  line-height: var(--dos-line-height, 1.4);
+  color: var(--dos-color-fg, #FFFFFF);
+}
+
+/* Vertical orientation (default) */
+.dos-timeline--vertical {
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Horizontal orientation */
+.dos-timeline--horizontal {
+  flex-direction: row;
+  gap: var(--dos-spacing-lg, 24px);
+  overflow-x: auto;
+  padding-bottom: var(--dos-spacing-sm, 8px);
+}
+
+/* Timeline event container */
+.dos-timeline__event {
+  display: flex;
+  position: relative;
+}
+
+/* Vertical event layout */
+.dos-timeline--vertical .dos-timeline__event {
+  flex-direction: row;
+  min-height: 60px;
+}
+
+/* Horizontal event layout */
+.dos-timeline--horizontal .dos-timeline__event {
+  flex-direction: column;
+  align-items: center;
+  min-width: 150px;
+}
+
+/* Marker column (vertical) */
+.dos-timeline__marker-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 24px;
+  flex-shrink: 0;
+}
+
+/* Marker (the dot/icon) */
+.dos-timeline__marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+  z-index: 1;
+  background-color: var(--dos-color-bg, #0000AA);
+}
+
+/* Completed status marker */
+.dos-timeline__event--completed .dos-timeline__marker {
+  color: var(--dos-color-success, #55FF55);
+}
+
+.dos-timeline__event--completed .dos-timeline__marker::before {
+  content: '●';
+}
+
+/* Current status marker */
+.dos-timeline__event--current .dos-timeline__marker {
+  color: var(--dos-color-highlight, #FFFF55);
+}
+
+.dos-timeline__event--current .dos-timeline__marker::before {
+  content: '○';
+}
+
+/* Upcoming status marker */
+.dos-timeline__event--upcoming .dos-timeline__marker {
+  color: var(--dos-color-muted, #AAAAAA);
+}
+
+.dos-timeline__event--upcoming .dos-timeline__marker::before {
+  content: '◌';
+}
+
+/* Custom icon overrides the status marker */
+.dos-timeline__marker[data-icon]::before {
+  content: attr(data-icon);
+}
+
+/* Connector line (vertical) */
+.dos-timeline__connector {
+  flex: 1;
+  width: 2px;
+  min-height: 20px;
+  background-color: var(--dos-color-border, #AAAAAA);
+}
+
+/* Connector styling based on status */
+.dos-timeline__event--completed .dos-timeline__connector {
+  background-color: var(--dos-color-success, #55FF55);
+}
+
+.dos-timeline__event--current .dos-timeline__connector {
+  background: linear-gradient(
+    to bottom,
+    var(--dos-color-highlight, #FFFF55) 0%,
+    var(--dos-color-border, #AAAAAA) 100%
+  );
+}
+
+/* Last event has no connector */
+.dos-timeline__event:last-child .dos-timeline__connector {
+  display: none;
+}
+
+/* Horizontal connector */
+.dos-timeline--horizontal .dos-timeline__connector {
+  width: auto;
+  height: 2px;
+  min-width: 20px;
+  flex: none;
+  position: absolute;
+  top: 9px;
+  left: 20px;
+  right: -24px;
+}
+
+.dos-timeline--horizontal .dos-timeline__event:last-child .dos-timeline__connector {
+  display: none;
+}
+
+/* Content area */
+.dos-timeline__content {
+  flex: 1;
+  padding-left: var(--dos-spacing-md, 16px);
+  padding-bottom: var(--dos-spacing-md, 16px);
+}
+
+/* Horizontal content */
+.dos-timeline--horizontal .dos-timeline__content {
+  padding-left: 0;
+  padding-top: var(--dos-spacing-sm, 8px);
+  text-align: center;
+}
+
+/* Timestamp */
+.dos-timeline__timestamp {
+  display: block;
+  color: var(--dos-color-muted, #AAAAAA);
+  font-size: 14px;
+  margin-bottom: var(--dos-spacing-xs, 4px);
+}
+
+/* Timestamp line with dashes */
+.dos-timeline__timestamp-line {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: var(--dos-spacing-xs, 4px);
+}
+
+.dos-timeline__timestamp-dash {
+  flex: 1;
+  border-bottom: 1px dashed var(--dos-color-border, #AAAAAA);
+  max-width: 60px;
+}
+
+/* Title */
+.dos-timeline__title {
+  font-weight: bold;
+  margin-bottom: var(--dos-spacing-xs, 4px);
+}
+
+.dos-timeline__event--completed .dos-timeline__title {
+  color: var(--dos-color-fg, #FFFFFF);
+}
+
+.dos-timeline__event--current .dos-timeline__title {
+  color: var(--dos-color-highlight, #FFFF55);
+}
+
+.dos-timeline__event--upcoming .dos-timeline__title {
+  color: var(--dos-color-muted, #AAAAAA);
+}
+
+/* Description */
+.dos-timeline__description {
+  color: var(--dos-color-muted, #AAAAAA);
+  font-size: 14px;
+}
+
+.dos-timeline__event--current .dos-timeline__description {
+  color: var(--dos-color-fg, #FFFFFF);
+}
+
+/* Alternating layout (vertical only) */
+.dos-timeline--alternating .dos-timeline__event:nth-child(odd) {
+  flex-direction: row;
+}
+
+.dos-timeline--alternating .dos-timeline__event:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.dos-timeline--alternating .dos-timeline__event:nth-child(even) .dos-timeline__content {
+  padding-left: 0;
+  padding-right: var(--dos-spacing-md, 16px);
+  text-align: right;
+}
+
+/* Center the marker column in alternating layout */
+.dos-timeline--alternating .dos-timeline__marker-column {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dos-timeline--alternating .dos-timeline__event {
+  position: relative;
+}
+
+.dos-timeline--alternating .dos-timeline__event:nth-child(odd) .dos-timeline__content {
+  width: calc(50% - 12px);
+  margin-left: calc(50% + 12px);
+}
+
+.dos-timeline--alternating .dos-timeline__event:nth-child(even) .dos-timeline__content {
+  width: calc(50% - 12px);
+  margin-right: calc(50% + 12px);
+}
+
+/* ASCII-style timestamp display */
+.dos-timeline__timestamp-ascii {
+  display: inline-block;
+  padding: 0 var(--dos-spacing-xs, 4px);
+}
+
+/* No events state */
+.dos-timeline--empty {
+  padding: var(--dos-spacing-lg, 24px);
+  text-align: center;
+  color: var(--dos-color-muted, #AAAAAA);
+}
+
+/* Focus state for interactive timelines */
+.dos-timeline__event--interactive {
+  cursor: pointer;
+}
+
+.dos-timeline__event--interactive:hover .dos-timeline__title {
+  text-decoration: underline;
+}
+
+.dos-timeline__event--interactive:focus {
+  outline: 2px solid var(--dos-color-focus, #FFFF55);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .dos-timeline__connector {
+    width: 3px;
+  }
+
+  .dos-timeline__marker {
+    font-weight: bold;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .dos-timeline * {
+    transition: none;
+  }
+}

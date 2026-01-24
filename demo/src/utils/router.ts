@@ -73,6 +73,16 @@ export const ROUTES = {
   STEPPER: 'stepper',
   TABS: 'tabs',
   BREADCRUMB: 'breadcrumb',
+  // Data Display
+  TABLE: 'table',
+  DATA_GRID: 'data-grid',
+  LISTBOX: 'listbox',
+  TREE_VIEW: 'tree-view',
+  BADGE: 'badge',
+  AVATAR: 'avatar',
+  CARD: 'card',
+  TIMELINE: 'timeline',
+  EMPTY_STATE: 'empty-state',
   // Themes
   THEMES: 'themes',
 } as const;

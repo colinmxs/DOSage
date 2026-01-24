@@ -1,0 +1,272 @@
+/**
+ * Table Component Styles
+ *
+ * DOS-style data table with box-drawing characters, sorting indicators,
+ * row selection, and keyboard navigation.
+ */
+
+/* Base table container */
+.dos-table {
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size);
+  line-height: var(--dos-line-height);
+  color: var(--dos-color-fg);
+  background-color: var(--dos-color-bg);
+  width: 100%;
+  border-collapse: collapse;
+  position: relative;
+}
+
+/* Table wrapper for scroll and sticky header */
+.dos-table-wrapper {
+  overflow-x: auto;
+  position: relative;
+}
+
+.dos-table-wrapper--sticky {
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+/* Header */
+.dos-table__header {
+  background-color: var(--dos-color-bg);
+}
+
+.dos-table__header-row {
+  background-color: color-mix(in srgb, var(--dos-color-fg) 15%, var(--dos-color-bg));
+}
+
+.dos-table__header-cell {
+  padding: var(--dos-space-sm) var(--dos-space-md);
+  text-align: left;
+  font-weight: normal;
+  color: var(--dos-color-primary);
+  border-bottom: 2px solid var(--dos-color-border);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.dos-table__header-cell--align-center {
+  text-align: center;
+}
+
+.dos-table__header-cell--align-right {
+  text-align: right;
+}
+
+/* Sortable header styling */
+.dos-table__header-cell--sortable {
+  cursor: pointer;
+  position: relative;
+  padding-right: calc(var(--dos-space-md) + 1.5em);
+}
+
+.dos-table__header-cell--sortable:hover {
+  background-color: color-mix(in srgb, var(--dos-color-fg) 25%, var(--dos-color-bg));
+}
+
+.dos-table__header-cell--sortable:focus {
+  outline: 2px solid var(--dos-color-primary);
+  outline-offset: -2px;
+}
+
+.dos-table__header-cell--sorted {
+  color: var(--dos-color-highlight);
+  background-color: color-mix(in srgb, var(--dos-color-fg) 20%, var(--dos-color-bg));
+}
+
+/* Sort indicator */
+.dos-table__sort-indicator {
+  position: absolute;
+  right: var(--dos-space-sm);
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.5;
+  font-size: 0.9em;
+}
+
+.dos-table__header-cell--sorted .dos-table__sort-indicator {
+  opacity: 1;
+}
+
+/* Sticky header */
+.dos-table--sticky-header .dos-table__header-cell {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: color-mix(in srgb, var(--dos-color-fg) 15%, var(--dos-color-bg));
+}
+
+/* Selection checkbox column */
+.dos-table__header-cell--checkbox,
+.dos-table__cell--checkbox {
+  width: 40px;
+  padding: var(--dos-space-xs) var(--dos-space-sm);
+  text-align: center;
+}
+
+.dos-table__checkbox {
+  cursor: pointer;
+  font-size: 1em;
+  color: var(--dos-color-fg);
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+}
+
+.dos-table__checkbox:hover {
+  color: var(--dos-color-primary);
+}
+
+.dos-table__checkbox:focus {
+  outline: 2px solid var(--dos-color-primary);
+  outline-offset: 2px;
+}
+
+/* Body */
+.dos-table__body {
+  background-color: var(--dos-color-bg);
+}
+
+/* Rows */
+.dos-table__row {
+  background-color: var(--dos-color-bg);
+  transition: background-color var(--dos-timing-fast);
+}
+
+.dos-table__row:hover {
+  background-color: color-mix(in srgb, var(--dos-color-fg) 10%, var(--dos-color-bg));
+}
+
+.dos-table__row:focus {
+  outline: 2px solid var(--dos-color-primary);
+  outline-offset: -2px;
+}
+
+.dos-table__row--selected {
+  background-color: color-mix(in srgb, var(--dos-color-primary) 30%, var(--dos-color-bg));
+}
+
+.dos-table__row--selected:hover {
+  background-color: color-mix(in srgb, var(--dos-color-primary) 40%, var(--dos-color-bg));
+}
+
+/* Striped rows */
+.dos-table--striped .dos-table__row:nth-child(even) {
+  background-color: color-mix(in srgb, var(--dos-color-fg) 5%, var(--dos-color-bg));
+}
+
+.dos-table--striped .dos-table__row:nth-child(even):hover {
+  background-color: color-mix(in srgb, var(--dos-color-fg) 15%, var(--dos-color-bg));
+}
+
+.dos-table--striped .dos-table__row--selected:nth-child(even) {
+  background-color: color-mix(in srgb, var(--dos-color-primary) 35%, var(--dos-color-bg));
+}
+
+/* Cells */
+.dos-table__cell {
+  padding: var(--dos-space-sm) var(--dos-space-md);
+  vertical-align: middle;
+}
+
+.dos-table__cell--align-center {
+  text-align: center;
+}
+
+.dos-table__cell--align-right {
+  text-align: right;
+}
+
+/* Bordered variant */
+.dos-table--bordered .dos-table__header-cell,
+.dos-table--bordered .dos-table__cell {
+  border: 1px solid var(--dos-color-border);
+}
+
+/* Box-drawing border variant (more DOS-like) */
+.dos-table--box-drawing {
+  border: 1px solid var(--dos-color-border);
+}
+
+.dos-table--box-drawing .dos-table__header-cell {
+  border-right: 1px solid var(--dos-color-border);
+}
+
+.dos-table--box-drawing .dos-table__header-cell:last-child {
+  border-right: none;
+}
+
+.dos-table--box-drawing .dos-table__cell {
+  border-right: 1px solid color-mix(in srgb, var(--dos-color-border) 50%, var(--dos-color-bg));
+  border-bottom: 1px solid color-mix(in srgb, var(--dos-color-border) 30%, var(--dos-color-bg));
+}
+
+.dos-table--box-drawing .dos-table__cell:last-child {
+  border-right: none;
+}
+
+.dos-table--box-drawing .dos-table__row:last-child .dos-table__cell {
+  border-bottom: none;
+}
+
+/* Empty state */
+.dos-table__empty {
+  padding: var(--dos-space-xl);
+  text-align: center;
+  color: var(--dos-color-disabled);
+}
+
+.dos-table__empty-cell {
+  padding: var(--dos-space-xl);
+  text-align: center;
+  color: var(--dos-color-disabled);
+}
+
+/* Selectable row cursor */
+.dos-table--selectable .dos-table__row {
+  cursor: pointer;
+}
+
+/* Focus visible for keyboard navigation */
+.dos-table__row:focus-visible {
+  outline: 2px solid var(--dos-color-primary);
+  outline-offset: -2px;
+}
+
+/* Make table focusable container */
+.dos-table:focus {
+  outline: none;
+}
+
+.dos-table:focus-visible {
+  outline: 2px solid var(--dos-color-primary);
+  outline-offset: 2px;
+}
+
+/* Responsive behavior - keep minimum width */
+.dos-table {
+  min-width: 100%;
+}
+
+/* Custom scrollbar styling for wrapper */
+.dos-table-wrapper::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.dos-table-wrapper::-webkit-scrollbar-track {
+  background: var(--dos-color-bg);
+  border: 1px solid var(--dos-color-border);
+}
+
+.dos-table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--dos-color-border);
+  border: 1px solid var(--dos-color-bg);
+}
+
+.dos-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--dos-color-fg);
+}

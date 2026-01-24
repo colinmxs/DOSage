@@ -1,0 +1,231 @@
+/**
+ * TreeView Component Styles
+ *
+ * DOS-style hierarchical tree view with ASCII connectors.
+ */
+
+/* Container */
+.dos-tree-view {
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', monospace);
+  font-size: var(--dos-font-size, 16px);
+  background-color: var(--dos-color-bg, #0000AA);
+  color: var(--dos-color-fg, #FFFFFF);
+  outline: none;
+  overflow: auto;
+}
+
+.dos-tree-view:focus {
+  outline: 2px solid var(--dos-color-focus, #FFFF55);
+  outline-offset: -2px;
+}
+
+/* Tree list */
+.dos-tree-view___list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Individual node row */
+.dos-tree-view___node {
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  cursor: default;
+  user-select: none;
+  outline: none;
+  white-space: nowrap;
+}
+
+.dos-tree-view___node:hover:not(.dos-tree-view___node--disabled) {
+  background-color: var(--dos-color-bg-hover, #000099);
+}
+
+.dos-tree-view___node--focused {
+  background-color: var(--dos-color-bg-focus, #0000BB);
+  outline: 1px dotted var(--dos-color-focus, #FFFF55);
+  outline-offset: -1px;
+}
+
+.dos-tree-view___node--selected {
+  background-color: var(--dos-color-selection, #0000CC);
+}
+
+.dos-tree-view___node--selected:hover {
+  background-color: var(--dos-color-selection-hover, #0000DD);
+}
+
+.dos-tree-view___node--selected.dos-tree-view___node--focused {
+  background-color: var(--dos-color-selection, #0000CC);
+}
+
+.dos-tree-view___node--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Indentation and line guides */
+.dos-tree-view___indent {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.dos-tree-view___guide {
+  width: 16px;
+  text-align: center;
+  color: var(--dos-color-border, #AAAAAA);
+}
+
+/* Expand/collapse toggle */
+.dos-tree-view___toggle {
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--dos-color-secondary, #AAAAAA);
+}
+
+.dos-tree-view___toggle:hover {
+  color: var(--dos-color-fg, #FFFFFF);
+}
+
+.dos-tree-view___node--disabled .dos-tree-view___toggle {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Folder/file icon */
+.dos-tree-view___icon {
+  flex-shrink: 0;
+  width: 20px;
+  text-align: center;
+  margin-right: 4px;
+  color: var(--dos-color-secondary, #AAAAAA);
+}
+
+.dos-tree-view___node--selected .dos-tree-view___icon {
+  color: var(--dos-color-fg, #FFFFFF);
+}
+
+/* Node label */
+.dos-tree-view___label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Branch connector lines */
+.dos-tree-view___branch {
+  color: var(--dos-color-border, #AAAAAA);
+}
+
+/* Expansion states */
+.dos-tree-view___toggle--collapsed::before {
+  content: '[+]';
+}
+
+.dos-tree-view___toggle--expanded::before {
+  content: '[-]';
+}
+
+.dos-tree-view___toggle--leaf::before {
+  content: '   ';
+}
+
+/* Without lines - simpler toggle */
+.dos-tree-view--no-lines .dos-tree-view___toggle--collapsed::before {
+  content: '►';
+}
+
+.dos-tree-view--no-lines .dos-tree-view___toggle--expanded::before {
+  content: '▼';
+}
+
+/* Icon variants */
+.dos-tree-view___icon--folder::before {
+  content: '📁';
+}
+
+.dos-tree-view___icon--folder-open::before {
+  content: '📂';
+}
+
+.dos-tree-view___icon--file::before {
+  content: '📄';
+}
+
+/* Simple ASCII icons (default) */
+.dos-tree-view--ascii-icons .dos-tree-view___icon--folder::before {
+  content: '[■]';
+}
+
+.dos-tree-view--ascii-icons .dos-tree-view___icon--folder-open::before {
+  content: '[□]';
+}
+
+.dos-tree-view--ascii-icons .dos-tree-view___icon--file::before {
+  content: '[ ]';
+}
+
+/* Line characters: ├── └── │    */
+.dos-tree-view___line-mid {
+  display: inline;
+}
+
+.dos-tree-view___line-mid::before {
+  content: '├──';
+  color: var(--dos-color-border, #AAAAAA);
+}
+
+.dos-tree-view___line-end {
+  display: inline;
+}
+
+.dos-tree-view___line-end::before {
+  content: '└──';
+  color: var(--dos-color-border, #AAAAAA);
+}
+
+.dos-tree-view___line-cont {
+  display: inline;
+}
+
+.dos-tree-view___line-cont::before {
+  content: '│  ';
+  color: var(--dos-color-border, #AAAAAA);
+}
+
+.dos-tree-view___line-space {
+  display: inline;
+}
+
+.dos-tree-view___line-space::before {
+  content: '   ';
+}
+
+/* Empty state */
+.dos-tree-view___empty {
+  padding: 16px;
+  text-align: center;
+  color: var(--dos-color-secondary, #AAAAAA);
+  font-style: italic;
+}
+
+/* Compact mode */
+.dos-tree-view--compact .dos-tree-view___node {
+  padding: 0 4px;
+}
+
+.dos-tree-view--compact .dos-tree-view___toggle {
+  width: 16px;
+}
+
+.dos-tree-view--compact .dos-tree-view___icon {
+  width: 16px;
+}
+
+/* Dense mode - even more compact */
+.dos-tree-view--dense .dos-tree-view___node {
+  padding: 0 2px;
+  line-height: 1.2;
+}

@@ -2019,34 +2019,34 @@
 ### 9.1 Table
 
 **File:** `src/components/Table/Table.ts`
-**Styles:** `src/components/Table/Table.styles.css`
+**Styles:** `src/components/Table/Table.css`
 **Types:** `src/components/Table/Table.types.ts`
 **Tests:** `tests/components/Table.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `TableProps`
-  - [ ] Prop: `columns` (TableColumn[]) — column definitions
-  - [ ] Prop: `data` (object[]) — row data
-  - [ ] Prop: `sortable` (boolean) — enable sorting
-  - [ ] Prop: `sortColumn` (string) — current sort column
-  - [ ] Prop: `sortDirection` ('asc' | 'desc') — sort direction
-  - [ ] Prop: `selectable` (boolean) — enable row selection
-  - [ ] Prop: `selectedRows` (string[]) — selected row IDs
-  - [ ] Prop: `striped` (boolean) — alternating row colors
-  - [ ] Prop: `bordered` (boolean) — show cell borders
-  - [ ] Prop: `stickyHeader` (boolean) — fixed header on scroll
-  - [ ] Prop: `emptyMessage` (string) — message when no data
-  - [ ] Prop: `onSort` (function) — sort handler
-  - [ ] Prop: `onSelect` (function) — selection handler
-  - [ ] Prop: `onRowClick` (function) — row click handler
-- [ ] Define TypeScript interface `TableColumn`
-  - [ ] Prop: `key` (string) — data property key
-  - [ ] Prop: `label` (string) — column header text
-  - [ ] Prop: `width` (string | number) — column width
-  - [ ] Prop: `sortable` (boolean) — column sortable
-  - [ ] Prop: `align` ('left' | 'center' | 'right') — text alignment
-  - [ ] Prop: `render` (function) — custom cell renderer
-- [ ] Implement DOS-style table with box-drawing
+- [x] Create component directory structure
+- [x] Define TypeScript interface `TableProps`
+  - [x] Prop: `columns` (TableColumn[]) — column definitions
+  - [x] Prop: `data` (object[]) — row data
+  - [x] Prop: `sortable` (boolean) — enable sorting
+  - [x] Prop: `sortColumn` (string) — current sort column
+  - [x] Prop: `sortDirection` ('asc' | 'desc') — sort direction
+  - [x] Prop: `selectable` (boolean) — enable row selection
+  - [x] Prop: `selectedRows` (string[]) — selected row IDs
+  - [x] Prop: `striped` (boolean) — alternating row colors
+  - [x] Prop: `bordered` (boolean) — show cell borders
+  - [x] Prop: `stickyHeader` (boolean) — fixed header on scroll
+  - [x] Prop: `emptyMessage` (string) — message when no data
+  - [x] Prop: `onSort` (function) — sort handler
+  - [x] Prop: `onSelect` (function) — selection handler
+  - [x] Prop: `onRowClick` (function) — row click handler
+- [x] Define TypeScript interface `TableColumn`
+  - [x] Prop: `key` (string) — data property key
+  - [x] Prop: `label` (string) — column header text
+  - [x] Prop: `width` (string | number) — column width
+  - [x] Prop: `sortable` (boolean) — column sortable
+  - [x] Prop: `align` ('left' | 'center' | 'right') — text alignment
+  - [x] Prop: `render` (function) — custom cell renderer
+- [x] Implement DOS-style table with box-drawing
   ```
   ┌──────────────┬─────────┬──────────┐
   │ Name         │ Size    │ Date     │
@@ -2056,42 +2056,42 @@
   │ COMMAND.COM  │ 54,619  │ 01-15-26 │
   └──────────────┴─────────┴──────────┘
   ```
-- [ ] Implement sortable columns with indicators `▲` / `▼`
-- [ ] Implement row selection with checkboxes
-- [ ] Implement striped rows using alternate shading
-- [ ] Add CSS styles with class `.dos-table`
-  - [ ] `.dos-table___header`
-  - [ ] `.dos-table___header-cell`
-  - [ ] `.dos-table___header-cell--sortable`
-  - [ ] `.dos-table___body`
-  - [ ] `.dos-table___row`
-  - [ ] `.dos-table___row--selected`
-  - [ ] `.dos-table___row--striped`
-  - [ ] `.dos-table___cell`
-  - [ ] `.dos-table___sort-indicator`
-  - [ ] `.dos-table--bordered`
-  - [ ] `.dos-table--sticky-header`
-- [ ] Add keyboard navigation
-  - [ ] `Arrow Up/Down` — navigate rows
-  - [ ] `Space` — select row (when selectable)
-  - [ ] `Enter` — activate row
-  - [ ] Tab through sortable headers
-- [ ] Add ARIA attributes
-  - [ ] `role="table"`, `role="rowgroup"`, `role="row"`, `role="columnheader"`, `role="cell"`
-  - [ ] `aria-sort` — on sortable columns
-  - [ ] `aria-selected` — on selectable rows
-- [ ] Write unit tests
-  - [ ] Test: renders data correctly
-  - [ ] Test: sorts on column click
-  - [ ] Test: selects rows
-  - [ ] Test: keyboard navigation works
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic table
-  - [ ] Sortable columns
-  - [ ] Selectable rows
-  - [ ] Striped rows
-  - [ ] Code snippet displayed
+- [x] Implement sortable columns with indicators `▲` / `▼`
+- [x] Implement row selection with checkboxes
+- [x] Implement striped rows using alternate shading
+- [x] Add CSS styles with class `.dos-table`
+  - [x] `.dos-table___header`
+  - [x] `.dos-table___header-cell`
+  - [x] `.dos-table___header-cell--sortable`
+  - [x] `.dos-table___body`
+  - [x] `.dos-table___row`
+  - [x] `.dos-table___row--selected`
+  - [x] `.dos-table___row--striped`
+  - [x] `.dos-table___cell`
+  - [x] `.dos-table___sort-indicator`
+  - [x] `.dos-table--bordered`
+  - [x] `.dos-table--sticky-header`
+- [x] Add keyboard navigation
+  - [x] `Arrow Up/Down` — navigate rows
+  - [x] `Space` — select row (when selectable)
+  - [x] `Enter` — activate row
+  - [x] Tab through sortable headers
+- [x] Add ARIA attributes
+  - [x] `role="table"`, `role="rowgroup"`, `role="row"`, `role="columnheader"`, `role="cell"`
+  - [x] `aria-sort` — on sortable columns
+  - [x] `aria-selected` — on selectable rows
+- [x] Write unit tests
+  - [x] Test: renders data correctly
+  - [x] Test: sorts on column click
+  - [x] Test: selects rows
+  - [x] Test: keyboard navigation works
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic table
+  - [x] Sortable columns
+  - [x] Selectable rows
+  - [x] Striped rows
+  - [x] Code snippet displayed
 
 > **Accessibility:** Full table ARIA. Sortable columns announced.
 > **Keyboard:** `Arrows` to navigate, `Space` to select, `Enter` to activate
@@ -2101,118 +2101,127 @@
 ### 9.2 DataGrid
 
 **File:** `src/components/DataGrid/DataGrid.ts`
-**Styles:** `src/components/DataGrid/DataGrid.styles.css`
+**Styles:** `src/components/DataGrid/DataGrid.css`
 **Types:** `src/components/DataGrid/DataGrid.types.ts`
 **Tests:** `tests/components/DataGrid.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `DataGridProps`
-  - [ ] Extends TableProps with additional features
-  - [ ] Prop: `editable` (boolean) — enable cell editing
-  - [ ] Prop: `resizableColumns` (boolean) — enable column resizing
-  - [ ] Prop: `reorderableColumns` (boolean) — enable column reordering
-  - [ ] Prop: `pagination` (PaginationConfig) — pagination settings
-  - [ ] Prop: `virtualScroll` (boolean) — enable virtual scrolling
-  - [ ] Prop: `onCellEdit` (function) — cell edit handler
-  - [ ] Prop: `onColumnResize` (function) — column resize handler
-  - [ ] Prop: `onColumnReorder` (function) — column reorder handler
-- [ ] Implement enhanced table with editing
-- [ ] Implement cell editing (click to edit)
-- [ ] Implement column resizing with drag handles
-- [ ] Implement column reordering via drag
-- [ ] Implement integrated pagination
-- [ ] Add CSS styles with class `.dos-data-grid`
-  - [ ] Inherit from `.dos-table`
-  - [ ] `.dos-data-grid___cell--editing`
-  - [ ] `.dos-data-grid___resize-handle`
-  - [ ] `.dos-data-grid___pagination`
-- [ ] Add keyboard navigation
-  - [ ] Inherit from Table
-  - [ ] `F2` or `Enter` — edit cell
-  - [ ] `Escape` — cancel edit
-  - [ ] `Tab` — move to next cell in edit mode
-- [ ] Add ARIA attributes
-  - [ ] Inherit from Table
-  - [ ] `aria-readonly` — for non-editable cells
-- [ ] Write unit tests
-  - [ ] Test: cell editing works
-  - [ ] Test: column resize works
-  - [ ] Test: pagination integration works
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Editable grid
-  - [ ] Resizable columns
-  - [ ] With pagination
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `DataGridProps`
+  - [x] Extends TableProps with additional features
+  - [x] Prop: `editable` (boolean) — enable cell editing
+  - [x] Prop: `resizableColumns` (boolean) — enable column resizing
+  - [x] Prop: `reorderableColumns` (boolean) — enable column reordering
+  - [x] Prop: `pagination` (PaginationConfig) — pagination settings
+  - [x] Prop: `virtualScroll` (boolean) — enable virtual scrolling
+  - [x] Prop: `onCellEdit` (function) — cell edit handler
+  - [x] Prop: `onColumnResize` (function) — column resize handler
+  - [x] Prop: `onColumnReorder` (function) — column reorder handler
+- [x] Implement enhanced table with editing
+- [x] Implement cell editing (click to edit)
+- [x] Implement column resizing with drag handles
+- [x] Implement column reordering via drag
+- [x] Implement integrated pagination
+- [x] Add CSS styles with class `.dos-data-grid`
+  - [x] Inherit from `.dos-table`
+  - [x] `.dos-data-grid___cell--editing`
+  - [x] `.dos-data-grid___resize-handle`
+  - [x] `.dos-data-grid___pagination`
+- [x] Add keyboard navigation
+  - [x] Inherit from Table
+  - [x] `F2` or `Enter` — edit cell
+  - [x] `Escape` — cancel edit
+  - [x] `Tab` — move to next cell in edit mode
+- [x] Add ARIA attributes
+  - [x] Inherit from Table
+  - [x] `aria-readonly` — for non-editable cells
+- [x] Write unit tests
+  - [x] Test: cell editing works
+  - [x] Test: column resize works
+  - [x] Test: pagination integration works
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Editable grid
+  - [x] Resizable columns
+  - [x] With pagination
+  - [x] Code snippet displayed
 
 > **Accessibility:** Editable cells announced. Edit mode indicated.
 > **Keyboard:** `F2`/`Enter` to edit, `Escape` to cancel
 
 ---
 
-### 9.3 List
+### 9.3 List (implemented as ListBox)
 
-**File:** `src/components/List/List.ts`
-**Styles:** `src/components/List/List.styles.css`
-**Types:** `src/components/List/List.types.ts`
-**Tests:** `tests/components/List.test.ts`
+**File:** `src/components/ListBox/ListBox.ts`
+**Styles:** `src/components/ListBox/ListBox.css`
+**Types:** `src/components/ListBox/ListBox.types.ts`
+**Tests:** `tests/components/ListBox.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `ListProps`
-  - [ ] Prop: `items` (ListItem[]) — list items
-  - [ ] Prop: `selectable` (boolean) — enable selection
-  - [ ] Prop: `multiSelect` (boolean) — allow multiple selection
-  - [ ] Prop: `selectedItems` (string[]) — selected item IDs
-  - [ ] Prop: `bordered` (boolean) — show item borders
-  - [ ] Prop: `dividers` (boolean) — show dividers between items
-  - [ ] Prop: `onSelect` (function) — selection handler
-  - [ ] Prop: `onItemClick` (function) — item click handler
-- [ ] Define TypeScript interface `ListItem`
-  - [ ] Prop: `id` (string) — unique identifier
-  - [ ] Prop: `primary` (string) — main text
-  - [ ] Prop: `secondary` (string) — secondary text
-  - [ ] Prop: `icon` (string) — leading icon
-  - [ ] Prop: `trailing` (string | Element) — trailing content
-  - [ ] Prop: `disabled` (boolean) — item disabled
-- [ ] Implement vertical list
-- [ ] Implement selection (single and multi)
-- [ ] Add CSS styles with class `.dos-list`
-  - [ ] `.dos-list___item`
-  - [ ] `.dos-list___item--selected`
-  - [ ] `.dos-list___item--disabled`
-  - [ ] `.dos-list___item-icon`
-  - [ ] `.dos-list___item-content`
-  - [ ] `.dos-list___item-primary`
-  - [ ] `.dos-list___item-secondary`
-  - [ ] `.dos-list___item-trailing`
-  - [ ] `.dos-list___divider`
-  - [ ] `.dos-list--bordered`
-- [ ] Add keyboard navigation
-  - [ ] `Arrow Up/Down` — navigate items
-  - [ ] `Enter` / `Space` — select item
-  - [ ] `Home` / `End` — first/last item
-  - [ ] `Ctrl+A` — select all (multi-select)
-- [ ] Add ARIA attributes
-  - [ ] `role="listbox"` — for selectable lists
-  - [ ] `role="list"` — for non-selectable
-  - [ ] `role="option"` — for selectable items
-  - [ ] `aria-selected`
-  - [ ] `aria-multiselectable`
-- [ ] Write unit tests
-  - [ ] Test: renders items correctly
-  - [ ] Test: single selection works
-  - [ ] Test: multi selection works
-  - [ ] Test: keyboard navigation works
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic list
-  - [ ] Selectable list
-  - [ ] Multi-select list
-  - [ ] With icons and secondary text
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `ListBoxProps`
+  - [x] Prop: `items` (ListBoxItem[]) — list items
+  - [x] Prop: `selectable` (boolean) — enable selection
+  - [x] Prop: `multiSelect` (boolean) — allow multiple selection
+  - [x] Prop: `selectedItems` (string[]) — selected item IDs
+  - [x] Prop: `bordered` (boolean) — show item borders
+  - [x] Prop: `dividers` (boolean) — show dividers between items
+  - [x] Prop: `onSelect` (function) — selection handler
+  - [x] Prop: `onItemClick` (function) — item click handler
+- [x] Define TypeScript interface `ListBoxItem`
+  - [x] Prop: `id` (string) — unique identifier
+  - [x] Prop: `primary` (string) — main text
+  - [x] Prop: `secondary` (string) — secondary text
+  - [x] Prop: `icon` (string) — leading icon
+  - [x] Prop: `trailing` (string | Element) — trailing content
+  - [x] Prop: `disabled` (boolean) — item disabled
+- [x] Implement vertical list
+- [x] Implement selection (single and multi)
+- [x] Add CSS styles with class `.dos-listbox`
+  - [x] `.dos-listbox___item`
+  - [x] `.dos-listbox___item--selected`
+  - [x] `.dos-listbox___item--disabled`
+  - [x] `.dos-listbox___icon`
+  - [x] `.dos-listbox___content`
+  - [x] `.dos-listbox___primary`
+  - [x] `.dos-listbox___secondary`
+  - [x] `.dos-listbox___trailing`
+  - [x] `.dos-listbox--dividers`
+  - [x] `.dos-listbox--bordered`
+- [x] Add keyboard navigation
+  - [x] `Arrow Up/Down` — navigate items
+  - [x] `Enter` / `Space` — select item
+  - [x] `Home` / `End` — first/last item
+  - [x] `Ctrl+A` — select all (multi-select)
+  - [x] Type-ahead — jump to item by first letter
+- [x] Add ARIA attributes
+  - [x] `role="listbox"` — on container
+  - [x] `role="option"` — on items
+  - [x] `aria-selected`
+  - [x] `aria-multiselectable`
+  - [x] `aria-disabled`
+  - [x] `aria-activedescendant`
+- [x] Write unit tests (69 tests passing)
+  - [x] Test: renders items correctly
+  - [x] Test: single selection works
+  - [x] Test: multi selection works
+  - [x] Test: keyboard navigation works
+  - [x] Test: type-ahead navigation works
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic list
+  - [x] Selectable list
+  - [x] Multi-select list
+  - [x] With icons and secondary text
+  - [x] Disabled items
+  - [x] Dense mode
+  - [x] Scrollable with maxHeight
+  - [x] Instance methods demo
+  - [x] Keyboard navigation demo
+  - [x] Accessibility info
+  - [x] Code snippets displayed
 
 > **Accessibility:** Listbox pattern for selectable. Selection state announced.
-> **Keyboard:** `Arrows` to navigate, `Enter`/`Space` to select
+> **Keyboard:** `Arrows` to navigate, `Enter`/`Space` to select, `Ctrl+A` select all, type letter to jump
 
 ---
 
@@ -2223,24 +2232,24 @@
 **Types:** `src/components/TreeView/TreeView.types.ts`
 **Tests:** `tests/components/TreeView.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `TreeViewProps`
-  - [ ] Prop: `nodes` (TreeNode[]) — tree data
-  - [ ] Prop: `selectable` (boolean) — enable selection
-  - [ ] Prop: `multiSelect` (boolean) — allow multiple selection
-  - [ ] Prop: `selectedNodes` (string[]) — selected node IDs
-  - [ ] Prop: `expandedNodes` (string[]) — expanded node IDs
-  - [ ] Prop: `defaultExpanded` (boolean | string[]) — initial expanded
-  - [ ] Prop: `onSelect` (function) — selection handler
-  - [ ] Prop: `onExpand` (function) — expand/collapse handler
-- [ ] Define TypeScript interface `TreeNode`
-  - [ ] Prop: `id` (string) — unique identifier
-  - [ ] Prop: `label` (string) — node label
-  - [ ] Prop: `icon` (string) — node icon (folder, file)
-  - [ ] Prop: `children` (TreeNode[]) — child nodes
-  - [ ] Prop: `expanded` (boolean) — expanded state
-  - [ ] Prop: `disabled` (boolean) — node disabled
-- [ ] Implement DOS-style tree with ASCII characters
+- [x] Create component directory structure
+- [x] Define TypeScript interface `TreeViewProps`
+  - [x] Prop: `nodes` (TreeNode[]) — tree data
+  - [x] Prop: `selectable` (boolean) — enable selection
+  - [x] Prop: `multiSelect` (boolean) — allow multiple selection
+  - [x] Prop: `selectedNodes` (string[]) — selected node IDs
+  - [x] Prop: `expandedNodes` (string[]) — expanded node IDs
+  - [x] Prop: `defaultExpanded` (boolean | string[]) — initial expanded
+  - [x] Prop: `onSelect` (function) — selection handler
+  - [x] Prop: `onExpand` (function) — expand/collapse handler
+- [x] Define TypeScript interface `TreeNode`
+  - [x] Prop: `id` (string) — unique identifier
+  - [x] Prop: `label` (string) — node label
+  - [x] Prop: `icon` (string) — node icon (folder, file)
+  - [x] Prop: `children` (TreeNode[]) — child nodes
+  - [x] Prop: `expanded` (boolean) — expanded state
+  - [x] Prop: `disabled` (boolean) — node disabled
+- [x] Implement DOS-style tree with ASCII characters
   ```
   ├── Documents
   │   ├── Letters
@@ -2253,42 +2262,42 @@
   │   └── format.com
   └── README.TXT
   ```
-- [ ] Tree characters: `├──`, `└──`, `│   `, `    `
-- [ ] Folder icons: `[+]` closed, `[-]` open
-- [ ] File icons: `[ ]` or custom
-- [ ] Implement expand/collapse on click or keyboard
-- [ ] Add CSS styles with class `.dos-tree-view`
-  - [ ] `.dos-tree-view___node`
-  - [ ] `.dos-tree-view___node--expanded`
-  - [ ] `.dos-tree-view___node--selected`
-  - [ ] `.dos-tree-view___node--disabled`
-  - [ ] `.dos-tree-view___icon`
-  - [ ] `.dos-tree-view___label`
-  - [ ] `.dos-tree-view___branch`
-  - [ ] `.dos-tree-view___children`
-- [ ] Add keyboard navigation
-  - [ ] `Arrow Up/Down` — navigate nodes
-  - [ ] `Arrow Right` — expand / move to child
-  - [ ] `Arrow Left` — collapse / move to parent
-  - [ ] `Enter` / `Space` — select node
-  - [ ] `Home` / `End` — first/last visible node
-  - [ ] `*` — expand all siblings
-- [ ] Add ARIA attributes
-  - [ ] `role="tree"`
-  - [ ] `role="treeitem"`
-  - [ ] `aria-expanded`
-  - [ ] `aria-selected`
-  - [ ] `aria-level`
-- [ ] Write unit tests
-  - [ ] Test: renders tree structure
-  - [ ] Test: expands/collapses nodes
-  - [ ] Test: selects nodes
-  - [ ] Test: keyboard navigation works
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] File browser tree
-  - [ ] Selectable tree
-  - [ ] Code snippet displayed
+- [x] Tree characters: `├──`, `└──`, `│   `, `    `
+- [x] Folder icons: `[+]` closed, `[-]` open
+- [x] File icons: `[ ]` or custom
+- [x] Implement expand/collapse on click or keyboard
+- [x] Add CSS styles with class `.dos-tree-view`
+  - [x] `.dos-tree-view___node`
+  - [x] `.dos-tree-view___node--expanded`
+  - [x] `.dos-tree-view___node--selected`
+  - [x] `.dos-tree-view___node--disabled`
+  - [x] `.dos-tree-view___icon`
+  - [x] `.dos-tree-view___label`
+  - [x] `.dos-tree-view___branch`
+  - [x] `.dos-tree-view___children`
+- [x] Add keyboard navigation
+  - [x] `Arrow Up/Down` — navigate nodes
+  - [x] `Arrow Right` — expand / move to child
+  - [x] `Arrow Left` — collapse / move to parent
+  - [x] `Enter` / `Space` — select node
+  - [x] `Home` / `End` — first/last visible node
+  - [x] `*` — expand all siblings
+- [x] Add ARIA attributes
+  - [x] `role="tree"`
+  - [x] `role="treeitem"`
+  - [x] `aria-expanded`
+  - [x] `aria-selected`
+  - [x] `aria-level`
+- [x] Write unit tests
+  - [x] Test: renders tree structure
+  - [x] Test: expands/collapses nodes
+  - [x] Test: selects nodes
+  - [x] Test: keyboard navigation works
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] File browser tree
+  - [x] Selectable tree
+  - [x] Code snippet displayed
 
 > **Accessibility:** Full tree ARIA pattern. Level and expanded state announced.
 > **Keyboard:** `Arrows` for navigation, `Enter`/`Space` to select
@@ -2302,45 +2311,45 @@
 **Types:** `src/components/Badge/Badge.types.ts`
 **Tests:** `tests/components/Badge.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `BadgeProps`
-  - [ ] Prop: `label` (string) — badge text
-  - [ ] Prop: `variant` ('default' | 'primary' | 'success' | 'warning' | 'error' | 'info') — color variant
-  - [ ] Prop: `size` ('small' | 'medium') — badge size
-  - [ ] Prop: `removable` (boolean) — show remove button
-  - [ ] Prop: `icon` (string) — leading icon
-  - [ ] Prop: `onRemove` (function) — remove handler
-- [ ] Implement DOS-style badge/tag
-  - [ ] Display: `[NEW]`, `[v1.0]`, `[ERROR]`
-  - [ ] Removable: `[NEW ×]`
-- [ ] Implement color variants using theme colors
-- [ ] Add CSS styles with class `.dos-badge`
-  - [ ] `.dos-badge___label`
-  - [ ] `.dos-badge___icon`
-  - [ ] `.dos-badge___remove`
-  - [ ] `.dos-badge--default`
-  - [ ] `.dos-badge--primary`
-  - [ ] `.dos-badge--success`
-  - [ ] `.dos-badge--warning`
-  - [ ] `.dos-badge--error`
-  - [ ] `.dos-badge--info`
-  - [ ] `.dos-badge--small`
-  - [ ] `.dos-badge--removable`
-- [ ] Add keyboard navigation
-  - [ ] Remove button keyboard accessible
-- [ ] Add ARIA attributes
-  - [ ] `role="status"` — if dynamic
-  - [ ] Remove button labeled
-- [ ] Write unit tests
-  - [ ] Test: renders label correctly
-  - [ ] Test: applies variant styles
-  - [ ] Test: remove button works
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] All variants
-  - [ ] Removable badges
-  - [ ] Sizes
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `BadgeProps`
+  - [x] Prop: `label` (string) — badge text
+  - [x] Prop: `variant` ('default' | 'primary' | 'success' | 'warning' | 'error' | 'info') — color variant
+  - [x] Prop: `size` ('small' | 'medium') — badge size
+  - [x] Prop: `removable` (boolean) — show remove button
+  - [x] Prop: `icon` (string) — leading icon
+  - [x] Prop: `onRemove` (function) — remove handler
+- [x] Implement DOS-style badge/tag
+  - [x] Display: `[NEW]`, `[v1.0]`, `[ERROR]`
+  - [x] Removable: `[NEW ×]`
+- [x] Implement color variants using theme colors
+- [x] Add CSS styles with class `.dos-badge`
+  - [x] `.dos-badge___label`
+  - [x] `.dos-badge___icon`
+  - [x] `.dos-badge___remove`
+  - [x] `.dos-badge--default`
+  - [x] `.dos-badge--primary`
+  - [x] `.dos-badge--success`
+  - [x] `.dos-badge--warning`
+  - [x] `.dos-badge--error`
+  - [x] `.dos-badge--info`
+  - [x] `.dos-badge--small`
+  - [x] `.dos-badge--removable`
+- [x] Add keyboard navigation
+  - [x] Remove button keyboard accessible
+- [x] Add ARIA attributes
+  - [x] `role="status"` — if dynamic
+  - [x] Remove button labeled
+- [x] Write unit tests
+  - [x] Test: renders label correctly
+  - [x] Test: applies variant styles
+  - [x] Test: remove button works
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] All variants
+  - [x] Removable badges
+  - [x] Sizes
+  - [x] Code snippet displayed
 
 > **Accessibility:** Remove button labeled. Status badges announced.
 > **Keyboard:** Remove button focusable
@@ -2354,49 +2363,49 @@
 **Types:** `src/components/Avatar/Avatar.types.ts`
 **Tests:** `tests/components/Avatar.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `AvatarProps`
-  - [ ] Prop: `name` (string) — user name (for initials)
-  - [ ] Prop: `image` (string) — image URL (optional)
-  - [ ] Prop: `initials` (string) — custom initials override
-  - [ ] Prop: `size` ('small' | 'medium' | 'large') — avatar size
-  - [ ] Prop: `status` ('online' | 'offline' | 'busy' | 'away') — status indicator
-  - [ ] Prop: `shape` ('square' | 'rounded') — avatar shape
-- [ ] Implement DOS-style ASCII avatar
+- [x] Create component directory structure
+- [x] Define TypeScript interface `AvatarProps`
+  - [x] Prop: `name` (string) — user name (for initials)
+  - [x] Prop: `image` (string) — image URL (optional)
+  - [x] Prop: `initials` (string) — custom initials override
+  - [x] Prop: `size` ('small' | 'medium' | 'large') — avatar size
+  - [x] Prop: `status` ('online' | 'offline' | 'busy' | 'away') — status indicator
+  - [x] Prop: `shape` ('square' | 'rounded') — avatar shape
+- [x] Implement DOS-style ASCII avatar
   ```
   ┌───┐
   │JD │
   └───┘
   ```
-- [ ] Implement initials fallback (extract from name)
-- [ ] Implement status indicator dot
-- [ ] Add CSS styles with class `.dos-avatar`
-  - [ ] `.dos-avatar___initials`
-  - [ ] `.dos-avatar___image`
-  - [ ] `.dos-avatar___status`
-  - [ ] `.dos-avatar--small`
-  - [ ] `.dos-avatar--medium`
-  - [ ] `.dos-avatar--large`
-  - [ ] `.dos-avatar--square`
-  - [ ] `.dos-avatar--rounded`
-  - [ ] `.dos-avatar___status--online`
-  - [ ] `.dos-avatar___status--offline`
-  - [ ] `.dos-avatar___status--busy`
-  - [ ] `.dos-avatar___status--away`
-- [ ] Add ARIA attributes
-  - [ ] `role="img"`
-  - [ ] `aria-label` — user name
-- [ ] Write unit tests
-  - [ ] Test: generates initials from name
-  - [ ] Test: displays image when provided
-  - [ ] Test: shows status indicator
-  - [ ] Test: applies size and shape
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] With initials
-  - [ ] Different sizes
-  - [ ] Status indicators
-  - [ ] Code snippet displayed
+- [x] Implement initials fallback (extract from name)
+- [x] Implement status indicator dot
+- [x] Add CSS styles with class `.dos-avatar`
+  - [x] `.dos-avatar___initials`
+  - [x] `.dos-avatar___image`
+  - [x] `.dos-avatar___status`
+  - [x] `.dos-avatar--small`
+  - [x] `.dos-avatar--medium`
+  - [x] `.dos-avatar--large`
+  - [x] `.dos-avatar--square`
+  - [x] `.dos-avatar--rounded`
+  - [x] `.dos-avatar___status--online`
+  - [x] `.dos-avatar___status--offline`
+  - [x] `.dos-avatar___status--busy`
+  - [x] `.dos-avatar___status--away`
+- [x] Add ARIA attributes
+  - [x] `role="img"`
+  - [x] `aria-label` — user name
+- [x] Write unit tests
+  - [x] Test: generates initials from name
+  - [x] Test: displays image when provided
+  - [x] Test: shows status indicator
+  - [x] Test: applies size and shape
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] With initials
+  - [x] Different sizes
+  - [x] Status indicators
+  - [x] Code snippet displayed
 
 > **Accessibility:** Labeled as image with user name.
 > **Keyboard:** Not interactive
@@ -2410,17 +2419,17 @@
 **Types:** `src/components/Card/Card.types.ts`
 **Tests:** `tests/components/Card.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `CardProps`
-  - [ ] Prop: `header` (string | Element) — card header
-  - [ ] Prop: `content` (string | Element) — card body
-  - [ ] Prop: `footer` (Element) — card footer
-  - [ ] Prop: `bordered` (boolean) — show border
-  - [ ] Prop: `elevated` (boolean) — shadow effect
-  - [ ] Prop: `interactive` (boolean) — clickable card
-  - [ ] Prop: `selected` (boolean) — selected state
-  - [ ] Prop: `onClick` (function) — click handler
-- [ ] Implement DOS-style card container
+- [x] Create component directory structure
+- [x] Define TypeScript interface `CardProps`
+  - [x] Prop: `header` (string | Element) — card header
+  - [x] Prop: `content` (string | Element) — card body
+  - [x] Prop: `footer` (Element) — card footer
+  - [x] Prop: `bordered` (boolean) — show border
+  - [x] Prop: `elevated` (boolean) — shadow effect
+  - [x] Prop: `interactive` (boolean) — clickable card
+  - [x] Prop: `selected` (boolean) — selected state
+  - [x] Prop: `onClick` (function) — click handler
+- [x] Implement DOS-style card container
   ```
   ╔══════════════════════════╗
   ║ Card Header              ║
@@ -2432,34 +2441,34 @@
   ║ [Action] [Action]        ║
   ╚══════════════════════════╝
   ```
-- [ ] Implement sections: header, body, footer
-- [ ] Implement elevation (shadow using ░▒▓)
-- [ ] Add CSS styles with class `.dos-card`
-  - [ ] `.dos-card___header`
-  - [ ] `.dos-card___content`
-  - [ ] `.dos-card___footer`
-  - [ ] `.dos-card--bordered`
-  - [ ] `.dos-card--elevated`
-  - [ ] `.dos-card--interactive`
-  - [ ] `.dos-card--selected`
-- [ ] Add keyboard navigation
-  - [ ] `Enter` / `Space` — activate (if interactive)
-  - [ ] `Tab` — navigate to card actions
-- [ ] Add ARIA attributes
-  - [ ] `role="article"` — if standalone content
-  - [ ] `role="button"` — if interactive
-  - [ ] `aria-selected` — if selectable
-- [ ] Write unit tests
-  - [ ] Test: renders sections correctly
-  - [ ] Test: applies border/elevation
-  - [ ] Test: interactive mode works
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic card
-  - [ ] With all sections
-  - [ ] Interactive card
-  - [ ] Elevated card
-  - [ ] Code snippet displayed
+- [x] Implement sections: header, body, footer
+- [x] Implement elevation (shadow using ░▒▓)
+- [x] Add CSS styles with class `.dos-card`
+  - [x] `.dos-card___header`
+  - [x] `.dos-card___content`
+  - [x] `.dos-card___footer`
+  - [x] `.dos-card--bordered`
+  - [x] `.dos-card--elevated`
+  - [x] `.dos-card--interactive`
+  - [x] `.dos-card--selected`
+- [x] Add keyboard navigation
+  - [x] `Enter` / `Space` — activate (if interactive)
+  - [x] `Tab` — navigate to card actions
+- [x] Add ARIA attributes
+  - [x] `role="article"` — if standalone content
+  - [x] `role="button"` — if interactive
+  - [x] `aria-selected` — if selectable
+- [x] Write unit tests
+  - [x] Test: renders sections correctly
+  - [x] Test: applies border/elevation
+  - [x] Test: interactive mode works
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic card
+  - [x] With all sections
+  - [x] Interactive card
+  - [x] Elevated card
+  - [x] Code snippet displayed
 
 > **Accessibility:** Proper roles based on usage. Interactive cards keyboard accessible.
 > **Keyboard:** `Enter`/`Space` for interactive cards
@@ -2473,19 +2482,19 @@
 **Types:** `src/components/Timeline/Timeline.types.ts`
 **Tests:** `tests/components/Timeline.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `TimelineProps`
-  - [ ] Prop: `events` (TimelineEvent[]) — timeline events
-  - [ ] Prop: `orientation` ('vertical' | 'horizontal') — layout
-  - [ ] Prop: `alternating` (boolean) — alternate left/right (vertical)
-- [ ] Define TypeScript interface `TimelineEvent`
-  - [ ] Prop: `id` (string) — unique identifier
-  - [ ] Prop: `title` (string) — event title
-  - [ ] Prop: `description` (string) — event description
-  - [ ] Prop: `timestamp` (string | Date) — event time
-  - [ ] Prop: `icon` (string) — event icon
-  - [ ] Prop: `status` ('completed' | 'current' | 'upcoming') — event status
-- [ ] Implement DOS-style timeline
+- [x] Create component directory structure
+- [x] Define TypeScript interface `TimelineProps`
+  - [x] Prop: `events` (TimelineEvent[]) — timeline events
+  - [x] Prop: `orientation` ('vertical' | 'horizontal') — layout
+  - [x] Prop: `alternating` (boolean) — alternate left/right (vertical)
+- [x] Define TypeScript interface `TimelineEvent`
+  - [x] Prop: `id` (string) — unique identifier
+  - [x] Prop: `title` (string) — event title
+  - [x] Prop: `description` (string) — event description
+  - [x] Prop: `timestamp` (string | Date) — event time
+  - [x] Prop: `icon` (string) — event icon
+  - [x] Prop: `status` ('completed' | 'current' | 'upcoming') — event status
+- [x] Implement DOS-style timeline
   ```
   ●─────── 01/15/2026 ─────────
   │ Event Title
@@ -2498,36 +2507,36 @@
   ◌─────── 01/25/2026 ─────────
     Upcoming Event
   ```
-- [ ] Implement connecting lines
-- [ ] Implement status indicators: `●` complete, `○` current, `◌` upcoming
-- [ ] Add CSS styles with class `.dos-timeline`
-  - [ ] `.dos-timeline___event`
-  - [ ] `.dos-timeline___event--completed`
-  - [ ] `.dos-timeline___event--current`
-  - [ ] `.dos-timeline___event--upcoming`
-  - [ ] `.dos-timeline___marker`
-  - [ ] `.dos-timeline___connector`
-  - [ ] `.dos-timeline___content`
-  - [ ] `.dos-timeline___timestamp`
-  - [ ] `.dos-timeline___title`
-  - [ ] `.dos-timeline___description`
-  - [ ] `.dos-timeline--vertical`
-  - [ ] `.dos-timeline--horizontal`
-  - [ ] `.dos-timeline--alternating`
-- [ ] Add ARIA attributes
-  - [ ] `role="list"`
-  - [ ] `role="listitem"` — on events
-  - [ ] Time elements with proper datetime
-- [ ] Write unit tests
-  - [ ] Test: renders events correctly
-  - [ ] Test: displays timestamps
-  - [ ] Test: applies status styles
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Vertical timeline
-  - [ ] Alternating layout
-  - [ ] Different statuses
-  - [ ] Code snippet displayed
+- [x] Implement connecting lines
+- [x] Implement status indicators: `●` complete, `○` current, `◌` upcoming
+- [x] Add CSS styles with class `.dos-timeline`
+  - [x] `.dos-timeline___event`
+  - [x] `.dos-timeline___event--completed`
+  - [x] `.dos-timeline___event--current`
+  - [x] `.dos-timeline___event--upcoming`
+  - [x] `.dos-timeline___marker`
+  - [x] `.dos-timeline___connector`
+  - [x] `.dos-timeline___content`
+  - [x] `.dos-timeline___timestamp`
+  - [x] `.dos-timeline___title`
+  - [x] `.dos-timeline___description`
+  - [x] `.dos-timeline--vertical`
+  - [x] `.dos-timeline--horizontal`
+  - [x] `.dos-timeline--alternating`
+- [x] Add ARIA attributes
+  - [x] `role="list"`
+  - [x] `role="listitem"` — on events
+  - [x] Time elements with proper datetime
+- [x] Write unit tests
+  - [x] Test: renders events correctly
+  - [x] Test: displays timestamps
+  - [x] Test: applies status styles
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Vertical timeline
+  - [x] Alternating layout
+  - [x] Different statuses
+  - [x] Code snippet displayed
 
 > **Accessibility:** List semantics. Timestamps properly formatted.
 > **Keyboard:** Not interactive (unless events are links)
@@ -2541,14 +2550,14 @@
 **Types:** `src/components/EmptyState/EmptyState.types.ts`
 **Tests:** `tests/components/EmptyState.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `EmptyStateProps`
-  - [ ] Prop: `title` (string) — main message
-  - [ ] Prop: `description` (string) — secondary message
-  - [ ] Prop: `icon` (string) — illustration/icon
-  - [ ] Prop: `action` (Element) — action button
-  - [ ] Prop: `size` ('small' | 'medium' | 'large') — component size
-- [ ] Implement empty state placeholder
+- [x] Create component directory structure
+- [x] Define TypeScript interface `EmptyStateProps`
+  - [x] Prop: `title` (string) — main message
+  - [x] Prop: `description` (string) — secondary message
+  - [x] Prop: `icon` (string) — illustration/icon
+  - [x] Prop: `action` (Element) — action button
+  - [x] Prop: `size` ('small' | 'medium' | 'large') — component size
+- [x] Implement empty state placeholder
   ```
        _____
       |     |
@@ -2562,32 +2571,32 @@
 
       [ Browse Files ]
   ```
-- [ ] Implement DOS-style ASCII art illustrations
-  - [ ] Empty folder
-  - [ ] No search results
-  - [ ] Error state
-  - [ ] No data
-- [ ] Add CSS styles with class `.dos-empty-state`
-  - [ ] `.dos-empty-state___icon`
-  - [ ] `.dos-empty-state___title`
-  - [ ] `.dos-empty-state___description`
-  - [ ] `.dos-empty-state___action`
-  - [ ] `.dos-empty-state--small`
-  - [ ] `.dos-empty-state--medium`
-  - [ ] `.dos-empty-state--large`
-- [ ] Add ARIA attributes
-  - [ ] `role="status"` — if dynamically shown
-  - [ ] Action button accessible
-- [ ] Write unit tests
-  - [ ] Test: renders title and description
-  - [ ] Test: displays icon
-  - [ ] Test: renders action button
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] No results example
-  - [ ] Error state example
-  - [ ] With action button
-  - [ ] Code snippet displayed
+- [x] Implement DOS-style ASCII art illustrations
+  - [x] Empty folder
+  - [x] No search results
+  - [x] Error state
+  - [x] No data
+- [x] Add CSS styles with class `.dos-empty-state`
+  - [x] `.dos-empty-state___icon`
+  - [x] `.dos-empty-state___title`
+  - [x] `.dos-empty-state___description`
+  - [x] `.dos-empty-state___action`
+  - [x] `.dos-empty-state--small`
+  - [x] `.dos-empty-state--medium`
+  - [x] `.dos-empty-state--large`
+- [x] Add ARIA attributes
+  - [x] `role="status"` — if dynamically shown
+  - [x] Action button accessible
+- [x] Write unit tests
+  - [x] Test: renders title and description
+  - [x] Test: displays icon
+  - [x] Test: renders action button
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] No results example
+  - [x] Error state example
+  - [x] With action button
+  - [x] Code snippet displayed
 
 > **Accessibility:** Announced when appearing dynamically.
 > **Keyboard:** Action button focusable

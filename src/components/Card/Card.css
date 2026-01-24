@@ -1,0 +1,231 @@
+/**
+ * @file Card component styles
+ * @description DOS-style card container with header, content, and footer sections
+ */
+
+/* Base card container */
+.dos-card {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', 'Consolas', monospace);
+  font-size: var(--dos-font-size, 16px);
+  line-height: var(--dos-line-height, 1.4);
+  background-color: var(--dos-color-bg, #0000AA);
+  color: var(--dos-color-fg, #FFFFFF);
+  position: relative;
+}
+
+/* Bordered card using double-line box characters */
+.dos-card--bordered {
+  border: none;
+  padding: 0;
+}
+
+.dos-card--bordered::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid var(--dos-color-border, #AAAAAA);
+  pointer-events: none;
+}
+
+/* Elevated card with DOS-style shadow */
+.dos-card--elevated {
+  box-shadow: 
+    4px 4px 0 0 var(--dos-color-shadow-light, #555555),
+    6px 6px 0 0 var(--dos-color-shadow-dark, #000000);
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+
+/* Alternative ASCII shadow using pseudo-element */
+.dos-card--elevated::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 2px,
+    var(--dos-color-shadow-dark, #000000) 2px,
+    var(--dos-color-shadow-dark, #000000) 4px
+  );
+  z-index: -1;
+  opacity: 0.5;
+}
+
+/* Interactive card */
+.dos-card--interactive {
+  cursor: pointer;
+  transition: none;
+}
+
+.dos-card--interactive:hover {
+  background-color: var(--dos-color-highlight-bg, #0000CC);
+}
+
+.dos-card--interactive:focus {
+  outline: 2px solid var(--dos-color-focus, #FFFF55);
+  outline-offset: 2px;
+}
+
+.dos-card--interactive:focus-visible {
+  outline: 2px solid var(--dos-color-focus, #FFFF55);
+  outline-offset: 2px;
+}
+
+.dos-card--interactive:active {
+  background-color: var(--dos-color-active-bg, #000088);
+}
+
+/* Selected state */
+.dos-card--selected {
+  background-color: var(--dos-color-selected-bg, #5555FF);
+}
+
+.dos-card--selected::before {
+  border-color: var(--dos-color-selected-border, #FFFF55);
+  border-width: 3px;
+}
+
+/* Card header */
+.dos-card__header {
+  padding: var(--dos-spacing-sm, 8px) var(--dos-spacing-md, 16px);
+  border-bottom: 1px solid var(--dos-color-border, #AAAAAA);
+  font-weight: bold;
+  background-color: var(--dos-color-header-bg, transparent);
+}
+
+/* Header separator using box-drawing character */
+.dos-card--bordered .dos-card__header {
+  position: relative;
+}
+
+.dos-card--bordered .dos-card__header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--dos-color-border, #AAAAAA);
+}
+
+/* Card content/body */
+.dos-card__content {
+  padding: var(--dos-spacing-md, 16px);
+  flex: 1;
+}
+
+/* Card footer */
+.dos-card__footer {
+  padding: var(--dos-spacing-sm, 8px) var(--dos-spacing-md, 16px);
+  border-top: 1px solid var(--dos-color-border, #AAAAAA);
+  display: flex;
+  gap: var(--dos-spacing-sm, 8px);
+  justify-content: flex-end;
+}
+
+/* Footer separator */
+.dos-card--bordered .dos-card__footer {
+  position: relative;
+}
+
+.dos-card--bordered .dos-card__footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--dos-color-border, #AAAAAA);
+}
+
+/* Card without header - remove top border from content */
+.dos-card:not(:has(.dos-card__header)) .dos-card__content {
+  padding-top: var(--dos-spacing-md, 16px);
+}
+
+/* Card without footer - remove bottom border from content */
+.dos-card:not(:has(.dos-card__footer)) .dos-card__content {
+  padding-bottom: var(--dos-spacing-md, 16px);
+}
+
+/* DOS-style border using box-drawing characters (for decorated variant) */
+.dos-card--decorated {
+  padding: 8px;
+}
+
+.dos-card--decorated .dos-card__border-top {
+  display: flex;
+  justify-content: space-between;
+  color: var(--dos-color-border, #AAAAAA);
+}
+
+.dos-card--decorated .dos-card__border-top::before {
+  content: '╔';
+}
+
+.dos-card--decorated .dos-card__border-top::after {
+  content: '╗';
+}
+
+.dos-card--decorated .dos-card__border-top .dos-card__border-line {
+  flex: 1;
+  background: repeating-linear-gradient(
+    to right,
+    var(--dos-color-border, #AAAAAA) 0,
+    var(--dos-color-border, #AAAAAA) 8px,
+    transparent 8px,
+    transparent 9px
+  );
+}
+
+.dos-card--decorated .dos-card__border-bottom {
+  display: flex;
+  justify-content: space-between;
+  color: var(--dos-color-border, #AAAAAA);
+}
+
+.dos-card--decorated .dos-card__border-bottom::before {
+  content: '╚';
+}
+
+.dos-card--decorated .dos-card__border-bottom::after {
+  content: '╝';
+}
+
+/* Disabled state (for future use) */
+.dos-card--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .dos-card--bordered::before {
+    border-width: 3px;
+  }
+
+  .dos-card--interactive:focus {
+    outline-width: 3px;
+  }
+
+  .dos-card--selected::before {
+    border-width: 4px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .dos-card--interactive {
+    transition: none;
+  }
+}

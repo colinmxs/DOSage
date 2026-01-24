@@ -57,6 +57,17 @@ import {
   renderLoadingSpinnerPage,
   renderSkeletonLoaderPage,
 } from '../pages/feedback';
+import {
+  renderTablePage,
+  renderDataGridPage,
+  renderListBoxPage,
+  renderTreeViewPage,
+  renderBadgePage,
+  renderAvatarPage,
+  renderCardPage,
+  renderTimelinePage,
+  renderEmptyStatePage,
+} from '../pages/data-display';
 
 /** Page content element reference */
 let contentElement: HTMLElement | null = null;
@@ -121,6 +132,16 @@ const pages: Record<string, () => HTMLElement> = {
   stepper: renderStepperPage,
   tabs: () => createPlaceholderPage('Tabs', 'Tabbed interface component.'),
   breadcrumb: () => createPlaceholderPage('Breadcrumb', 'Navigation breadcrumb trail.'),
+  // Data Display (Phase 9)
+  table: renderTablePage,
+  'data-grid': renderDataGridPage,
+  listbox: renderListBoxPage,
+  'tree-view': renderTreeViewPage,
+  badge: renderBadgePage,
+  avatar: renderAvatarPage,
+  card: renderCardPage,
+  timeline: renderTimelinePage,
+  'empty-state': renderEmptyStatePage,
   // Themes
   themes: () => createPlaceholderPage('Theme Showcase', 'Preview all available themes.'),
 };

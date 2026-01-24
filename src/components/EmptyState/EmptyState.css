@@ -1,0 +1,148 @@
+/**
+ * @file EmptyState component styles
+ * @description DOS-style empty state placeholder with ASCII art icons
+ */
+
+/* Base empty state container */
+.dos-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', 'Consolas', monospace);
+  color: var(--dos-color-fg, #FFFFFF);
+  padding: var(--dos-spacing-lg, 24px);
+}
+
+/* Size variants */
+.dos-empty-state--small {
+  padding: var(--dos-spacing-md, 16px);
+}
+
+.dos-empty-state--small .dos-empty-state__icon {
+  font-size: 12px;
+  margin-bottom: var(--dos-spacing-sm, 8px);
+}
+
+.dos-empty-state--small .dos-empty-state__title {
+  font-size: 14px;
+}
+
+.dos-empty-state--small .dos-empty-state__description {
+  font-size: 12px;
+}
+
+.dos-empty-state--medium {
+  padding: var(--dos-spacing-lg, 24px);
+}
+
+.dos-empty-state--medium .dos-empty-state__icon {
+  font-size: 14px;
+  margin-bottom: var(--dos-spacing-md, 16px);
+}
+
+.dos-empty-state--medium .dos-empty-state__title {
+  font-size: 16px;
+}
+
+.dos-empty-state--medium .dos-empty-state__description {
+  font-size: 14px;
+}
+
+.dos-empty-state--large {
+  padding: var(--dos-spacing-xl, 32px);
+}
+
+.dos-empty-state--large .dos-empty-state__icon {
+  font-size: 16px;
+  margin-bottom: var(--dos-spacing-lg, 24px);
+}
+
+.dos-empty-state--large .dos-empty-state__title {
+  font-size: 20px;
+}
+
+.dos-empty-state--large .dos-empty-state__description {
+  font-size: 16px;
+}
+
+/* Icon/illustration area */
+.dos-empty-state__icon {
+  white-space: pre;
+  line-height: 1.2;
+  color: var(--dos-color-muted, #AAAAAA);
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', 'Consolas', monospace);
+}
+
+/* Title */
+.dos-empty-state__title {
+  font-weight: bold;
+  margin-bottom: var(--dos-spacing-sm, 8px);
+  color: var(--dos-color-fg, #FFFFFF);
+}
+
+/* Description */
+.dos-empty-state__description {
+  color: var(--dos-color-muted, #AAAAAA);
+  margin-bottom: var(--dos-spacing-md, 16px);
+  max-width: 400px;
+  line-height: 1.4;
+}
+
+/* Action area */
+.dos-empty-state__action {
+  margin-top: var(--dos-spacing-md, 16px);
+}
+
+/* Ensure action buttons are properly styled */
+.dos-empty-state__action > * {
+  display: inline-block;
+}
+
+/* Animation for dynamic empty states */
+@keyframes dos-empty-state-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dos-empty-state--dynamic {
+  animation: dos-empty-state-fade-in 0.3s ease-in;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .dos-empty-state__icon {
+    color: var(--dos-color-fg, #FFFFFF);
+  }
+
+  .dos-empty-state__description {
+    color: var(--dos-color-fg, #FFFFFF);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .dos-empty-state--dynamic {
+    animation: none;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .dos-empty-state {
+    padding: var(--dos-spacing-md, 16px);
+  }
+
+  .dos-empty-state__icon {
+    font-size: 12px !important;
+  }
+
+  .dos-empty-state__description {
+    max-width: 100%;
+  }
+}

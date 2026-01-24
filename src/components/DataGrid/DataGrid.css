@@ -1,0 +1,437 @@
+/**
+ * DataGrid Component Styles
+ *
+ * DOS-style enhanced data grid with editing, column resizing,
+ * and pagination support.
+ */
+
+/* Container */
+.dos-data-grid {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', monospace);
+  font-size: var(--dos-font-size, 16px);
+  background-color: var(--dos-color-bg, #0000AA);
+  color: var(--dos-color-fg, #FFFFFF);
+  width: 100%;
+}
+
+/* Table wrapper for horizontal scrolling */
+.dos-data-grid___table-wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+/* ============================================
+   Table Base Styles (inherit from Table)
+   ============================================ */
+
+.dos-data-grid___table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* Header */
+.dos-data-grid___header {
+  background-color: var(--dos-color-bg-secondary, #000088);
+}
+
+.dos-data-grid___header-row {
+  border-bottom: 1px solid var(--dos-color-border, #AAAAAA);
+}
+
+.dos-data-grid___header-cell {
+  position: relative;
+  padding: 4px 8px;
+  text-align: left;
+  font-weight: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+  border-right: 1px solid var(--dos-color-border, #AAAAAA);
+  vertical-align: middle;
+}
+
+.dos-data-grid___header-cell:last-child {
+  border-right: none;
+}
+
+.dos-data-grid___header-cell--sortable {
+  cursor: pointer;
+}
+
+.dos-data-grid___header-cell--sortable:hover {
+  background-color: var(--dos-color-highlight, #0000CC);
+}
+
+.dos-data-grid___header-cell--sortable:focus {
+  outline: 2px solid var(--dos-color-focus, #FFFF55);
+  outline-offset: -2px;
+}
+
+.dos-data-grid___header-cell--reorderable {
+  cursor: grab;
+}
+
+.dos-data-grid___header-cell--reorderable:active {
+  cursor: grabbing;
+}
+
+.dos-data-grid___header-cell--dragging {
+  opacity: 0.5;
+  background-color: var(--dos-color-highlight, #0000CC);
+}
+
+.dos-data-grid___header-cell--drag-over {
+  border-left: 3px solid var(--dos-color-focus, #FFFF55);
+}
+
+/* Header content wrapper */
+.dos-data-grid___header-content {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 20px;
+}
+
+/* Sort indicator */
+.dos-data-grid___sort-indicator {
+  margin-left: auto;
+  opacity: 0.7;
+}
+
+.dos-data-grid___sort-indicator--active {
+  opacity: 1;
+  color: var(--dos-color-focus, #FFFF55);
+}
+
+/* ============================================
+   Column Resizing
+   ============================================ */
+
+.dos-data-grid___resize-handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 100%;
+  cursor: col-resize;
+  background: transparent;
+  z-index: 1;
+}
+
+.dos-data-grid___resize-handle:hover,
+.dos-data-grid___resize-handle--active {
+  background-color: var(--dos-color-focus, #FFFF55);
+  opacity: 0.5;
+}
+
+.dos-data-grid___resize-handle::before {
+  content: '│';
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--dos-color-border, #AAAAAA);
+  font-size: 12px;
+}
+
+/* ============================================
+   Body Styles
+   ============================================ */
+
+.dos-data-grid___body {
+  background-color: var(--dos-color-bg, #0000AA);
+}
+
+.dos-data-grid___row {
+  border-bottom: 1px solid var(--dos-color-border-subtle, #000066);
+  cursor: default;
+}
+
+.dos-data-grid___row:hover {
+  background-color: var(--dos-color-bg-hover, #000099);
+}
+
+.dos-data-grid___row:focus {
+  outline: 2px solid var(--dos-color-focus, #FFFF55);
+  outline-offset: -2px;
+}
+
+.dos-data-grid___row--selected {
+  background-color: var(--dos-color-selection, #0000CC);
+}
+
+.dos-data-grid___row--selected:hover {
+  background-color: var(--dos-color-selection-hover, #0000DD);
+}
+
+.dos-data-grid___row--striped:nth-child(even) {
+  background-color: var(--dos-color-bg-alt, #000077);
+}
+
+.dos-data-grid___row--striped.dos-data-grid___row--selected:nth-child(even) {
+  background-color: var(--dos-color-selection, #0000CC);
+}
+
+/* Cells */
+.dos-data-grid___cell {
+  padding: 4px 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-right: 1px solid var(--dos-color-border-subtle, #000066);
+  vertical-align: middle;
+}
+
+.dos-data-grid___cell:last-child {
+  border-right: none;
+}
+
+.dos-data-grid___cell--align-left {
+  text-align: left;
+}
+
+.dos-data-grid___cell--align-center {
+  text-align: center;
+}
+
+.dos-data-grid___cell--align-right {
+  text-align: right;
+}
+
+/* Editable cells */
+.dos-data-grid___cell--editable {
+  cursor: text;
+}
+
+.dos-data-grid___cell--editable:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Editing state */
+.dos-data-grid___cell--editing {
+  padding: 0;
+  background-color: var(--dos-color-bg-input, #000000);
+}
+
+.dos-data-grid___cell-editor {
+  width: 100%;
+  height: 100%;
+  padding: 4px 8px;
+  border: none;
+  outline: 2px solid var(--dos-color-focus, #FFFF55);
+  outline-offset: -2px;
+  background-color: var(--dos-color-bg-input, #000000);
+  color: var(--dos-color-fg, #FFFFFF);
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.dos-data-grid___cell-editor:focus {
+  outline: 2px solid var(--dos-color-focus, #FFFF55);
+  outline-offset: -2px;
+}
+
+.dos-data-grid___cell-editor--invalid {
+  outline-color: var(--dos-color-error, #FF5555);
+}
+
+/* Select editor */
+.dos-data-grid___cell-editor--select {
+  cursor: pointer;
+}
+
+/* ============================================
+   Selection Column
+   ============================================ */
+
+.dos-data-grid___checkbox-cell {
+  width: 32px;
+  text-align: center;
+}
+
+.dos-data-grid___checkbox {
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.dos-data-grid___checkbox:focus {
+  outline: 1px solid var(--dos-color-focus, #FFFF55);
+}
+
+/* ============================================
+   Empty State
+   ============================================ */
+
+.dos-data-grid___empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--dos-color-secondary, #AAAAAA);
+  font-style: italic;
+}
+
+/* ============================================
+   Pagination Footer
+   ============================================ */
+
+.dos-data-grid___footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  border-top: 1px solid var(--dos-color-border, #AAAAAA);
+  background-color: var(--dos-color-bg-secondary, #000088);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dos-data-grid___page-info {
+  color: var(--dos-color-secondary, #AAAAAA);
+  font-size: 14px;
+}
+
+.dos-data-grid___page-size {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dos-data-grid___page-size-label {
+  color: var(--dos-color-secondary, #AAAAAA);
+  font-size: 14px;
+}
+
+.dos-data-grid___page-size-select {
+  padding: 2px 4px;
+  background-color: var(--dos-color-bg, #0000AA);
+  color: var(--dos-color-fg, #FFFFFF);
+  border: 1px solid var(--dos-color-border, #AAAAAA);
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.dos-data-grid___page-size-select:focus {
+  outline: 2px solid var(--dos-color-focus, #FFFF55);
+  outline-offset: -2px;
+}
+
+.dos-data-grid___pagination {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dos-data-grid___page-btn {
+  padding: 2px 6px;
+  background-color: var(--dos-color-bg, #0000AA);
+  color: var(--dos-color-fg, #FFFFFF);
+  border: 1px solid var(--dos-color-border, #AAAAAA);
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  min-width: 24px;
+}
+
+.dos-data-grid___page-btn:hover:not(:disabled) {
+  background-color: var(--dos-color-highlight, #0000CC);
+}
+
+.dos-data-grid___page-btn:focus {
+  outline: 2px solid var(--dos-color-focus, #FFFF55);
+  outline-offset: -2px;
+}
+
+.dos-data-grid___page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dos-data-grid___page-btn--current {
+  background-color: var(--dos-color-selection, #0000CC);
+  font-weight: bold;
+}
+
+.dos-data-grid___page-ellipsis {
+  padding: 2px 4px;
+  color: var(--dos-color-secondary, #AAAAAA);
+}
+
+/* ============================================
+   Bordered Variant
+   ============================================ */
+
+.dos-data-grid--bordered .dos-data-grid___table {
+  border: 1px solid var(--dos-color-border, #AAAAAA);
+}
+
+.dos-data-grid--bordered .dos-data-grid___cell {
+  border-right: 1px solid var(--dos-color-border, #AAAAAA);
+}
+
+.dos-data-grid--bordered .dos-data-grid___row {
+  border-bottom: 1px solid var(--dos-color-border, #AAAAAA);
+}
+
+/* ============================================
+   Sticky Header
+   ============================================ */
+
+.dos-data-grid--sticky-header .dos-data-grid___table-wrapper {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.dos-data-grid--sticky-header .dos-data-grid___header-cell {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: var(--dos-color-bg-secondary, #000088);
+}
+
+/* ============================================
+   Focus Styles
+   ============================================ */
+
+.dos-data-grid:focus-within {
+  outline: none;
+}
+
+/* ============================================
+   Validation Error Tooltip
+   ============================================ */
+
+.dos-data-grid___error-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  padding: 4px 8px;
+  background-color: var(--dos-color-error-bg, #550000);
+  color: var(--dos-color-error, #FF5555);
+  border: 1px solid var(--dos-color-error, #FF5555);
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 600px) {
+  .dos-data-grid___footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .dos-data-grid___pagination {
+    justify-content: center;
+  }
+  
+  .dos-data-grid___page-size {
+    justify-content: center;
+  }
+}

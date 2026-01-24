@@ -1,0 +1,209 @@
+/**
+ * ListBox Component Styles
+ *
+ * DOS-style selectable list with keyboard navigation.
+ */
+
+/* Container */
+.dos-listbox {
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', monospace);
+  font-size: var(--dos-font-size, 16px);
+  background-color: var(--dos-color-bg, #0000AA);
+  color: var(--dos-color-fg, #FFFFFF);
+  overflow-y: auto;
+  outline: none;
+}
+
+.dos-listbox:focus {
+  outline: 2px solid var(--dos-color-focus, #FFFF55);
+  outline-offset: -2px;
+}
+
+/* Bordered variant */
+.dos-listbox--bordered {
+  border: 1px solid var(--dos-color-border, #AAAAAA);
+}
+
+/* List */
+.dos-listbox___list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Item */
+.dos-listbox___item {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  cursor: default;
+  user-select: none;
+  outline: none;
+  min-height: 24px;
+}
+
+.dos-listbox___item:hover:not(.dos-listbox___item--disabled) {
+  background-color: var(--dos-color-bg-hover, #000099);
+}
+
+.dos-listbox___item:focus {
+  outline: none;
+  background-color: var(--dos-color-bg-focus, #0000BB);
+}
+
+.dos-listbox___item--selected {
+  background-color: var(--dos-color-selection, #0000CC);
+}
+
+.dos-listbox___item--selected:hover {
+  background-color: var(--dos-color-selection-hover, #0000DD);
+}
+
+.dos-listbox___item--selected:focus {
+  background-color: var(--dos-color-selection, #0000CC);
+  outline: 1px solid var(--dos-color-focus, #FFFF55);
+  outline-offset: -1px;
+}
+
+.dos-listbox___item--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Dividers */
+.dos-listbox--dividers .dos-listbox___item {
+  border-bottom: 1px solid var(--dos-color-border-subtle, #000066);
+}
+
+.dos-listbox--dividers .dos-listbox___item:last-child {
+  border-bottom: none;
+}
+
+/* Selection indicator (checkbox style) */
+.dos-listbox___indicator {
+  flex-shrink: 0;
+  margin-right: 8px;
+  font-family: inherit;
+  width: 20px;
+  text-align: center;
+}
+
+/* Icon */
+.dos-listbox___icon {
+  flex-shrink: 0;
+  margin-right: 8px;
+  color: var(--dos-color-secondary, #AAAAAA);
+}
+
+.dos-listbox___item--selected .dos-listbox___icon {
+  color: var(--dos-color-fg, #FFFFFF);
+}
+
+/* Content wrapper */
+.dos-listbox___content {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Primary text */
+.dos-listbox___primary {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Secondary text */
+.dos-listbox___secondary {
+  font-size: 0.875em;
+  color: var(--dos-color-secondary, #AAAAAA);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+.dos-listbox___item--selected .dos-listbox___secondary {
+  color: var(--dos-color-fg-secondary, #CCCCCC);
+}
+
+/* Trailing content */
+.dos-listbox___trailing {
+  flex-shrink: 0;
+  margin-left: 8px;
+  color: var(--dos-color-secondary, #AAAAAA);
+}
+
+.dos-listbox___item--selected .dos-listbox___trailing {
+  color: var(--dos-color-fg, #FFFFFF);
+}
+
+/* Empty state */
+.dos-listbox___empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--dos-color-secondary, #AAAAAA);
+  font-style: italic;
+}
+
+/* Max height with scroll */
+.dos-listbox--scrollable {
+  overflow-y: auto;
+}
+
+/* Keyboard focus indicator */
+.dos-listbox___item--focused {
+  position: relative;
+}
+
+.dos-listbox___item--focused::before {
+  content: '►';
+  position: absolute;
+  left: 2px;
+  color: var(--dos-color-focus, #FFFF55);
+}
+
+/* Multi-select styling */
+.dos-listbox--multiselect .dos-listbox___indicator::before {
+  content: '[ ]';
+}
+
+.dos-listbox--multiselect .dos-listbox___item--selected .dos-listbox___indicator::before {
+  content: '[X]';
+}
+
+/* Single select styling */
+.dos-listbox--selectable:not(.dos-listbox--multiselect) .dos-listbox___indicator::before {
+  content: '( )';
+}
+
+.dos-listbox--selectable:not(.dos-listbox--multiselect) .dos-listbox___item--selected .dos-listbox___indicator::before {
+  content: '(•)';
+}
+
+/* Dense mode for compact lists */
+.dos-listbox--dense .dos-listbox___item {
+  padding: 2px 8px;
+  min-height: 20px;
+}
+
+.dos-listbox--dense .dos-listbox___secondary {
+  display: none;
+}
+
+/* Interactive (clickable) items */
+.dos-listbox--interactive .dos-listbox___item:not(.dos-listbox___item--disabled) {
+  cursor: pointer;
+}
+
+/* Virtualized list support placeholder */
+.dos-listbox--virtual {
+  position: relative;
+}
+
+.dos-listbox--virtual .dos-listbox___list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}

@@ -69,10 +69,15 @@ export * from './LoadingSpinner';
 export * from './SkeletonLoader';
 
 // Data Display Components (Phase 9)
-// export * from './Table';
-// export * from './Card';
-// export * from './Badge';
-// export * from './Avatar';
+export * from './Table';
+export * from './DataGrid';
+export * from './ListBox';
+export * from './TreeView';
+export * from './Badge';
+export * from './Avatar';
+export * from './Card';
+export * from './Timeline';
+export * from './EmptyState';
 
 // Overlay Components (Phase 10)
 // export * from './Window';

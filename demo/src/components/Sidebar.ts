@@ -92,6 +92,20 @@ const NAV_ITEMS = [
     ],
   },
   {
+    category: 'Data Display',
+    items: [
+      { id: 'table', label: 'Table' },
+      { id: 'data-grid', label: 'DataGrid' },
+      { id: 'listbox', label: 'ListBox' },
+      { id: 'tree-view', label: 'TreeView' },
+      { id: 'badge', label: 'Badge' },
+      { id: 'avatar', label: 'Avatar' },
+      { id: 'card', label: 'Card' },
+      { id: 'timeline', label: 'Timeline' },
+      { id: 'empty-state', label: 'EmptyState' },
+    ],
+  },
+  {
     category: 'Themes',
     items: [{ id: 'themes', label: 'Theme Showcase' }],
   },

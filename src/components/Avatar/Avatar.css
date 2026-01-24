@@ -1,0 +1,194 @@
+/**
+ * Avatar Component Styles
+ *
+ * DOS-style ASCII avatar with box-drawing characters
+ */
+
+/* Base avatar styles */
+.dos-avatar {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', monospace);
+  color: var(--dos-color-fg, #AAAAAA);
+  position: relative;
+  vertical-align: middle;
+}
+
+/* ASCII border - creates the box around initials */
+.dos-avatar___box {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: var(--dos-color-bg, #000000);
+  border: 1px solid var(--dos-color-border, #AAAAAA);
+}
+
+/* Top border row */
+.dos-avatar___border-top {
+  display: flex;
+  justify-content: center;
+  line-height: 1;
+  color: var(--dos-color-border, #AAAAAA);
+}
+
+/* Content row with side borders */
+.dos-avatar___content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+}
+
+/* Bottom border row */
+.dos-avatar___border-bottom {
+  display: flex;
+  justify-content: center;
+  line-height: 1;
+  color: var(--dos-color-border, #AAAAAA);
+}
+
+/* Initials text */
+.dos-avatar___initials {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--dos-color-fg-bright, #FFFFFF);
+  text-align: center;
+}
+
+/* Image (rare in DOS aesthetic but supported) */
+.dos-avatar___image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  image-rendering: pixelated;
+}
+
+/* Status indicator */
+.dos-avatar___status {
+  position: absolute;
+  font-size: 8px;
+  line-height: 1;
+}
+
+/* Size variants */
+
+/* Small: 3x3 character box */
+.dos-avatar--small {
+  font-size: var(--dos-font-size-xs, 12px);
+}
+
+.dos-avatar--small .dos-avatar___box {
+  min-width: 2.5em;
+  min-height: 1.5em;
+  padding: 0.1em 0.2em;
+}
+
+.dos-avatar--small .dos-avatar___initials {
+  font-size: 1em;
+}
+
+.dos-avatar--small .dos-avatar___status {
+  bottom: -4px;
+  right: -4px;
+}
+
+/* Medium: 5x3 character box */
+.dos-avatar--medium {
+  font-size: var(--dos-font-size-sm, 14px);
+}
+
+.dos-avatar--medium .dos-avatar___box {
+  min-width: 3em;
+  min-height: 2em;
+  padding: 0.2em 0.4em;
+}
+
+.dos-avatar--medium .dos-avatar___initials {
+  font-size: 1.1em;
+}
+
+.dos-avatar--medium .dos-avatar___status {
+  bottom: -4px;
+  right: -4px;
+}
+
+/* Large: 7x5 character box */
+.dos-avatar--large {
+  font-size: var(--dos-font-size-base, 16px);
+}
+
+.dos-avatar--large .dos-avatar___box {
+  min-width: 4em;
+  min-height: 2.5em;
+  padding: 0.3em 0.6em;
+}
+
+.dos-avatar--large .dos-avatar___initials {
+  font-size: 1.3em;
+}
+
+.dos-avatar--large .dos-avatar___status {
+  bottom: -5px;
+  right: -5px;
+}
+
+/* Status indicator colors */
+.dos-avatar___status--online {
+  color: var(--dos-color-success, #55FF55);
+}
+
+.dos-avatar___status--online::before {
+  content: '●';
+}
+
+.dos-avatar___status--offline {
+  color: var(--dos-color-fg-dim, #555555);
+}
+
+.dos-avatar___status--offline::before {
+  content: '○';
+}
+
+.dos-avatar___status--busy {
+  color: var(--dos-color-error, #FF5555);
+}
+
+.dos-avatar___status--busy::before {
+  content: '●';
+}
+
+.dos-avatar___status--away {
+  color: var(--dos-color-warning, #FFFF55);
+}
+
+.dos-avatar___status--away::before {
+  content: '◐';
+}
+
+/* Avatar group styles */
+.dos-avatar-group {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dos-avatar-group .dos-avatar {
+  margin-right: -0.5em;
+}
+
+.dos-avatar-group .dos-avatar:last-child {
+  margin-right: 0;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .dos-avatar___box {
+    border-width: 2px;
+  }
+
+  .dos-avatar___initials {
+    font-weight: bold;
+  }
+}

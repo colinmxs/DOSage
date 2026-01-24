@@ -1,0 +1,129 @@
+/**
+ * Badge Component Styles
+ *
+ * DOS-style badge/tag with brackets notation: [LABEL]
+ */
+
+/* Base badge styles */
+.dos-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dos-spacing-xs, 4px);
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', monospace);
+  font-size: var(--dos-font-size-sm, 14px);
+  line-height: 1;
+  white-space: nowrap;
+  vertical-align: middle;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+/* Badge content wrapper */
+.dos-badge___content {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dos-spacing-xs, 4px);
+}
+
+/* Label text */
+.dos-badge___label {
+  display: inline;
+}
+
+/* Icon */
+.dos-badge___icon {
+  display: inline;
+}
+
+/* Remove button */
+.dos-badge___remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  padding: 0;
+  margin-left: var(--dos-spacing-xs, 4px);
+  opacity: 0.7;
+  transition: opacity 0.1s ease;
+}
+
+.dos-badge___remove:hover {
+  opacity: 1;
+}
+
+.dos-badge___remove:focus {
+  outline: 1px solid currentColor;
+  outline-offset: 1px;
+  opacity: 1;
+}
+
+.dos-badge___remove:focus-visible {
+  outline: 2px solid var(--dos-color-focus, #5555FF);
+}
+
+/* Size variants */
+.dos-badge--small {
+  font-size: var(--dos-font-size-xs, 12px);
+}
+
+.dos-badge--medium {
+  font-size: var(--dos-font-size-sm, 14px);
+}
+
+/* Color variants */
+
+/* Default - gray on transparent */
+.dos-badge--default {
+  color: var(--dos-color-fg, #AAAAAA);
+}
+
+/* Primary - bright blue */
+.dos-badge--primary {
+  color: var(--dos-color-primary, #5555FF);
+}
+
+/* Success - bright green */
+.dos-badge--success {
+  color: var(--dos-color-success, #55FF55);
+}
+
+/* Warning - yellow */
+.dos-badge--warning {
+  color: var(--dos-color-warning, #FFFF55);
+}
+
+/* Error - bright red */
+.dos-badge--error {
+  color: var(--dos-color-error, #FF5555);
+}
+
+/* Info - cyan */
+.dos-badge--info {
+  color: var(--dos-color-info, #55FFFF);
+}
+
+/* Removable variant */
+.dos-badge--removable .dos-badge___remove {
+  display: inline-flex;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .dos-badge {
+    border: 1px solid currentColor;
+    padding: 2px 4px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .dos-badge___remove {
+    transition: none;
+  }
+}
