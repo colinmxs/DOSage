@@ -1,0 +1,208 @@
+/**
+ * Stepper / Wizard Component Styles
+ *
+ * DOS-style step progress indicator with box-drawing characters.
+ * Supports horizontal and vertical orientations.
+ */
+
+/* Base stepper container */
+.dos-stepper {
+  display: flex;
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', monospace);
+  font-size: var(--dos-font-size-base, 16px);
+  color: var(--dos-color-text, #AAAAAA);
+}
+
+/* Horizontal orientation (default) */
+.dos-stepper--horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0;
+}
+
+/* Vertical orientation */
+.dos-stepper--vertical {
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Individual step wrapper */
+.dos-stepper___step {
+  display: flex;
+  position: relative;
+}
+
+/* Horizontal step layout */
+.dos-stepper--horizontal .dos-stepper___step {
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+/* Vertical step layout */
+.dos-stepper--vertical .dos-stepper___step {
+  flex-direction: row;
+  align-items: flex-start;
+  min-height: 60px;
+}
+
+/* Step indicator (the numbered/icon circle) */
+.dos-stepper___step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--dos-color-border, #555555);
+  background-color: var(--dos-color-bg, #0000AA);
+  color: var(--dos-color-text, #AAAAAA);
+  font-weight: bold;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+/* Step indicator button (when clickable) */
+button.dos-stepper___step-indicator {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+button.dos-stepper___step-indicator:hover:not(:disabled) {
+  border-color: var(--dos-color-primary, #5555FF);
+  background-color: var(--dos-color-bg-hover, #000088);
+}
+
+button.dos-stepper___step-indicator:focus {
+  outline: none;
+  border-color: var(--dos-color-focus, #FFFF55);
+  box-shadow: 0 0 0 2px var(--dos-color-focus, #FFFF55);
+}
+
+button.dos-stepper___step-indicator:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Current step indicator */
+.dos-stepper___step--current .dos-stepper___step-indicator {
+  border-color: var(--dos-color-primary, #5555FF);
+  background-color: var(--dos-color-primary, #5555FF);
+  color: var(--dos-color-bg, #000000);
+}
+
+/* Completed step indicator */
+.dos-stepper___step--completed .dos-stepper___step-indicator {
+  border-color: var(--dos-color-success, #55FF55);
+  background-color: var(--dos-color-success, #55FF55);
+  color: var(--dos-color-bg, #000000);
+}
+
+/* Error step indicator */
+.dos-stepper___step--error .dos-stepper___step-indicator {
+  border-color: var(--dos-color-error, #FF5555);
+  background-color: var(--dos-color-error, #FF5555);
+  color: var(--dos-color-bg, #000000);
+}
+
+/* Disabled step indicator */
+.dos-stepper___step--disabled .dos-stepper___step-indicator {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Step content (label and description) */
+.dos-stepper___step-content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* Horizontal step content */
+.dos-stepper--horizontal .dos-stepper___step-content {
+  margin-top: var(--dos-space-sm, 8px);
+  text-align: center;
+}
+
+/* Vertical step content */
+.dos-stepper--vertical .dos-stepper___step-content {
+  margin-left: var(--dos-space-md, 12px);
+  text-align: left;
+  padding-bottom: var(--dos-space-md, 12px);
+}
+
+/* Step label */
+.dos-stepper___step-label {
+  font-size: var(--dos-font-size-base, 16px);
+  color: var(--dos-color-text, #AAAAAA);
+  white-space: nowrap;
+}
+
+.dos-stepper___step--current .dos-stepper___step-label {
+  color: var(--dos-color-text-bright, #FFFFFF);
+  font-weight: bold;
+}
+
+.dos-stepper___step--completed .dos-stepper___step-label {
+  color: var(--dos-color-success, #55FF55);
+}
+
+.dos-stepper___step--error .dos-stepper___step-label {
+  color: var(--dos-color-error, #FF5555);
+}
+
+.dos-stepper___step--disabled .dos-stepper___step-label {
+  opacity: 0.5;
+}
+
+/* Step description */
+.dos-stepper___step-description {
+  font-size: var(--dos-font-size-sm, 14px);
+  color: var(--dos-color-text-muted, #888888);
+  margin-top: var(--dos-space-xs, 4px);
+}
+
+.dos-stepper___step--disabled .dos-stepper___step-description {
+  opacity: 0.5;
+}
+
+/* Connector line between steps */
+.dos-stepper___connector {
+  background-color: var(--dos-color-border, #555555);
+  flex-grow: 1;
+}
+
+/* Horizontal connector */
+.dos-stepper--horizontal .dos-stepper___connector {
+  position: absolute;
+  height: 2px;
+  top: 14px; /* Center with indicator */
+  left: calc(50% + 14px);
+  right: calc(-50% + 14px);
+}
+
+/* Vertical connector */
+.dos-stepper--vertical .dos-stepper___connector {
+  position: absolute;
+  width: 2px;
+  top: 28px; /* Below indicator */
+  bottom: 0;
+  left: 14px; /* Center with indicator */
+}
+
+/* Last step has no connector */
+.dos-stepper___step:last-child .dos-stepper___connector {
+  display: none;
+}
+
+/* Completed connector */
+.dos-stepper___step--completed .dos-stepper___connector {
+  background-color: var(--dos-color-success, #55FF55);
+}
+
+/* Error connector */
+.dos-stepper___step--error .dos-stepper___connector {
+  background-color: var(--dos-color-error, #FF5555);
+}

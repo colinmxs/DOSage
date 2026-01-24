@@ -1029,50 +1029,103 @@
 ### 7.1 MenuBar
 
 **File:** `src/components/MenuBar/MenuBar.ts`
-**Styles:** `src/components/MenuBar/MenuBar.styles.css`
+**Styles:** `src/components/MenuBar/MenuBar.css`
 **Types:** `src/components/MenuBar/MenuBar.types.ts`
 **Tests:** `tests/components/MenuBar.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `MenuBarProps`
-  - [ ] Prop: `items` (MenuBarItem[]) — menu items
-  - [ ] Prop: `onSelect` (function) — item selection handler
-- [ ] Define TypeScript interface `MenuBarItem`
-  - [ ] Prop: `label` (string) — menu label (e.g., 'File')
-  - [ ] Prop: `accessKey` (string) — Alt+key shortcut (e.g., 'F')
-  - [ ] Prop: `items` (MenuItem[]) — dropdown items
-  - [ ] Prop: `disabled` (boolean) — menu disabled
-- [ ] Implement classic DOS horizontal menu bar
-  - [ ] Display: `File  Edit  View  Options  Help`
-  - [ ] Underline access key character
-- [ ] Implement dropdown trigger on click or hover
-- [ ] Implement Alt+key shortcuts
-- [ ] Implement states: default, hover, active/open, disabled
-- [ ] Add CSS styles with class `.dos-menu-bar`
-  - [ ] `.dos-menu-bar___item`
-  - [ ] `.dos-menu-bar___item--active`
-  - [ ] `.dos-menu-bar___item--disabled`
-  - [ ] `.dos-menu-bar___accesskey`
-- [ ] Add keyboard navigation
-  - [ ] `Alt` + letter — open corresponding menu
-  - [ ] `Arrow Left/Right` — navigate between menus
-  - [ ] `Arrow Down` / `Enter` — open dropdown
-  - [ ] `Escape` — close menu
-- [ ] Add ARIA attributes
-  - [ ] `role="menubar"`
-  - [ ] `role="menuitem"` — on each top item
-  - [ ] `aria-haspopup="menu"`
-  - [ ] `aria-expanded`
-- [ ] Write unit tests
-  - [ ] Test: renders menu items
-  - [ ] Test: opens dropdown on click
-  - [ ] Test: Alt+key shortcuts work
-  - [ ] Test: arrow key navigation works
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Classic DOS menu example
-  - [ ] With dropdowns
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `MenuBarProps`
+  - [x] Prop: `items` (MenuBarItem[]) — menu items
+  - [x] Prop: `onSelect` (function) — item selection handler
+  - [x] Prop: `onMenuOpen` (function) — menu open handler
+  - [x] Prop: `onMenuClose` (function) — menu close handler
+- [x] Define TypeScript interface `MenuBarItem`
+  - [x] Prop: `label` (string) — menu label (e.g., 'File')
+  - [x] Prop: `accessKey` (string) — Alt+key shortcut (e.g., 'F')
+  - [x] Prop: `items` (MenuItem[]) — dropdown items
+  - [x] Prop: `disabled` (boolean) — menu disabled
+- [x] Define TypeScript interface `MenuItem`
+  - [x] Prop: `label` (string) — item label
+  - [x] Prop: `icon` (string) — optional icon/character
+  - [x] Prop: `shortcut` (string) — keyboard shortcut display
+  - [x] Prop: `disabled` (boolean) — item disabled
+  - [x] Prop: `divider` (boolean) — render as divider
+  - [x] Prop: `children` (MenuItem[]) — nested submenu
+  - [x] Prop: `action` (function) — item action
+- [x] Implement classic DOS horizontal menu bar
+  - [x] Display: `File  Edit  View  Options  Help`
+  - [x] Underline access key character
+- [x] Implement dropdown trigger on click
+- [x] Implement menu switching on hover (when menu open)
+- [x] Implement Alt+key shortcuts
+- [x] Implement states: default, hover, active/open, disabled
+- [x] Add CSS styles with class `.dos-menu-bar`
+  - [x] `.dos-menu-bar__list`
+  - [x] `.dos-menu-bar__item`
+  - [x] `.dos-menu-bar__item--active`
+  - [x] `.dos-menu-bar__trigger`
+  - [x] `.dos-menu-bar__trigger--disabled`
+  - [x] `.dos-menu-bar__accesskey`
+  - [x] `.dos-menu-bar__dropdown`
+  - [x] `.dos-menu-bar__dropdown--open`
+  - [x] `.dos-menu-bar__dropdown-item`
+  - [x] `.dos-menu-bar__dropdown-trigger`
+  - [x] `.dos-menu-bar__dropdown-trigger--highlighted`
+  - [x] `.dos-menu-bar__divider`
+  - [x] `.dos-menu-bar__icon`
+  - [x] `.dos-menu-bar__shortcut`
+  - [x] `.dos-menu-bar__submenu-arrow`
+  - [x] `.dos-menu-bar__submenu`
+- [x] Add keyboard navigation
+  - [x] `Alt` + letter — open corresponding menu
+  - [x] `Arrow Left/Right` — navigate between menus
+  - [x] `Arrow Up/Down` — navigate dropdown items
+  - [x] `Arrow Down` / `Enter` / `Space` — open dropdown
+  - [x] `Enter` — activate item
+  - [x] `Escape` — close menu
+  - [x] `Home/End` — jump to first/last item
+  - [x] Type-ahead — jump to matching item
+- [x] Add ARIA attributes
+  - [x] `role="menubar"`
+  - [x] `role="menuitem"` — on each top item
+  - [x] `role="menu"` — on dropdowns
+  - [x] `aria-haspopup="menu"`
+  - [x] `aria-expanded`
+  - [x] `aria-disabled`
+  - [x] `tabindex` management for roving tabindex
+- [x] Implement public API methods
+  - [x] `openMenu(label)` — programmatically open menu
+  - [x] `closeMenu()` — close current menu
+  - [x] `getOpenMenu()` — get currently open menu
+  - [x] `setItems(items)` — update menu items
+  - [x] `setMenuDisabled(label, disabled)` — enable/disable menu
+  - [x] `setItemDisabled(path, disabled)` — enable/disable item
+  - [x] `destroy()` — clean up event listeners
+- [x] Write unit tests (50 tests)
+  - [x] Test: renders menu items
+  - [x] Test: opens dropdown on click
+  - [x] Test: closes dropdown on second click
+  - [x] Test: switches menu on hover when open
+  - [x] Test: closes on outside click
+  - [x] Test: closes on Escape
+  - [x] Test: Alt+key shortcuts work
+  - [x] Test: arrow key navigation works
+  - [x] Test: renders items with icons, shortcuts
+  - [x] Test: renders dividers
+  - [x] Test: disabled items not selectable
+  - [x] Test: submenus open on hover
+  - [x] Test: public API methods work
+  - [x] Test: callbacks are invoked
+  - [x] Test: has correct ARIA attributes
+- [x] Add to Kitchen Sink demo
+  - [x] Classic DOS menu example
+  - [x] With dropdowns and submenus
+  - [x] With icons and shortcuts
+  - [x] Disabled items example
+  - [x] Keyboard navigation example
+  - [x] Programmatic control example
+  - [x] Accessibility notes
+  - [x] Code snippets displayed
 
 > **Accessibility:** Full menubar ARIA pattern. Alt+key announced.
 > **Keyboard:** `Alt+letter` shortcuts, `Arrows` to navigate
@@ -1086,23 +1139,23 @@
 **Types:** `src/components/DropdownMenu/DropdownMenu.types.ts`
 **Tests:** `tests/components/DropdownMenu.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `DropdownMenuProps`
-  - [ ] Prop: `items` (MenuItem[]) — menu items
-  - [ ] Prop: `open` (boolean) — controlled open state
-  - [ ] Prop: `trigger` (Element) — trigger element
-  - [ ] Prop: `position` ('bottom' | 'right') — dropdown position
-  - [ ] Prop: `onSelect` (function) — selection handler
-  - [ ] Prop: `onClose` (function) — close handler
-- [ ] Define TypeScript interface `MenuItem`
-  - [ ] Prop: `label` (string) — item label
-  - [ ] Prop: `icon` (string) — optional icon/character
-  - [ ] Prop: `shortcut` (string) — keyboard shortcut display
-  - [ ] Prop: `disabled` (boolean) — item disabled
-  - [ ] Prop: `divider` (boolean) — render as divider
-  - [ ] Prop: `items` (MenuItem[]) — nested submenu
-  - [ ] Prop: `action` (function) — item action
-- [ ] Implement DOS-style dropdown menu
+- [x] Create component directory structure
+- [x] Define TypeScript interface `DropdownMenuProps`
+  - [x] Prop: `items` (MenuItem[]) — menu items
+  - [x] Prop: `open` (boolean) — controlled open state
+  - [x] Prop: `trigger` (Element) — trigger element
+  - [x] Prop: `position` ('bottom' | 'right') — dropdown position
+  - [x] Prop: `onSelect` (function) — selection handler
+  - [x] Prop: `onClose` (function) — close handler
+- [x] Define TypeScript interface `MenuItem`
+  - [x] Prop: `label` (string) — item label
+  - [x] Prop: `icon` (string) — optional icon/character
+  - [x] Prop: `shortcut` (string) — keyboard shortcut display
+  - [x] Prop: `disabled` (boolean) — item disabled
+  - [x] Prop: `divider` (boolean) — render as divider
+  - [x] Prop: `items` (MenuItem[]) — nested submenu
+  - [x] Prop: `action` (function) — item action
+- [x] Implement DOS-style dropdown menu
   ```
   ┌─────────────────┐
   │ New         Ctrl+N │
@@ -1114,41 +1167,41 @@
   │ Exit        Alt+F4 │
   └─────────────────────┘
   ```
-- [ ] Implement dividers and submenus
-- [ ] Implement states: default, hover, active, disabled
-- [ ] Add CSS styles with class `.dos-dropdown-menu`
-  - [ ] `.dos-dropdown-menu___item`
-  - [ ] `.dos-dropdown-menu___item--highlighted`
-  - [ ] `.dos-dropdown-menu___item--disabled`
-  - [ ] `.dos-dropdown-menu___icon`
-  - [ ] `.dos-dropdown-menu___label`
-  - [ ] `.dos-dropdown-menu___shortcut`
-  - [ ] `.dos-dropdown-menu___submenu-arrow`
-  - [ ] `.dos-dropdown-menu___divider`
-- [ ] Add keyboard navigation
-  - [ ] `Arrow Up/Down` — navigate items
-  - [ ] `Arrow Right` — open submenu
-  - [ ] `Arrow Left` — close submenu
-  - [ ] `Enter` — activate item
-  - [ ] `Escape` — close menu
-  - [ ] Type-ahead — jump to item
-- [ ] Add ARIA attributes
-  - [ ] `role="menu"`
-  - [ ] `role="menuitem"` — on items
-  - [ ] `role="separator"` — on dividers
-  - [ ] `aria-haspopup` — for submenus
-  - [ ] `aria-disabled`
-- [ ] Write unit tests
-  - [ ] Test: renders menu items
-  - [ ] Test: handles item selection
-  - [ ] Test: keyboard navigation works
-  - [ ] Test: submenus open correctly
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic dropdown
-  - [ ] With icons and shortcuts
-  - [ ] Nested submenus
-  - [ ] Code snippet displayed
+- [x] Implement dividers and submenus
+- [x] Implement states: default, hover, active, disabled
+- [x] Add CSS styles with class `.dos-dropdown-menu`
+  - [x] `.dos-dropdown-menu___item`
+  - [x] `.dos-dropdown-menu___item--highlighted`
+  - [x] `.dos-dropdown-menu___item--disabled`
+  - [x] `.dos-dropdown-menu___icon`
+  - [x] `.dos-dropdown-menu___label`
+  - [x] `.dos-dropdown-menu___shortcut`
+  - [x] `.dos-dropdown-menu___submenu-arrow`
+  - [x] `.dos-dropdown-menu___divider`
+- [x] Add keyboard navigation
+  - [x] `Arrow Up/Down` — navigate items
+  - [x] `Arrow Right` — open submenu
+  - [x] `Arrow Left` — close submenu
+  - [x] `Enter` — activate item
+  - [x] `Escape` — close menu
+  - [x] Type-ahead — jump to item
+- [x] Add ARIA attributes
+  - [x] `role="menu"`
+  - [x] `role="menuitem"` — on items
+  - [x] `role="separator"` — on dividers
+  - [x] `aria-haspopup` — for submenus
+  - [x] `aria-disabled`
+- [x] Write unit tests
+  - [x] Test: renders menu items
+  - [x] Test: handles item selection
+  - [x] Test: keyboard navigation works
+  - [x] Test: submenus open correctly
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic dropdown
+  - [x] With icons and shortcuts
+  - [x] Nested submenus
+  - [x] Code snippet displayed
 
 > **Accessibility:** Full menu ARIA pattern. Submenus announced.
 > **Keyboard:** `Arrows` to navigate, `Enter` to select, `Escape` to close
@@ -1162,37 +1215,37 @@
 **Types:** `src/components/ContextMenu/ContextMenu.types.ts`
 **Tests:** `tests/components/ContextMenu.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `ContextMenuProps`
-  - [ ] Prop: `items` (MenuItem[]) — menu items (same as DropdownMenu)
-  - [ ] Prop: `target` (Element | string) — element(s) to attach to
-  - [ ] Prop: `onSelect` (function) — selection handler
-  - [ ] Prop: `onOpen` (function) — open handler with position
-  - [ ] Prop: `onClose` (function) — close handler
-- [ ] Implement right-click triggered menu
-- [ ] Position at cursor location
-- [ ] Reuse DropdownMenu styling and items
-- [ ] Handle viewport boundary collision
-- [ ] Implement states: closed, open
-- [ ] Add CSS styles with class `.dos-context-menu`
-  - [ ] Inherit from `.dos-dropdown-menu`
-  - [ ] Positioning utilities
-- [ ] Add keyboard navigation
-  - [ ] `Shift+F10` — open context menu (standard)
-  - [ ] Same navigation as DropdownMenu
-- [ ] Add ARIA attributes
-  - [ ] Same as DropdownMenu
-  - [ ] Announced as context menu
-- [ ] Write unit tests
-  - [ ] Test: opens on right-click
-  - [ ] Test: positions at cursor
-  - [ ] Test: handles boundary collision
-  - [ ] Test: keyboard trigger works
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Right-click target area
-  - [ ] With various menu items
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `ContextMenuProps`
+  - [x] Prop: `items` (MenuItem[]) — menu items (same as DropdownMenu)
+  - [x] Prop: `target` (Element | string) — element(s) to attach to
+  - [x] Prop: `onSelect` (function) — selection handler
+  - [x] Prop: `onOpen` (function) — open handler with position
+  - [x] Prop: `onClose` (function) — close handler
+- [x] Implement right-click triggered menu
+- [x] Position at cursor location
+- [x] Reuse DropdownMenu styling and items
+- [x] Handle viewport boundary collision
+- [x] Implement states: closed, open
+- [x] Add CSS styles with class `.dos-context-menu`
+  - [x] Inherit from `.dos-dropdown-menu`
+  - [x] Positioning utilities
+- [x] Add keyboard navigation
+  - [x] `Shift+F10` — open context menu (standard)
+  - [x] Same navigation as DropdownMenu
+- [x] Add ARIA attributes
+  - [x] Same as DropdownMenu
+  - [x] Announced as context menu
+- [x] Write unit tests
+  - [x] Test: opens on right-click
+  - [x] Test: positions at cursor
+  - [x] Test: handles boundary collision
+  - [x] Test: keyboard trigger works
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Right-click target area
+  - [x] With various menu items
+  - [x] Code snippet displayed
 
 > **Accessibility:** Can be triggered via `Shift+F10`. Focus managed properly.
 > **Keyboard:** `Shift+F10` to open, same navigation as DropdownMenu
@@ -1206,51 +1259,51 @@
 **Types:** `src/components/Sidebar/Sidebar.types.ts`
 **Tests:** `tests/components/Sidebar.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `SidebarProps`
-  - [ ] Prop: `items` (SidebarItem[]) — navigation items
-  - [ ] Prop: `activeItem` (string) — currently active item ID
-  - [ ] Prop: `collapsible` (boolean) — sections can collapse
-  - [ ] Prop: `collapsed` (boolean) — entire sidebar collapsed
-  - [ ] Prop: `width` (string | number) — sidebar width
-  - [ ] Prop: `position` ('left' | 'right') — sidebar position
-  - [ ] Prop: `onSelect` (function) — item selection handler
-- [ ] Define TypeScript interface `SidebarItem`
-  - [ ] Prop: `id` (string) — unique identifier
-  - [ ] Prop: `label` (string) — item label
-  - [ ] Prop: `icon` (string) — optional icon
-  - [ ] Prop: `items` (SidebarItem[]) — nested items (section)
-  - [ ] Prop: `expanded` (boolean) — section expanded state
-  - [ ] Prop: `disabled` (boolean) — item disabled
-- [ ] Implement DOS-style navigation panel
-- [ ] Implement collapsible sections with `▼` / `▶` indicators
-- [ ] Implement active state indication
-- [ ] Add CSS styles with class `.dos-sidebar`
-  - [ ] `.dos-sidebar___section`
-  - [ ] `.dos-sidebar___section-header`
-  - [ ] `.dos-sidebar___section-toggle`
-  - [ ] `.dos-sidebar___item`
-  - [ ] `.dos-sidebar___item--active`
-  - [ ] `.dos-sidebar___item--disabled`
-  - [ ] `.dos-sidebar--collapsed`
-- [ ] Add keyboard navigation
-  - [ ] `Arrow Up/Down` — navigate items
-  - [ ] `Enter` — select item / toggle section
-  - [ ] `Arrow Left/Right` — collapse/expand sections
-- [ ] Add ARIA attributes
-  - [ ] `role="navigation"`
-  - [ ] `aria-current="page"` — on active item
-  - [ ] `aria-expanded` — on collapsible sections
-- [ ] Write unit tests
-  - [ ] Test: renders navigation items
-  - [ ] Test: highlights active item
-  - [ ] Test: collapses/expands sections
-  - [ ] Test: keyboard navigation works
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic sidebar
-  - [ ] With collapsible sections
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `SidebarProps`
+  - [x] Prop: `items` (SidebarItem[]) — navigation items
+  - [x] Prop: `activeItem` (string) — currently active item ID
+  - [x] Prop: `collapsible` (boolean) — sections can collapse
+  - [x] Prop: `collapsed` (boolean) — entire sidebar collapsed
+  - [x] Prop: `width` (string | number) — sidebar width
+  - [x] Prop: `position` ('left' | 'right') — sidebar position
+  - [x] Prop: `onSelect` (function) — item selection handler
+- [x] Define TypeScript interface `SidebarItem`
+  - [x] Prop: `id` (string) — unique identifier
+  - [x] Prop: `label` (string) — item label
+  - [x] Prop: `icon` (string) — optional icon
+  - [x] Prop: `items` (SidebarItem[]) — nested items (section)
+  - [x] Prop: `expanded` (boolean) — section expanded state
+  - [x] Prop: `disabled` (boolean) — item disabled
+- [x] Implement DOS-style navigation panel
+- [x] Implement collapsible sections with `▼` / `▶` indicators
+- [x] Implement active state indication
+- [x] Add CSS styles with class `.dos-sidebar`
+  - [x] `.dos-sidebar___section`
+  - [x] `.dos-sidebar___section-header`
+  - [x] `.dos-sidebar___section-toggle`
+  - [x] `.dos-sidebar___item`
+  - [x] `.dos-sidebar___item--active`
+  - [x] `.dos-sidebar___item--disabled`
+  - [x] `.dos-sidebar--collapsed`
+- [x] Add keyboard navigation
+  - [x] `Arrow Up/Down` — navigate items
+  - [x] `Enter` — select item / toggle section
+  - [x] `Arrow Left/Right` — collapse/expand sections
+- [x] Add ARIA attributes
+  - [x] `role="navigation"`
+  - [x] `aria-current="page"` — on active item
+  - [x] `aria-expanded` — on collapsible sections
+- [x] Write unit tests
+  - [x] Test: renders navigation items
+  - [x] Test: highlights active item
+  - [x] Test: collapses/expands sections
+  - [x] Test: keyboard navigation works
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic sidebar
+  - [x] With collapsible sections
+  - [x] Code snippet displayed
 
 > **Accessibility:** Navigation landmark. Active item announced.
 > **Keyboard:** `Arrows` to navigate, `Enter` to select/toggle
@@ -1264,44 +1317,44 @@
 **Types:** `src/components/Breadcrumbs/Breadcrumbs.types.ts`
 **Tests:** `tests/components/Breadcrumbs.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `BreadcrumbsProps`
-  - [ ] Prop: `items` (BreadcrumbItem[]) — path items
-  - [ ] Prop: `separator` (string) — separator character (default '>')
-  - [ ] Prop: `maxItems` (number) — max visible items (collapse middle)
-  - [ ] Prop: `onSelect` (function) — item click handler
-- [ ] Define TypeScript interface `BreadcrumbItem`
-  - [ ] Prop: `label` (string) — display text
-  - [ ] Prop: `href` (string) — optional link
-  - [ ] Prop: `icon` (string) — optional icon
-- [ ] Implement DOS-style breadcrumb trail
-  - [ ] Display: `Home > Section > Subsection > Page`
-- [ ] Implement separator customization
-  - [ ] Options: `>`, `»`, `/`, `\`, `│`
-- [ ] Implement overflow with ellipsis for long paths
-- [ ] Last item is current (not a link)
-- [ ] Add CSS styles with class `.dos-breadcrumbs`
-  - [ ] `.dos-breadcrumbs___item`
-  - [ ] `.dos-breadcrumbs___item--current`
-  - [ ] `.dos-breadcrumbs___separator`
-  - [ ] `.dos-breadcrumbs___ellipsis`
-- [ ] Add keyboard navigation
-  - [ ] `Tab` — navigate between links
-- [ ] Add ARIA attributes
-  - [ ] `role="navigation"`
-  - [ ] `aria-label="Breadcrumb"`
-  - [ ] `aria-current="page"` — on last item
-- [ ] Write unit tests
-  - [ ] Test: renders path correctly
-  - [ ] Test: uses correct separator
-  - [ ] Test: last item is not a link
-  - [ ] Test: collapse overflow works
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic breadcrumb trail
-  - [ ] Different separators
-  - [ ] Long path with collapse
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `BreadcrumbsProps`
+  - [x] Prop: `items` (BreadcrumbItem[]) — path items
+  - [x] Prop: `separator` (string) — separator character (default '>')
+  - [x] Prop: `maxItems` (number) — max visible items (collapse middle)
+  - [x] Prop: `onSelect` (function) — item click handler
+- [x] Define TypeScript interface `BreadcrumbItem`
+  - [x] Prop: `label` (string) — display text
+  - [x] Prop: `href` (string) — optional link
+  - [x] Prop: `icon` (string) — optional icon
+- [x] Implement DOS-style breadcrumb trail
+  - [x] Display: `Home > Section > Subsection > Page`
+- [x] Implement separator customization
+  - [x] Options: `>`, `»`, `/`, `\`, `│`
+- [x] Implement overflow with ellipsis for long paths
+- [x] Last item is current (not a link)
+- [x] Add CSS styles with class `.dos-breadcrumbs`
+  - [x] `.dos-breadcrumbs___item`
+  - [x] `.dos-breadcrumbs___item--current`
+  - [x] `.dos-breadcrumbs___separator`
+  - [x] `.dos-breadcrumbs___ellipsis`
+- [x] Add keyboard navigation
+  - [x] `Tab` — navigate between links
+- [x] Add ARIA attributes
+  - [x] `role="navigation"`
+  - [x] `aria-label="Breadcrumb"`
+  - [x] `aria-current="page"` — on last item
+- [x] Write unit tests
+  - [x] Test: renders path correctly
+  - [x] Test: uses correct separator
+  - [x] Test: last item is not a link
+  - [x] Test: collapse overflow works
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic breadcrumb trail
+  - [x] Different separators
+  - [x] Long path with collapse
+  - [x] Code snippet displayed
 
 > **Accessibility:** Navigation landmark with "Breadcrumb" label. Current page announced.
 > **Keyboard:** `Tab` between links
@@ -1315,50 +1368,50 @@
 **Types:** `src/components/Pagination/Pagination.types.ts`
 **Tests:** `tests/components/Pagination.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `PaginationProps`
-  - [ ] Prop: `currentPage` (number) — current page (1-indexed)
-  - [ ] Prop: `totalPages` (number) — total page count
-  - [ ] Prop: `siblingCount` (number) — pages shown around current
-  - [ ] Prop: `boundaryCount` (number) — pages at start/end
-  - [ ] Prop: `showFirstLast` (boolean) — show first/last buttons
-  - [ ] Prop: `showPrevNext` (boolean) — show prev/next buttons
-  - [ ] Prop: `onChange` (function) — page change handler
-- [ ] Implement DOS-style pagination
-  - [ ] Display: `[<<] [<] 1 2 [3] 4 5 ... 10 [>] [>>]`
-  - [ ] First: `[<<]` or `[|<]`
-  - [ ] Previous: `[<]`
-  - [ ] Next: `[>]`
-  - [ ] Last: `[>>]` or `[>|]`
-- [ ] Implement ellipsis for large page counts
-- [ ] Implement current page highlight
-- [ ] Add CSS styles with class `.dos-pagination`
-  - [ ] `.dos-pagination___button`
-  - [ ] `.dos-pagination___page`
-  - [ ] `.dos-pagination___page--current`
-  - [ ] `.dos-pagination___page--disabled`
-  - [ ] `.dos-pagination___ellipsis`
-- [ ] Add keyboard navigation
-  - [ ] `Tab` — navigate between buttons
-  - [ ] `Enter` — activate button
-  - [ ] `Arrow Left/Right` — prev/next page (optional)
-- [ ] Add ARIA attributes
-  - [ ] `role="navigation"`
-  - [ ] `aria-label="Pagination"`
-  - [ ] `aria-current="page"` — on current page
-  - [ ] `aria-disabled` — on disabled buttons
-- [ ] Write unit tests
-  - [ ] Test: renders correct page numbers
-  - [ ] Test: highlights current page
-  - [ ] Test: disables prev on first page
-  - [ ] Test: disables next on last page
-  - [ ] Test: ellipsis appears correctly
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic pagination
-  - [ ] With first/last buttons
-  - [ ] Large page count with ellipsis
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `PaginationProps`
+  - [x] Prop: `currentPage` (number) — current page (1-indexed)
+  - [x] Prop: `totalPages` (number) — total page count
+  - [x] Prop: `siblingCount` (number) — pages shown around current
+  - [x] Prop: `boundaryCount` (number) — pages at start/end
+  - [x] Prop: `showFirstLast` (boolean) — show first/last buttons
+  - [x] Prop: `showPrevNext` (boolean) — show prev/next buttons
+  - [x] Prop: `onChange` (function) — page change handler
+- [x] Implement DOS-style pagination
+  - [x] Display: `[<<] [<] 1 2 [3] 4 5 ... 10 [>] [>>]`
+  - [x] First: `[<<]` or `[|<]`
+  - [x] Previous: `[<]`
+  - [x] Next: `[>]`
+  - [x] Last: `[>>]` or `[>|]`
+- [x] Implement ellipsis for large page counts
+- [x] Implement current page highlight
+- [x] Add CSS styles with class `.dos-pagination`
+  - [x] `.dos-pagination___button`
+  - [x] `.dos-pagination___page`
+  - [x] `.dos-pagination___page--current`
+  - [x] `.dos-pagination___page--disabled`
+  - [x] `.dos-pagination___ellipsis`
+- [x] Add keyboard navigation
+  - [x] `Tab` — navigate between buttons
+  - [x] `Enter` — activate button
+  - [x] `Arrow Left/Right` — prev/next page (optional)
+- [x] Add ARIA attributes
+  - [x] `role="navigation"`
+  - [x] `aria-label="Pagination"`
+  - [x] `aria-current="page"` — on current page
+  - [x] `aria-disabled` — on disabled buttons
+- [x] Write unit tests
+  - [x] Test: renders correct page numbers
+  - [x] Test: highlights current page
+  - [x] Test: disables prev on first page
+  - [x] Test: disables next on last page
+  - [x] Test: ellipsis appears correctly
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic pagination
+  - [x] With first/last buttons
+  - [x] Large page count with ellipsis
+  - [x] Code snippet displayed
 
 > **Accessibility:** Navigation landmark. Current page announced.
 > **Keyboard:** `Tab` between buttons, `Enter` to select
@@ -1372,56 +1425,56 @@
 **Types:** `src/components/Stepper/Stepper.types.ts`
 **Tests:** `tests/components/Stepper.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `StepperProps`
-  - [ ] Prop: `steps` (Step[]) — step definitions
-  - [ ] Prop: `currentStep` (number) — active step (0-indexed)
-  - [ ] Prop: `orientation` ('horizontal' | 'vertical') — layout
-  - [ ] Prop: `allowStepClick` (boolean) — navigate by clicking steps
-  - [ ] Prop: `showStepNumbers` (boolean) — display step numbers
-  - [ ] Prop: `onChange` (function) — step change handler
-- [ ] Define TypeScript interface `Step`
-  - [ ] Prop: `label` (string) — step label
-  - [ ] Prop: `description` (string) — optional description
-  - [ ] Prop: `completed` (boolean) — step completed
-  - [ ] Prop: `error` (boolean) — step has error
-  - [ ] Prop: `disabled` (boolean) — step disabled
-- [ ] Implement DOS-style step indicator
-  - [ ] Horizontal: `[1]───[2]───(3)───[ ]───[ ]`
-  - [ ] Completed: `[✓]` or `[X]`
-  - [ ] Current: `(3)` or `[●]`
-  - [ ] Upcoming: `[ ]`
-- [ ] Implement connecting lines between steps
-- [ ] Add CSS styles with class `.dos-stepper`
-  - [ ] `.dos-stepper___step`
-  - [ ] `.dos-stepper___step-indicator`
-  - [ ] `.dos-stepper___step-label`
-  - [ ] `.dos-stepper___step-description`
-  - [ ] `.dos-stepper___connector`
-  - [ ] `.dos-stepper___step--completed`
-  - [ ] `.dos-stepper___step--current`
-  - [ ] `.dos-stepper___step--error`
-  - [ ] `.dos-stepper___step--disabled`
-  - [ ] `.dos-stepper--horizontal`
-  - [ ] `.dos-stepper--vertical`
-- [ ] Add keyboard navigation
-  - [ ] `Tab` — navigate between steps (if clickable)
-  - [ ] `Enter` — go to step (if clickable)
-- [ ] Add ARIA attributes
-  - [ ] `role="list"` — on stepper
-  - [ ] `role="listitem"` — on each step
-  - [ ] `aria-current="step"` — on current step
-- [ ] Write unit tests
-  - [ ] Test: renders all steps
-  - [ ] Test: highlights current step
-  - [ ] Test: shows completed status
-  - [ ] Test: click navigation works (when enabled)
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Horizontal stepper
-  - [ ] Vertical stepper
-  - [ ] With completed/error states
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `StepperProps`
+  - [x] Prop: `steps` (Step[]) — step definitions
+  - [x] Prop: `currentStep` (number) — active step (0-indexed)
+  - [x] Prop: `orientation` ('horizontal' | 'vertical') — layout
+  - [x] Prop: `allowStepClick` (boolean) — navigate by clicking steps
+  - [x] Prop: `showStepNumbers` (boolean) — display step numbers
+  - [x] Prop: `onChange` (function) — step change handler
+- [x] Define TypeScript interface `Step`
+  - [x] Prop: `label` (string) — step label
+  - [x] Prop: `description` (string) — optional description
+  - [x] Prop: `completed` (boolean) — step completed
+  - [x] Prop: `error` (boolean) — step has error
+  - [x] Prop: `disabled` (boolean) — step disabled
+- [x] Implement DOS-style step indicator
+  - [x] Horizontal: `[1]───[2]───(3)───[ ]───[ ]`
+  - [x] Completed: `[✓]` or `[X]`
+  - [x] Current: `(3)` or `[●]`
+  - [x] Upcoming: `[ ]`
+- [x] Implement connecting lines between steps
+- [x] Add CSS styles with class `.dos-stepper`
+  - [x] `.dos-stepper___step`
+  - [x] `.dos-stepper___step-indicator`
+  - [x] `.dos-stepper___step-label`
+  - [x] `.dos-stepper___step-description`
+  - [x] `.dos-stepper___connector`
+  - [x] `.dos-stepper___step--completed`
+  - [x] `.dos-stepper___step--current`
+  - [x] `.dos-stepper___step--error`
+  - [x] `.dos-stepper___step--disabled`
+  - [x] `.dos-stepper--horizontal`
+  - [x] `.dos-stepper--vertical`
+- [x] Add keyboard navigation
+  - [x] `Tab` — navigate between steps (if clickable)
+  - [x] `Enter` — go to step (if clickable)
+- [x] Add ARIA attributes
+  - [x] `role="list"` — on stepper
+  - [x] `role="listitem"` — on each step
+  - [x] `aria-current="step"` — on current step
+- [x] Write unit tests
+  - [x] Test: renders all steps
+  - [x] Test: highlights current step
+  - [x] Test: shows completed status
+  - [x] Test: click navigation works (when enabled)
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Horizontal stepper
+  - [x] Vertical stepper
+  - [x] With completed/error states
+  - [x] Code snippet displayed
 
 > **Accessibility:** Step progress announced. Current step indicated.
 > **Keyboard:** `Tab` to navigate if clickable

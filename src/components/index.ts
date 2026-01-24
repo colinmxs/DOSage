@@ -48,17 +48,19 @@ export * from './TimePicker';
 // export * from './Form';
 // export * from './FormField';
 
-// Feedback Components (Phase 7)
-// export * from './Alert';
-// export * from './Toast';
-// export * from './ProgressBar';
-// export * from './Spinner';
-// export * from './Skeleton';
-// export * from './Tooltip';
+// Navigation Components (Phase 7)
+export * from './MenuBar';
+export * from './DropdownMenu';
+export * from './ContextMenu';
+export * from './Sidebar';
+export * from './Breadcrumbs';
+export * from './Pagination';
+export * from './Stepper';
 
-// Navigation Components (Phase 8)
-// export * from './Menu';
-// export * from './ContextMenu';
+// Feedback & Overlay Components (Phase 8)
+// export * from './Modal';
+// export * from './Window';
+// export * from './Alert';
 // export * from './Tabs';
 // export * from './Breadcrumb';
 // export * from './Pagination';

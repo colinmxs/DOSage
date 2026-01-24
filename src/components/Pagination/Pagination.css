@@ -1,0 +1,133 @@
+/**
+ * @fileoverview CSS styles for the Pagination component.
+ * @description DOS-style page navigation.
+ */
+
+/* Base pagination container */
+.dos-pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-xs, 4px);
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', monospace);
+  font-size: var(--dos-font-size-base, 16px);
+  color: var(--dos-color-text-primary, #ffffff);
+}
+
+/* Navigation button (first, prev, next, last) */
+.dos-pagination__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 28px;
+  padding: 0 var(--dos-space-xs, 4px);
+  background-color: var(--dos-color-bg-secondary, #000080);
+  color: var(--dos-color-text-primary, #ffffff);
+  border: 2px solid var(--dos-color-border, #ffffff);
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.dos-pagination__button:hover:not(:disabled) {
+  background-color: var(--dos-color-bg-hover, #0000aa);
+  color: var(--dos-color-text-highlight, #ffff55);
+}
+
+.dos-pagination__button:focus {
+  outline: 2px solid var(--dos-color-focus, #ffff55);
+  outline-offset: 1px;
+}
+
+.dos-pagination__button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.dos-pagination__button:focus-visible {
+  outline: 2px solid var(--dos-color-focus, #ffff55);
+  outline-offset: 1px;
+}
+
+.dos-pagination__button:disabled {
+  color: var(--dos-color-text-muted, #aaaaaa);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Page number button */
+.dos-pagination__page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 var(--dos-space-xs, 4px);
+  background-color: transparent;
+  color: var(--dos-color-link, #5555ff);
+  border: 2px solid transparent;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.dos-pagination__page:hover:not(:disabled):not(.dos-pagination__page--current) {
+  background-color: var(--dos-color-bg-hover, #0000aa);
+  color: var(--dos-color-text-highlight, #ffff55);
+  border-color: var(--dos-color-border, #ffffff);
+}
+
+.dos-pagination__page:focus {
+  outline: 2px solid var(--dos-color-focus, #ffff55);
+  outline-offset: 1px;
+}
+
+.dos-pagination__page:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.dos-pagination__page:focus-visible {
+  outline: 2px solid var(--dos-color-focus, #ffff55);
+  outline-offset: 1px;
+}
+
+/* Current page */
+.dos-pagination__page--current {
+  background-color: var(--dos-color-bg-active, #5555ff);
+  color: var(--dos-color-text-highlight, #ffff55);
+  border-color: var(--dos-color-border, #ffffff);
+  font-weight: bold;
+  cursor: default;
+}
+
+/* Disabled page */
+.dos-pagination__page:disabled {
+  color: var(--dos-color-text-muted, #aaaaaa);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Ellipsis */
+.dos-pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 var(--dos-space-xs, 4px);
+  color: var(--dos-color-text-muted, #aaaaaa);
+  cursor: default;
+  user-select: none;
+}
+
+/* Disabled state for entire pagination */
+.dos-pagination--disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.dos-pagination--disabled .dos-pagination__button,
+.dos-pagination--disabled .dos-pagination__page {
+  cursor: not-allowed;
+}

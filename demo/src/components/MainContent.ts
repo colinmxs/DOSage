@@ -45,6 +45,7 @@ import {
   renderDatePickerPage,
   renderTimePickerPage,
 } from '../pages/form-controls';
+import { renderMenuBarPage, renderDropdownMenuPage, renderContextMenuPage, renderSidebarPage, renderBreadcrumbsPage, renderPaginationPage, renderStepperPage } from '../pages/navigation';
 
 /** Page content element reference */
 let contentElement: HTMLElement | null = null;
@@ -93,8 +94,14 @@ const pages: Record<string, () => HTMLElement> = {
   alert: () => createPlaceholderPage('Alert', 'Alert messages and notifications.'),
   progress: () => createPlaceholderPage('Progress', 'Progress bar with ASCII art.'),
   spinner: () => createPlaceholderPage('Spinner', 'Loading spinner animation.'),
-  // Navigation (to be implemented)
-  menu: () => createPlaceholderPage('Menu', 'Dropdown and context menus.'),
+  // Navigation
+  menu: renderMenuBarPage,
+  'dropdown-menu': renderDropdownMenuPage,
+  'context-menu': renderContextMenuPage,
+  sidebar: renderSidebarPage,
+  breadcrumbs: renderBreadcrumbsPage,
+  pagination: renderPaginationPage,
+  stepper: renderStepperPage,
   tabs: () => createPlaceholderPage('Tabs', 'Tabbed interface component.'),
   breadcrumb: () => createPlaceholderPage('Breadcrumb', 'Navigation breadcrumb trail.'),
   // Themes

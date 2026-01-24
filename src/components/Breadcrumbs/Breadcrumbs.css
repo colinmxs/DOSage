@@ -1,0 +1,133 @@
+/**
+ * @fileoverview CSS styles for the Breadcrumbs component.
+ * @description DOS-style breadcrumb navigation trail.
+ */
+
+/* Base breadcrumbs container */
+.dos-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dos-space-xs, 4px);
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', monospace);
+  font-size: var(--dos-font-size-base, 16px);
+  color: var(--dos-color-text-primary, #ffffff);
+  padding: var(--dos-space-xs, 4px) 0;
+}
+
+/* Breadcrumb list */
+.dos-breadcrumbs__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dos-space-xs, 4px);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Breadcrumb list item wrapper */
+.dos-breadcrumbs__list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-xs, 4px);
+}
+
+/* Individual breadcrumb item (link or span) */
+.dos-breadcrumbs__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dos-space-xs, 4px);
+  color: var(--dos-color-link, #5555ff);
+  text-decoration: none;
+  padding: 2px 4px;
+}
+
+/* Link items */
+a.dos-breadcrumbs__item {
+  cursor: pointer;
+}
+
+a.dos-breadcrumbs__item:hover {
+  color: var(--dos-color-link-hover, #ffffff);
+  background-color: var(--dos-color-bg-hover, #0000aa);
+  text-decoration: underline;
+}
+
+a.dos-breadcrumbs__item:focus {
+  outline: 2px solid var(--dos-color-focus, #ffff55);
+  outline-offset: 1px;
+}
+
+a.dos-breadcrumbs__item:focus:not(:focus-visible) {
+  outline: none;
+}
+
+a.dos-breadcrumbs__item:focus-visible {
+  outline: 2px solid var(--dos-color-focus, #ffff55);
+  outline-offset: 1px;
+}
+
+/* Current page (last item - not a link) */
+.dos-breadcrumbs__item--current {
+  color: var(--dos-color-text-highlight, #ffff55);
+  font-weight: bold;
+  cursor: default;
+}
+
+/* Item icon */
+.dos-breadcrumbs__item-icon {
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* Item label */
+.dos-breadcrumbs__item-label {
+  white-space: nowrap;
+}
+
+/* Separator between items */
+.dos-breadcrumbs__separator {
+  color: var(--dos-color-text-muted, #aaaaaa);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* Ellipsis for collapsed items */
+.dos-breadcrumbs__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dos-color-text-muted, #aaaaaa);
+  padding: 2px 4px;
+  cursor: default;
+}
+
+/* Ellipsis button (expandable) */
+button.dos-breadcrumbs__ellipsis {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  color: var(--dos-color-link, #5555ff);
+}
+
+button.dos-breadcrumbs__ellipsis:hover {
+  color: var(--dos-color-link-hover, #ffffff);
+  background-color: var(--dos-color-bg-hover, #0000aa);
+}
+
+button.dos-breadcrumbs__ellipsis:focus {
+  outline: 2px solid var(--dos-color-focus, #ffff55);
+  outline-offset: 1px;
+}
+
+button.dos-breadcrumbs__ellipsis:focus:not(:focus-visible) {
+  outline: none;
+}
+
+button.dos-breadcrumbs__ellipsis:focus-visible {
+  outline: 2px solid var(--dos-color-focus, #ffff55);
+  outline-offset: 1px;
+}

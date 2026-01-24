@@ -1,0 +1,184 @@
+/**
+ * DropdownMenu Component Styles
+ *
+ * DOS-style dropdown menu with submenus, icons, and shortcuts.
+ * 
+ * ┌─────────────────────┐
+ * │ New         Ctrl+N  │
+ * │ Open        Ctrl+O  │
+ * ├─────────────────────┤
+ * │ Save        Ctrl+S  │
+ * │ Save As...          │
+ * ├─────────────────────┤
+ * │ Exit        Alt+F4  │
+ * └─────────────────────┘
+ */
+
+/* Base DropdownMenu Container */
+.dos-dropdown-menu {
+  position: absolute;
+  z-index: 1000;
+  min-width: 200px;
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', 'Consolas', monospace);
+  font-size: var(--dos-font-size, 16px);
+  background-color: var(--dos-color-bg-secondary, #aaaaaa);
+  color: var(--dos-color-bg, #0000aa);
+  border: 2px solid var(--dos-color-border, #000000);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
+  list-style: none;
+  margin: 0;
+  padding: var(--dos-space-xs, 4px) 0;
+  display: none;
+  user-select: none;
+}
+
+.dos-dropdown-menu--open {
+  display: block;
+}
+
+/* Positioning Variants */
+.dos-dropdown-menu--bottom {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dos-dropdown-menu--bottom-start {
+  top: 100%;
+  left: 0;
+}
+
+.dos-dropdown-menu--bottom-end {
+  top: 100%;
+  right: 0;
+}
+
+.dos-dropdown-menu--right {
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+}
+
+.dos-dropdown-menu--right-start {
+  top: 0;
+  left: 100%;
+}
+
+.dos-dropdown-menu--right-end {
+  bottom: 0;
+  left: 100%;
+}
+
+/* Menu Item */
+.dos-dropdown-menu__item {
+  position: relative;
+}
+
+/* Menu Item Button/Trigger */
+.dos-dropdown-menu__trigger {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  outline: none;
+  text-align: left;
+  white-space: nowrap;
+  gap: var(--dos-space-sm, 8px);
+}
+
+.dos-dropdown-menu__trigger:hover:not(.dos-dropdown-menu__trigger--disabled),
+.dos-dropdown-menu__trigger--highlighted:not(.dos-dropdown-menu__trigger--disabled) {
+  background-color: var(--dos-color-bg, #0000aa);
+  color: var(--dos-color-fg, #ffffff);
+}
+
+.dos-dropdown-menu__trigger:focus {
+  background-color: var(--dos-color-bg, #0000aa);
+  color: var(--dos-color-fg, #ffffff);
+  outline: none;
+}
+
+/* Disabled item */
+.dos-dropdown-menu__trigger--disabled {
+  color: var(--dos-color-disabled, #666666);
+  cursor: not-allowed;
+}
+
+/* Icon */
+.dos-dropdown-menu__icon {
+  width: 1.5em;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.dos-dropdown-menu__icon--spacer {
+  visibility: hidden;
+}
+
+/* Label */
+.dos-dropdown-menu__label {
+  flex: 1;
+  text-align: left;
+}
+
+/* Keyboard Shortcut */
+.dos-dropdown-menu__shortcut {
+  color: var(--dos-color-secondary-text, #555555);
+  margin-left: var(--dos-space-md, 16px);
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.dos-dropdown-menu__trigger:hover:not(.dos-dropdown-menu__trigger--disabled) .dos-dropdown-menu__shortcut,
+.dos-dropdown-menu__trigger--highlighted:not(.dos-dropdown-menu__trigger--disabled) .dos-dropdown-menu__shortcut,
+.dos-dropdown-menu__trigger:focus .dos-dropdown-menu__shortcut {
+  color: var(--dos-color-secondary, #55ffff);
+}
+
+/* Submenu Arrow */
+.dos-dropdown-menu__submenu-arrow {
+  margin-left: var(--dos-space-sm, 8px);
+  font-size: 0.75em;
+}
+
+/* Divider */
+.dos-dropdown-menu__divider {
+  height: 0;
+  margin: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  border: none;
+  border-top: 1px solid var(--dos-color-border, #000000);
+}
+
+/* Submenu */
+.dos-dropdown-menu__submenu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  min-width: 180px;
+  background-color: var(--dos-color-bg-secondary, #aaaaaa);
+  color: var(--dos-color-bg, #0000aa);
+  border: 2px solid var(--dos-color-border, #000000);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
+  list-style: none;
+  margin: 0;
+  padding: var(--dos-space-xs, 4px) 0;
+  z-index: 1001;
+}
+
+/* Viewport collision adjustment - submenu opens on left */
+.dos-dropdown-menu__submenu--left {
+  left: auto;
+  right: 100%;
+}
+
+/* Focus visible indicator for keyboard navigation */
+.dos-dropdown-menu__trigger:focus-visible {
+  outline: 1px solid var(--dos-color-primary, #ffff55);
+  outline-offset: -1px;
+}

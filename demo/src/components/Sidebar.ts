@@ -74,7 +74,13 @@ const NAV_ITEMS = [
   {
     category: 'Navigation',
     items: [
-      { id: 'menu', label: 'Menu' },
+      { id: 'menu', label: 'MenuBar' },
+      { id: 'dropdown-menu', label: 'DropdownMenu' },
+      { id: 'context-menu', label: 'ContextMenu' },
+      { id: 'sidebar', label: 'Sidebar' },
+      { id: 'breadcrumbs', label: 'Breadcrumbs' },
+      { id: 'pagination', label: 'Pagination' },
+      { id: 'stepper', label: 'Stepper' },
       { id: 'tabs', label: 'Tabs' },
       { id: 'breadcrumb', label: 'Breadcrumb' },
     ],

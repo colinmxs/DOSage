@@ -1,0 +1,242 @@
+/**
+ * MenuBar Component Styles
+ *
+ * DOS-style horizontal menu bar with dropdown menus.
+ * Classic DOS interface: File  Edit  View  Options  Help
+ */
+
+/* Base MenuBar Container */
+.dos-menu-bar {
+  display: flex;
+  align-items: center;
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', 'Consolas', monospace);
+  font-size: var(--dos-font-size, 16px);
+  background-color: var(--dos-color-bg-secondary, #aaaaaa);
+  color: var(--dos-color-bg, #0000aa);
+  width: 100%;
+  min-height: 1.75em;
+  user-select: none;
+}
+
+/* Menu List */
+.dos-menu-bar__list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* Menu Item */
+.dos-menu-bar__item {
+  position: relative;
+}
+
+/* Menu Trigger Button */
+.dos-menu-bar__trigger {
+  display: flex;
+  align-items: center;
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  outline: none;
+  white-space: nowrap;
+}
+
+.dos-menu-bar__trigger:hover:not(.dos-menu-bar__trigger--disabled) {
+  background-color: var(--dos-color-bg, #0000aa);
+  color: var(--dos-color-fg, #ffffff);
+}
+
+.dos-menu-bar__trigger:focus {
+  background-color: var(--dos-color-bg, #0000aa);
+  color: var(--dos-color-fg, #ffffff);
+  outline: 1px solid var(--dos-color-primary, #ffff55);
+  outline-offset: -1px;
+}
+
+/* Active menu item (dropdown open) */
+.dos-menu-bar__item--active .dos-menu-bar__trigger {
+  background-color: var(--dos-color-bg, #0000aa);
+  color: var(--dos-color-fg, #ffffff);
+}
+
+/* Disabled menu trigger */
+.dos-menu-bar__trigger--disabled {
+  color: var(--dos-color-disabled, #666666);
+  cursor: not-allowed;
+}
+
+/* Access Key Underline */
+.dos-menu-bar__accesskey {
+  text-decoration: underline;
+}
+
+/* Dropdown Menu */
+.dos-menu-bar__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  min-width: 200px;
+  background-color: var(--dos-color-bg-secondary, #aaaaaa);
+  color: var(--dos-color-bg, #0000aa);
+  border: 2px solid var(--dos-color-border, #000000);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
+  list-style: none;
+  margin: 0;
+  padding: var(--dos-space-xs, 4px) 0;
+  display: none;
+}
+
+.dos-menu-bar__dropdown--open {
+  display: block;
+}
+
+/* Dropdown Item */
+.dos-menu-bar__dropdown-item {
+  position: relative;
+}
+
+/* Dropdown Trigger */
+.dos-menu-bar__dropdown-trigger {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  outline: none;
+  text-align: left;
+  white-space: nowrap;
+  gap: var(--dos-space-sm, 8px);
+}
+
+.dos-menu-bar__dropdown-trigger:hover:not(.dos-menu-bar__dropdown-trigger--disabled),
+.dos-menu-bar__dropdown-trigger--highlighted:not(.dos-menu-bar__dropdown-trigger--disabled) {
+  background-color: var(--dos-color-bg, #0000aa);
+  color: var(--dos-color-fg, #ffffff);
+}
+
+.dos-menu-bar__dropdown-trigger:focus {
+  background-color: var(--dos-color-bg, #0000aa);
+  color: var(--dos-color-fg, #ffffff);
+  outline: none;
+}
+
+/* Disabled dropdown item */
+.dos-menu-bar__dropdown-trigger--disabled {
+  color: var(--dos-color-disabled, #666666);
+  cursor: not-allowed;
+}
+
+/* Dropdown Icon */
+.dos-menu-bar__dropdown-icon {
+  width: 1.5em;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.dos-menu-bar__dropdown-icon--spacer {
+  visibility: hidden;
+}
+
+/* Dropdown Label */
+.dos-menu-bar__dropdown-label {
+  flex: 1;
+  text-align: left;
+}
+
+/* Dropdown Shortcut */
+.dos-menu-bar__dropdown-shortcut {
+  color: var(--dos-color-secondary-text, #555555);
+  margin-left: var(--dos-space-md, 16px);
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.dos-menu-bar__dropdown-trigger:hover:not(.dos-menu-bar__dropdown-trigger--disabled) .dos-menu-bar__dropdown-shortcut,
+.dos-menu-bar__dropdown-trigger--highlighted:not(.dos-menu-bar__dropdown-trigger--disabled) .dos-menu-bar__dropdown-shortcut,
+.dos-menu-bar__dropdown-trigger:focus .dos-menu-bar__dropdown-shortcut {
+  color: var(--dos-color-secondary, #55ffff);
+}
+
+/* Dropdown Arrow (for submenus) */
+.dos-menu-bar__dropdown-arrow {
+  margin-left: var(--dos-space-sm, 8px);
+  font-size: 0.75em;
+}
+
+/* Divider */
+.dos-menu-bar__divider {
+  height: 0;
+  margin: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  border: none;
+  border-top: 1px solid var(--dos-color-border, #000000);
+}
+
+/* Submenu */
+.dos-menu-bar__submenu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  min-width: 180px;
+  background-color: var(--dos-color-bg-secondary, #aaaaaa);
+  color: var(--dos-color-bg, #0000aa);
+  border: 2px solid var(--dos-color-border, #000000);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
+  list-style: none;
+  margin: 0;
+  padding: var(--dos-space-xs, 4px) 0;
+  z-index: 1001;
+}
+
+/* Animation for dropdown */
+@media (prefers-reduced-motion: no-preference) {
+  .dos-menu-bar__dropdown,
+  .dos-menu-bar__submenu {
+    animation: dos-menu-appear var(--dos-timing-fast, 100ms) ease-out;
+  }
+}
+
+@keyframes dos-menu-appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  .dos-menu-bar {
+    border: 2px solid currentColor;
+  }
+
+  .dos-menu-bar__dropdown,
+  .dos-menu-bar__submenu {
+    border-width: 3px;
+  }
+
+  .dos-menu-bar__trigger:focus,
+  .dos-menu-bar__dropdown-trigger:focus {
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
+  }
+}
+
+/* Focus visible for keyboard navigation */
+.dos-menu-bar__trigger:focus-visible,
+.dos-menu-bar__dropdown-trigger:focus-visible {
+  outline: 2px solid var(--dos-color-primary, #ffff55);
+  outline-offset: -2px;
+}

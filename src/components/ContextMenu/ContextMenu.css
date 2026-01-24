@@ -1,0 +1,219 @@
+/**
+ * ContextMenu Styles
+ *
+ * DOS-style context menu that appears at cursor position on right-click.
+ * Inherits most styling from DropdownMenu for consistency.
+ */
+
+/* ============================================
+   Context Menu Container
+   ============================================ */
+
+.dos-context-menu {
+  position: fixed;
+  z-index: var(--dos-z-dropdown, 1000);
+  margin: 0;
+  padding: var(--dos-space-1, 2px) 0;
+  list-style: none;
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', 'Consolas', 'Monaco', monospace);
+  font-size: var(--dos-font-size-base, 16px);
+  background-color: var(--dos-color-bg-secondary, #AAAAAA);
+  color: var(--dos-color-text-primary, #000000);
+  min-width: 160px;
+  max-width: 300px;
+  
+  /* DOS-style box border */
+  border: 1px solid var(--dos-color-border, #000000);
+  box-shadow: 
+    inset -1px -1px 0 var(--dos-color-shadow-dark, #555555),
+    inset 1px 1px 0 var(--dos-color-highlight, #FFFFFF),
+    2px 2px 0 var(--dos-color-shadow-dark, #000000);
+  
+  /* Hidden by default */
+  display: none;
+}
+
+.dos-context-menu--open {
+  display: block;
+}
+
+/* ============================================
+   Menu Items
+   ============================================ */
+
+.dos-context-menu__item {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-2, 8px);
+  padding: var(--dos-space-1, 4px) var(--dos-space-3, 12px);
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  position: relative;
+  margin: 0;
+  list-style: none;
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: left;
+}
+
+.dos-context-menu__item:hover,
+.dos-context-menu__item:focus {
+  background-color: var(--dos-color-bg-primary, #0000AA);
+  color: var(--dos-color-text-inverse, #FFFFFF);
+  outline: none;
+}
+
+.dos-context-menu__item:focus-visible {
+  background-color: var(--dos-color-bg-primary, #0000AA);
+  color: var(--dos-color-text-inverse, #FFFFFF);
+  outline: 1px dotted var(--dos-color-focus, #FFFF55);
+  outline-offset: -2px;
+}
+
+/* Disabled state */
+.dos-context-menu__item--disabled {
+  color: var(--dos-color-text-disabled, #555555);
+  cursor: not-allowed;
+}
+
+.dos-context-menu__item--disabled:hover,
+.dos-context-menu__item--disabled:focus {
+  background-color: transparent;
+  color: var(--dos-color-text-disabled, #555555);
+}
+
+/* ============================================
+   Item Components
+   ============================================ */
+
+.dos-context-menu__icon {
+  flex-shrink: 0;
+  width: 16px;
+  text-align: center;
+}
+
+.dos-context-menu__label {
+  flex-grow: 1;
+}
+
+.dos-context-menu__shortcut {
+  flex-shrink: 0;
+  margin-left: var(--dos-space-4, 16px);
+  color: var(--dos-color-text-secondary, #555555);
+  font-size: var(--dos-font-size-sm, 14px);
+}
+
+.dos-context-menu__item:hover .dos-context-menu__shortcut,
+.dos-context-menu__item:focus .dos-context-menu__shortcut {
+  color: var(--dos-color-text-inverse, #FFFFFF);
+}
+
+.dos-context-menu__submenu-arrow {
+  flex-shrink: 0;
+  margin-left: var(--dos-space-2, 8px);
+}
+
+/* ============================================
+   Divider
+   ============================================ */
+
+.dos-context-menu__divider {
+  height: 1px;
+  margin: var(--dos-space-1, 4px) var(--dos-space-2, 8px);
+  background-color: var(--dos-color-border, #000000);
+  border: none;
+}
+
+/* ============================================
+   Submenu
+   ============================================ */
+
+.dos-context-menu__submenu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  margin-left: -1px;
+  min-width: 160px;
+  max-width: 300px;
+  padding: var(--dos-space-1, 2px) 0;
+  list-style: none;
+  font-family: inherit;
+  font-size: inherit;
+  background-color: var(--dos-color-bg-secondary, #AAAAAA);
+  color: var(--dos-color-text-primary, #000000);
+  border: 1px solid var(--dos-color-border, #000000);
+  box-shadow: 
+    inset -1px -1px 0 var(--dos-color-shadow-dark, #555555),
+    inset 1px 1px 0 var(--dos-color-highlight, #FFFFFF),
+    2px 2px 0 var(--dos-color-shadow-dark, #000000);
+  display: none;
+  z-index: 1;
+}
+
+.dos-context-menu__submenu--open {
+  display: block;
+}
+
+/* Flip submenu to left if it would overflow viewport */
+.dos-context-menu__submenu--flip-left {
+  left: auto;
+  right: 100%;
+  margin-left: 0;
+  margin-right: -1px;
+}
+
+/* ============================================
+   Boundary Handling
+   ============================================ */
+
+/* When menu would overflow bottom, position from bottom instead */
+.dos-context-menu--flip-vertical {
+  /* Position is set programmatically */
+}
+
+/* When menu would overflow right, position from right instead */
+.dos-context-menu--flip-horizontal {
+  /* Position is set programmatically */
+}
+
+/* ============================================
+   Animations (subtle, respecting reduced motion)
+   ============================================ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .dos-context-menu {
+    animation: dos-context-menu-appear 0.1s ease-out;
+  }
+  
+  .dos-context-menu__submenu {
+    animation: dos-submenu-appear 0.1s ease-out;
+  }
+}
+
+@keyframes dos-context-menu-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes dos-submenu-appear {
+  from {
+    opacity: 0;
+    transform: translateX(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

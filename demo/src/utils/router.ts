@@ -59,6 +59,12 @@ export const ROUTES = {
   SPINNER: 'spinner',
   // Navigation
   MENU: 'menu',
+  DROPDOWN_MENU: 'dropdown-menu',
+  CONTEXT_MENU: 'context-menu',
+  SIDEBAR: 'sidebar',
+  BREADCRUMBS: 'breadcrumbs',
+  PAGINATION: 'pagination',
+  STEPPER: 'stepper',
   TABS: 'tabs',
   BREADCRUMB: 'breadcrumb',
   // Themes
