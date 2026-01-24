@@ -1,0 +1,152 @@
+/**
+ * Checkbox Component Styles
+ *
+ * DOS-style checkbox with [ ], [X], and [-] states.
+ */
+
+.dos-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dos-space-sm);
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ===== LABEL POSITIONS ===== */
+
+.dos-checkbox--label-left {
+  flex-direction: row-reverse;
+}
+
+.dos-checkbox--label-right {
+  flex-direction: row;
+}
+
+/* ===== HIDDEN INPUT ===== */
+
+.dos-checkbox__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== CHECKBOX BOX ===== */
+
+.dos-checkbox__box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.5em;
+  height: 1em;
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size);
+  color: var(--dos-color-fg);
+  background-color: var(--dos-color-bg);
+}
+
+/* Using CSS content for the box characters */
+.dos-checkbox__box::before {
+  content: '[';
+}
+
+.dos-checkbox__box::after {
+  content: ']';
+}
+
+.dos-checkbox__mark {
+  display: inline-block;
+  width: 1ch;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Unchecked state */
+.dos-checkbox:not(.dos-checkbox--checked):not(.dos-checkbox--indeterminate) .dos-checkbox__mark {
+  visibility: hidden;
+}
+
+.dos-checkbox:not(.dos-checkbox--checked):not(.dos-checkbox--indeterminate) .dos-checkbox__mark::before {
+  content: ' ';
+  visibility: visible;
+}
+
+/* Checked state */
+.dos-checkbox--checked .dos-checkbox__mark {
+  visibility: visible;
+  color: var(--dos-color-primary);
+}
+
+/* Indeterminate state */
+.dos-checkbox--indeterminate .dos-checkbox__mark {
+  visibility: visible;
+  color: var(--dos-color-fg);
+}
+
+/* ===== LABEL ===== */
+
+.dos-checkbox__label {
+  color: var(--dos-color-fg);
+  line-height: 1.2;
+}
+
+/* ===== FOCUS STATE ===== */
+
+.dos-checkbox__input:focus-visible + .dos-checkbox__box {
+  outline: 2px solid var(--dos-color-primary);
+  outline-offset: 2px;
+}
+
+.dos-checkbox--focused .dos-checkbox__box {
+  color: var(--dos-color-primary);
+}
+
+/* ===== HOVER STATE ===== */
+
+.dos-checkbox:hover:not(.dos-checkbox--disabled) .dos-checkbox__box {
+  color: var(--dos-color-primary);
+}
+
+.dos-checkbox:hover:not(.dos-checkbox--disabled) .dos-checkbox__label {
+  color: var(--dos-color-primary);
+}
+
+/* ===== DISABLED STATE ===== */
+
+.dos-checkbox--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.dos-checkbox--disabled .dos-checkbox__box {
+  color: var(--dos-color-disabled);
+}
+
+.dos-checkbox--disabled .dos-checkbox__label {
+  color: var(--dos-color-disabled);
+}
+
+.dos-checkbox--disabled .dos-checkbox__mark {
+  color: var(--dos-color-disabled);
+}
+
+/* ===== REQUIRED INDICATOR ===== */
+
+.dos-checkbox__required {
+  color: var(--dos-color-error);
+  margin-left: var(--dos-space-xs);
+}
+
+/* ===== ACTIVE STATE ===== */
+
+.dos-checkbox:active:not(.dos-checkbox--disabled) .dos-checkbox__box {
+  color: var(--dos-color-highlight);
+}

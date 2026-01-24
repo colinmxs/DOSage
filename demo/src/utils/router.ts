@@ -40,9 +40,14 @@ export const ROUTES = {
   ICON_BUTTON: 'icon-button',
   LINK: 'link',
   // Form Controls
-  INPUT: 'input',
-  SELECT: 'select',
+  TEXT_INPUT: 'text-input',
+  TEXTAREA: 'textarea',
+  PASSWORD_INPUT: 'password-input',
   CHECKBOX: 'checkbox',
+  RADIO_BUTTON: 'radio-button',
+  FORM_GROUP: 'form-group',
+  FORM_VALIDATION: 'form-validation',
+  SELECT: 'select',
   // Feedback
   ALERT: 'alert',
   PROGRESS: 'progress',

@@ -30,6 +30,15 @@ import {
   renderIconButtonPage,
   renderLinkPage,
 } from '../pages/buttons';
+import {
+  renderTextInputPage,
+  renderTextareaPage,
+  renderPasswordInputPage,
+  renderCheckboxPage,
+  renderRadioButtonPage,
+  renderFormGroupPage,
+  renderFormValidationPage,
+} from '../pages/form-controls';
 
 /** Page content element reference */
 let contentElement: HTMLElement | null = null;
@@ -60,10 +69,15 @@ const pages: Record<string, () => HTMLElement> = {
   'button-group': renderButtonGroupPage,
   'icon-button': renderIconButtonPage,
   link: renderLinkPage,
-  // Form controls (to be implemented)
-  input: () => createPlaceholderPage('TextInput', 'Text input field with blinking cursor.'),
+  // Form controls (Phase 5)
+  'text-input': renderTextInputPage,
+  textarea: renderTextareaPage,
+  'password-input': renderPasswordInputPage,
+  checkbox: renderCheckboxPage,
+  'radio-button': renderRadioButtonPage,
+  'form-group': renderFormGroupPage,
+  'form-validation': renderFormValidationPage,
   select: () => createPlaceholderPage('Select', 'Dropdown select component.'),
-  checkbox: () => createPlaceholderPage('Checkbox', 'Checkbox and radio button components.'),
   // Feedback (to be implemented)
   alert: () => createPlaceholderPage('Alert', 'Alert messages and notifications.'),
   progress: () => createPlaceholderPage('Progress', 'Progress bar with ASCII art.'),

@@ -32,11 +32,13 @@ export * from './IconButton';
 export * from './Link';
 
 // Form Controls (Phases 5-6)
-// export * from './TextInput';
-// export * from './Textarea';
-// export * from './Checkbox';
-// export * from './RadioButton';
-// export * from './RadioGroup';
+export * from './TextInput';
+export * from './Textarea';
+export * from './PasswordInput';
+export * from './Checkbox';
+export * from './RadioButton';
+export * from './FormGroup';
+export * from './FormValidation';
 // export * from './Select';
 // export * from './Slider';
 // export * from './Form';

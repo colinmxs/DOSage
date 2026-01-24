@@ -1,0 +1,108 @@
+/**
+ * FormValidation Component Styles
+ *
+ * DOS-style validation message display with type-based styling.
+ */
+
+/* Base FormValidation Container */
+.dos-form-validation {
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size-sm);
+  line-height: var(--dos-line-height);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--dos-space-xs);
+  margin: 0;
+  padding: 0;
+}
+
+/* Hidden state */
+.dos-form-validation--hidden {
+  display: none;
+}
+
+/* Icon styling */
+.dos-form-validation__icon {
+  font-weight: var(--dos-font-weight-bold);
+  flex-shrink: 0;
+}
+
+/* Message styling */
+.dos-form-validation__message {
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================================================
+   Type Variants
+   ========================================================================== */
+
+/* Error type */
+.dos-form-validation--error {
+  color: var(--dos-color-error);
+}
+
+.dos-form-validation--error .dos-form-validation__icon {
+  color: var(--dos-color-error);
+}
+
+/* Warning type */
+.dos-form-validation--warning {
+  color: var(--dos-color-warning);
+}
+
+.dos-form-validation--warning .dos-form-validation__icon {
+  color: var(--dos-color-warning);
+}
+
+/* Success type */
+.dos-form-validation--success {
+  color: var(--dos-color-success);
+}
+
+.dos-form-validation--success .dos-form-validation__icon {
+  color: var(--dos-color-success);
+}
+
+/* Info type */
+.dos-form-validation--info {
+  color: var(--dos-color-info);
+}
+
+.dos-form-validation--info .dos-form-validation__icon {
+  color: var(--dos-color-info);
+}
+
+/* ==========================================================================
+   Animation for appearing messages
+   ========================================================================== */
+
+@keyframes dos-validation-appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dos-form-validation:not(.dos-form-validation--hidden) {
+  animation: dos-validation-appear 0.1s ease-in;
+}
+
+/* ==========================================================================
+   Standalone block variant
+   ========================================================================== */
+
+.dos-form-validation--block {
+  padding: var(--dos-space-sm);
+  border: var(--dos-border-width) solid currentColor;
+}
+
+/* ==========================================================================
+   Inline field variant (compact)
+   ========================================================================== */
+
+.dos-form-validation--inline {
+  display: inline-flex;
+}

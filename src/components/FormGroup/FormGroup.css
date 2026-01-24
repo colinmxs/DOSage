@@ -1,0 +1,180 @@
+/**
+ * FormGroup Component Styles
+ *
+ * DOS-style fieldset with box-drawing character borders.
+ * Provides visual grouping for related form controls.
+ */
+
+/* Base FormGroup Container (fieldset) */
+.dos-form-group {
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size-base);
+  line-height: var(--dos-line-height);
+  color: var(--dos-color-text);
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-inline-size: auto;
+  position: relative;
+}
+
+/* Custom border using box-drawing characters */
+.dos-form-group::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--dos-font-size-base) * var(--dos-line-height) / 2);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: var(--dos-border-width) solid var(--dos-color-border);
+  pointer-events: none;
+}
+
+/* Legend Styling */
+.dos-form-group__legend {
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size-base);
+  font-weight: var(--dos-font-weight-normal);
+  color: var(--dos-color-text);
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-xs);
+  position: relative;
+  z-index: 1;
+}
+
+/* Legend box-drawing decoration */
+.dos-form-group__legend-wrapper {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--dos-color-background);
+  padding: 0 var(--dos-space-xs);
+  margin-left: var(--dos-space-sm);
+}
+
+.dos-form-group__legend-start {
+  color: var(--dos-color-border);
+}
+
+.dos-form-group__legend-end {
+  color: var(--dos-color-border);
+}
+
+/* Required Indicator */
+.dos-form-group__required {
+  color: var(--dos-color-error);
+  font-weight: var(--dos-font-weight-bold);
+}
+
+/* Content Area */
+.dos-form-group__content {
+  padding: var(--dos-space-md);
+  padding-top: var(--dos-space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--dos-space-md);
+}
+
+/* Description Text */
+.dos-form-group__description {
+  font-size: var(--dos-font-size-sm);
+  color: var(--dos-color-text-secondary);
+  margin: 0;
+  padding: 0;
+}
+
+/* Error Message */
+.dos-form-group__error {
+  font-size: var(--dos-font-size-sm);
+  color: var(--dos-color-error);
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-xs);
+  margin-top: var(--dos-space-xs);
+}
+
+.dos-form-group__error-icon {
+  font-weight: var(--dos-font-weight-bold);
+}
+
+/* ==========================================================================
+   State Modifiers
+   ========================================================================== */
+
+/* Error State */
+.dos-form-group--error::before {
+  border-color: var(--dos-color-error);
+}
+
+.dos-form-group--error .dos-form-group__legend-start,
+.dos-form-group--error .dos-form-group__legend-end {
+  color: var(--dos-color-error);
+}
+
+/* Disabled State */
+.dos-form-group--disabled {
+  opacity: 0.5;
+}
+
+.dos-form-group--disabled::before {
+  border-style: dashed;
+}
+
+/* ==========================================================================
+   Variants
+   ========================================================================== */
+
+/* Compact variant with less padding */
+.dos-form-group--compact .dos-form-group__content {
+  padding: var(--dos-space-sm);
+  padding-top: var(--dos-space-xs);
+  gap: var(--dos-space-sm);
+}
+
+/* Borderless variant */
+.dos-form-group--borderless::before {
+  display: none;
+}
+
+.dos-form-group--borderless .dos-form-group__content {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* ==========================================================================
+   Without Legend
+   ========================================================================== */
+
+.dos-form-group--no-legend::before {
+  top: 0;
+}
+
+.dos-form-group--no-legend .dos-form-group__content {
+  padding-top: var(--dos-space-md);
+}
+
+/* ==========================================================================
+   Focus Within
+   ========================================================================== */
+
+.dos-form-group:focus-within::before {
+  border-color: var(--dos-color-focus);
+}
+
+.dos-form-group:focus-within .dos-form-group__legend-start,
+.dos-form-group:focus-within .dos-form-group__legend-end {
+  color: var(--dos-color-focus);
+}
+
+/* Error takes precedence over focus */
+.dos-form-group--error:focus-within::before {
+  border-color: var(--dos-color-error);
+}
+
+.dos-form-group--error:focus-within .dos-form-group__legend-start,
+.dos-form-group--error:focus-within .dos-form-group__legend-end {
+  color: var(--dos-color-error);
+}

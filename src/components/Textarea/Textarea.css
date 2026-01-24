@@ -1,0 +1,181 @@
+/**
+ * Textarea Component Styles
+ *
+ * DOS-style multi-line text input with borders and various states.
+ */
+
+.dos-textarea {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dos-space-xs);
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size);
+}
+
+/* ===== LABEL ===== */
+
+.dos-textarea__label {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-xs);
+  color: var(--dos-color-fg);
+  font-size: var(--dos-font-size);
+  cursor: default;
+}
+
+.dos-textarea__label--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dos-textarea__required {
+  color: var(--dos-color-error);
+}
+
+/* ===== TEXTAREA WRAPPER ===== */
+
+.dos-textarea__wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== TEXTAREA FIELD ===== */
+
+.dos-textarea__field {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size);
+  line-height: 1.4;
+  color: var(--dos-color-fg);
+  background-color: var(--dos-color-bg);
+  border: 2px solid var(--dos-color-border);
+  border-radius: 0;
+  padding: var(--dos-space-sm);
+  margin: 0;
+  outline: none;
+  caret-color: var(--dos-color-primary);
+  resize: vertical;
+}
+
+/* Placeholder styling */
+.dos-textarea__field::placeholder {
+  color: var(--dos-color-disabled);
+  opacity: 1;
+}
+
+/* Focus state */
+.dos-textarea__field:focus {
+  border-color: var(--dos-color-primary);
+  box-shadow: 0 0 0 1px var(--dos-color-primary);
+}
+
+.dos-textarea--focused .dos-textarea__field {
+  border-color: var(--dos-color-primary);
+}
+
+/* ===== RESIZE VARIANTS ===== */
+
+.dos-textarea--resize-none .dos-textarea__field {
+  resize: none;
+}
+
+.dos-textarea--resize-vertical .dos-textarea__field {
+  resize: vertical;
+}
+
+.dos-textarea--resize-horizontal .dos-textarea__field {
+  resize: horizontal;
+}
+
+.dos-textarea--resize-both .dos-textarea__field {
+  resize: both;
+}
+
+/* ===== CHARACTER COUNT ===== */
+
+.dos-textarea__count {
+  display: flex;
+  justify-content: flex-end;
+  color: var(--dos-color-fg);
+  font-size: var(--dos-font-size-sm);
+  margin-top: var(--dos-space-xs);
+  opacity: 0.8;
+}
+
+.dos-textarea__count--limit {
+  color: var(--dos-color-primary);
+}
+
+.dos-textarea__count--exceeded {
+  color: var(--dos-color-error);
+}
+
+/* ===== ERROR STATE ===== */
+
+.dos-textarea--error .dos-textarea__field {
+  border-color: var(--dos-color-error);
+}
+
+.dos-textarea--error .dos-textarea__field:focus {
+  border-color: var(--dos-color-error);
+  box-shadow: 0 0 0 1px var(--dos-color-error);
+}
+
+.dos-textarea__error {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-xs);
+  color: var(--dos-color-error);
+  font-size: var(--dos-font-size-sm);
+}
+
+.dos-textarea__error-icon {
+  font-weight: bold;
+}
+
+/* ===== DISABLED STATE ===== */
+
+.dos-textarea--disabled .dos-textarea__field {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--dos-color-bg);
+  border-color: var(--dos-color-disabled);
+  color: var(--dos-color-disabled);
+  resize: none;
+}
+
+.dos-textarea--disabled .dos-textarea__field::placeholder {
+  color: var(--dos-color-disabled);
+}
+
+.dos-textarea--disabled .dos-textarea__count {
+  opacity: 0.5;
+}
+
+/* ===== READONLY STATE ===== */
+
+.dos-textarea--readonly .dos-textarea__field {
+  background-color: var(--dos-color-bg);
+  border-style: dashed;
+  cursor: default;
+}
+
+/* ===== WIDTH VARIANTS ===== */
+
+.dos-textarea--full-width {
+  width: 100%;
+}
+
+.dos-textarea--full-width .dos-textarea__field {
+  width: 100%;
+}
+
+/* ===== FOCUS VISIBLE FOR ACCESSIBILITY ===== */
+
+.dos-textarea__field:focus-visible {
+  outline: 2px solid var(--dos-color-primary);
+  outline-offset: 2px;
+}

@@ -48,9 +48,13 @@ const NAV_ITEMS = [
   {
     category: 'Form Controls',
     items: [
-      { id: 'input', label: 'TextInput' },
-      { id: 'select', label: 'Select' },
+      { id: 'text-input', label: 'TextInput' },
+      { id: 'textarea', label: 'Textarea' },
+      { id: 'password-input', label: 'PasswordInput' },
       { id: 'checkbox', label: 'Checkbox' },
+      { id: 'radio-button', label: 'RadioButton' },
+      { id: 'form-group', label: 'FormGroup' },
+      { id: 'form-validation', label: 'FormValidation' },
     ],
   },
   {

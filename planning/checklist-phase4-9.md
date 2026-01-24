@@ -233,51 +233,51 @@
 **Types:** `src/components/TextInput/TextInput.types.ts`
 **Tests:** `tests/components/TextInput.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `TextInputProps`
-  - [ ] Prop: `value` (string) — current value
-  - [ ] Prop: `placeholder` (string) — placeholder text
-  - [ ] Prop: `label` (string) — associated label text
-  - [ ] Prop: `name` (string) — form field name
-  - [ ] Prop: `type` (string) — 'text', 'email', 'tel', 'url', etc.
-  - [ ] Prop: `disabled` (boolean) — disables input
-  - [ ] Prop: `readonly` (boolean) — prevents editing
-  - [ ] Prop: `required` (boolean) — marks as required
-  - [ ] Prop: `error` (string | boolean) — error state/message
-  - [ ] Prop: `maxLength` (number) — character limit
-  - [ ] Prop: `onChange` (function) — change handler
-  - [ ] Prop: `onBlur` (function) — blur handler
-- [ ] Implement DOS-style bordered input box
-- [ ] Implement blinking cursor effect
-- [ ] Implement states: default, focus, error, disabled
-- [ ] Add CSS styles with class `.dos-text-input`
-  - [ ] `.dos-text-input___field`
-  - [ ] `.dos-text-input___label`
-  - [ ] `.dos-text-input___error`
-  - [ ] `.dos-text-input--focused`
-  - [ ] `.dos-text-input--error`
-  - [ ] `.dos-text-input--disabled`
-- [ ] Add keyboard navigation
-  - [ ] Standard text input keys
-  - [ ] `Tab` — focus next element
-- [ ] Add ARIA attributes
-  - [ ] `aria-invalid` — when error
-  - [ ] `aria-describedby` — links to error message
-  - [ ] `aria-required` — when required
-- [ ] Write unit tests
-  - [ ] Test: renders input with value
-  - [ ] Test: displays label correctly
-  - [ ] Test: handles input changes
-  - [ ] Test: shows error state
-  - [ ] Test: respects disabled state
-  - [ ] Test: enforces maxLength
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic example
-  - [ ] With placeholder
-  - [ ] With error state
-  - [ ] Disabled state
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `TextInputProps`
+  - [x] Prop: `value` (string) — current value
+  - [x] Prop: `placeholder` (string) — placeholder text
+  - [x] Prop: `label` (string) — associated label text
+  - [x] Prop: `name` (string) — form field name
+  - [x] Prop: `type` (string) — 'text', 'email', 'tel', 'url', etc.
+  - [x] Prop: `disabled` (boolean) — disables input
+  - [x] Prop: `readonly` (boolean) — prevents editing
+  - [x] Prop: `required` (boolean) — marks as required
+  - [x] Prop: `error` (string | boolean) — error state/message
+  - [x] Prop: `maxLength` (number) — character limit
+  - [x] Prop: `onChange` (function) — change handler
+  - [x] Prop: `onBlur` (function) — blur handler
+- [x] Implement DOS-style bordered input box
+- [x] Implement blinking cursor effect
+- [x] Implement states: default, focus, error, disabled
+- [x] Add CSS styles with class `.dos-text-input`
+  - [x] `.dos-text-input___field`
+  - [x] `.dos-text-input___label`
+  - [x] `.dos-text-input___error`
+  - [x] `.dos-text-input--focused`
+  - [x] `.dos-text-input--error`
+  - [x] `.dos-text-input--disabled`
+- [x] Add keyboard navigation
+  - [x] Standard text input keys
+  - [x] `Tab` — focus next element
+- [x] Add ARIA attributes
+  - [x] `aria-invalid` — when error
+  - [x] `aria-describedby` — links to error message
+  - [x] `aria-required` — when required
+- [x] Write unit tests
+  - [x] Test: renders input with value
+  - [x] Test: displays label correctly
+  - [x] Test: handles input changes
+  - [x] Test: shows error state
+  - [x] Test: respects disabled state
+  - [x] Test: enforces maxLength
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic example
+  - [x] With placeholder
+  - [x] With error state
+  - [x] Disabled state
+  - [x] Code snippet displayed
 
 > **Accessibility:** Label must be associated with input. Error messages linked via aria-describedby.
 > **Keyboard:** Standard text input behavior
@@ -291,51 +291,51 @@
 **Types:** `src/components/Textarea/Textarea.types.ts`
 **Tests:** `tests/components/Textarea.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `TextareaProps`
-  - [ ] Prop: `value` (string) — current value
-  - [ ] Prop: `placeholder` (string) — placeholder text
-  - [ ] Prop: `label` (string) — associated label text
-  - [ ] Prop: `name` (string) — form field name
-  - [ ] Prop: `rows` (number) — visible row count
-  - [ ] Prop: `cols` (number) — visible column count
-  - [ ] Prop: `resizable` (boolean | 'horizontal' | 'vertical' | 'both') — resize behavior
-  - [ ] Prop: `showCount` (boolean) — show character/line count
-  - [ ] Prop: `maxLength` (number) — character limit
-  - [ ] Prop: `disabled` (boolean) — disables input
-  - [ ] Prop: `error` (string | boolean) — error state/message
-  - [ ] Prop: `onChange` (function) — change handler
-- [ ] Implement multi-line DOS-style text area
-- [ ] Implement character/line counter display
-- [ ] Implement resize handle (DOS-style grip)
-- [ ] Implement states: default, focus, error, disabled
-- [ ] Add CSS styles with class `.dos-textarea`
-  - [ ] `.dos-textarea___field`
-  - [ ] `.dos-textarea___label`
-  - [ ] `.dos-textarea___count`
-  - [ ] `.dos-textarea___error`
-  - [ ] `.dos-textarea--resizable`
-  - [ ] `.dos-textarea--focused`
-  - [ ] `.dos-textarea--error`
-  - [ ] `.dos-textarea--disabled`
-- [ ] Add keyboard navigation
-  - [ ] Standard textarea keys
-  - [ ] `Tab` — focus next element (not insert tab)
-- [ ] Add ARIA attributes
-  - [ ] `aria-invalid` — when error
-  - [ ] `aria-describedby` — links to error/count
-- [ ] Write unit tests
-  - [ ] Test: renders textarea with value
-  - [ ] Test: handles multi-line input
-  - [ ] Test: displays character count
-  - [ ] Test: respects maxLength
-  - [ ] Test: resize behavior works
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic example
-  - [ ] With character count
-  - [ ] Resizable variants
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `TextareaProps`
+  - [x] Prop: `value` (string) — current value
+  - [x] Prop: `placeholder` (string) — placeholder text
+  - [x] Prop: `label` (string) — associated label text
+  - [x] Prop: `name` (string) — form field name
+  - [x] Prop: `rows` (number) — visible row count
+  - [x] Prop: `cols` (number) — visible column count
+  - [x] Prop: `resizable` (boolean | 'horizontal' | 'vertical' | 'both') — resize behavior
+  - [x] Prop: `showCount` (boolean) — show character/line count
+  - [x] Prop: `maxLength` (number) — character limit
+  - [x] Prop: `disabled` (boolean) — disables input
+  - [x] Prop: `error` (string | boolean) — error state/message
+  - [x] Prop: `onChange` (function) — change handler
+- [x] Implement multi-line DOS-style text area
+- [x] Implement character/line counter display
+- [x] Implement resize handle (DOS-style grip)
+- [x] Implement states: default, focus, error, disabled
+- [x] Add CSS styles with class `.dos-textarea`
+  - [x] `.dos-textarea___field`
+  - [x] `.dos-textarea___label`
+  - [x] `.dos-textarea___count`
+  - [x] `.dos-textarea___error`
+  - [x] `.dos-textarea--resizable`
+  - [x] `.dos-textarea--focused`
+  - [x] `.dos-textarea--error`
+  - [x] `.dos-textarea--disabled`
+- [x] Add keyboard navigation
+  - [x] Standard textarea keys
+  - [x] `Tab` — focus next element (not insert tab)
+- [x] Add ARIA attributes
+  - [x] `aria-invalid` — when error
+  - [x] `aria-describedby` — links to error/count
+- [x] Write unit tests
+  - [x] Test: renders textarea with value
+  - [x] Test: handles multi-line input
+  - [x] Test: displays character count
+  - [x] Test: respects maxLength
+  - [x] Test: resize behavior works
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic example
+  - [x] With character count
+  - [x] Resizable variants
+  - [x] Code snippet displayed
 
 > **Accessibility:** Character count announced dynamically. Resize grip must be keyboard accessible.
 > **Keyboard:** Standard textarea behavior, resize via keyboard if possible
@@ -349,42 +349,42 @@
 **Types:** `src/components/PasswordInput/PasswordInput.types.ts`
 **Tests:** `tests/components/PasswordInput.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `PasswordInputProps`
-  - [ ] Prop: `value` (string) — current value
-  - [ ] Prop: `placeholder` (string) — placeholder text
-  - [ ] Prop: `label` (string) — associated label text
-  - [ ] Prop: `name` (string) — form field name
-  - [ ] Prop: `maskChar` (string) — character for masking ('*' or '●')
-  - [ ] Prop: `showToggle` (boolean) — show/hide password toggle
-  - [ ] Prop: `disabled` (boolean) — disables input
-  - [ ] Prop: `error` (string | boolean) — error state/message
-  - [ ] Prop: `onChange` (function) — change handler
-- [ ] Implement password input with masking
-- [ ] Implement show/hide toggle button
-- [ ] Implement states: default, focus, error, disabled, visible
-- [ ] Add CSS styles with class `.dos-password-input`
-  - [ ] `.dos-password-input___field`
-  - [ ] `.dos-password-input___toggle`
-  - [ ] `.dos-password-input--visible`
-  - [ ] `.dos-password-input--error`
-- [ ] Add keyboard navigation
-  - [ ] Standard input keys
-  - [ ] Toggle button keyboard accessible
-- [ ] Add ARIA attributes
-  - [ ] `type="password"` — native masking
-  - [ ] `aria-pressed` — on toggle button
-  - [ ] `aria-describedby` — links to instructions
-- [ ] Write unit tests
-  - [ ] Test: masks input correctly
-  - [ ] Test: toggle reveals/hides password
-  - [ ] Test: uses correct mask character
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic example
-  - [ ] With show/hide toggle
-  - [ ] Different mask characters
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `PasswordInputProps`
+  - [x] Prop: `value` (string) — current value
+  - [x] Prop: `placeholder` (string) — placeholder text
+  - [x] Prop: `label` (string) — associated label text
+  - [x] Prop: `name` (string) — form field name
+  - [x] Prop: `maskChar` (string) — character for masking ('*' or '●')
+  - [x] Prop: `showToggle` (boolean) — show/hide password toggle
+  - [x] Prop: `disabled` (boolean) — disables input
+  - [x] Prop: `error` (string | boolean) — error state/message
+  - [x] Prop: `onChange` (function) — change handler
+- [x] Implement password input with masking
+- [x] Implement show/hide toggle button
+- [x] Implement states: default, focus, error, disabled, visible
+- [x] Add CSS styles with class `.dos-password-input`
+  - [x] `.dos-password-input___field`
+  - [x] `.dos-password-input___toggle`
+  - [x] `.dos-password-input--visible`
+  - [x] `.dos-password-input--error`
+- [x] Add keyboard navigation
+  - [x] Standard input keys
+  - [x] Toggle button keyboard accessible
+- [x] Add ARIA attributes
+  - [x] `type="password"` — native masking
+  - [x] `aria-pressed` — on toggle button
+  - [x] `aria-describedby` — links to instructions
+- [x] Write unit tests
+  - [x] Test: masks input correctly
+  - [x] Test: toggle reveals/hides password
+  - [x] Test: uses correct mask character
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic example
+  - [x] With show/hide toggle
+  - [x] Different mask characters
+  - [x] Code snippet displayed
 
 > **Accessibility:** Toggle button announces current state. Never expose password to screen readers.
 > **Keyboard:** Standard input, toggle via `Enter`/`Space`
@@ -398,49 +398,49 @@
 **Types:** `src/components/Checkbox/Checkbox.types.ts`
 **Tests:** `tests/components/Checkbox.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `CheckboxProps`
-  - [ ] Prop: `checked` (boolean) — checked state
-  - [ ] Prop: `indeterminate` (boolean) — indeterminate state
-  - [ ] Prop: `label` (string) — checkbox label text
-  - [ ] Prop: `labelPosition` ('left' | 'right') — label placement
-  - [ ] Prop: `name` (string) — form field name
-  - [ ] Prop: `value` (string) — form value
-  - [ ] Prop: `disabled` (boolean) — disables interaction
-  - [ ] Prop: `onChange` (function) — change handler
-- [ ] Implement DOS-style checkbox
-  - [ ] Unchecked: `[ ]`
-  - [ ] Checked: `[X]` or `[✓]`
-  - [ ] Indeterminate: `[-]`
-- [ ] Implement states: unchecked, checked, indeterminate, hover, focus, disabled
-- [ ] Add CSS styles with class `.dos-checkbox`
-  - [ ] `.dos-checkbox___input`
-  - [ ] `.dos-checkbox___box`
-  - [ ] `.dos-checkbox___label`
-  - [ ] `.dos-checkbox--checked`
-  - [ ] `.dos-checkbox--indeterminate`
-  - [ ] `.dos-checkbox--disabled`
-  - [ ] `.dos-checkbox--label-left`
-- [ ] Add keyboard navigation
-  - [ ] `Space` — toggle checked state
-  - [ ] `Tab` — focus next element
-- [ ] Add ARIA attributes
-  - [ ] Native `<input type="checkbox">` or `role="checkbox"`
-  - [ ] `aria-checked` — 'true', 'false', 'mixed'
-  - [ ] `aria-disabled` — when disabled
-- [ ] Write unit tests
-  - [ ] Test: renders unchecked state
-  - [ ] Test: renders checked state
-  - [ ] Test: renders indeterminate state
-  - [ ] Test: toggles on click
-  - [ ] Test: toggles on Space key
-  - [ ] Test: respects disabled state
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic example
-  - [ ] All states showcase
-  - [ ] Label positions
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `CheckboxProps`
+  - [x] Prop: `checked` (boolean) — checked state
+  - [x] Prop: `indeterminate` (boolean) — indeterminate state
+  - [x] Prop: `label` (string) — checkbox label text
+  - [x] Prop: `labelPosition` ('left' | 'right') — label placement
+  - [x] Prop: `name` (string) — form field name
+  - [x] Prop: `value` (string) — form value
+  - [x] Prop: `disabled` (boolean) — disables interaction
+  - [x] Prop: `onChange` (function) — change handler
+- [x] Implement DOS-style checkbox
+  - [x] Unchecked: `[ ]`
+  - [x] Checked: `[X]` or `[✓]`
+  - [x] Indeterminate: `[-]`
+- [x] Implement states: unchecked, checked, indeterminate, hover, focus, disabled
+- [x] Add CSS styles with class `.dos-checkbox`
+  - [x] `.dos-checkbox___input`
+  - [x] `.dos-checkbox___box`
+  - [x] `.dos-checkbox___label`
+  - [x] `.dos-checkbox--checked`
+  - [x] `.dos-checkbox--indeterminate`
+  - [x] `.dos-checkbox--disabled`
+  - [x] `.dos-checkbox--label-left`
+- [x] Add keyboard navigation
+  - [x] `Space` — toggle checked state
+  - [x] `Tab` — focus next element
+- [x] Add ARIA attributes
+  - [x] Native `<input type="checkbox">` or `role="checkbox"`
+  - [x] `aria-checked` — 'true', 'false', 'mixed'
+  - [x] `aria-disabled` — when disabled
+- [x] Write unit tests
+  - [x] Test: renders unchecked state
+  - [x] Test: renders checked state
+  - [x] Test: renders indeterminate state
+  - [x] Test: toggles on click
+  - [x] Test: toggles on Space key
+  - [x] Test: respects disabled state
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic example
+  - [x] All states showcase
+  - [x] Label positions
+  - [x] Code snippet displayed
 
 > **Accessibility:** Use native checkbox or proper ARIA. Indeterminate state uses `aria-checked="mixed"`.
 > **Keyboard:** `Space` to toggle
@@ -454,53 +454,53 @@
 **Types:** `src/components/RadioButton/RadioButton.types.ts`
 **Tests:** `tests/components/RadioButton.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `RadioButtonProps`
-  - [ ] Prop: `checked` (boolean) — selected state
-  - [ ] Prop: `label` (string) — radio label text
-  - [ ] Prop: `name` (string) — group name (required)
-  - [ ] Prop: `value` (string) — form value
-  - [ ] Prop: `disabled` (boolean) — disables interaction
-  - [ ] Prop: `onChange` (function) — change handler
-- [ ] Define TypeScript interface `RadioGroupProps`
-  - [ ] Prop: `name` (string) — group name
-  - [ ] Prop: `value` (string) — selected value
-  - [ ] Prop: `options` (RadioOption[]) — radio options
-  - [ ] Prop: `orientation` ('horizontal' | 'vertical') — layout
-  - [ ] Prop: `disabled` (boolean) — disables all radios
-  - [ ] Prop: `onChange` (function) — change handler
-- [ ] Implement DOS-style radio button
-  - [ ] Unselected: `( )`
-  - [ ] Selected: `(•)` or `(●)`
-- [ ] Implement RadioGroup container
-- [ ] Implement states: unselected, selected, hover, focus, disabled
-- [ ] Add CSS styles with class `.dos-radio`
-  - [ ] `.dos-radio___input`
-  - [ ] `.dos-radio___circle`
-  - [ ] `.dos-radio___label`
-  - [ ] `.dos-radio--checked`
-  - [ ] `.dos-radio--disabled`
-- [ ] Add CSS styles with class `.dos-radio-group`
-  - [ ] `.dos-radio-group--horizontal`
-  - [ ] `.dos-radio-group--vertical`
-- [ ] Add keyboard navigation
-  - [ ] `Space` — select current radio
-  - [ ] `Arrow Up/Down` — navigate in vertical group
-  - [ ] `Arrow Left/Right` — navigate in horizontal group
-- [ ] Add ARIA attributes
-  - [ ] Native `<input type="radio">` or `role="radio"`
-  - [ ] `role="radiogroup"` — on container
-  - [ ] `aria-checked` — 'true' or 'false'
-- [ ] Write unit tests
-  - [ ] Test: renders unselected state
-  - [ ] Test: renders selected state
-  - [ ] Test: only one can be selected in group
-  - [ ] Test: arrow keys navigate group
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic group example
-  - [ ] Horizontal and vertical layouts
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `RadioButtonProps`
+  - [x] Prop: `checked` (boolean) — selected state
+  - [x] Prop: `label` (string) — radio label text
+  - [x] Prop: `name` (string) — group name (required)
+  - [x] Prop: `value` (string) — form value
+  - [x] Prop: `disabled` (boolean) — disables interaction
+  - [x] Prop: `onChange` (function) — change handler
+- [x] Define TypeScript interface `RadioGroupProps`
+  - [x] Prop: `name` (string) — group name
+  - [x] Prop: `value` (string) — selected value
+  - [x] Prop: `options` (RadioOption[]) — radio options
+  - [x] Prop: `orientation` ('horizontal' | 'vertical') — layout
+  - [x] Prop: `disabled` (boolean) — disables all radios
+  - [x] Prop: `onChange` (function) — change handler
+- [x] Implement DOS-style radio button
+  - [x] Unselected: `( )`
+  - [x] Selected: `(•)` or `(●)`
+- [x] Implement RadioGroup container
+- [x] Implement states: unselected, selected, hover, focus, disabled
+- [x] Add CSS styles with class `.dos-radio`
+  - [x] `.dos-radio___input`
+  - [x] `.dos-radio___circle`
+  - [x] `.dos-radio___label`
+  - [x] `.dos-radio--checked`
+  - [x] `.dos-radio--disabled`
+- [x] Add CSS styles with class `.dos-radio-group`
+  - [x] `.dos-radio-group--horizontal`
+  - [x] `.dos-radio-group--vertical`
+- [x] Add keyboard navigation
+  - [x] `Space` — select current radio
+  - [x] `Arrow Up/Down` — navigate in vertical group
+  - [x] `Arrow Left/Right` — navigate in horizontal group
+- [x] Add ARIA attributes
+  - [x] Native `<input type="radio">` or `role="radio"`
+  - [x] `role="radiogroup"` — on container
+  - [x] `aria-checked` — 'true' or 'false'
+- [x] Write unit tests
+  - [x] Test: renders unselected state
+  - [x] Test: renders selected state
+  - [x] Test: only one can be selected in group
+  - [x] Test: arrow keys navigate group
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic group example
+  - [x] Horizontal and vertical layouts
+  - [x] Code snippet displayed
 
 > **Accessibility:** RadioGroup must have role="radiogroup". Arrow keys move selection within group.
 > **Keyboard:** `Space` to select, `Arrow keys` to navigate
@@ -514,39 +514,39 @@
 **Types:** `src/components/FormGroup/FormGroup.types.ts`
 **Tests:** `tests/components/FormGroup.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `FormGroupProps`
-  - [ ] Prop: `legend` (string) — fieldset legend/title
-  - [ ] Prop: `description` (string) — helper text
-  - [ ] Prop: `error` (string) — group-level error message
-  - [ ] Prop: `required` (boolean) — indicates required fields
-  - [ ] Prop: `disabled` (boolean) — disables all children
-  - [ ] Prop: `children` (Element[]) — form controls
-- [ ] Implement using semantic `<fieldset>` and `<legend>`
-- [ ] Implement DOS-style border using box-drawing characters
-  - [ ] Top: `┌─ Legend ─────────┐`
-  - [ ] Sides: `│                 │`
-  - [ ] Bottom: `└─────────────────┘`
-- [ ] Add CSS styles with class `.dos-form-group`
-  - [ ] `.dos-form-group___legend`
-  - [ ] `.dos-form-group___content`
-  - [ ] `.dos-form-group___description`
-  - [ ] `.dos-form-group___error`
-  - [ ] `.dos-form-group--error`
-  - [ ] `.dos-form-group--disabled`
-- [ ] Add ARIA attributes
-  - [ ] Native `<fieldset>` provides grouping
-  - [ ] `aria-describedby` — links to description/error
-- [ ] Write unit tests
-  - [ ] Test: renders fieldset with legend
-  - [ ] Test: displays description text
-  - [ ] Test: shows error state
-  - [ ] Test: disables children when disabled
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic grouped form controls
-  - [ ] With description and error
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `FormGroupProps`
+  - [x] Prop: `legend` (string) — fieldset legend/title
+  - [x] Prop: `description` (string) — helper text
+  - [x] Prop: `error` (string) — group-level error message
+  - [x] Prop: `required` (boolean) — indicates required fields
+  - [x] Prop: `disabled` (boolean) — disables all children
+  - [x] Prop: `children` (Element[]) — form controls
+- [x] Implement using semantic `<fieldset>` and `<legend>`
+- [x] Implement DOS-style border using box-drawing characters
+  - [x] Top: `┌─ Legend ─────────┐`
+  - [x] Sides: `│                 │`
+  - [x] Bottom: `└─────────────────┘`
+- [x] Add CSS styles with class `.dos-form-group`
+  - [x] `.dos-form-group___legend`
+  - [x] `.dos-form-group___content`
+  - [x] `.dos-form-group___description`
+  - [x] `.dos-form-group___error`
+  - [x] `.dos-form-group--error`
+  - [x] `.dos-form-group--disabled`
+- [x] Add ARIA attributes
+  - [x] Native `<fieldset>` provides grouping
+  - [x] `aria-describedby` — links to description/error
+- [x] Write unit tests
+  - [x] Test: renders fieldset with legend
+  - [x] Test: displays description text
+  - [x] Test: shows error state
+  - [x] Test: disables children when disabled
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic grouped form controls
+  - [x] With description and error
+  - [x] Code snippet displayed
 
 > **Accessibility:** Use semantic `<fieldset>`/`<legend>`. Groups related form controls logically.
 > **Keyboard:** Standard form navigation
@@ -560,45 +560,94 @@
 **Types:** `src/components/FormValidation/FormValidation.types.ts`
 **Tests:** `tests/components/FormValidation.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `FormValidationProps`
-  - [ ] Prop: `message` (string) — validation message
-  - [ ] Prop: `type` ('error' | 'warning' | 'success' | 'info') — message type
-  - [ ] Prop: `icon` (boolean | string) — show/custom icon
-  - [ ] Prop: `visible` (boolean) — controls visibility
-  - [ ] Prop: `id` (string) — for aria-describedby linking
-- [ ] Implement error message display component
-- [ ] Implement type-based icons
-  - [ ] Error: `✗` or `[!]`
-  - [ ] Warning: `⚠` or `[?]`
-  - [ ] Success: `✓` or `[√]`
-  - [ ] Info: `ℹ` or `[i]`
-- [ ] Add CSS styles with class `.dos-form-validation`
-  - [ ] `.dos-form-validation___icon`
-  - [ ] `.dos-form-validation___message`
-  - [ ] `.dos-form-validation--error`
-  - [ ] `.dos-form-validation--warning`
-  - [ ] `.dos-form-validation--success`
-  - [ ] `.dos-form-validation--info`
-- [ ] Add ARIA attributes
-  - [ ] `role="alert"` — for errors (live region)
-  - [ ] `aria-live="polite"` — for non-error messages
-- [ ] Write unit tests
-  - [ ] Test: renders message correctly
-  - [ ] Test: applies type-specific styles
-  - [ ] Test: shows appropriate icon
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] All message types
-  - [ ] With form field integration
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `FormValidationProps`
+  - [x] Prop: `message` (string) — validation message
+  - [x] Prop: `type` ('error' | 'warning' | 'success' | 'info') — message type
+  - [x] Prop: `icon` (boolean | string) — show/custom icon
+  - [x] Prop: `visible` (boolean) — controls visibility
+  - [x] Prop: `id` (string) — for aria-describedby linking
+- [x] Implement error message display component
+- [x] Implement type-based icons
+  - [x] Error: `✗` or `[!]`
+  - [x] Warning: `⚠` or `[?]`
+  - [x] Success: `✓` or `[√]`
+  - [x] Info: `ℹ` or `[i]`
+- [x] Add CSS styles with class `.dos-form-validation`
+  - [x] `.dos-form-validation___icon`
+  - [x] `.dos-form-validation___message`
+  - [x] `.dos-form-validation--error`
+  - [x] `.dos-form-validation--warning`
+  - [x] `.dos-form-validation--success`
+  - [x] `.dos-form-validation--info`
+- [x] Add ARIA attributes
+  - [x] `role="alert"` — for errors (live region)
+  - [x] `aria-live="polite"` — for non-error messages
+- [x] Write unit tests
+  - [x] Test: renders message correctly
+  - [x] Test: applies type-specific styles
+  - [x] Test: shows appropriate icon
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] All message types
+  - [x] With form field integration
+  - [x] Code snippet displayed
+- [x] Add "Real-time Validation" demo section
+  - [x] Create interactive form with multiple fields
+    - [x] Username field (required, minLength: 3)
+    - [x] Email field (required, email format)
+    - [x] Password field (required, minLength: 8)
+    - [x] Confirm password field (must match password)
+  - [x] Implement validation on blur (when leaving field)
+  - [x] Show validation errors using `setError()` method
+  - [x] Clear errors when input becomes valid
+  - [x] Show success state when field is valid
+  - [x] Add form submit button that validates all fields
+  - [x] Display overall form validity state
+  - [x] Add code snippet showing the wiring pattern
 
 > **Accessibility:** Error messages use `role="alert"` for immediate announcement. Link to inputs via `aria-describedby`.
 > **Keyboard:** Not interactive
 
 ---
 
-- [ ] ⛔ HUMAN ONLY: I have reviewed and verified Phase 5
+### 5.8 Validation Utilities
+
+**File:** `src/utils/validators.ts`
+**Types:** `src/utils/validators.types.ts`
+**Tests:** `tests/utils/validators.test.ts`
+
+- [x] Create utils directory structure
+- [x] Define TypeScript interfaces
+  - [x] `ValidationResult` — { valid: boolean; message?: string }
+  - [x] `ValidatorFn` — (value: string) => ValidationResult
+  - [x] `ValidatorOptions` — configuration for each validator
+- [x] Implement core validators
+  - [x] `validators.required(options?)` — checks for non-empty value
+  - [x] `validators.email(options?)` — validates email format
+  - [x] `validators.minLength(min, options?)` — minimum character count
+  - [x] `validators.maxLength(max, options?)` — maximum character count
+  - [x] `validators.pattern(regex, options?)` — custom regex pattern
+  - [x] `validators.matches(fieldName, options?)` — matches another field (e.g., confirm password)
+- [x] Implement validator composition
+  - [x] `validators.compose(...validators)` — combine multiple validators
+  - [x] `validators.custom(fn, message)` — create custom validator
+- [x] Allow custom error messages per validator
+- [x] Export from main `src/index.ts`
+- [x] Write unit tests
+  - [x] Test: required validator with empty/non-empty values
+  - [x] Test: email validator with valid/invalid emails
+  - [x] Test: minLength/maxLength boundaries
+  - [x] Test: pattern matching
+  - [x] Test: compose combines validators correctly
+  - [x] Test: custom validator works
+- [x] Add JSDoc documentation for all exports
+
+> **Note:** These are optional utilities — developers can use any validation library they prefer.
+
+---
+
+- [x] ⛔ HUMAN ONLY: I have reviewed and verified Phase 5
 
 ---
 
