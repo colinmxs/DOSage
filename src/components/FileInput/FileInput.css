@@ -1,0 +1,248 @@
+/**
+ * FileInput Styles
+ *
+ * DOS-style file input with drag and drop support.
+ */
+
+/* Base file input wrapper */
+.dos-file-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dos-space-sm);
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size-base);
+  line-height: var(--dos-line-height);
+  width: 100%;
+}
+
+/* Size variants */
+.dos-file-input--sm {
+  font-size: var(--dos-font-size-sm);
+}
+
+.dos-file-input--md {
+  font-size: var(--dos-font-size-base);
+}
+
+.dos-file-input--lg {
+  font-size: var(--dos-font-size-lg);
+}
+
+/* Label */
+.dos-file-input__label {
+  color: var(--dos-color-text);
+  margin-bottom: var(--dos-space-xs);
+}
+
+/* Input row (button + filename) */
+.dos-file-input__row {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+/* Browse button */
+.dos-file-input__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--dos-space-xs) var(--dos-space-sm);
+  border: 1px solid var(--dos-color-border);
+  background-color: var(--dos-color-bg-alt);
+  color: var(--dos-color-text);
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.dos-file-input__button:hover {
+  background-color: var(--dos-color-bg-hover);
+}
+
+.dos-file-input__button:focus {
+  outline: 2px solid var(--dos-color-focus);
+  outline-offset: -2px;
+}
+
+.dos-file-input__button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.dos-file-input__button:focus-visible {
+  outline: 2px solid var(--dos-color-focus);
+  outline-offset: -2px;
+}
+
+/* Filename display */
+.dos-file-input__filename {
+  flex: 1;
+  padding: var(--dos-space-xs) var(--dos-space-sm);
+  border: 1px solid var(--dos-color-border);
+  border-left: none;
+  background-color: var(--dos-color-bg);
+  color: var(--dos-color-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dos-file-input__filename--has-files {
+  color: var(--dos-color-text);
+}
+
+/* Drop zone */
+.dos-file-input__dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  padding: var(--dos-space-md);
+  border: 2px dashed var(--dos-color-border);
+  background-color: var(--dos-color-bg-alt);
+  color: var(--dos-color-text-muted);
+  text-align: center;
+  cursor: pointer;
+  transition: none;
+}
+
+.dos-file-input__dropzone:hover {
+  background-color: var(--dos-color-bg-hover);
+  border-color: var(--dos-color-primary);
+}
+
+.dos-file-input__dropzone:focus {
+  outline: 2px solid var(--dos-color-focus);
+  outline-offset: 2px;
+}
+
+.dos-file-input__dropzone:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.dos-file-input__dropzone:focus-visible {
+  outline: 2px solid var(--dos-color-focus);
+  outline-offset: 2px;
+}
+
+/* Drop zone drag over state */
+.dos-file-input--dragover .dos-file-input__dropzone {
+  background-color: var(--dos-color-bg-active);
+  border-color: var(--dos-color-primary);
+  color: var(--dos-color-text);
+}
+
+.dos-file-input__dropzone-icon {
+  font-size: 2em;
+  margin-bottom: var(--dos-space-sm);
+}
+
+.dos-file-input__dropzone-text {
+  color: inherit;
+}
+
+.dos-file-input__dropzone-hint {
+  margin-top: var(--dos-space-xs);
+  font-size: 0.875em;
+  color: var(--dos-color-text-muted);
+}
+
+/* File list */
+.dos-file-input__file-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dos-space-xs);
+  margin-top: var(--dos-space-sm);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dos-file-input__file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--dos-space-xs) var(--dos-space-sm);
+  border: 1px solid var(--dos-color-border);
+  background-color: var(--dos-color-bg);
+}
+
+.dos-file-input__file-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex: 1;
+  min-width: 0;
+}
+
+.dos-file-input__file-name {
+  color: var(--dos-color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dos-file-input__file-size {
+  font-size: 0.875em;
+  color: var(--dos-color-text-muted);
+}
+
+.dos-file-input__file-remove {
+  padding: 0 var(--dos-space-xs);
+  border: none;
+  background: none;
+  color: var(--dos-color-error);
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.dos-file-input__file-remove:hover {
+  color: var(--dos-color-text);
+  background-color: var(--dos-color-error);
+}
+
+.dos-file-input__file-remove:focus {
+  outline: 1px solid var(--dos-color-focus);
+}
+
+/* Error message */
+.dos-file-input__error {
+  color: var(--dos-color-error);
+  font-size: 0.875em;
+}
+
+/* Error state */
+.dos-file-input--error .dos-file-input__button,
+.dos-file-input--error .dos-file-input__filename,
+.dos-file-input--error .dos-file-input__dropzone {
+  border-color: var(--dos-color-error);
+}
+
+/* Disabled state */
+.dos-file-input--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dos-file-input--disabled .dos-file-input__button,
+.dos-file-input--disabled .dos-file-input__dropzone {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.dos-file-input--disabled .dos-file-input__file-remove {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Hidden native input */
+.dos-file-input__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}

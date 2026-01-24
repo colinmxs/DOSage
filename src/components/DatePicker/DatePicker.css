@@ -1,0 +1,337 @@
+/**
+ * DatePicker component styles
+ * DOS-style date picker with calendar popup
+ */
+
+/* Base container */
+.dos-date-picker {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--dos-spacing-xs, 0.25rem);
+  font-family: var(--dos-font-family, 'Fixedsys Excelsior', 'Courier New', monospace);
+  position: relative;
+}
+
+/* Full width variant */
+.dos-date-picker--full-width {
+  display: flex;
+  width: 100%;
+}
+
+/* Label */
+.dos-date-picker___label {
+  color: var(--dos-text-primary, #AAAAAA);
+  font-size: var(--dos-font-size-sm, 0.875rem);
+  font-weight: normal;
+}
+
+.dos-date-picker___label--required::after {
+  content: ' *';
+  color: var(--dos-error, #FF5555);
+}
+
+/* Input wrapper - contains input and toggle button */
+.dos-date-picker___input-wrapper {
+  display: flex;
+  align-items: stretch;
+  background-color: var(--dos-bg-secondary, #000000);
+  border: 1px solid var(--dos-border, #AAAAAA);
+  position: relative;
+}
+
+.dos-date-picker___input-wrapper:focus-within {
+  border-color: var(--dos-focus, #FFFFFF);
+  outline: 1px solid var(--dos-focus, #FFFFFF);
+  outline-offset: 0;
+}
+
+.dos-date-picker--error .dos-date-picker___input-wrapper {
+  border-color: var(--dos-error, #FF5555);
+}
+
+.dos-date-picker--error .dos-date-picker___input-wrapper:focus-within {
+  outline-color: var(--dos-error, #FF5555);
+}
+
+.dos-date-picker--disabled .dos-date-picker___input-wrapper {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Input field */
+.dos-date-picker___input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--dos-spacing-sm, 0.5rem);
+  background: transparent;
+  border: none;
+  color: var(--dos-text-primary, #FFFFFF);
+  font-family: inherit;
+  font-size: var(--dos-font-size-md, 1rem);
+  outline: none;
+  cursor: pointer;
+}
+
+.dos-date-picker___input::placeholder {
+  color: var(--dos-text-muted, #555555);
+}
+
+.dos-date-picker--disabled .dos-date-picker___input {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Toggle button */
+.dos-date-picker___toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--dos-spacing-sm, 0.5rem);
+  background-color: var(--dos-bg-tertiary, #333333);
+  border: none;
+  border-left: 1px solid var(--dos-border, #AAAAAA);
+  color: var(--dos-text-primary, #FFFFFF);
+  font-family: inherit;
+  font-size: var(--dos-font-size-md, 1rem);
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+
+.dos-date-picker___toggle:hover:not(:disabled) {
+  background-color: var(--dos-bg-highlight, #444444);
+}
+
+.dos-date-picker___toggle:disabled {
+  cursor: not-allowed;
+}
+
+/* Calendar popup */
+.dos-date-picker___calendar {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  margin-top: 2px;
+  background-color: var(--dos-bg-primary, #0000AA);
+  border: 2px solid var(--dos-border-strong, #FFFFFF);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
+  display: none;
+  min-width: 280px;
+}
+
+.dos-date-picker___calendar--open {
+  display: block;
+}
+
+/* Calendar header */
+.dos-date-picker___header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--dos-spacing-sm, 0.5rem);
+  border-bottom: 1px solid var(--dos-border, #AAAAAA);
+  background-color: var(--dos-bg-secondary, #000055);
+}
+
+.dos-date-picker___header-title {
+  color: var(--dos-text-highlight, #FFFF55);
+  font-size: var(--dos-font-size-md, 1rem);
+  font-weight: bold;
+  text-align: center;
+  flex: 1;
+}
+
+/* Navigation buttons */
+.dos-date-picker___nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: 1px solid var(--dos-border, #AAAAAA);
+  color: var(--dos-text-primary, #FFFFFF);
+  font-family: inherit;
+  font-size: var(--dos-font-size-lg, 1.25rem);
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+
+.dos-date-picker___nav:hover:not(:disabled) {
+  background-color: var(--dos-bg-highlight, #0000DD);
+}
+
+.dos-date-picker___nav:focus {
+  outline: 1px solid var(--dos-focus, #FFFFFF);
+  outline-offset: -2px;
+}
+
+.dos-date-picker___nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Calendar grid */
+.dos-date-picker___grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  padding: var(--dos-spacing-xs, 0.25rem);
+}
+
+/* Day headers */
+.dos-date-picker___day-header {
+  padding: var(--dos-spacing-xs, 0.25rem);
+  color: var(--dos-text-muted, #888888);
+  font-size: var(--dos-font-size-sm, 0.875rem);
+  text-align: center;
+  border-bottom: 1px solid var(--dos-border, #555555);
+}
+
+/* Day cells */
+.dos-date-picker___day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  min-width: 2rem;
+  min-height: 2rem;
+  padding: var(--dos-spacing-xs, 0.25rem);
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--dos-text-primary, #FFFFFF);
+  font-family: inherit;
+  font-size: var(--dos-font-size-sm, 0.875rem);
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.1s, border-color 0.1s;
+}
+
+.dos-date-picker___day:hover:not(:disabled):not(.dos-date-picker___day--disabled) {
+  background-color: var(--dos-bg-highlight, #0000DD);
+  border-color: var(--dos-border, #AAAAAA);
+}
+
+.dos-date-picker___day:focus {
+  outline: none;
+  border-color: var(--dos-focus, #FFFFFF);
+  background-color: var(--dos-bg-highlight, #0000DD);
+}
+
+/* Today */
+.dos-date-picker___day--today {
+  border-color: var(--dos-accent, #55FFFF);
+  color: var(--dos-accent, #55FFFF);
+}
+
+/* Selected */
+.dos-date-picker___day--selected {
+  background-color: var(--dos-bg-selected, #FFFFFF);
+  color: var(--dos-bg-primary, #0000AA);
+  font-weight: bold;
+}
+
+.dos-date-picker___day--selected:hover:not(:disabled) {
+  background-color: var(--dos-bg-selected, #FFFFFF);
+}
+
+/* Other month */
+.dos-date-picker___day--other-month {
+  color: var(--dos-text-muted, #555555);
+}
+
+/* Disabled day */
+.dos-date-picker___day--disabled,
+.dos-date-picker___day:disabled {
+  color: var(--dos-text-disabled, #333333);
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Error message */
+.dos-date-picker___error {
+  color: var(--dos-error, #FF5555);
+  font-size: var(--dos-font-size-sm, 0.875rem);
+  margin-top: var(--dos-spacing-xs, 0.25rem);
+}
+
+/* Box drawing border variant (using pseudo-elements) */
+.dos-date-picker___calendar--boxdraw {
+  border: none;
+  padding: 0;
+}
+
+.dos-date-picker___calendar--boxdraw::before {
+  content: '┌' attr(data-title) '┐';
+  display: block;
+  color: var(--dos-border-strong, #FFFFFF);
+  white-space: pre;
+}
+
+/* Size variants */
+.dos-date-picker--sm .dos-date-picker___input {
+  padding: var(--dos-spacing-xs, 0.25rem);
+  font-size: var(--dos-font-size-sm, 0.875rem);
+}
+
+.dos-date-picker--sm .dos-date-picker___toggle {
+  padding: var(--dos-spacing-xs, 0.25rem);
+  font-size: var(--dos-font-size-sm, 0.875rem);
+}
+
+.dos-date-picker--sm .dos-date-picker___calendar {
+  min-width: 240px;
+}
+
+.dos-date-picker--sm .dos-date-picker___day {
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  font-size: var(--dos-font-size-xs, 0.75rem);
+}
+
+.dos-date-picker--lg .dos-date-picker___input {
+  padding: var(--dos-spacing-md, 0.75rem);
+  font-size: var(--dos-font-size-lg, 1.25rem);
+}
+
+.dos-date-picker--lg .dos-date-picker___toggle {
+  padding: var(--dos-spacing-md, 0.75rem);
+  font-size: var(--dos-font-size-lg, 1.25rem);
+}
+
+.dos-date-picker--lg .dos-date-picker___calendar {
+  min-width: 320px;
+}
+
+.dos-date-picker--lg .dos-date-picker___day {
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  font-size: var(--dos-font-size-md, 1rem);
+}
+
+/* Footer with today button */
+.dos-date-picker___footer {
+  display: flex;
+  justify-content: center;
+  padding: var(--dos-spacing-sm, 0.5rem);
+  border-top: 1px solid var(--dos-border, #AAAAAA);
+}
+
+.dos-date-picker___today-btn {
+  padding: var(--dos-spacing-xs, 0.25rem) var(--dos-spacing-sm, 0.5rem);
+  background-color: var(--dos-bg-tertiary, #333333);
+  border: 1px solid var(--dos-border, #AAAAAA);
+  color: var(--dos-text-primary, #FFFFFF);
+  font-family: inherit;
+  font-size: var(--dos-font-size-sm, 0.875rem);
+  cursor: pointer;
+}
+
+.dos-date-picker___today-btn:hover {
+  background-color: var(--dos-bg-highlight, #444444);
+}
+
+.dos-date-picker___today-btn:focus {
+  outline: 1px solid var(--dos-focus, #FFFFFF);
+  outline-offset: -2px;
+}

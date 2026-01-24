@@ -660,63 +660,63 @@
 **Types:** `src/components/Select/Select.types.ts`
 **Tests:** `tests/components/Select.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `SelectProps`
-  - [ ] Prop: `value` (string | string[]) — selected value(s)
-  - [ ] Prop: `options` (SelectOption[]) — available options
-  - [ ] Prop: `placeholder` (string) — placeholder text
-  - [ ] Prop: `label` (string) — associated label
-  - [ ] Prop: `multiple` (boolean) — allow multiple selection
-  - [ ] Prop: `searchable` (boolean) — filter options
-  - [ ] Prop: `disabled` (boolean) — disables interaction
-  - [ ] Prop: `error` (string | boolean) — error state
-  - [ ] Prop: `onChange` (function) — change handler
-- [ ] Define TypeScript interface `SelectOption`
-  - [ ] Prop: `value` (string) — option value
-  - [ ] Prop: `label` (string) — display text
-  - [ ] Prop: `disabled` (boolean) — option disabled
-  - [ ] Prop: `group` (string) — optgroup label
-- [ ] Implement DOS-style select with dropdown
-- [ ] Implement arrow indicator: `▼`
-- [ ] Implement dropdown list styling
-- [ ] Implement states: default, open, focus, error, disabled
-- [ ] Add CSS styles with class `.dos-select`
-  - [ ] `.dos-select___trigger`
-  - [ ] `.dos-select___arrow`
-  - [ ] `.dos-select___dropdown`
-  - [ ] `.dos-select___option`
-  - [ ] `.dos-select___option--selected`
-  - [ ] `.dos-select___option--highlighted`
-  - [ ] `.dos-select___option--disabled`
-  - [ ] `.dos-select___group`
-  - [ ] `.dos-select--open`
-  - [ ] `.dos-select--error`
-  - [ ] `.dos-select--disabled`
-- [ ] Add keyboard navigation
-  - [ ] `Enter` / `Space` — open/close dropdown, select option
-  - [ ] `Arrow Up/Down` — navigate options
-  - [ ] `Home` / `End` — first/last option
-  - [ ] `Escape` — close dropdown
-  - [ ] Type-ahead — jump to matching option
-- [ ] Add ARIA attributes
-  - [ ] `role="combobox"` — on trigger
-  - [ ] `role="listbox"` — on dropdown
-  - [ ] `role="option"` — on options
-  - [ ] `aria-expanded` — dropdown state
-  - [ ] `aria-selected` — selected option
-  - [ ] `aria-activedescendant` — current focus
-- [ ] Write unit tests
-  - [ ] Test: renders with selected value
-  - [ ] Test: opens dropdown on click
-  - [ ] Test: selects option correctly
-  - [ ] Test: keyboard navigation works
-  - [ ] Test: type-ahead works
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic example
-  - [ ] With option groups
-  - [ ] Searchable variant
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `SelectProps`
+  - [x] Prop: `value` (string | string[]) — selected value(s)
+  - [x] Prop: `options` (SelectOption[]) — available options
+  - [x] Prop: `placeholder` (string) — placeholder text
+  - [x] Prop: `label` (string) — associated label
+  - [x] Prop: `multiple` (boolean) — allow multiple selection
+  - [x] Prop: `searchable` (boolean) — filter options
+  - [x] Prop: `disabled` (boolean) — disables interaction
+  - [x] Prop: `error` (string | boolean) — error state
+  - [x] Prop: `onChange` (function) — change handler
+- [x] Define TypeScript interface `SelectOption`
+  - [x] Prop: `value` (string) — option value
+  - [x] Prop: `label` (string) — display text
+  - [x] Prop: `disabled` (boolean) — option disabled
+  - [x] Prop: `group` (string) — optgroup label
+- [x] Implement DOS-style select with dropdown
+- [x] Implement arrow indicator: `▼`
+- [x] Implement dropdown list styling
+- [x] Implement states: default, open, focus, error, disabled
+- [x] Add CSS styles with class `.dos-select`
+  - [x] `.dos-select___trigger`
+  - [x] `.dos-select___arrow`
+  - [x] `.dos-select___dropdown`
+  - [x] `.dos-select___option`
+  - [x] `.dos-select___option--selected`
+  - [x] `.dos-select___option--highlighted`
+  - [x] `.dos-select___option--disabled`
+  - [x] `.dos-select___group`
+  - [x] `.dos-select--open`
+  - [x] `.dos-select--error`
+  - [x] `.dos-select--disabled`
+- [x] Add keyboard navigation
+  - [x] `Enter` / `Space` — open/close dropdown, select option
+  - [x] `Arrow Up/Down` — navigate options
+  - [x] `Home` / `End` — first/last option
+  - [x] `Escape` — close dropdown
+  - [x] Type-ahead — jump to matching option
+- [x] Add ARIA attributes
+  - [x] `role="combobox"` — on trigger
+  - [x] `role="listbox"` — on dropdown
+  - [x] `role="option"` — on options
+  - [x] `aria-expanded` — dropdown state
+  - [x] `aria-selected` — selected option
+  - [x] `aria-activedescendant` — current focus
+- [x] Write unit tests
+  - [x] Test: renders with selected value
+  - [x] Test: opens dropdown on click
+  - [x] Test: selects option correctly
+  - [x] Test: keyboard navigation works
+  - [x] Test: type-ahead works
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic example
+  - [x] With option groups
+  - [x] Searchable variant
+  - [x] Code snippet displayed
 
 > **Accessibility:** Full ARIA combobox pattern. Type-ahead for quick selection.
 > **Keyboard:** `Enter`/`Space` to toggle, `Arrows` to navigate, `Escape` to close
@@ -730,44 +730,44 @@
 **Types:** `src/components/Toggle/Toggle.types.ts`
 **Tests:** `tests/components/Toggle.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `ToggleProps`
-  - [ ] Prop: `checked` (boolean) — toggle state
-  - [ ] Prop: `label` (string) — toggle label
-  - [ ] Prop: `labelPosition` ('left' | 'right') — label placement
-  - [ ] Prop: `onLabel` (string) — text when on (e.g., 'ON')
-  - [ ] Prop: `offLabel` (string) — text when off (e.g., 'OFF')
-  - [ ] Prop: `disabled` (boolean) — disables interaction
-  - [ ] Prop: `onChange` (function) — change handler
-- [ ] Implement DOS-style toggle
-  - [ ] Style A: `[ON ]` / `[OFF]`
-  - [ ] Style B: `[■──]` / `[──■]`
-- [ ] Implement states: off, on, hover, focus, disabled
-- [ ] Add CSS styles with class `.dos-toggle`
-  - [ ] `.dos-toggle___track`
-  - [ ] `.dos-toggle___thumb`
-  - [ ] `.dos-toggle___label`
-  - [ ] `.dos-toggle___state-label`
-  - [ ] `.dos-toggle--checked`
-  - [ ] `.dos-toggle--disabled`
-- [ ] Add keyboard navigation
-  - [ ] `Space` — toggle state
-  - [ ] `Enter` — toggle state
-- [ ] Add ARIA attributes
-  - [ ] `role="switch"`
-  - [ ] `aria-checked` — 'true' or 'false'
-  - [ ] `aria-disabled` — when disabled
-- [ ] Write unit tests
-  - [ ] Test: renders off state
-  - [ ] Test: renders on state
-  - [ ] Test: toggles on click
-  - [ ] Test: toggles on Space/Enter
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic example
-  - [ ] With ON/OFF labels
-  - [ ] Different visual styles
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `ToggleProps`
+  - [x] Prop: `checked` (boolean) — toggle state
+  - [x] Prop: `label` (string) — toggle label
+  - [x] Prop: `labelPosition` ('left' | 'right') — label placement
+  - [x] Prop: `onLabel` (string) — text when on (e.g., 'ON')
+  - [x] Prop: `offLabel` (string) — text when off (e.g., 'OFF')
+  - [x] Prop: `disabled` (boolean) — disables interaction
+  - [x] Prop: `onChange` (function) — change handler
+- [x] Implement DOS-style toggle
+  - [x] Style A: `[ON ]` / `[OFF]`
+  - [x] Style B: `[■──]` / `[──■]`
+- [x] Implement states: off, on, hover, focus, disabled
+- [x] Add CSS styles with class `.dos-toggle`
+  - [x] `.dos-toggle___track`
+  - [x] `.dos-toggle___thumb`
+  - [x] `.dos-toggle___label`
+  - [x] `.dos-toggle___state-label`
+  - [x] `.dos-toggle--checked`
+  - [x] `.dos-toggle--disabled`
+- [x] Add keyboard navigation
+  - [x] `Space` — toggle state
+  - [x] `Enter` — toggle state
+- [x] Add ARIA attributes
+  - [x] `role="switch"`
+  - [x] `aria-checked` — 'true' or 'false'
+  - [x] `aria-disabled` — when disabled
+- [x] Write unit tests
+  - [x] Test: renders off state
+  - [x] Test: renders on state
+  - [x] Test: toggles on click
+  - [x] Test: toggles on Space/Enter
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic example
+  - [x] With ON/OFF labels
+  - [x] Different visual styles
+  - [x] Code snippet displayed
 
 > **Accessibility:** Use `role="switch"` for proper semantics. Announce state changes.
 > **Keyboard:** `Space`/`Enter` to toggle
@@ -781,57 +781,57 @@
 **Types:** `src/components/Slider/Slider.types.ts`
 **Tests:** `tests/components/Slider.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `SliderProps`
-  - [ ] Prop: `value` (number | [number, number]) — current value(s)
-  - [ ] Prop: `min` (number) — minimum value
-  - [ ] Prop: `max` (number) — maximum value
-  - [ ] Prop: `step` (number) — increment step
-  - [ ] Prop: `label` (string) — slider label
-  - [ ] Prop: `showValue` (boolean) — display current value
-  - [ ] Prop: `showTicks` (boolean) — show tick marks
-  - [ ] Prop: `range` (boolean) — enable range selection
-  - [ ] Prop: `disabled` (boolean) — disables interaction
-  - [ ] Prop: `onChange` (function) — change handler
-- [ ] Implement DOS-style slider
-  - [ ] Track: `├──────────┤`
-  - [ ] Thumb: `█` or `▓`
-  - [ ] Fill: `████──────` (filled portion)
-- [ ] Implement range slider with two thumbs
-- [ ] Implement value display
-- [ ] Implement states: default, hover, focus, active, disabled
-- [ ] Add CSS styles with class `.dos-slider`
-  - [ ] `.dos-slider___track`
-  - [ ] `.dos-slider___fill`
-  - [ ] `.dos-slider___thumb`
-  - [ ] `.dos-slider___value`
-  - [ ] `.dos-slider___ticks`
-  - [ ] `.dos-slider--disabled`
-  - [ ] `.dos-slider--range`
-- [ ] Add keyboard navigation
-  - [ ] `Arrow Left/Down` — decrease value
-  - [ ] `Arrow Right/Up` — increase value
-  - [ ] `Home` — minimum value
-  - [ ] `End` — maximum value
-  - [ ] `Page Up/Down` — larger increments
-- [ ] Add ARIA attributes
-  - [ ] `role="slider"`
-  - [ ] `aria-valuemin`
-  - [ ] `aria-valuemax`
-  - [ ] `aria-valuenow`
-  - [ ] `aria-valuetext` — human-readable value
-- [ ] Write unit tests
-  - [ ] Test: renders with correct value
-  - [ ] Test: respects min/max bounds
-  - [ ] Test: keyboard changes value
-  - [ ] Test: mouse drag works
-  - [ ] Test: range mode works
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic example
-  - [ ] Range slider
-  - [ ] With ticks and value display
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `SliderProps`
+  - [x] Prop: `value` (number | [number, number]) — current value(s)
+  - [x] Prop: `min` (number) — minimum value
+  - [x] Prop: `max` (number) — maximum value
+  - [x] Prop: `step` (number) — increment step
+  - [x] Prop: `label` (string) — slider label
+  - [x] Prop: `showValue` (boolean) — display current value
+  - [x] Prop: `showTicks` (boolean) — show tick marks
+  - [x] Prop: `range` (boolean) — enable range selection
+  - [x] Prop: `disabled` (boolean) — disables interaction
+  - [x] Prop: `onChange` (function) — change handler
+- [x] Implement DOS-style slider
+  - [x] Track: `├──────────┤`
+  - [x] Thumb: `█` or `▓`
+  - [x] Fill: `████──────` (filled portion)
+- [x] Implement range slider with two thumbs
+- [x] Implement value display
+- [x] Implement states: default, hover, focus, active, disabled
+- [x] Add CSS styles with class `.dos-slider`
+  - [x] `.dos-slider___track`
+  - [x] `.dos-slider___fill`
+  - [x] `.dos-slider___thumb`
+  - [x] `.dos-slider___value`
+  - [x] `.dos-slider___ticks`
+  - [x] `.dos-slider--disabled`
+  - [x] `.dos-slider--range`
+- [x] Add keyboard navigation
+  - [x] `Arrow Left/Down` — decrease value
+  - [x] `Arrow Right/Up` — increase value
+  - [x] `Home` — minimum value
+  - [x] `End` — maximum value
+  - [x] `Page Up/Down` — larger increments
+- [x] Add ARIA attributes
+  - [x] `role="slider"`
+  - [x] `aria-valuemin`
+  - [x] `aria-valuemax`
+  - [x] `aria-valuenow`
+  - [x] `aria-valuetext` — human-readable value
+- [x] Write unit tests
+  - [x] Test: renders with correct value
+  - [x] Test: respects min/max bounds
+  - [x] Test: keyboard changes value
+  - [x] Test: mouse drag works
+  - [x] Test: range mode works
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic example
+  - [x] Range slider
+  - [x] With ticks and value display
+  - [x] Code snippet displayed
 
 > **Accessibility:** Full slider ARIA pattern. Value text for screen readers.
 > **Keyboard:** `Arrows` for small steps, `Page Up/Down` for large steps, `Home`/`End` for bounds
@@ -845,46 +845,46 @@
 **Types:** `src/components/FileInput/FileInput.types.ts`
 **Tests:** `tests/components/FileInput.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `FileInputProps`
-  - [ ] Prop: `accept` (string) — accepted file types
-  - [ ] Prop: `multiple` (boolean) — allow multiple files
-  - [ ] Prop: `label` (string) — input label
-  - [ ] Prop: `buttonLabel` (string) — button text (e.g., 'Browse...')
-  - [ ] Prop: `dragDrop` (boolean) — enable drag and drop zone
-  - [ ] Prop: `showFileList` (boolean) — show selected files
-  - [ ] Prop: `maxSize` (number) — max file size in bytes
-  - [ ] Prop: `disabled` (boolean) — disables interaction
-  - [ ] Prop: `onChange` (function) — file selection handler
-- [ ] Implement DOS-style file input
-- [ ] Implement drag and drop zone with border
-- [ ] Implement file list display with remove option
-- [ ] Implement states: default, hover, dragover, disabled
-- [ ] Add CSS styles with class `.dos-file-input`
-  - [ ] `.dos-file-input___button`
-  - [ ] `.dos-file-input___dropzone`
-  - [ ] `.dos-file-input___file-list`
-  - [ ] `.dos-file-input___file-item`
-  - [ ] `.dos-file-input--dragover`
-  - [ ] `.dos-file-input--disabled`
-- [ ] Add keyboard navigation
-  - [ ] `Enter` / `Space` — open file dialog
-  - [ ] File list keyboard accessible
-- [ ] Add ARIA attributes
-  - [ ] `aria-describedby` — describes accepted types
-  - [ ] Dropzone announces drag state
-- [ ] Write unit tests
-  - [ ] Test: opens file dialog
-  - [ ] Test: accepts correct file types
-  - [ ] Test: drag and drop works
-  - [ ] Test: displays file list
-  - [ ] Test: removes files
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic file input
-  - [ ] Drag and drop zone
-  - [ ] With file list
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `FileInputProps`
+  - [x] Prop: `accept` (string) — accepted file types
+  - [x] Prop: `multiple` (boolean) — allow multiple files
+  - [x] Prop: `label` (string) — input label
+  - [x] Prop: `buttonLabel` (string) — button text (e.g., 'Browse...')
+  - [x] Prop: `dragDrop` (boolean) — enable drag and drop zone
+  - [x] Prop: `showFileList` (boolean) — show selected files
+  - [x] Prop: `maxSize` (number) — max file size in bytes
+  - [x] Prop: `disabled` (boolean) — disables interaction
+  - [x] Prop: `onChange` (function) — file selection handler
+- [x] Implement DOS-style file input
+- [x] Implement drag and drop zone with border
+- [x] Implement file list display with remove option
+- [x] Implement states: default, hover, dragover, disabled
+- [x] Add CSS styles with class `.dos-file-input`
+  - [x] `.dos-file-input___button`
+  - [x] `.dos-file-input___dropzone`
+  - [x] `.dos-file-input___file-list`
+  - [x] `.dos-file-input___file-item`
+  - [x] `.dos-file-input--dragover`
+  - [x] `.dos-file-input--disabled`
+- [x] Add keyboard navigation
+  - [x] `Enter` / `Space` — open file dialog
+  - [x] File list keyboard accessible
+- [x] Add ARIA attributes
+  - [x] `aria-describedby` — describes accepted types
+  - [x] Dropzone announces drag state
+- [x] Write unit tests
+  - [x] Test: opens file dialog
+  - [x] Test: accepts correct file types
+  - [x] Test: drag and drop works
+  - [x] Test: displays file list
+  - [x] Test: removes files
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic file input
+  - [x] Drag and drop zone
+  - [x] With file list
+  - [x] Code snippet displayed
 
 > **Accessibility:** Announce selected files. Dropzone state announced for drag events.
 > **Keyboard:** `Enter`/`Space` to open dialog
@@ -898,19 +898,19 @@
 **Types:** `src/components/DatePicker/DatePicker.types.ts`
 **Tests:** `tests/components/DatePicker.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `DatePickerProps`
-  - [ ] Prop: `value` (Date | string) — selected date
-  - [ ] Prop: `label` (string) — input label
-  - [ ] Prop: `placeholder` (string) — input placeholder
-  - [ ] Prop: `format` (string) — date format (e.g., 'YYYY-MM-DD')
-  - [ ] Prop: `min` (Date) — minimum selectable date
-  - [ ] Prop: `max` (Date) — maximum selectable date
-  - [ ] Prop: `disabled` (boolean) — disables interaction
-  - [ ] Prop: `disabledDates` (Date[] | function) — specific disabled dates
-  - [ ] Prop: `onChange` (function) — change handler
-- [ ] Implement DOS-style date input with calendar popup
-- [ ] Implement calendar grid using box-drawing characters
+- [x] Create component directory structure
+- [x] Define TypeScript interface `DatePickerProps`
+  - [x] Prop: `value` (Date | string) — selected date
+  - [x] Prop: `label` (string) — input label
+  - [x] Prop: `placeholder` (string) — input placeholder
+  - [x] Prop: `format` (string) — date format (e.g., 'YYYY-MM-DD')
+  - [x] Prop: `min` (Date) — minimum selectable date
+  - [x] Prop: `max` (Date) — maximum selectable date
+  - [x] Prop: `disabled` (boolean) — disables interaction
+  - [x] Prop: `disabledDates` (Date[] | function) — specific disabled dates
+  - [x] Prop: `onChange` (function) — change handler
+- [x] Implement DOS-style date input with calendar popup
+- [x] Implement calendar grid using box-drawing characters
   ```
   ┌──────────────────────────────┐
   │  ◄  │   January 2026   │  ►  │
@@ -923,43 +923,43 @@
   │ 25  26  27  28  29  30  31   │
   └──────────────────────────────┘
   ```
-- [ ] Implement month/year navigation
-- [ ] Implement states: default, open, focus, error, disabled
-- [ ] Add CSS styles with class `.dos-date-picker`
-  - [ ] `.dos-date-picker___input`
-  - [ ] `.dos-date-picker___calendar`
-  - [ ] `.dos-date-picker___header`
-  - [ ] `.dos-date-picker___nav`
-  - [ ] `.dos-date-picker___grid`
-  - [ ] `.dos-date-picker___day`
-  - [ ] `.dos-date-picker___day--selected`
-  - [ ] `.dos-date-picker___day--today`
-  - [ ] `.dos-date-picker___day--disabled`
-  - [ ] `.dos-date-picker___day--other-month`
-- [ ] Add keyboard navigation
-  - [ ] `Enter` / `Space` — open calendar, select date
-  - [ ] `Arrow keys` — navigate days
-  - [ ] `Page Up/Down` — previous/next month
-  - [ ] `Home` / `End` — first/last day of month
-  - [ ] `Escape` — close calendar
-- [ ] Add ARIA attributes
-  - [ ] `role="dialog"` — on calendar popup
-  - [ ] `role="grid"` — on calendar grid
-  - [ ] `aria-label` — month and year
-  - [ ] `aria-selected` — selected date
-- [ ] Write unit tests
-  - [ ] Test: displays selected date
-  - [ ] Test: opens calendar popup
-  - [ ] Test: selects date correctly
-  - [ ] Test: navigates months
-  - [ ] Test: respects min/max bounds
-  - [ ] Test: keyboard navigation works
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] Basic example
-  - [ ] With min/max dates
-  - [ ] Disabled dates
-  - [ ] Code snippet displayed
+- [x] Implement month/year navigation
+- [x] Implement states: default, open, focus, error, disabled
+- [x] Add CSS styles with class `.dos-date-picker`
+  - [x] `.dos-date-picker___input`
+  - [x] `.dos-date-picker___calendar`
+  - [x] `.dos-date-picker___header`
+  - [x] `.dos-date-picker___nav`
+  - [x] `.dos-date-picker___grid`
+  - [x] `.dos-date-picker___day`
+  - [x] `.dos-date-picker___day--selected`
+  - [x] `.dos-date-picker___day--today`
+  - [x] `.dos-date-picker___day--disabled`
+  - [x] `.dos-date-picker___day--other-month`
+- [x] Add keyboard navigation
+  - [x] `Enter` / `Space` — open calendar, select date
+  - [x] `Arrow keys` — navigate days
+  - [x] `Page Up/Down` — previous/next month
+  - [x] `Home` / `End` — first/last day of month
+  - [x] `Escape` — close calendar
+- [x] Add ARIA attributes
+  - [x] `role="dialog"` — on calendar popup
+  - [x] `role="grid"` — on calendar grid
+  - [x] `aria-label` — month and year
+  - [x] `aria-selected` — selected date
+- [x] Write unit tests
+  - [x] Test: displays selected date
+  - [x] Test: opens calendar popup
+  - [x] Test: selects date correctly
+  - [x] Test: navigates months
+  - [x] Test: respects min/max bounds
+  - [x] Test: keyboard navigation works
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] Basic example
+  - [x] With min/max dates
+  - [x] Disabled dates
+  - [x] Code snippet displayed
 
 > **Accessibility:** Calendar grid follows ARIA grid pattern. Date announced with full context.
 > **Keyboard:** Full grid navigation, `Escape` to close
@@ -969,51 +969,51 @@
 ### 6.6 TimePicker
 
 **File:** `src/components/TimePicker/TimePicker.ts`
-**Styles:** `src/components/TimePicker/TimePicker.styles.css`
+**Styles:** `src/components/TimePicker/TimePicker.css`
 **Types:** `src/components/TimePicker/TimePicker.types.ts`
 **Tests:** `tests/components/TimePicker.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interface `TimePickerProps`
-  - [ ] Prop: `value` (string | Date) — selected time
-  - [ ] Prop: `label` (string) — input label
-  - [ ] Prop: `format` ('12h' | '24h') — time format
-  - [ ] Prop: `step` (number) — minute increment (e.g., 15)
-  - [ ] Prop: `min` (string) — minimum time
-  - [ ] Prop: `max` (string) — maximum time
-  - [ ] Prop: `disabled` (boolean) — disables interaction
-  - [ ] Prop: `onChange` (function) — change handler
-- [ ] Implement DOS-style time input
-- [ ] Implement dropdown or spinbox for hour/minute
-- [ ] Implement AM/PM toggle for 12h format
-- [ ] Display: `[HH]:[MM] [AM/PM]`
-- [ ] Implement states: default, focus, error, disabled
-- [ ] Add CSS styles with class `.dos-time-picker`
-  - [ ] `.dos-time-picker___input`
-  - [ ] `.dos-time-picker___hours`
-  - [ ] `.dos-time-picker___minutes`
-  - [ ] `.dos-time-picker___separator`
-  - [ ] `.dos-time-picker___period`
-  - [ ] `.dos-time-picker___spinner`
-- [ ] Add keyboard navigation
-  - [ ] `Arrow Up/Down` — increment/decrement value
-  - [ ] `Tab` — move between hour/minute/period
-  - [ ] Direct number input
-- [ ] Add ARIA attributes
-  - [ ] `role="spinbutton"` — for hour/minute inputs
-  - [ ] `aria-valuemin`, `aria-valuemax`, `aria-valuenow`
-- [ ] Write unit tests
-  - [ ] Test: displays selected time
-  - [ ] Test: increments/decrements correctly
-  - [ ] Test: respects step value
-  - [ ] Test: 12h/24h format works
-  - [ ] Test: keyboard navigation works
-  - [ ] Test: has no accessibility violations
-- [ ] Add to Kitchen Sink demo
-  - [ ] 12-hour format example
-  - [ ] 24-hour format example
-  - [ ] With step increments
-  - [ ] Code snippet displayed
+- [x] Create component directory structure
+- [x] Define TypeScript interface `TimePickerProps`
+  - [x] Prop: `value` (string | Date) — selected time
+  - [x] Prop: `label` (string) — input label
+  - [x] Prop: `format` ('12h' | '24h') — time format
+  - [x] Prop: `step` (number) — minute increment (e.g., 15)
+  - [x] Prop: `min` (string) — minimum time
+  - [x] Prop: `max` (string) — maximum time
+  - [x] Prop: `disabled` (boolean) — disables interaction
+  - [x] Prop: `onChange` (function) — change handler
+- [x] Implement DOS-style time input
+- [x] Implement spinbox for hour/minute with up/down buttons
+- [x] Implement AM/PM toggle for 12h format
+- [x] Display: `[HH]:[MM] [AM/PM]`
+- [x] Implement states: default, focus, error, disabled
+- [x] Add CSS styles with class `.dos-time-picker`
+  - [x] `.dos-time-picker___input`
+  - [x] `.dos-time-picker___hours`
+  - [x] `.dos-time-picker___minutes`
+  - [x] `.dos-time-picker___separator`
+  - [x] `.dos-time-picker___period`
+  - [x] `.dos-time-picker___spinner`
+- [x] Add keyboard navigation
+  - [x] `Arrow Up/Down` — increment/decrement value
+  - [x] `Tab` — move between hour/minute/period
+  - [x] Direct number input
+- [x] Add ARIA attributes
+  - [x] `role="spinbutton"` — for hour/minute inputs
+  - [x] `aria-valuemin`, `aria-valuemax`, `aria-valuenow`
+- [x] Write unit tests (83 tests)
+  - [x] Test: displays selected time
+  - [x] Test: increments/decrements correctly
+  - [x] Test: respects step value
+  - [x] Test: 12h/24h format works
+  - [x] Test: keyboard navigation works
+  - [x] Test: has no accessibility violations
+- [x] Add to Kitchen Sink demo
+  - [x] 12-hour format example
+  - [x] 24-hour format example
+  - [x] With step increments
+  - [x] Code snippet displayed
 
 > **Accessibility:** Spinbutton pattern for hour/minute. Clear value announcements.
 > **Keyboard:** `Arrows` to change values, `Tab` between fields

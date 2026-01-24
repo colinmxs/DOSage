@@ -1,0 +1,192 @@
+/**
+ * Toggle/Switch Styles
+ *
+ * DOS-style toggle switch with ON/OFF states.
+ */
+
+/* Base toggle wrapper */
+.dos-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dos-space-sm);
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size-base);
+  line-height: var(--dos-line-height);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Label positioning */
+.dos-toggle--label-left {
+  flex-direction: row-reverse;
+}
+
+.dos-toggle--label-right {
+  flex-direction: row;
+}
+
+/* Size variants */
+.dos-toggle--sm {
+  font-size: var(--dos-font-size-sm);
+}
+
+.dos-toggle--md {
+  font-size: var(--dos-font-size-base);
+}
+
+.dos-toggle--lg {
+  font-size: var(--dos-font-size-lg);
+}
+
+/* Toggle track (the clickable area) */
+.dos-toggle__track {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--dos-color-border);
+  background-color: var(--dos-color-bg-alt);
+  color: var(--dos-color-text);
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  transition: none;
+  min-width: 3.5em;
+  height: 1.5em;
+}
+
+/* Focus state for keyboard navigation */
+.dos-toggle__track:focus {
+  outline: 2px solid var(--dos-color-focus);
+  outline-offset: 2px;
+}
+
+.dos-toggle__track:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.dos-toggle__track:focus-visible {
+  outline: 2px solid var(--dos-color-focus);
+  outline-offset: 2px;
+}
+
+/* Text style: [ON ] / [OFF] */
+.dos-toggle--text .dos-toggle__track {
+  padding: 0 var(--dos-space-xs);
+}
+
+.dos-toggle--text .dos-toggle__state {
+  display: inline-block;
+  text-align: center;
+  min-width: 2.5em;
+  letter-spacing: 0;
+}
+
+.dos-toggle--text .dos-toggle__track--on .dos-toggle__state {
+  color: var(--dos-color-success);
+}
+
+.dos-toggle--text .dos-toggle__track--off .dos-toggle__state {
+  color: var(--dos-color-text-muted);
+}
+
+/* Slider style: [■──] / [──■] */
+.dos-toggle--slider .dos-toggle__track {
+  position: relative;
+  justify-content: flex-start;
+  padding: 0 2px;
+  min-width: 2.5em;
+}
+
+.dos-toggle--slider .dos-toggle__slider-track {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.dos-toggle--slider .dos-toggle__thumb {
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  background-color: var(--dos-color-text);
+  transition: none;
+  flex-shrink: 0;
+}
+
+.dos-toggle--slider .dos-toggle__rail {
+  flex: 1;
+  height: 2px;
+  background-color: var(--dos-color-border);
+}
+
+.dos-toggle--slider .dos-toggle__rail--filled {
+  background-color: var(--dos-color-primary);
+}
+
+/* Slider off state: thumb on left [■──] */
+.dos-toggle--slider .dos-toggle__track--off .dos-toggle__thumb {
+  order: 0;
+}
+
+.dos-toggle--slider .dos-toggle__track--off .dos-toggle__rail {
+  order: 1;
+}
+
+/* Slider on state: thumb on right [──■] */
+.dos-toggle--slider .dos-toggle__track--on .dos-toggle__thumb {
+  order: 1;
+  background-color: var(--dos-color-success);
+}
+
+.dos-toggle--slider .dos-toggle__track--on .dos-toggle__rail {
+  order: 0;
+}
+
+.dos-toggle--slider .dos-toggle__track--on .dos-toggle__rail--filled {
+  background-color: var(--dos-color-success);
+}
+
+/* Checked state styling */
+.dos-toggle--checked .dos-toggle__track {
+  border-color: var(--dos-color-primary);
+}
+
+/* Disabled state */
+.dos-toggle--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.dos-toggle--disabled .dos-toggle__track {
+  cursor: not-allowed;
+  background-color: var(--dos-color-bg-disabled);
+}
+
+/* Label styling */
+.dos-toggle__label {
+  color: var(--dos-color-text);
+}
+
+.dos-toggle--disabled .dos-toggle__label {
+  color: var(--dos-color-text-muted);
+}
+
+/* Hidden input for form submission */
+.dos-toggle__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Hover state (non-disabled) */
+.dos-toggle:not(.dos-toggle--disabled):hover .dos-toggle__track {
+  background-color: var(--dos-color-bg-hover);
+}
+
+/* Active/pressed state */
+.dos-toggle:not(.dos-toggle--disabled):active .dos-toggle__track {
+  background-color: var(--dos-color-bg-active);
+}

@@ -48,6 +48,11 @@ export const ROUTES = {
   FORM_GROUP: 'form-group',
   FORM_VALIDATION: 'form-validation',
   SELECT: 'select',
+  TOGGLE: 'toggle',
+  SLIDER: 'slider',
+  FILE_INPUT: 'file-input',
+  DATE_PICKER: 'date-picker',
+  TIME_PICKER: 'time-picker',
   // Feedback
   ALERT: 'alert',
   PROGRESS: 'progress',

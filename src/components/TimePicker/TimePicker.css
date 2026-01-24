@@ -1,0 +1,257 @@
+/**
+ * TimePicker component styles
+ * DOS-style time picker with spinbox inputs
+ */
+
+/* Base container */
+.dos-time-picker {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--dos-spacing-xs, 0.25rem);
+  font-family: var(--dos-font-family, 'Fixedsys Excelsior', 'Courier New', monospace);
+}
+
+/* Full width variant */
+.dos-time-picker--full-width {
+  display: flex;
+  width: 100%;
+}
+
+/* Label */
+.dos-time-picker___label {
+  color: var(--dos-text-primary, #AAAAAA);
+  font-size: var(--dos-font-size-sm, 0.875rem);
+  font-weight: normal;
+}
+
+.dos-time-picker___label--required::after {
+  content: ' *';
+  color: var(--dos-error, #FF5555);
+}
+
+/* Input wrapper */
+.dos-time-picker___input-wrapper {
+  display: inline-flex;
+  align-items: stretch;
+  background-color: var(--dos-bg-secondary, #000000);
+  border: 1px solid var(--dos-border, #AAAAAA);
+}
+
+.dos-time-picker___input-wrapper:focus-within {
+  border-color: var(--dos-focus, #FFFFFF);
+  outline: 1px solid var(--dos-focus, #FFFFFF);
+  outline-offset: 0;
+}
+
+.dos-time-picker--error .dos-time-picker___input-wrapper {
+  border-color: var(--dos-error, #FF5555);
+}
+
+.dos-time-picker--error .dos-time-picker___input-wrapper:focus-within {
+  outline-color: var(--dos-error, #FF5555);
+}
+
+.dos-time-picker--disabled .dos-time-picker___input-wrapper {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Spinbox field (hours, minutes) */
+.dos-time-picker___field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 3rem;
+}
+
+.dos-time-picker___spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 1.25rem;
+  background-color: var(--dos-bg-tertiary, #333333);
+  border: none;
+  color: var(--dos-text-primary, #FFFFFF);
+  font-family: inherit;
+  font-size: var(--dos-font-size-sm, 0.875rem);
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+
+.dos-time-picker___spinner:hover:not(:disabled) {
+  background-color: var(--dos-bg-highlight, #444444);
+}
+
+.dos-time-picker___spinner:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.dos-time-picker___spinner:focus {
+  outline: 1px solid var(--dos-focus, #FFFFFF);
+  outline-offset: -2px;
+}
+
+.dos-time-picker___spinner--up {
+  border-bottom: 1px solid var(--dos-border, #555555);
+}
+
+.dos-time-picker___spinner--down {
+  border-top: 1px solid var(--dos-border, #555555);
+}
+
+/* Input display */
+.dos-time-picker___input {
+  width: 100%;
+  padding: var(--dos-spacing-xs, 0.25rem) 0;
+  background: transparent;
+  border: none;
+  color: var(--dos-text-primary, #FFFFFF);
+  font-family: inherit;
+  font-size: var(--dos-font-size-md, 1rem);
+  text-align: center;
+  outline: none;
+  -moz-appearance: textfield;
+}
+
+.dos-time-picker___input::-webkit-outer-spin-button,
+.dos-time-picker___input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.dos-time-picker___input::placeholder {
+  color: var(--dos-text-muted, #555555);
+}
+
+.dos-time-picker--disabled .dos-time-picker___input {
+  cursor: not-allowed;
+}
+
+/* Separator (:) */
+.dos-time-picker___separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--dos-spacing-xs, 0.25rem);
+  color: var(--dos-text-primary, #FFFFFF);
+  font-size: var(--dos-font-size-lg, 1.25rem);
+  font-weight: bold;
+}
+
+/* Period selector (AM/PM) */
+.dos-time-picker___period {
+  display: flex;
+  flex-direction: column;
+  min-width: 2.5rem;
+  border-left: 1px solid var(--dos-border, #555555);
+}
+
+.dos-time-picker___period-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--dos-spacing-xs, 0.25rem);
+  background-color: var(--dos-bg-tertiary, #333333);
+  border: none;
+  color: var(--dos-text-muted, #888888);
+  font-family: inherit;
+  font-size: var(--dos-font-size-sm, 0.875rem);
+  cursor: pointer;
+  transition: background-color 0.1s, color 0.1s;
+}
+
+.dos-time-picker___period-btn:first-child {
+  border-bottom: 1px solid var(--dos-border, #555555);
+}
+
+.dos-time-picker___period-btn:hover:not(:disabled):not(.dos-time-picker___period-btn--active) {
+  background-color: var(--dos-bg-highlight, #444444);
+}
+
+.dos-time-picker___period-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.dos-time-picker___period-btn:focus {
+  outline: 1px solid var(--dos-focus, #FFFFFF);
+  outline-offset: -2px;
+}
+
+.dos-time-picker___period-btn--active {
+  background-color: var(--dos-bg-selected, #FFFFFF);
+  color: var(--dos-bg-primary, #0000AA);
+  font-weight: bold;
+}
+
+/* Error message */
+.dos-time-picker___error {
+  color: var(--dos-error, #FF5555);
+  font-size: var(--dos-font-size-sm, 0.875rem);
+  margin-top: var(--dos-spacing-xs, 0.25rem);
+}
+
+/* Size variants */
+.dos-time-picker--sm .dos-time-picker___field {
+  min-width: 2.5rem;
+}
+
+.dos-time-picker--sm .dos-time-picker___input {
+  font-size: var(--dos-font-size-sm, 0.875rem);
+}
+
+.dos-time-picker--sm .dos-time-picker___spinner {
+  height: 1rem;
+  font-size: var(--dos-font-size-xs, 0.75rem);
+}
+
+.dos-time-picker--sm .dos-time-picker___separator {
+  font-size: var(--dos-font-size-md, 1rem);
+}
+
+.dos-time-picker--sm .dos-time-picker___period-btn {
+  font-size: var(--dos-font-size-xs, 0.75rem);
+}
+
+.dos-time-picker--lg .dos-time-picker___field {
+  min-width: 4rem;
+}
+
+.dos-time-picker--lg .dos-time-picker___input {
+  font-size: var(--dos-font-size-lg, 1.25rem);
+  padding: var(--dos-spacing-sm, 0.5rem) 0;
+}
+
+.dos-time-picker--lg .dos-time-picker___spinner {
+  height: 1.5rem;
+  font-size: var(--dos-font-size-md, 1rem);
+}
+
+.dos-time-picker--lg .dos-time-picker___separator {
+  font-size: var(--dos-font-size-xl, 1.5rem);
+}
+
+.dos-time-picker--lg .dos-time-picker___period {
+  min-width: 3rem;
+}
+
+.dos-time-picker--lg .dos-time-picker___period-btn {
+  font-size: var(--dos-font-size-md, 1rem);
+  padding: var(--dos-spacing-sm, 0.5rem);
+}
+
+/* Hidden input for form submission */
+.dos-time-picker___hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

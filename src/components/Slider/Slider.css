@@ -1,0 +1,212 @@
+/**
+ * Slider/Range Styles
+ *
+ * DOS-style slider with ASCII track and thumb.
+ */
+
+/* Base slider wrapper */
+.dos-slider {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dos-space-xs);
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size-base);
+  line-height: var(--dos-line-height);
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Size variants */
+.dos-slider--sm {
+  font-size: var(--dos-font-size-sm);
+  max-width: 200px;
+}
+
+.dos-slider--md {
+  font-size: var(--dos-font-size-base);
+  max-width: 300px;
+}
+
+.dos-slider--lg {
+  font-size: var(--dos-font-size-lg);
+  max-width: 400px;
+}
+
+/* Label */
+.dos-slider__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--dos-color-text);
+}
+
+.dos-slider__label-text {
+  color: var(--dos-color-text);
+}
+
+.dos-slider__value-display {
+  color: var(--dos-color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Track container - holds ASCII representation */
+.dos-slider__track-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 1.5em;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ASCII track elements */
+.dos-slider__track {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.dos-slider__track-start {
+  color: var(--dos-color-border);
+}
+
+.dos-slider__track-end {
+  color: var(--dos-color-border);
+}
+
+.dos-slider__track-line {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+/* Fill area (left of thumb) */
+.dos-slider__fill {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2px;
+  background-color: var(--dos-color-primary);
+  pointer-events: none;
+}
+
+/* Unfilled area (right of thumb) */
+.dos-slider__unfill {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2px;
+  background-color: var(--dos-color-border);
+  pointer-events: none;
+}
+
+/* Thumb */
+.dos-slider__thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 1em;
+  height: 1em;
+  background-color: var(--dos-color-text);
+  cursor: grab;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: inherit;
+}
+
+.dos-slider__thumb:focus {
+  outline: 2px solid var(--dos-color-focus);
+  outline-offset: 2px;
+}
+
+.dos-slider__thumb:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.dos-slider__thumb:focus-visible {
+  outline: 2px solid var(--dos-color-focus);
+  outline-offset: 2px;
+}
+
+.dos-slider__thumb:active {
+  cursor: grabbing;
+}
+
+.dos-slider__thumb--min {
+  z-index: 3;
+}
+
+.dos-slider__thumb--max {
+  z-index: 2;
+}
+
+/* Range fill (between two thumbs) */
+.dos-slider--range .dos-slider__fill {
+  background-color: var(--dos-color-primary);
+}
+
+/* Tick marks */
+.dos-slider__ticks {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5em;
+  color: var(--dos-color-text-muted);
+  font-size: 0.75em;
+}
+
+.dos-slider__tick {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.dos-slider__tick-mark {
+  color: var(--dos-color-border);
+}
+
+.dos-slider__tick-label {
+  color: var(--dos-color-text-muted);
+}
+
+/* Disabled state */
+.dos-slider--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dos-slider--disabled .dos-slider__track-container {
+  cursor: not-allowed;
+}
+
+.dos-slider--disabled .dos-slider__thumb {
+  cursor: not-allowed;
+  background-color: var(--dos-color-text-muted);
+}
+
+/* Hover state (non-disabled) */
+.dos-slider:not(.dos-slider--disabled) .dos-slider__thumb:hover {
+  background-color: var(--dos-color-primary);
+}
+
+/* Active/dragging state */
+.dos-slider--dragging .dos-slider__thumb {
+  background-color: var(--dos-color-primary);
+}
+
+/* Hidden input for form submission */
+.dos-slider__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}

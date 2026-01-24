@@ -55,6 +55,12 @@ const NAV_ITEMS = [
       { id: 'radio-button', label: 'RadioButton' },
       { id: 'form-group', label: 'FormGroup' },
       { id: 'form-validation', label: 'FormValidation' },
+      { id: 'select', label: 'Select' },
+      { id: 'toggle', label: 'Toggle' },
+      { id: 'slider', label: 'Slider' },
+      { id: 'file-input', label: 'FileInput' },
+      { id: 'date-picker', label: 'DatePicker' },
+      { id: 'time-picker', label: 'TimePicker' },
     ],
   },
   {

@@ -38,6 +38,12 @@ import {
   renderRadioButtonPage,
   renderFormGroupPage,
   renderFormValidationPage,
+  renderSelectPage,
+  renderTogglePage,
+  renderSliderPage,
+  renderFileInputPage,
+  renderDatePickerPage,
+  renderTimePickerPage,
 } from '../pages/form-controls';
 
 /** Page content element reference */
@@ -77,7 +83,12 @@ const pages: Record<string, () => HTMLElement> = {
   'radio-button': renderRadioButtonPage,
   'form-group': renderFormGroupPage,
   'form-validation': renderFormValidationPage,
-  select: () => createPlaceholderPage('Select', 'Dropdown select component.'),
+  select: renderSelectPage,
+  toggle: renderTogglePage,
+  slider: renderSliderPage,
+  'file-input': renderFileInputPage,
+  'date-picker': renderDatePickerPage,
+  'time-picker': renderTimePickerPage,
   // Feedback (to be implemented)
   alert: () => createPlaceholderPage('Alert', 'Alert messages and notifications.'),
   progress: () => createPlaceholderPage('Progress', 'Progress bar with ASCII art.'),

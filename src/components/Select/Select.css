@@ -1,0 +1,317 @@
+/**
+ * Select Component Styles
+ *
+ * DOS-style dropdown/select component with arrow indicator,
+ * dropdown list, and keyboard navigation support.
+ */
+
+/* Base Select Container */
+.dos-select {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', 'Consolas', monospace);
+  font-size: var(--dos-font-size, 16px);
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Label */
+.dos-select__label {
+  display: block;
+  margin-bottom: var(--dos-space-xs, 4px);
+  color: var(--dos-color-fg, #ffffff);
+  font-weight: normal;
+}
+
+.dos-select__label--required::after {
+  content: ' *';
+  color: var(--dos-color-error, #ff5555);
+}
+
+/* Trigger Button */
+.dos-select__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--dos-space-sm, 8px);
+  background-color: var(--dos-color-bg, #0000aa);
+  color: var(--dos-color-fg, #ffffff);
+  border: 2px solid var(--dos-color-border, #aaaaaa);
+  font-family: inherit;
+  font-size: inherit;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  box-sizing: border-box;
+  min-height: 2.5em;
+}
+
+.dos-select__trigger:hover:not(:disabled) {
+  background-color: var(--dos-color-highlight, #0000cc);
+  border-color: var(--dos-color-fg, #ffffff);
+}
+
+.dos-select__trigger:focus {
+  border-color: var(--dos-color-primary, #ffff55);
+  box-shadow: 0 0 0 1px var(--dos-color-primary, #ffff55);
+}
+
+/* Selected Value Display */
+.dos-select__value {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dos-select__placeholder {
+  color: var(--dos-color-disabled, #666666);
+  font-style: italic;
+}
+
+/* Multiple selection tags */
+.dos-select__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  flex: 1;
+}
+
+.dos-select__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  background-color: var(--dos-color-secondary, #55ffff);
+  color: var(--dos-color-bg, #0000aa);
+  font-size: var(--dos-font-size-sm, 14px);
+}
+
+.dos-select__tag-remove {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.dos-select__tag-remove:hover {
+  color: var(--dos-color-error, #ff5555);
+}
+
+/* Arrow Indicator */
+.dos-select__arrow {
+  margin-left: var(--dos-space-sm, 8px);
+  font-size: 0.875em;
+  transition: transform var(--dos-timing-fast, 100ms);
+}
+
+.dos-select--open .dos-select__arrow {
+  transform: rotate(180deg);
+}
+
+/* Dropdown List */
+.dos-select__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  margin-top: 2px;
+  background-color: var(--dos-color-bg, #0000aa);
+  border: 2px solid var(--dos-color-border, #aaaaaa);
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+}
+
+.dos-select--open .dos-select__dropdown {
+  display: block;
+}
+
+/* Search Input */
+.dos-select__search {
+  padding: var(--dos-space-sm, 8px);
+  border-bottom: 1px solid var(--dos-color-border, #aaaaaa);
+}
+
+.dos-select__search-input {
+  width: 100%;
+  padding: var(--dos-space-xs, 4px);
+  background-color: var(--dos-color-bg, #0000aa);
+  color: var(--dos-color-fg, #ffffff);
+  border: 1px solid var(--dos-color-border, #aaaaaa);
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.dos-select__search-input:focus {
+  border-color: var(--dos-color-primary, #ffff55);
+}
+
+/* Option List */
+.dos-select__options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Option Group */
+.dos-select__group {
+  border-bottom: 1px solid var(--dos-color-border, #aaaaaa);
+}
+
+.dos-select__group:last-child {
+  border-bottom: none;
+}
+
+.dos-select__group-label {
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  color: var(--dos-color-secondary, #55ffff);
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Individual Option */
+.dos-select__option {
+  padding: var(--dos-space-sm, 8px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dos-select__option:hover:not(.dos-select__option--disabled) {
+  background-color: var(--dos-color-highlight, #0000cc);
+}
+
+.dos-select__option--highlighted {
+  background-color: var(--dos-color-highlight, #0000cc);
+  outline: 1px solid var(--dos-color-primary, #ffff55);
+}
+
+.dos-select__option--selected {
+  background-color: var(--dos-color-primary, #ffff55);
+  color: var(--dos-color-bg, #0000aa);
+}
+
+.dos-select__option--selected.dos-select__option--highlighted {
+  background-color: var(--dos-color-primary, #ffff55);
+  filter: brightness(0.9);
+}
+
+.dos-select__option--disabled {
+  color: var(--dos-color-disabled, #666666);
+  cursor: not-allowed;
+}
+
+/* Option check indicator for multiple select */
+.dos-select__option-check {
+  display: inline-block;
+  width: 1em;
+  text-align: center;
+}
+
+/* No options message */
+.dos-select__no-options {
+  padding: var(--dos-space-sm, 8px);
+  color: var(--dos-color-disabled, #666666);
+  font-style: italic;
+  text-align: center;
+}
+
+/* Error Message */
+.dos-select__error {
+  margin-top: var(--dos-space-xs, 4px);
+  color: var(--dos-color-error, #ff5555);
+  font-size: var(--dos-font-size-sm, 14px);
+}
+
+.dos-select__error::before {
+  content: '[!] ';
+}
+
+/* State Modifiers */
+
+/* Open State */
+.dos-select--open .dos-select__trigger {
+  border-color: var(--dos-color-primary, #ffff55);
+}
+
+/* Error State */
+.dos-select--error .dos-select__trigger {
+  border-color: var(--dos-color-error, #ff5555);
+}
+
+.dos-select--error .dos-select__trigger:focus {
+  box-shadow: 0 0 0 1px var(--dos-color-error, #ff5555);
+}
+
+/* Disabled State */
+.dos-select--disabled .dos-select__trigger {
+  background-color: var(--dos-color-bg, #0000aa);
+  color: var(--dos-color-disabled, #666666);
+  border-color: var(--dos-color-disabled, #666666);
+  cursor: not-allowed;
+}
+
+.dos-select--disabled .dos-select__label {
+  color: var(--dos-color-disabled, #666666);
+}
+
+/* Size Variants */
+.dos-select--small .dos-select__trigger {
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  font-size: var(--dos-font-size-sm, 14px);
+  min-height: 2em;
+}
+
+.dos-select--small .dos-select__option {
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+}
+
+.dos-select--large .dos-select__trigger {
+  padding: var(--dos-space-md, 12px);
+  font-size: var(--dos-font-size-lg, 18px);
+  min-height: 3em;
+}
+
+.dos-select--large .dos-select__option {
+  padding: var(--dos-space-md, 12px);
+}
+
+/* Full Width */
+.dos-select--full-width {
+  max-width: none;
+}
+
+/* Label positioned to the left */
+.dos-select--label-left {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--dos-space-sm, 8px);
+}
+
+.dos-select--label-left .dos-select__label {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+/* Scrollbar styling for dropdown */
+.dos-select__dropdown::-webkit-scrollbar {
+  width: 12px;
+}
+
+.dos-select__dropdown::-webkit-scrollbar-track {
+  background: var(--dos-color-bg, #0000aa);
+  border-left: 1px solid var(--dos-color-border, #aaaaaa);
+}
+
+.dos-select__dropdown::-webkit-scrollbar-thumb {
+  background: var(--dos-color-border, #aaaaaa);
+}
+
+.dos-select__dropdown::-webkit-scrollbar-thumb:hover {
+  background: var(--dos-color-fg, #ffffff);
+}
