@@ -1720,10 +1720,10 @@ const isExpanded = tree.isExpanded('node-id');`,
       },
     });
 
-    buttonRow.appendChild(expandAllBtn.element);
-    buttonRow.appendChild(collapseAllBtn.element);
-    buttonRow.appendChild(selectDosBtn.element);
-    buttonRow.appendChild(clearBtn.element);
+    buttonRow.appendChild(expandAllBtn);
+    buttonRow.appendChild(collapseAllBtn);
+    buttonRow.appendChild(selectDosBtn);
+    buttonRow.appendChild(clearBtn);
 
     methodsExample.appendChild(tree.element);
     methodsExample.appendChild(statusDiv);
@@ -2116,9 +2116,9 @@ badge.destroy();`,
       },
     });
 
-    buttonRow.appendChild(changeLabelBtn.element);
-    buttonRow.appendChild(cycleVariantBtn.element);
-    buttonRow.appendChild(toggleIconBtn.element);
+    buttonRow.appendChild(changeLabelBtn);
+    buttonRow.appendChild(cycleVariantBtn);
+    buttonRow.appendChild(toggleIconBtn);
 
     methodsExample.appendChild(demoBadge.element);
     methodsExample.appendChild(statusDiv);
@@ -2499,8 +2499,8 @@ avatar.destroy();`,
       },
     });
 
-    buttonRow.appendChild(changeNameBtn.element);
-    buttonRow.appendChild(cycleStatusBtn.element);
+    buttonRow.appendChild(changeNameBtn);
+    buttonRow.appendChild(cycleStatusBtn);
 
     methodsExample.appendChild(demoAvatar.element);
     methodsExample.appendChild(statusDiv);
@@ -2671,8 +2671,8 @@ export function renderCardPage(): HTMLElement {
 
   const saveBtn = createButton({ label: '[ Save ]', variant: 'primary' });
   const cancelBtn = createButton({ label: '[ Cancel ]', variant: 'secondary' });
-  footerActions.appendChild(saveBtn.element);
-  footerActions.appendChild(cancelBtn.element);
+  footerActions.appendChild(saveBtn);
+  footerActions.appendChild(cancelBtn);
 
   const footerCard = createCard({
     header: 'Card with Actions',
@@ -2849,10 +2849,10 @@ export function renderCardPage(): HTMLElement {
     }
   });
 
-  methodsControls.appendChild(toggleElevatedBtn.element);
-  methodsControls.appendChild(toggleBorderBtn.element);
-  methodsControls.appendChild(changeHeaderBtn.element);
-  methodsControls.appendChild(addFooterBtn.element);
+  methodsControls.appendChild(toggleElevatedBtn);
+  methodsControls.appendChild(toggleBorderBtn);
+  methodsControls.appendChild(changeHeaderBtn);
+  methodsControls.appendChild(addFooterBtn);
 
   methodsSection.appendChild(methodsCard.element);
   methodsSection.appendChild(methodsControls);
@@ -2912,7 +2912,7 @@ document.body.appendChild(card.element);
 // Card with footer actions
 const footerEl = document.createElement('div');
 const saveBtn = createButton({ label: '[ Save ]' });
-footerEl.appendChild(saveBtn.element);
+footerEl.appendChild(saveBtn);
 
 const actionCard = createCard({
   header: 'Action Card',
@@ -3158,9 +3158,9 @@ export function renderTimelinePage(): HTMLElement {
     }
   });
 
-  methodsControls.appendChild(addEventBtn.element);
-  methodsControls.appendChild(markCurrentBtn.element);
-  methodsControls.appendChild(clearBtn.element);
+  methodsControls.appendChild(addEventBtn);
+  methodsControls.appendChild(markCurrentBtn);
+  methodsControls.appendChild(clearBtn);
 
   methodsSection.appendChild(methodsTimeline.element);
   methodsSection.appendChild(methodsControls);
@@ -3375,7 +3375,7 @@ export function renderEmptyStatePage(): HTMLElement {
     title: 'No files selected',
     description: 'Select files to upload or browse your computer.',
     icon: 'folder',
-    action: actionBtn.element
+    action: actionBtn
   });
 
   actionSection.appendChild(actionEmpty.element);
@@ -3453,7 +3453,7 @@ export function renderEmptyStatePage(): HTMLElement {
     title: 'Something went wrong',
     description: 'Unable to load data. Please check your connection and try again.',
     icon: 'error',
-    action: retryBtn.element,
+    action: retryBtn,
     size: 'large'
   });
 
@@ -3494,7 +3494,7 @@ export function renderEmptyStatePage(): HTMLElement {
 
   dynamicContainer.innerHTML = '<p style="padding: 60px; text-align: center;">Click the button to show empty state</p>';
   
-  dynamicSection.appendChild(toggleBtn.element);
+  dynamicSection.appendChild(toggleBtn);
   dynamicSection.appendChild(document.createElement('br'));
   dynamicSection.appendChild(document.createElement('br'));
   dynamicSection.appendChild(dynamicContainer);
@@ -3556,15 +3556,15 @@ export function renderEmptyStatePage(): HTMLElement {
         methodsEmpty.setAction(undefined);
       } else {
         const btn = createButton({ label: '[ Action Button ]' });
-        methodsEmpty.setAction(btn.element);
+        methodsEmpty.setAction(btn);
       }
     }
   });
 
-  methodsControls.appendChild(changeIconBtn.element);
-  methodsControls.appendChild(changeTitleBtn.element);
-  methodsControls.appendChild(toggleDescBtn.element);
-  methodsControls.appendChild(toggleActionBtn.element);
+  methodsControls.appendChild(changeIconBtn);
+  methodsControls.appendChild(changeTitleBtn);
+  methodsControls.appendChild(toggleDescBtn);
+  methodsControls.appendChild(toggleActionBtn);
 
   methodsSection.appendChild(methodsEmpty.element);
   methodsSection.appendChild(methodsControls);
