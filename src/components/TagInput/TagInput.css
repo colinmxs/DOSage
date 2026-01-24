@@ -1,0 +1,213 @@
+/**
+ * TagInput Component Styles
+ * DOS-style tag input with free-form tag creation
+ */
+
+/* Container */
+.dos-taginput {
+  position: relative;
+  display: inline-block;
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', 'Consolas', monospace);
+  font-size: var(--dos-font-size, 16px);
+  line-height: var(--dos-line-height, 1.5);
+  min-width: 200px;
+}
+
+.dos-taginput--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Wrapper */
+.dos-taginput__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dos-space-xs, 4px);
+  min-height: 32px;
+  padding: var(--dos-space-xs, 4px);
+  background-color: var(--dos-color-bg, #000000);
+  border: 2px solid var(--dos-color-border, #AAAAAA);
+}
+
+.dos-taginput--focused .dos-taginput__wrapper {
+  outline: 2px solid var(--dos-color-focus, #FFFF55);
+  outline-offset: 1px;
+}
+
+.dos-taginput--error .dos-taginput__wrapper {
+  border-color: var(--dos-color-error, #FF5555);
+}
+
+.dos-taginput--suggestions-open .dos-taginput__wrapper {
+  border-bottom-color: transparent;
+}
+
+/* Tags container */
+.dos-taginput__tags {
+  display: contents;
+}
+
+/* Tag */
+.dos-taginput__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 1px var(--dos-space-xs, 4px);
+  background-color: var(--dos-color-tag-bg, #0000AA);
+  color: var(--dos-color-tag-fg, #FFFFFF);
+  border: 1px solid var(--dos-color-border, #AAAAAA);
+  cursor: pointer;
+}
+
+.dos-taginput__tag--focused {
+  outline: 2px solid var(--dos-color-focus, #FFFF55);
+  outline-offset: 1px;
+  background-color: var(--dos-color-tag-bg-focused, #0000CC);
+}
+
+.dos-taginput__tag-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.dos-taginput__tag-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.dos-taginput__tag-remove:hover {
+  color: var(--dos-color-error, #FF5555);
+}
+
+/* Input */
+.dos-taginput__input {
+  flex: 1;
+  min-width: 60px;
+  padding: var(--dos-space-xs, 4px);
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--dos-color-fg, #FFFFFF);
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.dos-taginput__input::placeholder {
+  color: var(--dos-color-muted, #555555);
+}
+
+.dos-taginput__input:disabled {
+  cursor: not-allowed;
+}
+
+/* Suggestions dropdown */
+.dos-taginput__suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: var(--dos-z-dropdown, 100);
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: var(--dos-color-bg, #000000);
+  border: 2px solid var(--dos-color-border, #AAAAAA);
+  border-top: none;
+}
+
+.dos-taginput__suggestions::-webkit-scrollbar {
+  width: 16px;
+}
+
+.dos-taginput__suggestions::-webkit-scrollbar-track {
+  background-color: var(--dos-color-scrollbar-track, #000000);
+  border-left: 2px solid var(--dos-color-border, #AAAAAA);
+}
+
+.dos-taginput__suggestions::-webkit-scrollbar-thumb {
+  background-color: var(--dos-color-scrollbar-thumb, #555555);
+  border: 2px solid var(--dos-color-bg, #000000);
+}
+
+.dos-taginput__suggestions::-webkit-scrollbar-thumb:hover {
+  background-color: var(--dos-color-scrollbar-thumb-hover, #777777);
+}
+
+/* Loading indicator */
+.dos-taginput__loading {
+  padding: var(--dos-space-sm, 8px);
+  text-align: center;
+  color: var(--dos-color-muted, #555555);
+}
+
+/* Suggestion item */
+.dos-taginput__suggestion {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-sm, 8px);
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  cursor: pointer;
+  color: var(--dos-color-fg, #FFFFFF);
+}
+
+.dos-taginput__suggestion:not(:last-child) {
+  border-bottom: 1px solid var(--dos-color-border-subtle, #333333);
+}
+
+.dos-taginput__suggestion--highlighted {
+  background-color: var(--dos-color-highlight-bg, #0000AA);
+  color: var(--dos-color-highlight-fg, #FFFFFF);
+}
+
+.dos-taginput__suggestion-icon {
+  flex-shrink: 0;
+  width: 1.5em;
+  text-align: center;
+}
+
+.dos-taginput__suggestion-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.dos-taginput__suggestion-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dos-taginput__suggestion-description {
+  font-size: 0.85em;
+  color: var(--dos-color-muted, #555555);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dos-taginput__suggestion--highlighted .dos-taginput__suggestion-description {
+  color: var(--dos-color-highlight-muted, #AAAAAA);
+}
+
+/* Error message */
+.dos-taginput__error {
+  margin-top: var(--dos-space-xs, 4px);
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  font-size: 0.9em;
+  color: var(--dos-color-error, #FF5555);
+  background-color: var(--dos-color-error-bg, #220000);
+  border: 1px solid var(--dos-color-error, #FF5555);
+}

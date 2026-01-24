@@ -54,7 +54,7 @@ export function createStepper(props: StepperProps): StepperElement {
   const eventListeners: Array<{ element: Element; event: string; handler: EventListener }> = [];
 
   // Create container
-  const container = document.createElement('div') as StepperElement;
+  const container = document.createElement('div') as unknown as StepperElement;
   container.className = `dos-stepper dos-stepper--${orientation}${className ? ` ${className}` : ''}`;
 
   if (id) {
@@ -307,22 +307,25 @@ export function createStepper(props: StepperProps): StepperElement {
   };
 
   container.setStepCompleted = (index: number, completed: boolean): void => {
-    if (index >= 0 && index < steps.length) {
-      steps[index] = { ...steps[index], completed };
+    const step = steps[index];
+    if (index >= 0 && index < steps.length && step) {
+      steps[index] = { ...step, completed };
       render();
     }
   };
 
   container.setStepError = (index: number, hasError: boolean): void => {
-    if (index >= 0 && index < steps.length) {
-      steps[index] = { ...steps[index], error: hasError };
+    const step = steps[index];
+    if (index >= 0 && index < steps.length && step) {
+      steps[index] = { ...step, error: hasError };
       render();
     }
   };
 
   container.setStepDisabled = (index: number, disabled: boolean): void => {
-    if (index >= 0 && index < steps.length) {
-      steps[index] = { ...steps[index], disabled };
+    const step = steps[index];
+    if (index >= 0 && index < steps.length && step) {
+      steps[index] = { ...step, disabled };
       render();
     }
   };

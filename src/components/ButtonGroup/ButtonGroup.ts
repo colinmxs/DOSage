@@ -123,7 +123,7 @@ function setupKeyboardNavigation(
 
       if (targetIndex >= 0) {
         event.preventDefault();
-        buttons[targetIndex].focus();
+        buttons[targetIndex]?.focus();
       }
     });
   });

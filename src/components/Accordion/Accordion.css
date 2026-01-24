@@ -1,0 +1,261 @@
+/**
+ * Accordion Component Styles
+ *
+ * DOS-style expandable/collapsible accordion sections.
+ * Uses box-drawing characters and monospace typography.
+ */
+
+/* ==========================================================================
+   Base Accordion Container
+   ========================================================================== */
+
+.dos-accordion {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', monospace);
+  font-size: var(--dos-font-size-md, 16px);
+  background-color: var(--dos-color-bg, #0000aa);
+  color: var(--dos-color-fg, #ffffff);
+  width: 100%;
+}
+
+/* ==========================================================================
+   Accordion Item
+   ========================================================================== */
+
+.dos-accordion__item {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--dos-color-border, #555555);
+}
+
+.dos-accordion__item:last-child {
+  border-bottom: none;
+}
+
+/* ==========================================================================
+   Accordion Header (Button)
+   ========================================================================== */
+
+.dos-accordion__header {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-sm, 8px);
+  width: 100%;
+  padding: var(--dos-space-sm, 8px) var(--dos-space-md, 12px);
+  font-family: inherit;
+  font-size: inherit;
+  background-color: var(--dos-color-bg-secondary, #000080);
+  color: var(--dos-color-fg, #ffffff);
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.1s ease;
+}
+
+.dos-accordion__header:hover:not(:disabled) {
+  background-color: var(--dos-color-bg-hover, #0000ff);
+}
+
+.dos-accordion__header:focus {
+  outline: 2px solid var(--dos-color-focus, #ffff55);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+.dos-accordion__header:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.dos-accordion__header:focus-visible {
+  outline: 2px solid var(--dos-color-focus, #ffff55);
+  outline-offset: -2px;
+}
+
+/* Disabled State */
+.dos-accordion__header:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Expanded State */
+.dos-accordion__item--expanded .dos-accordion__header {
+  background-color: var(--dos-color-bg-active, #0000cc);
+}
+
+/* ==========================================================================
+   Accordion Icon
+   ========================================================================== */
+
+.dos-accordion__icon {
+  flex-shrink: 0;
+  font-family: inherit;
+  color: var(--dos-color-accent, #55ff55);
+  font-weight: bold;
+}
+
+.dos-accordion__custom-icon {
+  flex-shrink: 0;
+  font-family: inherit;
+  color: var(--dos-color-accent-secondary, #55ffff);
+}
+
+/* ==========================================================================
+   Accordion Title
+   ========================================================================== */
+
+.dos-accordion__title {
+  flex: 1;
+  font-family: inherit;
+}
+
+/* ==========================================================================
+   Accordion Content
+   ========================================================================== */
+
+.dos-accordion__content {
+  overflow: hidden;
+}
+
+.dos-accordion__content[hidden] {
+  display: none;
+}
+
+.dos-accordion__content-inner {
+  padding: var(--dos-space-md, 12px);
+  background-color: var(--dos-color-bg, #0000aa);
+}
+
+/* ==========================================================================
+   Variant: Default
+   ========================================================================== */
+
+.dos-accordion--default .dos-accordion__item {
+  border-bottom-color: var(--dos-color-border, #555555);
+}
+
+/* ==========================================================================
+   Variant: Boxed
+   ========================================================================== */
+
+.dos-accordion--boxed {
+  border: 2px solid var(--dos-color-border, #aaaaaa);
+}
+
+.dos-accordion--boxed .dos-accordion__item {
+  border-bottom: 1px solid var(--dos-color-border-light, #888888);
+}
+
+.dos-accordion--boxed .dos-accordion__header {
+  background-color: var(--dos-color-bg-tertiary, #000055);
+}
+
+.dos-accordion--boxed .dos-accordion__header:hover:not(:disabled) {
+  background-color: var(--dos-color-bg-secondary, #000080);
+}
+
+.dos-accordion--boxed .dos-accordion__item--expanded .dos-accordion__header {
+  background-color: var(--dos-color-bg-secondary, #000080);
+  border-bottom: 1px solid var(--dos-color-border-light, #888888);
+}
+
+.dos-accordion--boxed .dos-accordion__content-inner {
+  border-left: 4px solid var(--dos-color-accent, #55ff55);
+}
+
+/* ==========================================================================
+   Variant: Minimal
+   ========================================================================== */
+
+.dos-accordion--minimal {
+  background-color: transparent;
+}
+
+.dos-accordion--minimal .dos-accordion__item {
+  border-bottom: 1px dashed var(--dos-color-border, #555555);
+}
+
+.dos-accordion--minimal .dos-accordion__header {
+  background-color: transparent;
+  padding-left: var(--dos-space-xs, 4px);
+}
+
+.dos-accordion--minimal .dos-accordion__header:hover:not(:disabled) {
+  background-color: var(--dos-color-bg-hover-subtle, rgba(255, 255, 255, 0.1));
+}
+
+.dos-accordion--minimal .dos-accordion__item--expanded .dos-accordion__header {
+  background-color: transparent;
+}
+
+.dos-accordion--minimal .dos-accordion__content-inner {
+  background-color: transparent;
+  padding-left: calc(var(--dos-space-md, 12px) + var(--dos-space-lg, 16px));
+}
+
+/* ==========================================================================
+   Disabled Item State
+   ========================================================================== */
+
+.dos-accordion__item--disabled .dos-accordion__header {
+  color: var(--dos-color-text-disabled, #888888);
+}
+
+.dos-accordion__item--disabled .dos-accordion__icon {
+  color: var(--dos-color-text-disabled, #888888);
+}
+
+/* ==========================================================================
+   Focus Within (keyboard navigation indicator)
+   ========================================================================== */
+
+.dos-accordion:focus-within {
+  /* Optional: subtle indicator when accordion has focus */
+}
+
+/* ==========================================================================
+   Animation (optional, respects reduced motion)
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  .dos-accordion__content {
+    transition: none; /* DOS didn't have animations! */
+  }
+}
+
+/* ==========================================================================
+   High Contrast Mode Support
+   ========================================================================== */
+
+@media (forced-colors: active) {
+  .dos-accordion__header {
+    border: 1px solid ButtonText;
+  }
+
+  .dos-accordion__header:focus {
+    outline: 2px solid Highlight;
+  }
+
+  .dos-accordion__item--expanded .dos-accordion__header {
+    border-color: Highlight;
+  }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+  .dos-accordion__content {
+    display: block !important;
+  }
+
+  .dos-accordion__content[hidden] {
+    display: block !important;
+  }
+
+  .dos-accordion__icon {
+    display: none;
+  }
+}

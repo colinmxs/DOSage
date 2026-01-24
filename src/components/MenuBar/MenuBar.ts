@@ -29,10 +29,15 @@ function generateMenuBarId(): string {
 function deepCloneItems(items: MenuBarItem[]): MenuBarItem[] {
   return items.map((item) => ({
     ...item,
-    items: item.items.map((subItem) => ({
-      ...subItem,
-      children: subItem.children ? deepCloneMenuItems(subItem.children) : undefined,
-    })),
+    items: item.items.map((subItem) => {
+      const cloned: MenuItem = {
+        ...subItem,
+      };
+      if (subItem.items) {
+        cloned.items = deepCloneMenuItems(subItem.items);
+      }
+      return cloned;
+    }),
   }));
 }
 
@@ -40,10 +45,15 @@ function deepCloneItems(items: MenuBarItem[]): MenuBarItem[] {
  * Deep clones menu item children recursively
  */
 function deepCloneMenuItems(items: MenuItem[]): MenuItem[] {
-  return items.map((item) => ({
-    ...item,
-    children: item.children ? deepCloneMenuItems(item.children) : undefined,
-  }));
+  return items.map((item) => {
+    const cloned: MenuItem = {
+      ...item,
+    };
+    if (item.items) {
+      cloned.items = deepCloneMenuItems(item.items);
+    }
+    return cloned;
+  });
 }
 
 /**
@@ -93,8 +103,6 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
   // Internal state - deep clone items to prevent mutation of original data
   let items = deepCloneItems(initialItems);
   let openMenuIndex = -1;
-  let highlightedItemIndex = -1;
-  let isAltKeyDown = false;
   let activeSubmenuStack: HTMLElement[] = [];
 
   // Create menu bar element
@@ -182,7 +190,7 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
 
     button.addEventListener('keydown', (e) => handleMenuItemKeydown(e, index));
     button.addEventListener('focus', () => {
-      highlightedItemIndex = -1;
+      // Focus event handled
     });
 
     li.appendChild(button);
@@ -330,16 +338,17 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
     }
 
     const item = items[index];
-    if (item.disabled) return;
+    if (!item || item.disabled) return;
 
     openMenuIndex = index;
-    highlightedItemIndex = -1;
     activeSubmenuStack = [];
 
     const menuItems = menuList.querySelectorAll('.dos-menu-bar__item');
     const menuItem = menuItems[index];
+    if (!menuItem) return;
     const trigger = menuItem.querySelector('.dos-menu-bar__trigger') as HTMLButtonElement;
     const dropdown = menuItem.querySelector('.dos-menu-bar__dropdown');
+    if (!trigger) return;
 
     menuItem.classList.add('dos-menu-bar__item--active');
     trigger.setAttribute('aria-expanded', 'true');
@@ -360,7 +369,9 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
 
     closeMenuAt(openMenuIndex);
     const item = items[openMenuIndex];
-    onMenuClose?.(item.label);
+    if (item) {
+      onMenuClose?.(item.label);
+    }
     openMenuIndex = -1;
     activeSubmenuStack = [];
   }
@@ -369,8 +380,10 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
   function closeMenuAt(index: number): void {
     const menuItems = menuList.querySelectorAll('.dos-menu-bar__item');
     const menuItem = menuItems[index];
+    if (!menuItem) return;
     const trigger = menuItem.querySelector('.dos-menu-bar__trigger') as HTMLButtonElement;
     const dropdown = menuItem.querySelector('.dos-menu-bar__dropdown');
+    if (!trigger) return;
 
     menuItem.classList.remove('dos-menu-bar__item--active');
     trigger.setAttribute('aria-expanded', 'false');
@@ -397,7 +410,6 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
     activeSubmenuStack.push(submenu);
 
     // Position submenu
-    const rect = parentItem.getBoundingClientRect();
     submenu.style.left = `${parentItem.offsetWidth}px`;
     submenu.style.top = '0';
 
@@ -458,7 +470,6 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
 
   // Handle keyboard navigation on menu bar items
   function handleMenuItemKeydown(e: KeyboardEvent, index: number): void {
-    const menuItems = menuList.querySelectorAll('.dos-menu-bar__trigger');
 
     switch (e.key) {
       case 'ArrowLeft':
@@ -475,7 +486,7 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
       case 'Enter':
       case ' ':
         e.preventDefault();
-        if (!items[index].disabled) {
+        if (items[index] && !items[index].disabled) {
           openMenu(index);
         }
         break;
@@ -524,18 +535,18 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
       case 'ArrowUp':
         e.preventDefault();
         if (currentIndex > 0) {
-          allItems[currentIndex - 1].focus();
+          allItems[currentIndex - 1]?.focus();
         } else {
-          allItems[allItems.length - 1].focus();
+          allItems[allItems.length - 1]?.focus();
         }
         break;
 
       case 'ArrowDown':
         e.preventDefault();
         if (currentIndex < allItems.length - 1) {
-          allItems[currentIndex + 1].focus();
+          allItems[currentIndex + 1]?.focus();
         } else {
-          allItems[0].focus();
+          allItems[0]?.focus();
         }
         break;
 
@@ -618,10 +629,11 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
           const key = e.key.toLowerCase();
           const dropdownItems = parent.querySelectorAll('.dos-menu-bar__dropdown-item');
           for (let i = 0; i < dropdownItems.length; i++) {
-            const item = dropdownItems[i];
-            const label = item.querySelector('.dos-menu-bar__dropdown-label');
+            const dropdownItem = dropdownItems[i];
+            if (!dropdownItem) continue;
+            const label = dropdownItem.querySelector('.dos-menu-bar__dropdown-label');
             if (label?.textContent?.toLowerCase().startsWith(key)) {
-              const trigger = item.querySelector('.dos-menu-bar__dropdown-trigger') as HTMLElement;
+              const trigger = dropdownItem.querySelector('.dos-menu-bar__dropdown-trigger') as HTMLElement;
               if (trigger && !trigger.hasAttribute('aria-disabled')) {
                 trigger.focus();
                 break;
@@ -650,7 +662,6 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
   function handleGlobalKeydown(e: KeyboardEvent): void {
     // Track Alt key state
     if (e.key === 'Alt') {
-      isAltKeyDown = true;
       return;
     }
 
@@ -672,9 +683,8 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
   }
 
   function handleGlobalKeyup(e: KeyboardEvent): void {
-    if (e.key === 'Alt') {
-      isAltKeyDown = false;
-    }
+    // Alt key released (no action needed currently)
+    void e;
   }
 
   // Close menu when clicking outside
@@ -715,7 +725,8 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
 
   menuBar.getOpenMenu = (): string | null => {
     if (openMenuIndex === -1) return null;
-    return items[openMenuIndex].label;
+    const item = items[openMenuIndex];
+    return item ? item.label : null;
   };
 
   menuBar.setItems = (newItems: MenuBarItem[]): void => {

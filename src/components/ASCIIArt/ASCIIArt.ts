@@ -89,7 +89,7 @@ function animateTypewriter(element: HTMLPreElement, content: string, speed: numb
   requestAnimationFrame(animate);
 }
 
-function convertTextToASCII(text: string, font: string): string {
+function convertTextToASCII(text: string, _font: string): string {
   // Simple ASCII art conversion (basic implementation)
   const upper = text.toUpperCase();
   const lines: string[] = ['', '', ''];

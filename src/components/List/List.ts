@@ -2,7 +2,7 @@
  * List Component
  */
 
-import type { ListProps, ListItem } from './List.types';
+import type { ListProps } from './List.types';
 import './List.css';
 
 export function createList(props: ListProps): HTMLElement {
@@ -26,7 +26,7 @@ export function createList(props: ListProps): HTMLElement {
   listElement.className = classes.join(' ');
   if (id) listElement.id = id;
 
-  items.forEach((item, index) => {
+  items.forEach((item, _index) => {
     const li = document.createElement('li');
     li.className = 'dos-list___item';
 

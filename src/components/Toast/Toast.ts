@@ -28,7 +28,6 @@ import type {
   ToastInstance,
   ToastContainerProps,
   ToastContainerInstance,
-  ToastType,
   ToastPosition,
 } from './Toast.types';
 import { TOAST_ICONS } from './Toast.types';
@@ -372,7 +371,6 @@ export const toast = {
     defaultPosition = position;
     if (defaultContainer) {
       // Recreate container with new position
-      const toasts = defaultContainer.getToasts();
       defaultContainer.element.remove();
       defaultContainer = createToastContainer({ position });
       document.body.appendChild(defaultContainer.element);

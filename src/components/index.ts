@@ -79,11 +79,15 @@ export * from './Card';
 export * from './Timeline';
 export * from './EmptyState';
 
-// Overlay Components (Phase 10)
-// export * from './Window';
-// export * from './Dialog';
-// export * from './Popover';
-// export * from './CommandPalette';
+// Advanced Interactive Components (Phase 10)
+export * from './Tabs';
+export * from './Accordion';
+export * from './SplitPane';
+export * from './CommandPalette';
+export * from './SearchInput';
+export * from './Combobox';
+export * from './MultiSelect';
+export * from './TagInput';
 
 // Specialized Components (Phase 11)
 // export * from './Terminal';

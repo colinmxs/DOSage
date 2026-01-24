@@ -60,7 +60,7 @@ export function createToggle(props: ToggleProps = {}): ToggleElement {
   const labelId = `${toggleId}-label`;
 
   // Create wrapper element
-  const wrapper = document.createElement('div') as ToggleElement;
+  const wrapper = document.createElement('div') as unknown as ToggleElement;
   wrapper.id = toggleId;
   wrapper.className = buildWrapperClasses();
 

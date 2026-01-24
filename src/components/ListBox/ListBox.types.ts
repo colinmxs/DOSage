@@ -85,6 +85,12 @@ export interface ListBoxProps {
   dividers?: boolean;
 
   /**
+   * Use compact/dense styling
+   * @default false
+   */
+  dense?: boolean;
+
+  /**
    * Show selection checkboxes/indicators
    * @default true (when selectable)
    */
@@ -93,12 +99,12 @@ export interface ListBoxProps {
   /**
    * Callback when selection changes
    */
-  onSelect?: (selectedIds: string[]) => void;
+  onSelect?: (selectedItems: ListBoxItem[]) => void;
 
   /**
    * Callback when an item is clicked
    */
-  onItemClick?: (item: ListBoxItem, index: number) => void;
+  onItemClick?: (item: ListBoxItem) => void;
 
   /**
    * Callback when an item is double-clicked
@@ -130,6 +136,11 @@ export interface ListBoxProps {
    * Accessible label for the list
    */
   ariaLabel?: string;
+
+  /**
+   * Accessible label for the list (alternate format)
+   */
+  'aria-label'?: string;
 }
 
 /**
@@ -174,7 +185,12 @@ export interface ListBoxInstance {
   /**
    * Get currently selected item IDs
    */
-  getSelectedItems: () => string[];
+  getSelectedItems: () => ListBoxItem[];
+
+  /**
+   * Get currently selected item IDs as strings
+   */
+  getSelectedIds: () => string[];
 
   /**
    * Get selected item objects
@@ -200,6 +216,31 @@ export interface ListBoxInstance {
    * Enable/disable an item
    */
   setItemDisabled: (itemId: string, disabled: boolean) => void;
+
+  /**
+   * Check if an item is selected
+   */
+  isSelected: (itemId: string) => boolean;
+
+  /**
+   * Get an item by ID
+   */
+  getItemById: (itemId: string) => ListBoxItem | undefined;
+
+  /**
+   * Add a new item to the list
+   */
+  addItem: (item: ListBoxItem, index?: number) => void;
+
+  /**
+   * Remove an item from the list
+   */
+  removeItem: (itemId: string) => void;
+
+  /**
+   * Update an existing item
+   */
+  updateItem: (itemId: string, updates: Partial<ListBoxItem>) => void;
 
   /**
    * Clean up and remove the list

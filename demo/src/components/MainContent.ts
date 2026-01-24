@@ -68,6 +68,16 @@ import {
   renderTimelinePage,
   renderEmptyStatePage,
 } from '../pages/data-display';
+import {
+  renderTabsPage,
+  renderAccordionPage,
+  renderSplitPanePage,
+  renderCommandPalettePage,
+  renderSearchInputPage,
+  renderComboboxPage,
+  renderMultiSelectPage,
+  renderTagInputPage,
+} from '../pages/advanced-components';
 
 /** Page content element reference */
 let contentElement: HTMLElement | null = null;
@@ -130,7 +140,7 @@ const pages: Record<string, () => HTMLElement> = {
   breadcrumbs: renderBreadcrumbsPage,
   pagination: renderPaginationPage,
   stepper: renderStepperPage,
-  tabs: () => createPlaceholderPage('Tabs', 'Tabbed interface component.'),
+  tabs: renderTabsPage,
   breadcrumb: () => createPlaceholderPage('Breadcrumb', 'Navigation breadcrumb trail.'),
   // Data Display (Phase 9)
   table: renderTablePage,
@@ -142,6 +152,14 @@ const pages: Record<string, () => HTMLElement> = {
   card: renderCardPage,
   timeline: renderTimelinePage,
   'empty-state': renderEmptyStatePage,
+  // Advanced Components (Phase 10)
+  accordion: renderAccordionPage,
+  'split-pane': renderSplitPanePage,
+  'command-palette': renderCommandPalettePage,
+  'search-input': renderSearchInputPage,
+  combobox: renderComboboxPage,
+  'multi-select': renderMultiSelectPage,
+  'tag-input': renderTagInputPage,
   // Themes
   themes: () => createPlaceholderPage('Theme Showcase', 'Preview all available themes.'),
 };

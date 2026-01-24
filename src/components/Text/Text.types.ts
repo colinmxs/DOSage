@@ -4,6 +4,8 @@
  * Type definitions for the DOS-style Text component.
  */
 
+import type { TextAlign } from '../../types/common';
+
 /**
  * Text size options
  */
@@ -14,10 +16,8 @@ export type TextSize = 'sm' | 'base' | 'lg';
  */
 export type TextWeight = 'normal' | 'bold';
 
-/**
- * Text alignment options
- */
-export type TextAlign = 'left' | 'center' | 'right' | 'justify';
+// Re-export TextAlign for convenience
+export type { TextAlign };
 
 /**
  * HTML element options for rendering

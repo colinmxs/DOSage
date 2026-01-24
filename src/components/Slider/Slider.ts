@@ -105,7 +105,7 @@ export function createSlider(props: SliderProps = {}): SliderElement {
   const labelId = `${sliderId}-label`;
 
   // Create wrapper element
-  const wrapper = document.createElement('div') as SliderElement;
+  const wrapper = document.createElement('div') as unknown as SliderElement;
   wrapper.id = sliderId;
   wrapper.className = buildWrapperClasses();
 

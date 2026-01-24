@@ -1,0 +1,281 @@
+/**
+ * CommandPalette Component Styles
+ *
+ * DOS-style command palette with search and command list.
+ */
+
+/* ==========================================================================
+   Base Container (Hidden by default)
+   ========================================================================== */
+
+.dos-commandpalette {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', monospace);
+}
+
+.dos-commandpalette--open {
+  display: block;
+}
+
+/* ==========================================================================
+   Overlay
+   ========================================================================== */
+
+.dos-commandpalette__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   Modal
+   ========================================================================== */
+
+.dos-commandpalette__modal {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  max-height: 60vh;
+  background-color: var(--dos-color-bg, #0000aa);
+  border: 2px solid var(--dos-color-border, #aaaaaa);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Input Container
+   ========================================================================== */
+
+.dos-commandpalette__input-container {
+  display: flex;
+  align-items: center;
+  padding: var(--dos-space-sm, 8px);
+  border-bottom: 1px solid var(--dos-color-border, #555555);
+  background-color: var(--dos-color-bg-secondary, #000080);
+}
+
+.dos-commandpalette__prompt {
+  color: var(--dos-color-accent, #55ff55);
+  font-weight: bold;
+  margin-right: var(--dos-space-xs, 4px);
+  white-space: nowrap;
+}
+
+.dos-commandpalette__input {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: var(--dos-color-fg, #ffffff);
+  font-family: inherit;
+  font-size: var(--dos-font-size-md, 16px);
+  padding: 0;
+}
+
+.dos-commandpalette__input::placeholder {
+  color: var(--dos-color-text-muted, #888888);
+}
+
+.dos-commandpalette__input:focus {
+  outline: none;
+}
+
+/* ==========================================================================
+   Results List
+   ========================================================================== */
+
+.dos-commandpalette__results {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--dos-space-xs, 4px) 0;
+  max-height: 400px;
+}
+
+.dos-commandpalette__results[hidden] {
+  display: none;
+}
+
+/* ==========================================================================
+   Category Header
+   ========================================================================== */
+
+.dos-commandpalette__category {
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  color: var(--dos-color-text-muted, #888888);
+  font-size: var(--dos-font-size-sm, 12px);
+  text-transform: uppercase;
+  border-bottom: 1px dashed var(--dos-color-border-light, #444444);
+  margin-bottom: var(--dos-space-xs, 4px);
+}
+
+/* ==========================================================================
+   Command Item
+   ========================================================================== */
+
+.dos-commandpalette__item {
+  display: flex;
+  align-items: center;
+  padding: var(--dos-space-sm, 8px) var(--dos-space-md, 12px);
+  cursor: pointer;
+  color: var(--dos-color-fg, #ffffff);
+  gap: var(--dos-space-sm, 8px);
+}
+
+.dos-commandpalette__item:hover {
+  background-color: var(--dos-color-bg-hover, #0000cc);
+}
+
+.dos-commandpalette__item--highlighted {
+  background-color: var(--dos-color-bg-active, #0000ff);
+  outline: none;
+}
+
+.dos-commandpalette__item--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dos-commandpalette__item--disabled:hover {
+  background-color: transparent;
+}
+
+/* ==========================================================================
+   Item Parts
+   ========================================================================== */
+
+.dos-commandpalette__item-icon {
+  flex-shrink: 0;
+  width: 2ch;
+  text-align: center;
+  color: var(--dos-color-accent, #55ff55);
+}
+
+.dos-commandpalette__item-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dos-commandpalette__item-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dos-commandpalette__item-description {
+  font-size: var(--dos-font-size-sm, 12px);
+  color: var(--dos-color-text-muted, #888888);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dos-commandpalette__item-shortcut {
+  flex-shrink: 0;
+  padding: 2px var(--dos-space-xs, 4px);
+  background-color: var(--dos-color-bg-secondary, #000055);
+  border: 1px solid var(--dos-color-border, #555555);
+  color: var(--dos-color-text-secondary, #aaaaaa);
+  font-size: var(--dos-font-size-sm, 12px);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Highlight Match
+   ========================================================================== */
+
+.dos-commandpalette__highlight {
+  background-color: var(--dos-color-highlight, #ffff55);
+  color: var(--dos-color-bg, #0000aa);
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   Empty State
+   ========================================================================== */
+
+.dos-commandpalette__empty {
+  padding: var(--dos-space-lg, 24px);
+  text-align: center;
+  color: var(--dos-color-text-muted, #888888);
+}
+
+.dos-commandpalette__empty[hidden] {
+  display: none;
+}
+
+/* ==========================================================================
+   Scrollbar Styling
+   ========================================================================== */
+
+.dos-commandpalette__results::-webkit-scrollbar {
+  width: 16px;
+}
+
+.dos-commandpalette__results::-webkit-scrollbar-track {
+  background-color: var(--dos-color-bg-secondary, #000055);
+}
+
+.dos-commandpalette__results::-webkit-scrollbar-thumb {
+  background-color: var(--dos-color-border, #555555);
+  border: 2px solid var(--dos-color-bg-secondary, #000055);
+}
+
+.dos-commandpalette__results::-webkit-scrollbar-thumb:hover {
+  background-color: var(--dos-color-border-hover, #888888);
+}
+
+/* ==========================================================================
+   High Contrast Mode Support
+   ========================================================================== */
+
+@media (forced-colors: active) {
+  .dos-commandpalette__modal {
+    border: 2px solid ButtonText;
+  }
+
+  .dos-commandpalette__item--highlighted {
+    outline: 2px solid Highlight;
+  }
+
+  .dos-commandpalette__highlight {
+    background-color: Highlight;
+    color: HighlightText;
+  }
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .dos-commandpalette__modal {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+  .dos-commandpalette {
+    display: none !important;
+  }
+}

@@ -89,8 +89,8 @@ export function createDataGrid(props: DataGridProps): DataGridInstance {
   const table = document.createElement('table');
   table.className = 'dos-data-grid___table';
 
-  // Generate unique IDs
-  const gridId = id || `datagrid-${Math.random().toString(36).slice(2, 9)}`;
+  // Generate unique IDs (used for internal element id attributes)
+  void (id || `datagrid-${Math.random().toString(36).slice(2, 9)}`);
 
   /**
    * Get data for current page
@@ -501,7 +501,7 @@ export function createDataGrid(props: DataGridProps): DataGridInstance {
 
     // Page numbers
     const pages = getPaginationRange(currentPage, totalPages);
-    pages.forEach((pageNum, idx) => {
+    pages.forEach((pageNum, _idx) => {
       if (pageNum === '...') {
         const ellipsis = document.createElement('span');
         ellipsis.className = 'dos-data-grid___page-ellipsis';
@@ -726,12 +726,17 @@ export function createDataGrid(props: DataGridProps): DataGridInstance {
 
     // Update data
     const rowIndex = data.findIndex(r => r.id === row.id);
-    if (rowIndex !== -1) {
-      data[rowIndex] = { ...data[rowIndex], [column.key]: parsedValue };
+    const existingRow = data[rowIndex];
+    if (rowIndex !== -1 && existingRow) {
+      const updatedRow: TableRow = { ...existingRow, [column.key]: parsedValue };
+      data[rowIndex] = updatedRow;
     }
 
+    const updatedRow = data[rowIndex];
+    if (!updatedRow) return;
+
     const editEvent: CellEditEvent = {
-      row: data[rowIndex],
+      row: updatedRow,
       rowIndex,
       column: column.key,
       oldValue,
@@ -779,8 +784,8 @@ export function createDataGrid(props: DataGridProps): DataGridInstance {
       }
       
       const col = orderedCols[nextColIndex];
-      if (col.editable !== false) {
-        const row = pageData[nextRowIndex];
+      const row = pageData[nextRowIndex];
+      if (col && col.editable !== false && row) {
         const cell = container.querySelector(
           `tr[data-row-id="${row.id}"] td[data-column-key="${col.key}"]`
         ) as HTMLElement;
@@ -829,7 +834,7 @@ export function createDataGrid(props: DataGridProps): DataGridInstance {
       const resizeEvent: ColumnResizeEvent = {
         column: columnKey,
         oldWidth: startWidth,
-        newWidth: columnWidths[columnKey],
+        newWidth: columnWidths[columnKey] ?? startWidth,
       };
       onColumnResize?.(resizeEvent);
     }

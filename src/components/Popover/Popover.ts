@@ -118,8 +118,9 @@ export function createPopover(props: PopoverProps): PopoverInstance {
 
   if (title) {
     createHeader();
+    // titleEl is definitely set after createHeader()
     if (titleEl) {
-      titleEl.textContent = title;
+      (titleEl as HTMLElement).textContent = title;
     }
   }
 

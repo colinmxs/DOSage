@@ -38,8 +38,8 @@ export function createListBox(props: ListBoxProps): ListBoxInstance {
     selectedItems: initialSelectedItems = [],
     bordered = false,
     dividers = false,
-    showSelectionIndicator = true,
     dense = false,
+    showSelectionIndicator = true,
     onSelect,
     onItemClick,
     maxHeight,
@@ -62,7 +62,7 @@ export function createListBox(props: ListBoxProps): ListBoxInstance {
   // Set ARIA attributes
   container.setAttribute('role', 'listbox');
   container.setAttribute('tabindex', '0');
-  container.setAttribute('aria-label', props['aria-label'] || 'List');
+  container.setAttribute('aria-label', props.ariaLabel || props['aria-label'] || 'List');
   if (multiSelect) {
     container.setAttribute('aria-multiselectable', 'true');
   }
@@ -184,7 +184,11 @@ export function createListBox(props: ListBoxProps): ListBoxInstance {
     if (item.trailing) {
       const trailing = document.createElement('span');
       trailing.className = 'dos-listbox___trailing';
-      trailing.textContent = item.trailing;
+      if (typeof item.trailing === 'string') {
+        trailing.textContent = item.trailing;
+      } else {
+        trailing.appendChild(item.trailing);
+      }
       li.appendChild(trailing);
     }
 
@@ -281,7 +285,8 @@ export function createListBox(props: ListBoxProps): ListBoxInstance {
   function findNextIndex(startIndex: number, direction: 1 | -1): number {
     let index = startIndex + direction;
     while (index >= 0 && index < items.length) {
-      if (!items[index].disabled) {
+      const item = items[index];
+      if (item && !item.disabled) {
         return index;
       }
       index += direction;
@@ -327,7 +332,10 @@ export function createListBox(props: ListBoxProps): ListBoxInstance {
       case ' ': {
         event.preventDefault();
         if (focusedIndex >= 0 && focusedIndex < items.length) {
-          handleItemClick(items[focusedIndex], focusedIndex);
+          const item = items[focusedIndex];
+          if (item) {
+            handleItemClick(item, focusedIndex);
+          }
         }
         break;
       }
@@ -355,7 +363,8 @@ export function createListBox(props: ListBoxProps): ListBoxInstance {
   // Find first non-disabled index
   function findFirstNonDisabledIndex(): number {
     for (let i = 0; i < items.length; i++) {
-      if (!items[i].disabled) return i;
+      const item = items[i];
+      if (item && !item.disabled) return i;
     }
     return 0;
   }
@@ -363,7 +372,8 @@ export function createListBox(props: ListBoxProps): ListBoxInstance {
   // Find last non-disabled index
   function findLastNonDisabledIndex(): number {
     for (let i = items.length - 1; i >= 0; i--) {
-      if (!items[i].disabled) return i;
+      const item = items[i];
+      if (item && !item.disabled) return i;
     }
     return items.length - 1;
   }
@@ -374,14 +384,16 @@ export function createListBox(props: ListBoxProps): ListBoxInstance {
 
     // Search from startIndex to end
     for (let i = startIndex; i < items.length; i++) {
-      if (!items[i].disabled && items[i].primary.toLowerCase().startsWith(lowerChar)) {
+      const item = items[i];
+      if (item && !item.disabled && item.primary.toLowerCase().startsWith(lowerChar)) {
         return i;
       }
     }
 
     // Wrap around and search from beginning
     for (let i = 0; i < startIndex; i++) {
-      if (!items[i].disabled && items[i].primary.toLowerCase().startsWith(lowerChar)) {
+      const item = items[i];
+      if (item && !item.disabled && item.primary.toLowerCase().startsWith(lowerChar)) {
         return i;
       }
     }
@@ -525,6 +537,10 @@ export function createListBox(props: ListBoxProps): ListBoxInstance {
       return [...selectedIds];
     },
 
+    getSelectedData(): ListBoxItem[] {
+      return getSelectedItems();
+    },
+
     focus(): void {
       container.focus();
     },
@@ -544,6 +560,17 @@ export function createListBox(props: ListBoxProps): ListBoxInstance {
         if (itemEl && typeof itemEl.scrollIntoView === 'function') {
           itemEl.scrollIntoView({ block: 'nearest' });
         }
+      }
+    },
+
+    setItemDisabled(id: string, disabled: boolean): void {
+      const item = items.find(i => i.id === id);
+      if (item) {
+        item.disabled = disabled;
+        if (disabled) {
+          selectedIds.delete(id);
+        }
+        renderItems();
       }
     },
 

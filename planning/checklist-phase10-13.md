@@ -15,39 +15,39 @@
 **Types:** `src/components/Tabs/Tabs.types.ts`
 **Tests:** `tests/components/Tabs.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interfaces:
-  - [ ] `TabsProps` - container configuration
-  - [ ] `TabProps` - individual tab configuration
-  - [ ] `TabPanelProps` - panel content configuration
-  - [ ] `TabsOrientation` - `'horizontal' | 'vertical'`
-- [ ] Implement base Tabs container component
-- [ ] Implement Tab component (clickable tab header)
-- [ ] Implement TabPanel component (content area)
-- [ ] Add DOS-style tab appearance:
-  - [ ] Active tab: `┌──────┐` top border, connected to panel
-  - [ ] Inactive tabs: flat bottom border
-  - [ ] Vertical tabs: side-connected appearance
-- [ ] Add horizontal layout (default)
-- [ ] Add vertical layout option
-- [ ] Implement controlled/uncontrolled modes
-- [ ] Add CSS styles with DOS box-drawing characters
-- [ ] Add keyboard navigation:
-  - [ ] `←` / `→` for horizontal tabs
-  - [ ] `↑` / `↓` for vertical tabs
-  - [ ] `Home` - first tab
-  - [ ] `End` - last tab
-  - [ ] `Enter` / `Space` - activate focused tab
-- [ ] Add ARIA attributes:
-  - [ ] `role="tablist"` on container
-  - [ ] `role="tab"` on each tab
-  - [ ] `role="tabpanel"` on each panel
-  - [ ] `aria-selected` on active tab
-  - [ ] `aria-controls` linking tabs to panels
-  - [ ] `aria-labelledby` on panels
-- [ ] Add `dos:tabs:change` custom event
-- [ ] Write unit tests
-- [ ] Add to Kitchen Sink demo
+- [x] Create component directory structure
+- [x] Define TypeScript interfaces:
+  - [x] `TabsProps` - container configuration
+  - [x] `TabProps` - individual tab configuration
+  - [x] `TabPanelProps` - panel content configuration
+  - [x] `TabsOrientation` - `'horizontal' | 'vertical'`
+- [x] Implement base Tabs container component
+- [x] Implement Tab component (clickable tab header)
+- [x] Implement TabPanel component (content area)
+- [x] Add DOS-style tab appearance:
+  - [x] Active tab: `┌──────┐` top border, connected to panel
+  - [x] Inactive tabs: flat bottom border
+  - [x] Vertical tabs: side-connected appearance
+- [x] Add horizontal layout (default)
+- [x] Add vertical layout option
+- [x] Implement controlled/uncontrolled modes
+- [x] Add CSS styles with DOS box-drawing characters
+- [x] Add keyboard navigation:
+  - [x] `←` / `→` for horizontal tabs
+  - [x] `↑` / `↓` for vertical tabs
+  - [x] `Home` - first tab
+  - [x] `End` - last tab
+  - [x] `Enter` / `Space` - activate focused tab
+- [x] Add ARIA attributes:
+  - [x] `role="tablist"` on container
+  - [x] `role="tab"` on each tab
+  - [x] `role="tabpanel"` on each panel
+  - [x] `aria-selected` on active tab
+  - [x] `aria-controls` linking tabs to panels
+  - [x] `aria-labelledby` on panels
+- [x] Add `dos:tabs:change` custom event
+- [x] Write unit tests
+- [x] Add to Kitchen Sink demo
 
 > **Accessibility:** Full ARIA tablist pattern; automatic focus management; roving tabindex
 > **Keyboard:** Arrow keys navigate tabs; Home/End jump to first/last; Enter/Space activate
@@ -63,35 +63,35 @@
 **Types:** `src/components/Accordion/Accordion.types.ts`
 **Tests:** `tests/components/Accordion.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interfaces:
-  - [ ] `AccordionProps` - container configuration
-  - [ ] `AccordionItemProps` - individual section configuration
-  - [ ] `AccordionMode` - `'single' | 'multiple'`
-- [ ] Implement base Accordion container component
-- [ ] Implement AccordionItem component (header + content)
-- [ ] Add single expand mode (only one open at a time)
-- [ ] Add multiple expand mode (any number open)
-- [ ] Add DOS-style expand indicators:
-  - [ ] Collapsed: `[+]` or `►`
-  - [ ] Expanded: `[-]` or `▼`
-- [ ] Add header styling with box characters: `╔═══════════════╗`
-- [ ] Implement expand/collapse animation (optional, instant by default)
-- [ ] Add controlled/uncontrolled modes
-- [ ] Add CSS styles
-- [ ] Add keyboard navigation:
-  - [ ] `Enter` / `Space` - toggle current section
-  - [ ] `↑` / `↓` - navigate between headers
-  - [ ] `Home` - first header
-  - [ ] `End` - last header
-- [ ] Add ARIA attributes:
-  - [ ] `aria-expanded` on headers
-  - [ ] `aria-controls` linking header to content
-  - [ ] `role="button"` on headers (if using non-button element)
-  - [ ] `aria-labelledby` on content regions
-- [ ] Add `dos:accordion:toggle` custom event
-- [ ] Write unit tests
-- [ ] Add to Kitchen Sink demo
+- [x] Create component directory structure
+- [x] Define TypeScript interfaces:
+  - [x] `AccordionProps` - container configuration
+  - [x] `AccordionItemProps` - individual section configuration
+  - [x] `AccordionMode` - `'single' | 'multiple'`
+- [x] Implement base Accordion container component
+- [x] Implement AccordionItem component (header + content)
+- [x] Add single expand mode (only one open at a time)
+- [x] Add multiple expand mode (any number open)
+- [x] Add DOS-style expand indicators:
+  - [x] Collapsed: `[+]` or `►`
+  - [x] Expanded: `[-]` or `▼`
+- [x] Add header styling with box characters: `╔═══════════════╗`
+- [x] Implement expand/collapse animation (optional, instant by default)
+- [x] Add controlled/uncontrolled modes
+- [x] Add CSS styles
+- [x] Add keyboard navigation:
+  - [x] `Enter` / `Space` - toggle current section
+  - [x] `↑` / `↓` - navigate between headers
+  - [x] `Home` - first header
+  - [x] `End` - last header
+- [x] Add ARIA attributes:
+  - [x] `aria-expanded` on headers
+  - [x] `aria-controls` linking header to content
+  - [x] `role="button"` on headers (if using non-button element)
+  - [x] `aria-labelledby` on content regions
+- [x] Add `dos:accordion:toggle` custom event
+- [x] Write unit tests
+- [x] Add to Kitchen Sink demo
 
 > **Accessibility:** Expandable sections with proper state announcements; keyboard operable headers
 > **Keyboard:** Enter/Space toggle; Arrow keys navigate headers; Home/End jump
@@ -107,33 +107,33 @@
 **Types:** `src/components/SplitPane/SplitPane.types.ts`
 **Tests:** `tests/components/SplitPane.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interfaces:
-  - [ ] `SplitPaneProps` - configuration options
-  - [ ] `SplitPaneOrientation` - `'horizontal' | 'vertical'`
-  - [ ] `SplitPaneSizes` - initial/min/max sizes
-- [ ] Implement base SplitPane component
-- [ ] Add horizontal split (left | right)
-- [ ] Add vertical split (top | bottom)
-- [ ] Implement resizable divider/splitter:
-  - [ ] DOS-style ASCII handle: `║` or `═══`
-  - [ ] Grip indicator: `┃` or `═╪═`
-- [ ] Add drag-to-resize functionality
-- [ ] Implement min/max size constraints per pane
-- [ ] Add initial size configuration (pixels or percentage)
-- [ ] Implement double-click to reset/collapse
-- [ ] Add CSS styles with proper cursors (`col-resize`, `row-resize`)
-- [ ] Add keyboard navigation:
-  - [ ] `←` / `→` or `↑` / `↓` - resize when divider focused
-  - [ ] `Home` - collapse to minimum
-  - [ ] `End` - expand to maximum
-- [ ] Add ARIA attributes:
-  - [ ] `role="separator"` on divider
-  - [ ] `aria-valuenow`, `aria-valuemin`, `aria-valuemax`
-  - [ ] `aria-orientation`
-- [ ] Add `dos:splitpane:resize` custom event
-- [ ] Write unit tests
-- [ ] Add to Kitchen Sink demo
+- [x] Create component directory structure
+- [x] Define TypeScript interfaces:
+  - [x] `SplitPaneProps` - configuration options
+  - [x] `SplitPaneOrientation` - `'horizontal' | 'vertical'`
+  - [x] `SplitPaneSizes` - initial/min/max sizes
+- [x] Implement base SplitPane component
+- [x] Add horizontal split (left | right)
+- [x] Add vertical split (top | bottom)
+- [x] Implement resizable divider/splitter:
+  - [x] DOS-style ASCII handle: `║` or `═══`
+  - [x] Grip indicator: `┃` or `═╪═`
+- [x] Add drag-to-resize functionality
+- [x] Implement min/max size constraints per pane
+- [x] Add initial size configuration (pixels or percentage)
+- [x] Implement double-click to reset/collapse
+- [x] Add CSS styles with proper cursors (`col-resize`, `row-resize`)
+- [x] Add keyboard navigation:
+  - [x] `←` / `→` or `↑` / `↓` - resize when divider focused
+  - [x] `Home` - collapse to minimum
+  - [x] `End` - expand to maximum
+- [x] Add ARIA attributes:
+  - [x] `role="separator"` on divider
+  - [x] `aria-valuenow`, `aria-valuemin`, `aria-valuemax`
+  - [x] `aria-orientation`
+- [x] Add `dos:splitpane:resize` custom event
+- [x] Write unit tests
+- [x] Add to Kitchen Sink demo
 
 > **Accessibility:** Separator is keyboard operable; announces current split ratio
 > **Keyboard:** Arrow keys resize; Home/End for min/max positions
@@ -149,39 +149,39 @@
 **Types:** `src/components/CommandPalette/CommandPalette.types.ts`
 **Tests:** `tests/components/CommandPalette.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interfaces:
-  - [ ] `CommandPaletteProps` - configuration options
-  - [ ] `CommandItem` - command definition (id, label, shortcut, action, category)
-  - [ ] `CommandCategory` - grouping for commands
-- [ ] Implement base CommandPalette component
-- [ ] Add DOS prompt style input: `C:\>` prefix
-- [ ] Implement command registration API
-- [ ] Add search/filter functionality:
-  - [ ] Basic substring match
-  - [ ] Fuzzy search support (optional)
-- [ ] Implement command categories/groups
-- [ ] Add recently used commands tracking
-- [ ] Display keyboard shortcuts next to commands
-- [ ] Implement command execution on selection
-- [ ] Add CSS styles (modal overlay appearance)
-- [ ] Add keyboard navigation:
-  - [ ] `Ctrl+Shift+P` or configurable - open palette
-  - [ ] `↑` / `↓` - navigate results
-  - [ ] `Enter` - execute selected command
-  - [ ] `Escape` - close palette
-  - [ ] Type to filter
-- [ ] Add ARIA attributes:
-  - [ ] `role="combobox"` pattern
-  - [ ] `role="listbox"` for results
-  - [ ] `aria-activedescendant` for selection
-  - [ ] `aria-expanded`
-- [ ] Add custom events:
-  - [ ] `dos:commandpalette:open`
-  - [ ] `dos:commandpalette:execute`
-  - [ ] `dos:commandpalette:close`
-- [ ] Write unit tests
-- [ ] Add to Kitchen Sink demo
+- [x] Create component directory structure
+- [x] Define TypeScript interfaces:
+  - [x] `CommandPaletteProps` - configuration options
+  - [x] `CommandItem` - command definition (id, label, shortcut, action, category)
+  - [x] `CommandCategory` - grouping for commands
+- [x] Implement base CommandPalette component
+- [x] Add DOS prompt style input: `C:\>` prefix
+- [x] Implement command registration API
+- [x] Add search/filter functionality:
+  - [x] Basic substring match
+  - [x] Fuzzy search support (optional)
+- [x] Implement command categories/groups
+- [x] Add recently used commands tracking
+- [x] Display keyboard shortcuts next to commands
+- [x] Implement command execution on selection
+- [x] Add CSS styles (modal overlay appearance)
+- [x] Add keyboard navigation:
+  - [x] `Ctrl+Shift+P` or configurable - open palette
+  - [x] `↑` / `↓` - navigate results
+  - [x] `Enter` - execute selected command
+  - [x] `Escape` - close palette
+  - [x] Type to filter
+- [x] Add ARIA attributes:
+  - [x] `role="combobox"` pattern
+  - [x] `role="listbox"` for results
+  - [x] `aria-activedescendant` for selection
+  - [x] `aria-expanded`
+- [x] Add custom events:
+  - [x] `dos:commandpalette:open`
+  - [x] `dos:commandpalette:execute`
+  - [x] `dos:commandpalette:close`
+- [x] Write unit tests
+- [x] Add to Kitchen Sink demo
 
 > **Accessibility:** Combobox pattern with live filtering; announces result count; keyboard-first design
 > **Keyboard:** Ctrl+Shift+P open; Arrows navigate; Enter execute; Escape close; Type to filter
@@ -197,40 +197,40 @@
 **Types:** `src/components/SearchInput/SearchInput.types.ts`
 **Tests:** `tests/components/SearchInput.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interfaces:
-  - [ ] `SearchInputProps` - configuration options
-  - [ ] `SearchSuggestion` - autocomplete item definition
-  - [ ] `SearchInputState` - internal state
-- [ ] Implement base SearchInput component
-- [ ] Add DOS-style search prompt/icon: `[?]` or `FIND:`
-- [ ] Implement autocomplete suggestions dropdown
-- [ ] Add async suggestion loading support
-- [ ] Implement debounced search (configurable delay)
-- [ ] Add clear button: `[X]` or `[C]`
-- [ ] Implement suggestion highlighting (matched text)
-- [ ] Add no-results message
-- [ ] Add loading state indicator
-- [ ] Add CSS styles
-- [ ] Add keyboard navigation:
-  - [ ] `↑` / `↓` - navigate suggestions
-  - [ ] `Enter` - select suggestion or submit
-  - [ ] `Escape` - close suggestions / clear
-  - [ ] `Tab` - accept inline autocomplete (if applicable)
-- [ ] Add ARIA attributes:
-  - [ ] `role="combobox"`
-  - [ ] `role="listbox"` for suggestions
-  - [ ] `aria-autocomplete="list"`
-  - [ ] `aria-activedescendant`
-  - [ ] `aria-expanded`
-  - [ ] `aria-busy` during loading
-- [ ] Add custom events:
-  - [ ] `dos:search:input`
-  - [ ] `dos:search:select`
-  - [ ] `dos:search:submit`
-  - [ ] `dos:search:clear`
-- [ ] Write unit tests
-- [ ] Add to Kitchen Sink demo
+- [x] Create component directory structure
+- [x] Define TypeScript interfaces:
+  - [x] `SearchInputProps` - configuration options
+  - [x] `SearchSuggestion` - autocomplete item definition
+  - [x] `SearchInputState` - internal state
+- [x] Implement base SearchInput component
+- [x] Add DOS-style search prompt/icon: `[?]` or `FIND:`
+- [x] Implement autocomplete suggestions dropdown
+- [x] Add async suggestion loading support
+- [x] Implement debounced search (configurable delay)
+- [x] Add clear button: `[X]` or `[C]`
+- [x] Implement suggestion highlighting (matched text)
+- [x] Add no-results message
+- [x] Add loading state indicator
+- [x] Add CSS styles
+- [x] Add keyboard navigation:
+  - [x] `↑` / `↓` - navigate suggestions
+  - [x] `Enter` - select suggestion or submit
+  - [x] `Escape` - close suggestions / clear
+  - [x] `Tab` - accept inline autocomplete (if applicable)
+- [x] Add ARIA attributes:
+  - [x] `role="combobox"`
+  - [x] `role="listbox"` for suggestions
+  - [x] `aria-autocomplete="list"`
+  - [x] `aria-activedescendant`
+  - [x] `aria-expanded`
+  - [x] `aria-busy` during loading
+- [x] Add custom events:
+  - [x] `dos:search:input`
+  - [x] `dos:search:select`
+  - [x] `dos:search:submit`
+  - [x] `dos:search:clear`
+- [x] Write unit tests
+- [x] Add to Kitchen Sink demo
 
 > **Accessibility:** Combobox with listbox pattern; announces suggestion count; loading state announced
 > **Keyboard:** Arrows navigate suggestions; Enter select/submit; Escape close/clear
@@ -246,36 +246,36 @@
 **Types:** `src/components/Combobox/Combobox.types.ts`
 **Tests:** `tests/components/Combobox.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interfaces:
-  - [ ] `ComboboxProps` - configuration options
-  - [ ] `ComboboxOption` - option definition (value, label, disabled, data)
-  - [ ] `ComboboxRenderOption` - custom render function type
-- [ ] Implement base Combobox component
-- [ ] Add text input field with dropdown toggle
-- [ ] Implement type-ahead filtering
-- [ ] Add custom option rendering support
-- [ ] Implement option groups
-- [ ] Add disabled options support
-- [ ] Implement free-form input (allow values not in list)
-- [ ] Add strict mode (must match an option)
-- [ ] Add CSS styles with DOS dropdown appearance
-- [ ] Add keyboard navigation:
-  - [ ] `↑` / `↓` - navigate options
-  - [ ] `Enter` - select highlighted option
-  - [ ] `Escape` - close dropdown
-  - [ ] `Alt+↓` - open dropdown
-  - [ ] Type to filter
-- [ ] Add ARIA attributes:
-  - [ ] `role="combobox"`
-  - [ ] `role="listbox"` for options
-  - [ ] `aria-autocomplete="list"` or `"both"`
-  - [ ] `aria-activedescendant`
-  - [ ] `aria-expanded`
-  - [ ] `aria-haspopup="listbox"`
-- [ ] Add `dos:combobox:change` custom event
-- [ ] Write unit tests
-- [ ] Add to Kitchen Sink demo
+- [x] Create component directory structure
+- [x] Define TypeScript interfaces:
+  - [x] `ComboboxProps` - configuration options
+  - [x] `ComboboxOption` - option definition (value, label, disabled, data)
+  - [x] `ComboboxRenderOption` - custom render function type
+- [x] Implement base Combobox component
+- [x] Add text input field with dropdown toggle
+- [x] Implement type-ahead filtering
+- [x] Add custom option rendering support
+- [x] Implement option groups
+- [x] Add disabled options support
+- [x] Implement free-form input (allow values not in list)
+- [x] Add strict mode (must match an option)
+- [x] Add CSS styles with DOS dropdown appearance
+- [x] Add keyboard navigation:
+  - [x] `↑` / `↓` - navigate options
+  - [x] `Enter` - select highlighted option
+  - [x] `Escape` - close dropdown
+  - [x] `Alt+↓` - open dropdown
+  - [x] Type to filter
+- [x] Add ARIA attributes:
+  - [x] `role="combobox"`
+  - [x] `role="listbox"` for options
+  - [x] `aria-autocomplete="list"` or `"both"`
+  - [x] `aria-activedescendant`
+  - [x] `aria-expanded`
+  - [x] `aria-haspopup="listbox"`
+- [x] Add `dos:combobox:change` custom event
+- [x] Write unit tests
+- [x] Add to Kitchen Sink demo
 
 > **Accessibility:** Full ARIA combobox pattern; type-ahead announced; options described
 > **Keyboard:** Alt+Down open; Arrows navigate; Enter select; Escape close; Type to filter
@@ -291,37 +291,37 @@
 **Types:** `src/components/MultiSelect/MultiSelect.types.ts`
 **Tests:** `tests/components/MultiSelect.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interfaces:
-  - [ ] `MultiSelectProps` - configuration options
-  - [ ] `MultiSelectOption` - option definition
-  - [ ] `MultiSelectValue` - array of selected values
-- [ ] Implement base MultiSelect component
-- [ ] Add tags/chips display for selected items:
-  - [ ] DOS-style: `[Option1] [Option2] [Option3]`
-  - [ ] Remove button on each tag: `[Option1 ×]`
-- [ ] Implement dropdown with checkboxes for options
-- [ ] Add "Select All" option
-- [ ] Add "Clear All" option
-- [ ] Implement search/filter within dropdown
-- [ ] Add max selection limit option
-- [ ] Implement disabled options
-- [ ] Add CSS styles
-- [ ] Add keyboard navigation:
-  - [ ] `↑` / `↓` - navigate options
-  - [ ] `Space` - toggle option selection
-  - [ ] `Enter` - close dropdown
-  - [ ] `Backspace` - remove last tag (when input empty)
-  - [ ] `Escape` - close dropdown
-- [ ] Add ARIA attributes:
-  - [ ] `role="listbox"` with `aria-multiselectable="true"`
-  - [ ] `role="option"` on each option
-  - [ ] `aria-selected` on options
-  - [ ] `aria-checked` (if using checkbox pattern)
-  - [ ] Selection count announcement
-- [ ] Add `dos:multiselect:change` custom event
-- [ ] Write unit tests
-- [ ] Add to Kitchen Sink demo
+- [x] Create component directory structure
+- [x] Define TypeScript interfaces:
+  - [x] `MultiSelectProps` - configuration options
+  - [x] `MultiSelectOption` - option definition
+  - [x] `MultiSelectValue` - array of selected values
+- [x] Implement base MultiSelect component
+- [x] Add tags/chips display for selected items:
+  - [x] DOS-style: `[Option1] [Option2] [Option3]`
+  - [x] Remove button on each tag: `[Option1 ×]`
+- [x] Implement dropdown with checkboxes for options
+- [x] Add "Select All" option
+- [x] Add "Clear All" option
+- [x] Implement search/filter within dropdown
+- [x] Add max selection limit option
+- [x] Implement disabled options
+- [x] Add CSS styles
+- [x] Add keyboard navigation:
+  - [x] `↑` / `↓` - navigate options
+  - [x] `Space` - toggle option selection
+  - [x] `Enter` - close dropdown
+  - [x] `Backspace` - remove last tag (when input empty)
+  - [x] `Escape` - close dropdown
+- [x] Add ARIA attributes:
+  - [x] `role="listbox"` with `aria-multiselectable="true"`
+  - [x] `role="option"` on each option
+  - [x] `aria-selected` on options
+  - [x] `aria-checked` (if using checkbox pattern)
+  - [x] Selection count announcement
+- [x] Add `dos:multiselect:change` custom event
+- [x] Write unit tests
+- [x] Add to Kitchen Sink demo
 
 > **Accessibility:** Multiselectable listbox pattern; announces selection count; removable tags
 > **Keyboard:** Space toggle; Enter close; Backspace remove last; Arrows navigate
@@ -337,39 +337,39 @@
 **Types:** `src/components/TagInput/TagInput.types.ts`
 **Tests:** `tests/components/TagInput.test.ts`
 
-- [ ] Create component directory structure
-- [ ] Define TypeScript interfaces:
-  - [ ] `TagInputProps` - configuration options
-  - [ ] `Tag` - tag definition (id, label, removable)
-  - [ ] `TagInputValidation` - validation function type
-- [ ] Implement base TagInput component
-- [ ] Add tag creation on Enter/comma/custom delimiter
-- [ ] Implement tag display:
-  - [ ] DOS-style: `[tag1] [tag2] [tag3]`
-  - [ ] Remove button: `[tag ×]`
-- [ ] Add duplicate validation (reject or allow)
-- [ ] Implement custom validation function
-- [ ] Add max tags limit
-- [ ] Implement tag suggestions/autocomplete (optional)
-- [ ] Add paste handling (split by delimiter)
-- [ ] Add CSS styles
-- [ ] Add keyboard navigation:
-  - [ ] `Enter` / `,` - create tag from input
-  - [ ] `Backspace` - remove last tag (when input empty)
-  - [ ] `←` / `→` - navigate between tags
-  - [ ] `Delete` - remove focused tag
-  - [ ] `Escape` - clear input / deselect tag
-- [ ] Add ARIA attributes:
-  - [ ] `role="list"` for tag container
-  - [ ] `role="listitem"` for each tag
-  - [ ] Announce tag added/removed
-  - [ ] Error announcements for validation
-- [ ] Add custom events:
-  - [ ] `dos:taginput:add`
-  - [ ] `dos:taginput:remove`
-  - [ ] `dos:taginput:invalid`
-- [ ] Write unit tests
-- [ ] Add to Kitchen Sink demo
+- [x] Create component directory structure
+- [x] Define TypeScript interfaces:
+  - [x] `TagInputProps` - configuration options
+  - [x] `Tag` - tag definition (id, label, removable)
+  - [x] `TagInputValidation` - validation function type
+- [x] Implement base TagInput component
+- [x] Add tag creation on Enter/comma/custom delimiter
+- [x] Implement tag display:
+  - [x] DOS-style: `[tag1] [tag2] [tag3]`
+  - [x] Remove button: `[tag ×]`
+- [x] Add duplicate validation (reject or allow)
+- [x] Implement custom validation function
+- [x] Add max tags limit
+- [x] Implement tag suggestions/autocomplete (optional)
+- [x] Add paste handling (split by delimiter)
+- [x] Add CSS styles
+- [x] Add keyboard navigation:
+  - [x] `Enter` / `,` - create tag from input
+  - [x] `Backspace` - remove last tag (when input empty)
+  - [x] `←` / `→` - navigate between tags
+  - [x] `Delete` - remove focused tag
+  - [x] `Escape` - clear input / deselect tag
+- [x] Add ARIA attributes:
+  - [x] `role="list"` for tag container
+  - [x] `role="listitem"` for each tag
+  - [x] Announce tag added/removed
+  - [x] Error announcements for validation
+- [x] Add custom events:
+  - [x] `dos:taginput:add`
+  - [x] `dos:taginput:remove`
+  - [x] `dos:taginput:invalid`
+- [x] Write unit tests
+- [x] Add to Kitchen Sink demo
 
 > **Accessibility:** List pattern for tags; announces add/remove; validation errors announced
 > **Keyboard:** Enter/comma create; Backspace remove last; Arrows navigate tags; Delete remove
@@ -378,10 +378,10 @@
 
 ### Phase 10 Checkpoint
 
-- [ ] All Phase 10 components implemented
-- [ ] All Phase 10 tests passing
-- [ ] All Phase 10 demos added to Kitchen Sink
-- [ ] Code review completed
+- [x] All Phase 10 components implemented
+- [x] All Phase 10 tests passing
+- [x] All Phase 10 demos added to Kitchen Sink
+- [x] Code review completed
 
 - [ ] ⛔ HUMAN ONLY: I have reviewed and verified Phase 10
 

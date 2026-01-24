@@ -83,6 +83,14 @@ export const ROUTES = {
   CARD: 'card',
   TIMELINE: 'timeline',
   EMPTY_STATE: 'empty-state',
+  // Advanced Components
+  ACCORDION: 'accordion',
+  SPLIT_PANE: 'split-pane',
+  COMMAND_PALETTE: 'command-palette',
+  SEARCH_INPUT: 'search-input',
+  COMBOBOX: 'combobox',
+  MULTI_SELECT: 'multi-select',
+  TAG_INPUT: 'tag-input',
   // Themes
   THEMES: 'themes',
 } as const;

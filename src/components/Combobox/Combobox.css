@@ -1,0 +1,213 @@
+/**
+ * Combobox Component Styles
+ * DOS-style combobox with dropdown toggle and type-ahead filtering
+ */
+
+/* Container */
+.dos-combobox {
+  position: relative;
+  display: inline-block;
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', 'Consolas', monospace);
+  font-size: var(--dos-font-size, 16px);
+  line-height: var(--dos-line-height, 1.5);
+  min-width: 200px;
+}
+
+.dos-combobox--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Input wrapper */
+.dos-combobox__wrapper {
+  display: flex;
+  align-items: stretch;
+  border: 2px solid var(--dos-color-border, #AAAAAA);
+  background-color: var(--dos-color-bg, #000000);
+}
+
+.dos-combobox--focused .dos-combobox__wrapper {
+  outline: 2px solid var(--dos-color-focus, #FFFF55);
+  outline-offset: 1px;
+}
+
+.dos-combobox--open .dos-combobox__wrapper {
+  border-bottom-color: transparent;
+}
+
+/* Input */
+.dos-combobox__input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: var(--dos-color-fg, #FFFFFF);
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.dos-combobox__input::placeholder {
+  color: var(--dos-color-muted, #555555);
+}
+
+.dos-combobox__input:disabled {
+  cursor: not-allowed;
+}
+
+/* Toggle button */
+.dos-combobox__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--dos-color-fg, #FFFFFF);
+  background-color: var(--dos-color-button-bg, #555555);
+  border: none;
+  border-left: 2px solid var(--dos-color-border, #AAAAAA);
+  cursor: pointer;
+}
+
+.dos-combobox__toggle:hover:not(:disabled) {
+  background-color: var(--dos-color-button-hover, #777777);
+}
+
+.dos-combobox__toggle:disabled {
+  cursor: not-allowed;
+}
+
+.dos-combobox__arrow {
+  font-size: 0.75em;
+  transition: transform 0.15s ease;
+}
+
+.dos-combobox--open .dos-combobox__arrow {
+  transform: rotate(180deg);
+}
+
+/* Dropdown */
+.dos-combobox__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: var(--dos-z-dropdown, 100);
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: var(--dos-color-bg, #000000);
+  border: 2px solid var(--dos-color-border, #AAAAAA);
+  border-top: none;
+}
+
+.dos-combobox__dropdown::-webkit-scrollbar {
+  width: 16px;
+}
+
+.dos-combobox__dropdown::-webkit-scrollbar-track {
+  background-color: var(--dos-color-scrollbar-track, #000000);
+  border-left: 2px solid var(--dos-color-border, #AAAAAA);
+}
+
+.dos-combobox__dropdown::-webkit-scrollbar-thumb {
+  background-color: var(--dos-color-scrollbar-thumb, #555555);
+  border: 2px solid var(--dos-color-bg, #000000);
+}
+
+.dos-combobox__dropdown::-webkit-scrollbar-thumb:hover {
+  background-color: var(--dos-color-scrollbar-thumb-hover, #777777);
+}
+
+/* Group header */
+.dos-combobox__group-header {
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  font-size: 0.9em;
+  color: var(--dos-color-muted, #555555);
+  background-color: var(--dos-color-bg-secondary, #111111);
+  border-bottom: 1px solid var(--dos-color-border, #AAAAAA);
+}
+
+/* Option */
+.dos-combobox__option {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-sm, 8px);
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  cursor: pointer;
+  color: var(--dos-color-fg, #FFFFFF);
+}
+
+.dos-combobox__option:not(:last-child) {
+  border-bottom: 1px solid var(--dos-color-border-subtle, #333333);
+}
+
+.dos-combobox__option--highlighted {
+  background-color: var(--dos-color-highlight-bg, #0000AA);
+  color: var(--dos-color-highlight-fg, #FFFFFF);
+}
+
+.dos-combobox__option--selected {
+  background-color: var(--dos-color-selected-bg, #003366);
+}
+
+.dos-combobox__option--highlighted.dos-combobox__option--selected {
+  background-color: var(--dos-color-highlight-bg, #0000AA);
+}
+
+.dos-combobox__option--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Option icon */
+.dos-combobox__option-icon {
+  flex-shrink: 0;
+  width: 1.5em;
+  text-align: center;
+}
+
+/* Option content */
+.dos-combobox__option-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.dos-combobox__option-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dos-combobox__option-description {
+  font-size: 0.85em;
+  color: var(--dos-color-muted, #555555);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dos-combobox__option--highlighted .dos-combobox__option-description {
+  color: var(--dos-color-highlight-muted, #AAAAAA);
+}
+
+/* Option check mark */
+.dos-combobox__option-check {
+  flex-shrink: 0;
+  width: 1.5em;
+  text-align: center;
+  color: var(--dos-color-success, #55FF55);
+}
+
+/* No matches message */
+.dos-combobox__no-matches {
+  padding: var(--dos-space-sm, 8px);
+  text-align: center;
+  color: var(--dos-color-muted, #555555);
+  font-style: italic;
+}

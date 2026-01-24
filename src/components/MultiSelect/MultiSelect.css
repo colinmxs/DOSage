@@ -1,0 +1,291 @@
+/**
+ * MultiSelect Component Styles
+ * DOS-style multi-select with tags and searchable dropdown
+ */
+
+/* Container */
+.dos-multiselect {
+  position: relative;
+  display: inline-block;
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', 'Consolas', monospace);
+  font-size: var(--dos-font-size, 16px);
+  line-height: var(--dos-line-height, 1.5);
+  min-width: 200px;
+}
+
+.dos-multiselect--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Trigger */
+.dos-multiselect__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-xs, 4px);
+  min-height: 32px;
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  background-color: var(--dos-color-bg, #000000);
+  border: 2px solid var(--dos-color-border, #AAAAAA);
+  cursor: pointer;
+}
+
+.dos-multiselect--disabled .dos-multiselect__trigger {
+  cursor: not-allowed;
+}
+
+.dos-multiselect__trigger:focus {
+  outline: 2px solid var(--dos-color-focus, #FFFF55);
+  outline-offset: 1px;
+}
+
+.dos-multiselect--focused .dos-multiselect__trigger {
+  outline: 2px solid var(--dos-color-focus, #FFFF55);
+  outline-offset: 1px;
+}
+
+.dos-multiselect--open .dos-multiselect__trigger {
+  border-bottom-color: transparent;
+}
+
+/* Tags container */
+.dos-multiselect__tags {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dos-space-xs, 4px);
+  min-width: 0;
+}
+
+/* Placeholder */
+.dos-multiselect__placeholder {
+  color: var(--dos-color-muted, #555555);
+}
+
+/* Arrow */
+.dos-multiselect__arrow {
+  flex-shrink: 0;
+  font-size: 0.75em;
+  color: var(--dos-color-fg, #FFFFFF);
+  transition: transform 0.15s ease;
+}
+
+.dos-multiselect--open .dos-multiselect__arrow {
+  transform: rotate(180deg);
+}
+
+/* Tag */
+.dos-multiselect__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 1px var(--dos-space-xs, 4px);
+  background-color: var(--dos-color-tag-bg, #0000AA);
+  color: var(--dos-color-tag-fg, #FFFFFF);
+  border: 1px solid var(--dos-color-border, #AAAAAA);
+}
+
+.dos-multiselect__tag-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.dos-multiselect__tag-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.dos-multiselect__tag-remove:hover {
+  color: var(--dos-color-error, #FF5555);
+}
+
+/* Dropdown */
+.dos-multiselect__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: var(--dos-z-dropdown, 100);
+  background-color: var(--dos-color-bg, #000000);
+  border: 2px solid var(--dos-color-border, #AAAAAA);
+  border-top: none;
+}
+
+/* Search */
+.dos-multiselect__search {
+  padding: var(--dos-space-xs, 4px);
+  border-bottom: 1px solid var(--dos-color-border, #AAAAAA);
+}
+
+.dos-multiselect__search-input {
+  width: 100%;
+  padding: var(--dos-space-xs, 4px);
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--dos-color-fg, #FFFFFF);
+  background-color: var(--dos-color-input-bg, #000022);
+  border: 1px solid var(--dos-color-border, #AAAAAA);
+  outline: none;
+}
+
+.dos-multiselect__search-input:focus {
+  border-color: var(--dos-color-focus, #FFFF55);
+}
+
+.dos-multiselect__search-input::placeholder {
+  color: var(--dos-color-muted, #555555);
+}
+
+/* Actions */
+.dos-multiselect__actions {
+  display: flex;
+  gap: var(--dos-space-sm, 8px);
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  border-bottom: 1px solid var(--dos-color-border, #AAAAAA);
+}
+
+.dos-multiselect__action-btn {
+  padding: 2px var(--dos-space-xs, 4px);
+  font-family: inherit;
+  font-size: 0.9em;
+  color: var(--dos-color-link, #5555FF);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.dos-multiselect__action-btn:hover {
+  color: var(--dos-color-link-hover, #AAAAFF);
+}
+
+/* Options */
+.dos-multiselect__options {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dos-multiselect__options::-webkit-scrollbar {
+  width: 16px;
+}
+
+.dos-multiselect__options::-webkit-scrollbar-track {
+  background-color: var(--dos-color-scrollbar-track, #000000);
+  border-left: 2px solid var(--dos-color-border, #AAAAAA);
+}
+
+.dos-multiselect__options::-webkit-scrollbar-thumb {
+  background-color: var(--dos-color-scrollbar-thumb, #555555);
+  border: 2px solid var(--dos-color-bg, #000000);
+}
+
+.dos-multiselect__options::-webkit-scrollbar-thumb:hover {
+  background-color: var(--dos-color-scrollbar-thumb-hover, #777777);
+}
+
+/* Group header */
+.dos-multiselect__group-header {
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  font-size: 0.9em;
+  color: var(--dos-color-muted, #555555);
+  background-color: var(--dos-color-bg-secondary, #111111);
+  border-bottom: 1px solid var(--dos-color-border, #AAAAAA);
+}
+
+/* Option */
+.dos-multiselect__option {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-sm, 8px);
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  cursor: pointer;
+  color: var(--dos-color-fg, #FFFFFF);
+}
+
+.dos-multiselect__option:not(:last-child) {
+  border-bottom: 1px solid var(--dos-color-border-subtle, #333333);
+}
+
+.dos-multiselect__option--highlighted {
+  background-color: var(--dos-color-highlight-bg, #0000AA);
+  color: var(--dos-color-highlight-fg, #FFFFFF);
+}
+
+.dos-multiselect__option--selected {
+  background-color: var(--dos-color-selected-bg, #003366);
+}
+
+.dos-multiselect__option--highlighted.dos-multiselect__option--selected {
+  background-color: var(--dos-color-highlight-bg, #0000AA);
+}
+
+.dos-multiselect__option--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Checkbox */
+.dos-multiselect__checkbox {
+  flex-shrink: 0;
+  font-family: inherit;
+  color: var(--dos-color-checkbox, #FFFF55);
+}
+
+/* Option content */
+.dos-multiselect__option-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.dos-multiselect__option-icon {
+  flex-shrink: 0;
+  width: 1.5em;
+  text-align: center;
+}
+
+.dos-multiselect__option-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dos-multiselect__option-description {
+  font-size: 0.85em;
+  color: var(--dos-color-muted, #555555);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dos-multiselect__option--highlighted .dos-multiselect__option-description {
+  color: var(--dos-color-highlight-muted, #AAAAAA);
+}
+
+/* No matches message */
+.dos-multiselect__no-matches {
+  padding: var(--dos-space-sm, 8px);
+  text-align: center;
+  color: var(--dos-color-muted, #555555);
+  font-style: italic;
+}
+
+/* Max selections message */
+.dos-multiselect__max-message {
+  padding: var(--dos-space-sm, 8px);
+  text-align: center;
+  color: var(--dos-color-warning, #FFFF55);
+  font-style: italic;
+}

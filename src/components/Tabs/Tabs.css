@@ -1,0 +1,313 @@
+/**
+ * Tabs Component Styles
+ *
+ * DOS-style tabbed interface with box-drawing characters.
+ * Supports horizontal and vertical orientations.
+ */
+
+/* ═══════════════════════════════════════════════════════════
+   Base Container
+   ═══════════════════════════════════════════════════════════ */
+
+.dos-tabs {
+  display: flex;
+  font-family: var(--dos-font-family);
+  font-size: var(--dos-font-size);
+  color: var(--dos-color-fg);
+}
+
+/* Horizontal layout (default) */
+.dos-tabs--horizontal {
+  flex-direction: column;
+}
+
+/* Vertical layout */
+.dos-tabs--vertical {
+  flex-direction: row;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Tab List
+   ═══════════════════════════════════════════════════════════ */
+
+.dos-tabs__list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dos-tabs--horizontal .dos-tabs__list {
+  flex-direction: row;
+  border-bottom: 1px solid var(--dos-color-border);
+}
+
+.dos-tabs--vertical .dos-tabs__list {
+  flex-direction: column;
+  border-right: 1px solid var(--dos-color-border);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Tab Button
+   ═══════════════════════════════════════════════════════════ */
+
+.dos-tabs__tab {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-xs);
+  padding: var(--dos-space-xs) var(--dos-space-sm);
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--dos-color-fg);
+  background-color: var(--dos-color-bg);
+  border: 1px solid var(--dos-color-border);
+  cursor: pointer;
+  transition: background-color var(--dos-timing-fast),
+    color var(--dos-timing-fast);
+  white-space: nowrap;
+}
+
+/* Horizontal tab styling */
+.dos-tabs--horizontal .dos-tabs__tab {
+  border-bottom: none;
+  margin-bottom: -1px;
+  border-radius: 0;
+}
+
+.dos-tabs--horizontal .dos-tabs__tab:not(:first-child) {
+  margin-left: -1px;
+}
+
+/* Vertical tab styling */
+.dos-tabs--vertical .dos-tabs__tab {
+  border-right: none;
+  margin-right: -1px;
+  border-radius: 0;
+}
+
+.dos-tabs--vertical .dos-tabs__tab:not(:first-child) {
+  margin-top: -1px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Tab States
+   ───────────────────────────────────────────────────────────── */
+
+/* Hover state */
+.dos-tabs__tab:hover:not(:disabled):not(.dos-tabs__tab--disabled) {
+  background-color: var(--dos-color-highlight);
+  color: var(--dos-color-bg);
+}
+
+/* Focus state */
+.dos-tabs__tab:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--dos-color-primary);
+  z-index: 1;
+}
+
+.dos-tabs__tab:focus-visible {
+  outline: 2px solid var(--dos-color-primary);
+  outline-offset: -2px;
+}
+
+/* Active/Selected state */
+.dos-tabs__tab--active {
+  background-color: var(--dos-color-bg);
+  color: var(--dos-color-primary);
+  font-weight: bold;
+  z-index: 2;
+}
+
+.dos-tabs--horizontal .dos-tabs__tab--active {
+  border-bottom-color: var(--dos-color-bg);
+}
+
+.dos-tabs--vertical .dos-tabs__tab--active {
+  border-right-color: var(--dos-color-bg);
+}
+
+/* Disabled state */
+.dos-tabs__tab--disabled,
+.dos-tabs__tab:disabled {
+  color: var(--dos-color-disabled);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.dos-tabs__tab--disabled:hover,
+.dos-tabs__tab:disabled:hover {
+  background-color: var(--dos-color-bg);
+  color: var(--dos-color-disabled);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Tab Icon & Label
+   ───────────────────────────────────────────────────────────── */
+
+.dos-tabs__tab-icon {
+  display: inline-block;
+  width: 1em;
+  text-align: center;
+}
+
+.dos-tabs__tab-label {
+  display: inline-block;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Panels Container
+   ═══════════════════════════════════════════════════════════ */
+
+.dos-tabs__panels {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Tab Panel
+   ═══════════════════════════════════════════════════════════ */
+
+.dos-tabs__panel {
+  display: none;
+  padding: var(--dos-space-sm);
+  border: 1px solid var(--dos-color-border);
+  background-color: var(--dos-color-bg);
+}
+
+.dos-tabs__panel--active {
+  display: block;
+}
+
+/* Horizontal panels - connected to tabs */
+.dos-tabs--horizontal .dos-tabs__panel {
+  border-top: none;
+}
+
+/* Vertical panels - connected to tabs */
+.dos-tabs--vertical .dos-tabs__panel {
+  border-left: none;
+}
+
+/* Panel focus for accessibility */
+.dos-tabs__panel:focus {
+  outline: none;
+}
+
+.dos-tabs__panel:focus-visible {
+  outline: 2px solid var(--dos-color-primary);
+  outline-offset: -2px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Variant: Default (DOS box-drawing style)
+   ═══════════════════════════════════════════════════════════ */
+
+.dos-tabs--default .dos-tabs__tab--active::before,
+.dos-tabs--default .dos-tabs__tab--active::after {
+  position: absolute;
+  font-family: var(--dos-font-family);
+  color: var(--dos-color-border);
+}
+
+/* Horizontal active tab decorations */
+.dos-tabs--default.dos-tabs--horizontal .dos-tabs__tab {
+  position: relative;
+}
+
+.dos-tabs--default.dos-tabs--horizontal .dos-tabs__tab--active {
+  border-top-width: 2px;
+  border-left-width: 2px;
+  border-right-width: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Variant: Boxed (fully bordered tabs)
+   ═══════════════════════════════════════════════════════════ */
+
+.dos-tabs--boxed .dos-tabs__tab {
+  border: 2px solid var(--dos-color-border);
+}
+
+.dos-tabs--boxed .dos-tabs__tab--active {
+  border-color: var(--dos-color-primary);
+  background-color: var(--dos-color-bg);
+}
+
+.dos-tabs--boxed.dos-tabs--horizontal .dos-tabs__tab--active {
+  border-bottom-color: var(--dos-color-bg);
+}
+
+.dos-tabs--boxed.dos-tabs--vertical .dos-tabs__tab--active {
+  border-right-color: var(--dos-color-bg);
+}
+
+.dos-tabs--boxed .dos-tabs__panel {
+  border: 2px solid var(--dos-color-border);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Variant: Minimal (underline only)
+   ═══════════════════════════════════════════════════════════ */
+
+.dos-tabs--minimal .dos-tabs__tab {
+  border: none;
+  background-color: transparent;
+  padding-bottom: var(--dos-space-xs);
+}
+
+.dos-tabs--minimal.dos-tabs--horizontal .dos-tabs__tab {
+  border-bottom: 2px solid transparent;
+}
+
+.dos-tabs--minimal.dos-tabs--vertical .dos-tabs__tab {
+  border-right: 2px solid transparent;
+}
+
+.dos-tabs--minimal .dos-tabs__tab--active {
+  background-color: transparent;
+}
+
+.dos-tabs--minimal.dos-tabs--horizontal .dos-tabs__tab--active {
+  border-bottom-color: var(--dos-color-primary);
+}
+
+.dos-tabs--minimal.dos-tabs--vertical .dos-tabs__tab--active {
+  border-right-color: var(--dos-color-primary);
+}
+
+.dos-tabs--minimal .dos-tabs__panel {
+  border: none;
+  border-top: 1px solid var(--dos-color-border);
+}
+
+.dos-tabs--minimal.dos-tabs--vertical .dos-tabs__panel {
+  border-top: none;
+  border-left: 1px solid var(--dos-color-border);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   High Contrast Mode
+   ═══════════════════════════════════════════════════════════ */
+
+@media (prefers-contrast: high) {
+  .dos-tabs__tab:focus-visible {
+    outline-width: 3px;
+  }
+
+  .dos-tabs__tab--active {
+    border-width: 2px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Reduced Motion
+   ═══════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .dos-tabs__tab {
+    transition: none;
+  }
+}

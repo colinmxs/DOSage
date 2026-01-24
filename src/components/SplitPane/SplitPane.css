@@ -1,0 +1,252 @@
+/**
+ * SplitPane Component Styles
+ *
+ * DOS-style resizable split pane with ASCII grip handles.
+ */
+
+/* ==========================================================================
+   Base SplitPane Container
+   ========================================================================== */
+
+.dos-splitpane {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', monospace);
+  background-color: var(--dos-color-bg, #0000aa);
+  overflow: hidden;
+  position: relative;
+}
+
+.dos-splitpane--horizontal {
+  flex-direction: row;
+}
+
+.dos-splitpane--vertical {
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Pane
+   ========================================================================== */
+
+.dos-splitpane__pane {
+  position: relative;
+  overflow: auto;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.dos-splitpane--horizontal .dos-splitpane__pane {
+  height: 100%;
+}
+
+.dos-splitpane--vertical .dos-splitpane__pane {
+  width: 100%;
+}
+
+.dos-splitpane__pane--collapsed {
+  overflow: hidden;
+}
+
+.dos-splitpane__content {
+  width: 100%;
+  height: 100%;
+  color: var(--dos-color-fg, #ffffff);
+}
+
+/* ==========================================================================
+   Divider
+   ========================================================================== */
+
+.dos-splitpane__divider {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dos-color-border, #555555);
+  user-select: none;
+  touch-action: none;
+  transition: background-color 0.1s ease;
+}
+
+.dos-splitpane--horizontal .dos-splitpane__divider {
+  width: 8px;
+  min-width: 8px;
+  height: 100%;
+  cursor: col-resize;
+}
+
+.dos-splitpane--vertical .dos-splitpane__divider {
+  height: 8px;
+  min-height: 8px;
+  width: 100%;
+  cursor: row-resize;
+}
+
+.dos-splitpane__divider:hover {
+  background-color: var(--dos-color-border-hover, #888888);
+}
+
+.dos-splitpane__divider:focus {
+  outline: none;
+  background-color: var(--dos-color-focus, #ffff55);
+}
+
+.dos-splitpane__divider:focus:not(:focus-visible) {
+  background-color: var(--dos-color-border, #555555);
+}
+
+.dos-splitpane__divider:focus-visible {
+  background-color: var(--dos-color-focus, #ffff55);
+}
+
+.dos-splitpane__divider--active {
+  background-color: var(--dos-color-accent, #55ff55);
+}
+
+/* ==========================================================================
+   Grip Handle
+   ========================================================================== */
+
+.dos-splitpane__grip {
+  font-family: inherit;
+  font-size: var(--dos-font-size-md, 16px);
+  color: var(--dos-color-fg, #ffffff);
+  pointer-events: none;
+  line-height: 1;
+}
+
+.dos-splitpane--horizontal .dos-splitpane__grip {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.dos-splitpane__divider:hover .dos-splitpane__grip,
+.dos-splitpane__divider:focus .dos-splitpane__grip {
+  color: var(--dos-color-bg, #0000aa);
+}
+
+/* ==========================================================================
+   Dragging State
+   ========================================================================== */
+
+.dos-splitpane--dragging {
+  cursor: col-resize;
+}
+
+.dos-splitpane--dragging.dos-splitpane--vertical {
+  cursor: row-resize;
+}
+
+.dos-splitpane--dragging .dos-splitpane__pane {
+  pointer-events: none;
+}
+
+.dos-splitpane--dragging .dos-splitpane__divider {
+  background-color: var(--dos-color-accent, #55ff55);
+}
+
+/* ==========================================================================
+   Variant: Default
+   ========================================================================== */
+
+.dos-splitpane--default .dos-splitpane__divider {
+  background-color: var(--dos-color-border, #555555);
+}
+
+/* ==========================================================================
+   Variant: Subtle
+   ========================================================================== */
+
+.dos-splitpane--subtle .dos-splitpane__divider {
+  background-color: var(--dos-color-border-light, #333333);
+  width: 4px;
+  min-width: 4px;
+}
+
+.dos-splitpane--subtle.dos-splitpane--vertical .dos-splitpane__divider {
+  height: 4px;
+  min-height: 4px;
+  width: 100%;
+}
+
+.dos-splitpane--subtle .dos-splitpane__grip {
+  font-size: var(--dos-font-size-sm, 12px);
+}
+
+/* ==========================================================================
+   Variant: Prominent
+   ========================================================================== */
+
+.dos-splitpane--prominent .dos-splitpane__divider {
+  background-color: var(--dos-color-border-prominent, #aaaaaa);
+  width: 12px;
+  min-width: 12px;
+  border-left: 2px solid var(--dos-color-border-light, #dddddd);
+  border-right: 2px solid var(--dos-color-border-dark, #333333);
+}
+
+.dos-splitpane--prominent.dos-splitpane--vertical .dos-splitpane__divider {
+  height: 12px;
+  min-height: 12px;
+  width: 100%;
+  border-left: none;
+  border-right: none;
+  border-top: 2px solid var(--dos-color-border-light, #dddddd);
+  border-bottom: 2px solid var(--dos-color-border-dark, #333333);
+}
+
+.dos-splitpane--prominent .dos-splitpane__grip {
+  font-size: var(--dos-font-size-lg, 20px);
+}
+
+/* ==========================================================================
+   High Contrast Mode Support
+   ========================================================================== */
+
+@media (forced-colors: active) {
+  .dos-splitpane__divider {
+    border: 1px solid ButtonText;
+    background-color: ButtonFace;
+  }
+
+  .dos-splitpane__divider:focus {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+
+  .dos-splitpane__grip {
+    color: ButtonText;
+  }
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .dos-splitpane__divider {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+  .dos-splitpane {
+    display: block;
+  }
+
+  .dos-splitpane__pane {
+    width: 100% !important;
+    height: auto !important;
+    flex-basis: auto !important;
+  }
+
+  .dos-splitpane__divider {
+    display: none;
+  }
+}

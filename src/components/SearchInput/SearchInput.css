@@ -1,0 +1,229 @@
+/**
+ * SearchInput Component Styles
+ *
+ * DOS-style search input with autocomplete suggestions.
+ */
+
+/* Container */
+.dos-searchinput {
+  position: relative;
+  display: inline-block;
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', 'Consolas', monospace);
+  font-size: var(--dos-font-size, 16px);
+}
+
+/* Input wrapper */
+.dos-searchinput__wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--dos-space-xs, 4px);
+  background-color: var(--dos-color-bg, #000000);
+  border: 1px solid var(--dos-color-border, #AAAAAA);
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+}
+
+.dos-searchinput--focused .dos-searchinput__wrapper {
+  border-color: var(--dos-color-focus, #FFFFFF);
+  outline: 1px solid var(--dos-color-focus, #FFFFFF);
+  outline-offset: 1px;
+}
+
+.dos-searchinput--disabled .dos-searchinput__wrapper {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Prompt/prefix */
+.dos-searchinput__prompt {
+  color: var(--dos-color-primary, #55FFFF);
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* Input field */
+.dos-searchinput__input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  color: var(--dos-color-fg, #AAAAAA);
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  outline: none;
+}
+
+.dos-searchinput__input::placeholder {
+  color: var(--dos-color-muted, #555555);
+}
+
+.dos-searchinput__input:disabled {
+  cursor: not-allowed;
+}
+
+/* Clear button */
+.dos-searchinput__clear {
+  background: transparent;
+  border: none;
+  color: var(--dos-color-danger, #FF5555);
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.dos-searchinput__clear:hover {
+  color: var(--dos-color-fg, #FFFFFF);
+}
+
+.dos-searchinput__clear:focus {
+  outline: 1px solid var(--dos-color-focus, #FFFFFF);
+}
+
+/* Suggestions dropdown */
+.dos-searchinput__suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: var(--dos-color-bg, #000000);
+  border: 1px solid var(--dos-color-border, #AAAAAA);
+  border-top: none;
+}
+
+/* Loading state */
+.dos-searchinput__loading {
+  padding: var(--dos-space-sm, 8px);
+  color: var(--dos-color-warning, #FFFF55);
+  text-align: center;
+}
+
+.dos-searchinput__loading::before {
+  content: '⌛ ';
+}
+
+/* No results message */
+.dos-searchinput__no-results {
+  padding: var(--dos-space-sm, 8px);
+  color: var(--dos-color-muted, #555555);
+  text-align: center;
+  font-style: italic;
+}
+
+/* Suggestion item */
+.dos-searchinput__suggestion {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--dos-space-sm, 8px);
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  cursor: pointer;
+  color: var(--dos-color-fg, #AAAAAA);
+  border-bottom: 1px solid var(--dos-color-border-subtle, #333333);
+}
+
+.dos-searchinput__suggestion:last-child {
+  border-bottom: none;
+}
+
+.dos-searchinput__suggestion:hover,
+.dos-searchinput__suggestion--highlighted {
+  background-color: var(--dos-color-highlight-bg, #0000AA);
+  color: var(--dos-color-highlight-fg, #FFFFFF);
+}
+
+.dos-searchinput__suggestion--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dos-searchinput__suggestion--disabled:hover {
+  background-color: transparent;
+  color: var(--dos-color-fg, #AAAAAA);
+}
+
+/* Suggestion icon */
+.dos-searchinput__suggestion-icon {
+  flex-shrink: 0;
+  width: 16px;
+  text-align: center;
+}
+
+/* Suggestion content */
+.dos-searchinput__suggestion-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Suggestion label */
+.dos-searchinput__suggestion-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Suggestion description */
+.dos-searchinput__suggestion-description {
+  font-size: 0.875em;
+  color: var(--dos-color-muted, #555555);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dos-searchinput__suggestion--highlighted .dos-searchinput__suggestion-description {
+  color: var(--dos-color-highlight-muted, #AAAAAA);
+}
+
+/* Match highlight */
+.dos-searchinput__highlight {
+  background-color: var(--dos-color-warning, #FFFF55);
+  color: var(--dos-color-bg, #000000);
+  font-weight: bold;
+}
+
+.dos-searchinput__suggestion--highlighted .dos-searchinput__highlight {
+  background-color: var(--dos-color-warning, #FFFF55);
+  color: var(--dos-color-bg, #000000);
+}
+
+/* Category header (for grouped suggestions) */
+.dos-searchinput__category {
+  padding: var(--dos-space-xs, 4px) var(--dos-space-sm, 8px);
+  background-color: var(--dos-color-bg-alt, #111111);
+  color: var(--dos-color-primary, #55FFFF);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.875em;
+  border-bottom: 1px solid var(--dos-color-border, #AAAAAA);
+}
+
+/* Scrollbar styling */
+.dos-searchinput__suggestions::-webkit-scrollbar {
+  width: 16px;
+}
+
+.dos-searchinput__suggestions::-webkit-scrollbar-track {
+  background: var(--dos-color-bg, #000000);
+  border-left: 1px solid var(--dos-color-border, #AAAAAA);
+}
+
+.dos-searchinput__suggestions::-webkit-scrollbar-thumb {
+  background: var(--dos-color-border, #AAAAAA);
+  border: 2px solid var(--dos-color-bg, #000000);
+}
+
+.dos-searchinput__suggestions::-webkit-scrollbar-thumb:hover {
+  background: var(--dos-color-fg, #FFFFFF);
+}
+
+/* Open state */
+.dos-searchinput--open .dos-searchinput__wrapper {
+  border-bottom-color: transparent;
+}

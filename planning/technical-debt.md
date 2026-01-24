@@ -719,6 +719,106 @@ Initial implementation focused on the calendar picker UI. Keyboard input parsing
 **Added:** 2026-01-23
 **Assignee:** TBD
 
+---
+
+### Combobox — Poor Mouse and Keyboard Selection UX
+
+**Priority:** 🟡 Medium
+**Impact:** User experience, usability, accessibility
+**Effort:** Medium
+
+**Description:**
+The Combobox component doesn't work intuitively for selection. Users expect to:
+1. Use the mouse to hover over dropdown items and see highlighting, then click to select
+2. Use arrow keys to navigate through visible dropdown options with visual highlighting
+3. Have the selected option automatically apply to the input value
+
+Currently, the interaction model doesn't match standard combobox/select behavior that users expect from native HTML select elements and common UI libraries.
+
+**Why it exists:**
+Initial implementation focused on basic functionality without polishing the interaction patterns to match user expectations from native browser controls.
+
+**Proposed solution:**
+- Add mouse hover highlighting for dropdown items (visual feedback on mouseover)
+- Implement arrow key navigation with visible highlighting of the currently focused option
+- Auto-apply selection: when user presses Enter or clicks, the value should populate the input
+- Ensure Tab key behavior closes dropdown and commits selection
+- Consider implementing typeahead filtering while dropdown is open
+- Test interaction flow against native `<select>` behavior as baseline
+- Update Kitchen Sink demo to showcase all interaction methods
+
+**Added:** 2026-01-24
+**Assignee:** TBD
+
+---
+
+### MultiSelect — Missing Mouse Support and Arrow Key Highlighting
+
+**Priority:** 🟡 Medium
+**Impact:** User experience, usability, accessibility
+**Effort:** Medium
+
+**Description:**
+The MultiSelect component has poor mouse and keyboard interaction support:
+1. Mouse interactions with dropdown items are not intuitive for selection
+2. When using arrow keys to navigate choices, there is no visual highlighting to indicate which option is currently focused
+3. This makes it impossible for users to know which value they are about to select with Space key
+
+Users need clear visual feedback during selection to understand their current position in the options list.
+
+**Why it exists:**
+Initial implementation prioritized getting the multi-selection logic working but didn't fully implement the interaction polish for mouse and keyboard navigation feedback.
+
+**Proposed solution:**
+- Add mouse hover highlighting for all selectable options
+- Implement visible focus/highlight state when using arrow keys to navigate
+- Highlight should clearly indicate "this is what will be toggled if you press Space"
+- Use distinct highlight color (e.g., yellow/bright background) for focused option
+- Ensure selected items have different styling from focused-but-not-selected items
+- Support clicking items to toggle selection immediately
+- Test keyboard-only usage flow end-to-end
+- Update Kitchen Sink demo to document expected interaction patterns
+
+**Added:** 2026-01-24
+**Assignee:** TBD
+
+---
+
+### TagInput — Suggestions Don't Respond to Arrow Keys or Mouse Clicks
+
+**Priority:** 🟡 Medium
+**Impact:** User experience, usability, accessibility
+**Effort:** Medium
+
+**Description:**
+The TagInput suggestions feature doesn't properly support arrow key navigation or mouse interaction:
+1. When suggestions appear, arrow down key doesn't navigate through the suggestions
+2. Clicking on a suggestion doesn't apply it to the input
+3. Users expect to arrow down into suggestions and press Enter to select, or simply click a suggestion
+
+This breaks standard autocomplete/suggestion interaction patterns that users are familiar with from search boxes, address forms, and other common UI patterns.
+
+**Why it exists:**
+Initial implementation focused on the tag management (adding/removing tags) without fully implementing the suggestions interaction layer.
+
+**Proposed solution:**
+- Implement arrow key navigation through visible suggestions:
+  - Arrow Down: move focus to next suggestion (or first if not focused)
+  - Arrow Up: move focus to previous suggestion
+  - Enter: apply focused suggestion as a new tag
+  - Escape: close suggestions and return focus to input
+- Add click handlers for suggestion items to apply them immediately
+- Add visible highlighting for the currently focused suggestion
+- Ensure suggestions close after selection
+- Maintain keyboard focus management (focus returns to input after selection)
+- Test with screen readers to ensure suggestions are announced
+- Update Kitchen Sink demo to showcase suggestion interactions
+
+**Added:** 2026-01-24
+**Assignee:** TBD
+
+---
+
 ### Form Components — Demonstrate Real-Time Validation
 
 **Priority:** 🟡 Medium

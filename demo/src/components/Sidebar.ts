@@ -106,6 +106,18 @@ const NAV_ITEMS = [
     ],
   },
   {
+    category: 'Advanced Components',
+    items: [
+      { id: 'accordion', label: 'Accordion' },
+      { id: 'split-pane', label: 'SplitPane' },
+      { id: 'command-palette', label: 'CommandPalette' },
+      { id: 'search-input', label: 'SearchInput' },
+      { id: 'combobox', label: 'Combobox' },
+      { id: 'multi-select', label: 'MultiSelect' },
+      { id: 'tag-input', label: 'TagInput' },
+    ],
+  },
+  {
     category: 'Themes',
     items: [{ id: 'themes', label: 'Theme Showcase' }],
   },
