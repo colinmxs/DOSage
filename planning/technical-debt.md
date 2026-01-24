@@ -258,9 +258,155 @@ Animation CSS may not be properly applied, or there's a conflict with other styl
 
 ---
 
+### Card, Timeline, EmptyState — Demo Layout Inconsistent with Site Standards
+
+**Priority:** 🔴 **CRITICAL**
+**Impact:** Documentation consistency, developer experience, project standards
+**Effort:** Medium
+
+**Description:**
+The Card, Timeline, and EmptyState Kitchen Sink demo pages have a fundamentally different layout than the rest of the site:
+1. Code examples are all grouped at the bottom of the page instead of appearing inline with each demo
+2. Examples on Timeline appear outside the bordered example boxes
+3. This breaks the established pattern where each demo section has its own code snippet displayed immediately below
+
+**Why it exists:**
+These components were implemented in a batch and used a different demo page template/structure than earlier components.
+
+**Proposed solution:**
+- Refactor Card demo page to use `createDemoSection()` with inline code snippets per example
+- Refactor Timeline demo page similarly, ensuring examples appear inside bordered boxes
+- Refactor EmptyState demo page to match site-wide demo patterns
+- Each demo should follow the pattern: Title → Description → Live Example → Code Snippet
+- Reference working examples like Table, Button, or TextInput for correct structure
+
+**Added:** 2026-01-24
+**Assignee:** TBD
+
+---
+
 ## 🟡 Medium Priority
 
 _Issues that impact code quality or maintainability but don't block development._
+
+### Table — Selection Brackets Wrapping at Narrow Widths
+
+**Priority:** 🟡 Medium
+**Impact:** Visual consistency, DOS aesthetic
+**Effort:** Small
+
+**Description:**
+In selectable row tables, the "[ ]" selection indicator brackets are wrapping to separate lines at certain viewport dimensions. The title column displays fine, but the selection brackets in data rows are wrapping. The brackets should remain on a single line as "[ ]" regardless of table width.
+
+**Why it exists:**
+Missing `white-space: nowrap` or similar constraint on the selection cell.
+
+**Proposed solution:**
+- Add `white-space: nowrap` to the selection cell class
+- Ensure minimum width for selection column
+- Consider using a fixed width for the selection column
+- Test at various viewport widths
+
+**Added:** 2026-01-24
+**Assignee:** TBD
+
+---
+
+### DataGrid — Pagination Select Column Truncating
+
+**Priority:** 🟡 Medium
+**Impact:** Visual consistency, usability
+**Effort:** Small
+
+**Description:**
+On the DataGrid pagination example, the select column is truncating to display "[..." instead of the full "[ ]" brackets. The selection indicator should never be truncated.
+
+**Why it exists:**
+Column width is too narrow or text-overflow ellipsis is being applied to the selection cell.
+
+**Proposed solution:**
+- Ensure selection column has minimum width to fit "[ ]"
+- Remove text-overflow: ellipsis from selection cells
+- Add `white-space: nowrap` to selection cells
+- Consider fixed width for selection column
+
+**Added:** 2026-01-24
+**Assignee:** TBD
+
+---
+
+### DataGrid — "Select All" Button Only Selects Current Page
+
+**Priority:** 🟡 Medium
+**Impact:** User experience, expected behavior
+**Effort:** Medium
+
+**Description:**
+In the "All Features Combined" DataGrid example, the "Select All" button only selects rows on the current page. User expectation is that this button should select ALL rows in the entire dataset across all pages. The column header checkbox already handles page-level selection, so the button should differentiate by selecting the entire dataset.
+
+**Why it exists:**
+Implementation didn't distinguish between page-level selection (header checkbox) and dataset-level selection (button).
+
+**Proposed solution:**
+- Modify "Select All" button to select all rows across entire dataset
+- Keep header checkbox behavior as page-level selection
+- Update button label to clarify: "Select All (X total)" 
+- Consider adding visual feedback showing total selected count
+- Update API to support `selectAll(true)` for entire dataset vs page
+
+**Added:** 2026-01-24
+**Assignee:** TBD
+
+---
+
+### ListBox — Selection Indicators Wrapping Instead of "( )" or "[ ]"
+
+**Priority:** 🟡 Medium
+**Impact:** Visual consistency, DOS aesthetic, usability
+**Effort:** Small
+
+**Description:**
+Nearly all ListBox examples (single select, multi select, rich items, disabled items, dense mode, scrollable list, etc.) show wrapped/broken selection indicators. The indicators should display as clean "( )" for radio-style or "[ ]" for checkbox-style on a single line, but instead they appear to be wrapping or displaying incorrectly.
+
+**Why it exists:**
+Missing nowrap constraints on list item selection indicator elements, or improper flex/inline-flex handling.
+
+**Proposed solution:**
+- Add `white-space: nowrap` to selection indicator container
+- Ensure selection indicators have proper fixed width
+- Review flex layout for list items to prevent indicator compression
+- Test across all ListBox variants and modes
+- Ensure consistent indicator display regardless of item content length
+
+**Added:** 2026-01-24
+**Assignee:** TBD
+
+---
+
+### TreeView — Ghost Brackets Appearing Behind Nodes
+
+**Priority:** 🟡 Medium
+**Impact:** Visual quality, aesthetic consistency
+**Effort:** Medium
+
+**Description:**
+There's a visual bug in TreeView where additional/phantom square brackets appear behind or next to child node controls. For example, the first example shows a proper "[+]Documents" but there's another set of brackets visible beneath/behind it. This ghost bracket issue affects most examples on the TreeView page.
+
+**Why it exists:**
+Likely a CSS layering issue, duplicate element rendering, or ::before/::after pseudo-elements being displayed incorrectly. May also be connector line rendering interfering with node icons.
+
+**Proposed solution:**
+- Inspect DOM structure to identify source of extra brackets
+- Check for duplicate elements or pseudo-elements
+- Review z-index stacking of tree node elements
+- Ensure only one set of expand/collapse brackets per node
+- Check if connector lines are accidentally rendering bracket-like characters
+- Test fix across all TreeView examples
+
+**Added:** 2026-01-24
+**Assignee:** TBD
+
+---
 
 ### Modal — Artifact at Top Center of Title Bar
 
