@@ -845,6 +845,37 @@ Components were implemented individually without a unified validation demonstrat
 
 ---
 
+### KeyboardShortcutHandler — Unclear Demo and Possible Non-Functional State
+
+**Priority:** 🟡 Medium
+**Impact:** Developer experience, functionality verification, demo clarity
+**Effort:** Medium
+
+**Description:**
+The KeyboardShortcutHandler Kitchen Sink demo is unclear about what behavior users should expect. When pressing the displayed keyboard shortcuts, the browser behaves normally without any apparent interception. It's unknown whether:
+1. The shortcuts are not being intercepted at all (bug)
+2. The demo is missing visual feedback when shortcuts are triggered
+3. The expected behavior is unclear/undocumented
+
+From the Kitchen Sink page, there's no way to know if the component is working correctly or what should happen when shortcuts are pressed.
+
+**Why it exists:**
+Demo was likely created without clear success indicators or the component may have implementation issues that weren't caught during development.
+
+**Proposed solution:**
+- Verify KeyboardShortcutHandler is actually intercepting keyboard events
+- Add clear visual feedback when shortcuts are triggered (e.g., toast notification, log output, counter increment)
+- Add descriptive text explaining what each shortcut should do
+- Consider adding a "Last triggered shortcut" display panel
+- Ensure `preventDefault` is being called where appropriate to prevent browser default behavior
+- Test with common shortcuts (Ctrl+S, Ctrl+Z, etc.) that have obvious browser defaults
+- Document the expected behavior clearly in the demo section
+
+**Added:** 2026-01-24
+**Assignee:** TBD
+
+---
+
 ## 🟢 Low Priority
 
 _Minor improvements, optimizations, or refactoring opportunities._
@@ -866,6 +897,73 @@ Demo may have been set up before trigger mode implementation was complete, or bo
 - Let the "Trigger Modes" section handle the hover/focus/click differentiation
 - Remove redundancy from the demo
 - Update section heading to just "Basic Tooltip"
+
+**Added:** 2026-01-24
+**Assignee:** TBD
+
+---
+
+### FileInput — Missing Code Examples in Kitchen Sink
+
+**Priority:** 🟢 Low
+**Impact:** Documentation completeness, developer experience
+**Effort:** Small
+
+**Description:**
+The FileInput component section in the Kitchen Sink demo is missing code examples showing how to use the component. Other component sections include copy-paste ready code snippets.
+
+**Why it exists:**
+Code examples were likely overlooked when the demo section was created.
+
+**Proposed solution:**
+- Add code examples to the FileInput Kitchen Sink section
+- Include examples for basic usage, multiple file selection, and file type restrictions
+- Follow the same code example format used in other component sections
+
+**Added:** 2026-01-24
+**Assignee:** TBD
+
+---
+
+### TimePicker — Missing Code Examples in Kitchen Sink
+
+**Priority:** 🟢 Low
+**Impact:** Documentation completeness, developer experience
+**Effort:** Small
+
+**Description:**
+The TimePicker component section in the Kitchen Sink demo is missing code examples showing how to use the component.
+
+**Why it exists:**
+Code examples were likely overlooked when the demo section was created.
+
+**Proposed solution:**
+- Add code examples to the TimePicker Kitchen Sink section
+- Include examples for basic usage, 12/24 hour formats, and time range constraints
+- Follow the same code example format used in other component sections
+
+**Added:** 2026-01-24
+**Assignee:** TBD
+
+---
+
+### Utilities Page — Code Examples Need Visual Distinction
+
+**Priority:** 🟢 Low
+**Impact:** Demo consistency, visual clarity
+**Effort:** Small
+
+**Description:**
+The code examples in the Utilities section of the Kitchen Sink are not visually distinct from surrounding content. Compare to the Feedback or Navigation pages where code examples have clearer visual separation and styling.
+
+**Why it exists:**
+The Utilities page may have been created before the code example styling was refined on other pages, or different styling was applied inconsistently.
+
+**Proposed solution:**
+- Review how code examples are styled on Feedback and Navigation pages
+- Apply consistent styling to Utilities page code examples
+- Ensure code blocks have proper background, borders, and spacing
+- Consider using the same CodeBlock component or styling approach throughout
 
 **Added:** 2026-01-24
 **Assignee:** TBD
