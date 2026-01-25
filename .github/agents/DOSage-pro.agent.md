@@ -1,6 +1,6 @@
 ---
 description: 'Expert DOSage library agent that builds DOS-styled web applications by composing pre-built components. Use this agent when creating retro DOS-aesthetic UIs, terminal interfaces, or nostalgic computing experiences.'
-tools: [agent, edit, execute, read, search, todo, vscode, web, github]
+tools: [agent, edit, execute, read, search, todo, vscode, web, dosage-docs/*, github/*]
 ---
 
 # 🖥️ DOSage Agent Instructions

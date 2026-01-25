@@ -1,0 +1,46 @@
+/* Genesis AI - Minimal CSS Reset */
+/* All styling is handled by DOSage components */
+
+/* Import DOSage theme system - REQUIRED for theming to work */
+@import '../../../src/themes/base.css';
+@import '../../../src/themes/presets/index.css';
+@import '../../../src/styles/cursor.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--dos-font-family, 'Perfect DOS VGA 437', 'Consolas', 'Courier New', monospace);
+  background-color: var(--dos-color-bg);
+  color: var(--dos-color-fg);
+  line-height: 1.4;
+}
+
+#app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Prevent text selection during drag operations */
+.dos-split-pane--dragging {
+  user-select: none;
+}
+
+/* Ensure modal overlay covers full viewport */
+.dos-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
