@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyboard Shortcut Handler Test</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      background: #0000AA;
+      color: #FFFFFF;
+      padding: 20px;
+      margin: 0;
+    }
+    .output {
+      border: 2px solid #55FF55;
+      padding: 20px;
+      margin: 20px 0;
+      min-height: 100px;
+      background: #000055;
+    }
+    .last-triggered {
+      color: #55FF55;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .counters {
+      color: #AAAAAA;
+      font-size: 0.9em;
+    }
+    kbd {
+      background: #000000;
+      border: 1px solid #FFFFFF;
+      padding: 2px 6px;
+      margin: 0 2px;
+    }
+    .instructions {
+      background: rgba(0, 170, 170, 0.2);
+      border: 1px solid #00AAAA;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>KeyboardShortcutHandler Test</h1>
+  
+  <div class="instructions">
+    <strong>Instructions:</strong><br>
+    Try pressing these keyboard shortcuts:<br>
+    • <kbd>Ctrl</kbd> + <kbd>S</kbd> - Should prevent browser save dialog<br>
+    • <kbd>Ctrl</kbd> + <kbd>Z</kbd> - Should prevent browser undo<br>
+    • <kbd>Ctrl</kbd> + <kbd>P</kbd> - Should prevent browser print dialog<br>
+    • <kbd>Escape</kbd> - Should be captured<br>
+    <br>
+    Watch the feedback panel below!
+  </div>
+
+  <div class="output">
+    <div class="last-triggered" id="lastTriggered">Waiting for shortcut...</div>
+    <div class="counters" id="counters"></div>
+  </div>
+
+  <script type="module">
+    import { createKeyboardShortcutHandler } from './dist/esm/index.js';
+
+    const lastTriggered = document.getElementById('lastTriggered');
+    const countersEl = document.getElementById('counters');
+
+    const triggerCounts = {
+      'save': 0,
+      'undo': 0,
+      'print': 0,
+      'cancel': 0,
+    };
+
+    function updateCounters() {
+      countersEl.innerHTML = `
+        <strong>Trigger counts:</strong><br>
+        Ctrl+S (Save): ${triggerCounts['save']}×<br>
+        Ctrl+Z (Undo): ${triggerCounts['undo']}×<br>
+        Ctrl+P (Print): ${triggerCounts['print']}×<br>
+        Escape (Cancel): ${triggerCounts['cancel']}×
+      `;
+    }
+
+    updateCounters();
+
+    const handler = createKeyboardShortcutHandler({ scope: 'global' });
+
+    handler.register({
+      id: 'save',
+      key: 's',
+      modifiers: { ctrl: true },
+      description: 'Save document',
+      preventDefault: true,
+      callback: () => {
+        triggerCounts['save']++;
+        const now = new Date().toLocaleTimeString();
+        lastTriggered.textContent = `✓ Ctrl+S pressed at ${now} - Browser save dialog PREVENTED!`;
+        updateCounters();
+        console.log('Save shortcut triggered!');
+      }
+    });
+
+    handler.register({
+      id: 'undo',
+      key: 'z',
+      modifiers: { ctrl: true },
+      description: 'Undo action',
+      preventDefault: true,
+      callback: () => {
+        triggerCounts['undo']++;
+        const now = new Date().toLocaleTimeString();
+        lastTriggered.textContent = `✓ Ctrl+Z pressed at ${now} - Browser undo PREVENTED!`;
+        updateCounters();
+        console.log('Undo shortcut triggered!');
+      }
+    });
+
+    handler.register({
+      id: 'print',
+      key: 'p',
+      modifiers: { ctrl: true },
+      description: 'Print document',
+      preventDefault: true,
+      callback: () => {
+        triggerCounts['print']++;
+        const now = new Date().toLocaleTimeString();
+        lastTriggered.textContent = `✓ Ctrl+P pressed at ${now} - Browser print dialog PREVENTED!`;
+        updateCounters();
+        console.log('Print shortcut triggered!');
+      }
+    });
+
+    handler.register({
+      id: 'cancel',
+      key: 'Escape',
+      description: 'Cancel action',
+      preventDefault: true,
+      callback: () => {
+        triggerCounts['cancel']++;
+        const now = new Date().toLocaleTimeString();
+        lastTriggered.textContent = `✓ Escape pressed at ${now}`;
+        updateCounters();
+        console.log('Escape shortcut triggered!');
+      }
+    });
+
+    console.log('Keyboard shortcut handler initialized');
+    console.log('Registered shortcuts:', handler.getShortcuts());
+  </script>
+</body>
+</html>
