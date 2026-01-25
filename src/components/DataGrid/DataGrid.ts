@@ -996,8 +996,9 @@ export function createDataGrid(props: DataGridProps): DataGridInstance {
       render();
     },
 
-    selectAll: () => {
-      getPageData().forEach(row => selectedRowsState.add(row.id));
+    selectAll: (options?: { allPages?: boolean }) => {
+      const rowsToSelect = options?.allPages ? data : getPageData();
+      rowsToSelect.forEach(row => selectedRowsState.add(row.id));
       onSelect?.(Array.from(selectedRowsState));
       render();
     },
