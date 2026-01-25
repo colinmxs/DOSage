@@ -98,7 +98,7 @@ export function createContextMenu(props: ContextMenuProps): ContextMenuElement {
   } = props;
 
   // Generate unique ID
-  const contextMenuId = id || generateContextMenuId();
+  const contextMenuId = id ?? generateContextMenuId();
 
   // Internal state
   let items = deepCloneItems(initialItems);
@@ -157,7 +157,7 @@ export function createContextMenu(props: ContextMenuProps): ContextMenuElement {
     menuItem.setAttribute('role', 'menuitem');
     menuItem.setAttribute('tabindex', '-1');
 
-    const itemId = item.id || `${contextMenuId}-item-${parentPath.join('-')}-${index}`;
+    const itemId = item.id ?? `${contextMenuId}-item-${parentPath.join('-')}-${index}`;
     menuItem.dataset.itemId = itemId;
     menuItem.dataset.index = String(index);
 

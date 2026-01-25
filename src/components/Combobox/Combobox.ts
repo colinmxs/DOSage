@@ -280,7 +280,7 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
 
     // Update aria-activedescendant
     if (state.highlightedIndex >= 0) {
-      const activeId = `${id || 'combobox'}-option-${state.highlightedIndex}`;
+      const activeId = `${id ?? 'combobox'}-option-${state.highlightedIndex}`;
       input.setAttribute('aria-activedescendant', activeId);
     }
   }
@@ -350,7 +350,7 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
    */
   function createOptionElement(option: ComboboxOption, index: number): HTMLElement {
     const item = document.createElement('div');
-    item.id = `${id || 'combobox'}-option-${index}`;
+    item.id = `${id ?? 'combobox'}-option-${index}`;
     item.className = 'dos-combobox__option';
     item.setAttribute('role', 'option');
     item.setAttribute('data-value', option.value);
@@ -456,7 +456,7 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
 
     // Update aria-activedescendant
     if (state.highlightedIndex >= 0) {
-      const activeId = `${id || 'combobox'}-option-${state.highlightedIndex}`;
+      const activeId = `${id ?? 'combobox'}-option-${state.highlightedIndex}`;
       input.setAttribute('aria-activedescendant', activeId);
     } else {
       input.setAttribute('aria-activedescendant', '');
@@ -735,7 +735,7 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
   };
 
   container.getSelectedOption = () => {
-    return options.find((o) => o.value === state.selectedValue) || null;
+    return options.find((o) => o.value === state.selectedValue) ?? null;
   };
 
   container.open = () => openDropdown();
