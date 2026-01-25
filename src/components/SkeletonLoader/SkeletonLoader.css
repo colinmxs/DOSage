@@ -69,40 +69,37 @@
 
 /* ===== ANIMATION ===== */
 
+/* Pulse animation for the entire skeleton element */
 .dos-skeleton--animated .dos-skeleton__line,
 .dos-skeleton--animated .dos-skeleton__block {
-  animation: dos-skeleton-pulse 1.5s ease-in-out infinite;
+  animation: dos-skeleton-pulse 1.2s ease-in-out infinite;
 }
 
+/* Pulse keyframes - more dramatic opacity change */
 @keyframes dos-skeleton-pulse {
   0%, 100% {
     opacity: 1;
   }
   50% {
-    opacity: 0.4;
+    opacity: 0.3;
   }
 }
 
-/* Alternative shimmer animation using character change */
+/* Character shimmer animation for fill elements */
 .dos-skeleton--animated .dos-skeleton__fill {
-  animation: dos-skeleton-shimmer 2s linear infinite;
+  animation: dos-skeleton-shimmer 1.5s ease-in-out infinite;
 }
 
+/* Shimmer keyframes - color cycling through DOS shades */
 @keyframes dos-skeleton-shimmer {
-  0% {
-    color: var(--dos-color-text-disabled, #555);
+  0%, 100% {
+    color: var(--dos-color-text-disabled, #555555);
   }
-  25% {
-    color: var(--dos-color-text-secondary, #888);
+  33% {
+    color: var(--dos-color-border, #AAAAAA);
   }
-  50% {
-    color: var(--dos-color-text-disabled, #555);
-  }
-  75% {
-    color: var(--dos-color-border, #666);
-  }
-  100% {
-    color: var(--dos-color-text-disabled, #555);
+  66% {
+    color: var(--dos-color-text-secondary, #888888);
   }
 }
 

@@ -16,6 +16,7 @@ import type {
   TagRemoveEventDetail,
   TagInvalidEventDetail,
 } from './TagInput.types';
+import { createDOSCursor, type DOSCursorInstance } from '../../utils/DOSCursor';
 import './TagInput.css';
 
 /**
@@ -149,6 +150,17 @@ export function createTagInput(props: TagInputProps): TagInputElement {
   container.appendChild(wrapper);
   container.appendChild(suggestionsDropdown);
   container.appendChild(errorEl);
+
+  // Initialize DOS block cursor overlay
+  let cursor: DOSCursorInstance | null = null;
+  if (!initialDisabled) {
+    cursor = createDOSCursor({
+      input,
+      wrapper,
+      readonly: false,
+      disabled: initialDisabled,
+    });
+  }
 
   // Initialize
   renderTags();
@@ -981,6 +993,8 @@ export function createTagInput(props: TagInputProps): TagInputElement {
     input.disabled = disabled;
     updateContainerClasses();
     renderTags();
+    // Update cursor disabled state
+    cursor?.setDisabled(disabled);
     if (disabled) {
       closeSuggestions();
     }
@@ -1015,6 +1029,9 @@ export function createTagInput(props: TagInputProps): TagInputElement {
     if (debounceTimer) {
       clearTimeout(debounceTimer);
     }
+    // Clean up cursor
+    cursor?.destroy();
+    cursor = null;
   };
 
   return container;

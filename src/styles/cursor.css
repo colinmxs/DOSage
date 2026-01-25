@@ -1,0 +1,186 @@
+/**
+ * DOSage DOS Block Cursor Styles
+ *
+ * Implements the authentic DOS-style thick block cursor (█) for all text inputs.
+ * Uses a JavaScript-based overlay cursor since CSS caret-shape: block has no
+ * browser support. The native caret is hidden and replaced with a positioned
+ * block character that tracks the insertion point.
+ *
+ * @author DOSage
+ * @since 1.0.0
+ */
+
+/* ===== CSS CUSTOM PROPERTIES FOR CURSOR ===== */
+:root,
+[data-dos-theme] {
+  /* Cursor appearance */
+  --dos-cursor-color: var(--dos-color-primary, #FFFF55);
+  --dos-cursor-color-readonly: var(--dos-color-disabled, #888888);
+  
+  /* Cursor dimensions - thick block style */
+  --dos-cursor-width: 0.6em;
+  --dos-cursor-height: 1.2em;
+  
+  /* Cursor animation timing - matches classic DOS (~530ms cycle) */
+  --dos-cursor-blink-rate: 530ms;
+  
+  /* Selection colors */
+  --dos-selection-bg: var(--dos-color-highlight, #FFFFFF);
+  --dos-selection-fg: var(--dos-color-bg, #0000AA);
+}
+
+/* ===== BLINKING CURSOR ANIMATION FOR OVERLAY ===== */
+@keyframes dos-cursor-blink {
+  0%, 49.9% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Reduced motion variant - no blinking */
+@keyframes dos-cursor-steady {
+  0%, 100% {
+    opacity: 1;
+  }
+}
+
+/* ===== BASE TEXT INPUT CURSOR STYLES ===== */
+/* Hide native caret - we use a JS overlay instead */
+.dos-text-input__field,
+.dos-textarea__field,
+.dos-password-input__field,
+.dos-searchinput__input,
+.dos-combobox__input,
+.dos-multiselect__input,
+.dos-taginput__input,
+.dos-datepicker__input,
+.dos-timepicker__input,
+.dos-commandpalette__input {
+  /* Hide native caret - overlay cursor handles this */
+  caret-color: transparent;
+  
+  /* Selection styling for DOS look */
+  &::selection {
+    background-color: var(--dos-selection-bg);
+    color: var(--dos-selection-fg);
+  }
+
+  &::-moz-selection {
+    background-color: var(--dos-selection-bg);
+    color: var(--dos-selection-fg);
+  }
+}
+
+/* ===== INPUT WRAPPER FOR CURSOR POSITIONING ===== */
+/* Input wrapper must be positioned for cursor overlay */
+.dos-text-input__wrapper,
+.dos-textarea__wrapper,
+.dos-password-input__wrapper,
+.dos-searchinput__wrapper,
+.dos-combobox__wrapper,
+.dos-multiselect__wrapper,
+.dos-taginput__wrapper,
+.dos-datepicker__wrapper,
+.dos-timepicker__wrapper,
+.dos-commandpalette__wrapper {
+  position: relative;
+}
+
+/* ===== DOS CURSOR OVERLAY ===== */
+.dos-cursor-overlay {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  color: var(--dos-cursor-color, #FFFF55);
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1;
+  user-select: none;
+  animation: dos-cursor-blink var(--dos-cursor-blink-rate, 530ms) step-end infinite;
+}
+
+/* Cursor overlay when input is focused */
+.dos-cursor-overlay--visible {
+  display: block;
+}
+
+/* Cursor overlay when input loses focus */
+.dos-cursor-overlay--hidden {
+  display: none;
+}
+
+/* Read-only cursor appearance */
+.dos-cursor-overlay--readonly {
+  color: var(--dos-cursor-color-readonly);
+  animation: none;
+}
+
+/* ===== DISABLED STATE - NO CURSOR ===== */
+.dos-text-input--disabled .dos-cursor-overlay,
+.dos-textarea--disabled .dos-cursor-overlay,
+.dos-password-input--disabled .dos-cursor-overlay,
+.dos-searchinput--disabled .dos-cursor-overlay,
+.dos-combobox--disabled .dos-cursor-overlay,
+.dos-multiselect--disabled .dos-cursor-overlay,
+.dos-taginput--disabled .dos-cursor-overlay {
+  display: none !important;
+}
+
+/* ===== PREFERS-REDUCED-MOTION ===== */
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .dos-cursor-overlay {
+    animation: dos-cursor-steady 0s linear infinite;
+  }
+}
+
+/* ===== CURSOR UTILITY CLASSES ===== */
+
+/* Force hide cursor overlay */
+.dos-cursor-none .dos-cursor-overlay {
+  display: none !important;
+}
+
+/* Force visible cursor (override disabled states) */
+.dos-cursor-visible .dos-cursor-overlay {
+  display: block !important;
+  color: var(--dos-cursor-color) !important;
+}
+
+/* Force blinking cursor */
+.dos-cursor-blink .dos-cursor-overlay {
+  animation: dos-cursor-blink var(--dos-cursor-blink-rate) step-end infinite !important;
+}
+
+/* Force steady cursor (no blink) */
+.dos-cursor-steady .dos-cursor-overlay {
+  animation: none !important;
+  opacity: 1 !important;
+}
+
+/* ===== MOBILE/TOUCH DEVICE ADJUSTMENTS ===== */
+@media (pointer: coarse) {
+  /* On touch devices, cursor may need to be larger for visibility */
+  .dos-cursor-overlay {
+    /* Keep blinking on mobile - it's recognizable */
+    animation: dos-cursor-blink var(--dos-cursor-blink-rate) step-end infinite;
+  }
+}
+
+/* ===== HIGH CONTRAST MODE ===== */
+@media (prefers-contrast: more) {
+  :root,
+  [data-dos-theme] {
+    --dos-cursor-color: #FFFFFF;
+    --dos-selection-bg: #FFFFFF;
+    --dos-selection-fg: #000000;
+  }
+}
+
+/* ===== RTL SUPPORT ===== */
+[dir="rtl"] .dos-cursor-overlay,
+.dos-cursor-overlay[dir="rtl"] {
+  /* Mirror cursor position for RTL text */
+}

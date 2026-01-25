@@ -155,22 +155,24 @@
 
 /* Type Variants */
 
-/* Info */
+/* Info - DOS blue with cyan accent */
 .dos-toast--info {
-  border-color: var(--dos-color-primary);
+  border-color: var(--dos-color-secondary);
+  background-color: var(--dos-color-bg-secondary);
 }
 
 .dos-toast--info .dos-toast__icon {
-  color: var(--dos-color-primary);
+  color: var(--dos-color-secondary);
 }
 
 .dos-toast--info .dos-toast__progress {
-  background-color: var(--dos-color-primary);
+  background-color: var(--dos-color-secondary);
 }
 
-/* Success */
+/* Success - Dark green background for visibility */
 .dos-toast--success {
   border-color: var(--dos-color-success);
+  background-color: #003300;
 }
 
 .dos-toast--success .dos-toast__icon {
@@ -184,12 +186,14 @@
 .dos-toast--success .dos-toast__dismiss:hover,
 .dos-toast--success .dos-toast__dismiss:focus {
   background-color: var(--dos-color-success);
+  color: #003300;
   border-color: var(--dos-color-success);
 }
 
-/* Warning */
+/* Warning - Dark yellow/brown background for visibility */
 .dos-toast--warning {
   border-color: var(--dos-color-warning);
+  background-color: #333300;
 }
 
 .dos-toast--warning .dos-toast__icon {
@@ -203,12 +207,14 @@
 .dos-toast--warning .dos-toast__dismiss:hover,
 .dos-toast--warning .dos-toast__dismiss:focus {
   background-color: var(--dos-color-warning);
+  color: #333300;
   border-color: var(--dos-color-warning);
 }
 
-/* Error */
+/* Error - Dark red background for visibility */
 .dos-toast--error {
   border-color: var(--dos-color-error);
+  background-color: #330000;
 }
 
 .dos-toast--error .dos-toast__icon {
@@ -222,6 +228,7 @@
 .dos-toast--error .dos-toast__dismiss:hover,
 .dos-toast--error .dos-toast__dismiss:focus {
   background-color: var(--dos-color-error);
+  color: #330000;
   border-color: var(--dos-color-error);
 }
 

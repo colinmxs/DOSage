@@ -1292,16 +1292,20 @@ container.add({ message: 'Toast 4 (dismisses Toast 1)' });`,
   const controlSection = createDemoSection({
     title: 'Programmatic Control',
     description: 'Toasts return an instance with methods to dismiss, update message, and change type.',
-    code: `import { createToast } from 'dosage';
+    code: `import { createToast, createToastContainer } from 'dosage';
 
-// Create a toast
-const instance = createToast({
+// Create a container to hold the toast
+const container = createToastContainer({
+  position: 'top-right'
+});
+document.body.appendChild(container.element);
+
+// Create a toast via the container
+const instance = container.add({
   message: 'Processing...',
   type: 'info',
   duration: 0  // persistent
 });
-
-document.body.appendChild(instance.element);
 
 // Later, update the toast
 instance.setMessage('Still processing...');
@@ -1317,7 +1321,22 @@ instance.dismiss();`,
     controlExample.style.flexDirection = 'column';
     controlExample.style.gap = 'var(--dos-space-sm)';
 
+    // Create a dedicated container for programmatic control demo
+    let controlContainer: ReturnType<typeof createToastContainer> | null = null;
     let activeToast: ReturnType<typeof createToast> | null = null;
+
+    // Ensure container exists
+    const getContainer = () => {
+      if (!controlContainer) {
+        controlContainer = createToastContainer({
+          position: 'top-right',
+          id: 'demo-programmatic-control-container',
+          maxToasts: 1,
+        });
+        document.body.appendChild(controlContainer.element);
+      }
+      return controlContainer;
+    };
 
     const buttonsRow = document.createElement('div');
     buttonsRow.style.display = 'flex';
@@ -1327,10 +1346,15 @@ instance.dismiss();`,
     const createBtn = createButton({
       label: 'Create Toast',
       onClick: () => {
+        // Dismiss existing toast if any
         if (activeToast) {
           activeToast.destroy();
+          activeToast = null;
         }
-        activeToast = createToast({
+        
+        // Create new toast via container
+        const container = getContainer();
+        activeToast = container.add({
           message: 'Persistent toast - use buttons to control',
           type: 'info',
           duration: 0,
@@ -1338,7 +1362,6 @@ instance.dismiss();`,
             activeToast = null;
           },
         });
-        document.body.appendChild(activeToast.element);
       },
     });
     buttonsRow.appendChild(createBtn);
@@ -1378,6 +1401,7 @@ instance.dismiss();`,
       onClick: () => {
         if (activeToast) {
           activeToast.dismiss();
+          activeToast = null;
         } else {
           toast.warning('Create a toast first!', { duration: 2000 });
         }

@@ -6,6 +6,7 @@
  */
 
 import type { TextInputProps, TextInputElement } from './TextInput.types';
+import { createDOSCursor, type DOSCursorInstance } from '../../utils/DOSCursor';
 import './TextInput.css';
 
 // Unique ID counter for input-label association
@@ -162,6 +163,17 @@ export function createTextInput(props: TextInputProps): TextInputElement {
   inputWrapper.appendChild(input);
   wrapper.appendChild(inputWrapper);
 
+  // Initialize DOS block cursor overlay
+  let cursor: DOSCursorInstance | null = null;
+  if (!disabled) {
+    cursor = createDOSCursor({
+      input,
+      wrapper: inputWrapper,
+      readonly,
+      disabled,
+    });
+  }
+
   // Create error message if provided as string
   let errorElement: HTMLDivElement | null = null;
   if (typeof error === 'string' && error) {
@@ -174,6 +186,8 @@ export function createTextInput(props: TextInputProps): TextInputElement {
 
   wrapper.setValue = (newValue: string) => {
     input.value = newValue;
+    // Update cursor position when value changes programmatically
+    cursor?.updatePosition();
   };
 
   wrapper.setError = (newError: string | boolean | undefined) => {
@@ -212,9 +226,17 @@ export function createTextInput(props: TextInputProps): TextInputElement {
     if (labelElement) {
       labelElement.classList.toggle('dos-text-input__label--disabled', newDisabled);
     }
+    // Update cursor disabled state
+    cursor?.setDisabled(newDisabled);
   };
 
   wrapper.getInput = () => input;
+
+  // Add destroy method for cleanup
+  (wrapper as TextInputElement & { destroy: () => void }).destroy = () => {
+    cursor?.destroy();
+    cursor = null;
+  };
 
   return wrapper;
 }

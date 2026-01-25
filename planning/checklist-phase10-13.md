@@ -980,6 +980,229 @@
 
 ---
 
+## Phase 14: Critical Tech Debt
+
+> **Purpose:** Address critical technical debt items that impact core functionality, visual identity, and demo quality before release.
+
+### 14.1 Global Cursor Styling — DOS Block Cursor (REVISED)
+
+**Priority:** 🔴 CRITICAL — HIGHEST PRIORITY
+**Impact:** Core visual identity, brand authenticity, user immersion
+
+> ⚠️ **Note:** CSS `caret-shape: block` has NO browser support. A JavaScript-based simulated cursor is required.
+
+#### Existing Code Inventory (to be refactored/cleaned)
+
+| File | Current State | Action |
+|------|---------------|--------|
+| `src/styles/cursor.css` | CSS-only approach using unsupported `caret-shape: block` | **REFACTOR** - Keep CSS variables, selection styles, animations; remove dead code; add overlay styles |
+| `tests/styles/cursor.test.ts` | Tests focus/blur class states only | **KEEP & EXTEND** - Add tests for actual cursor overlay |
+| `docs/cursor.md` | Documents non-working `caret-shape: block` | **UPDATE** - Rewrite for JS overlay implementation |
+| Component CSS comments | "Cursor styling handled by global cursor.css" | **KEEP** - Comments still accurate |
+
+#### 14.1.1 Refactor cursor.css (Clean Up Dead Code)
+
+**File:** `src/styles/cursor.css`
+
+- [x] Remove non-functional `caret-shape: block` declarations
+- [x] Keep and reuse existing CSS custom properties:
+  - [x] `--dos-cursor-color`
+  - [x] `--dos-cursor-color-readonly`
+  - [x] `--dos-cursor-blink-rate`
+  - [x] `--dos-selection-bg` / `--dos-selection-fg`
+- [x] Keep existing selection styling (works fine)
+- [x] Add `caret-color: transparent` to hide native caret
+- [x] Add `.dos-cursor-overlay` positioning and styling
+- [x] Refactor blink animation for overlay element (not caret-color)
+- [x] Keep `prefers-reduced-motion` support
+- [x] Keep high contrast mode support
+- [x] Remove unused `.dos-block-cursor` pseudo-element approach
+- [x] Keep utility classes (update to work with overlay)
+
+#### 14.1.2 Create DOSCursor Utility
+
+**File:** `src/utils/DOSCursor.ts`
+**Types:** `src/utils/DOSCursor.types.ts`
+**Tests:** `tests/utils/DOSCursor.test.ts`
+
+- [x] Create `DOSCursor` class/factory for managing cursor overlay
+- [x] Implement cursor element creation (█ character in styled span)
+- [x] Add positioning logic to track text insertion point
+- [x] Use CSS animation from cursor.css (not JS-based)
+- [x] Add show/hide methods tied to focus state
+- [x] Handle cursor position updates on:
+  - [x] Text input (typing)
+  - [x] Arrow key navigation
+  - [x] Click/tap to reposition
+  - [x] Selection changes
+  - [x] Text deletion (backspace/delete)
+- [x] Add `destroy()` method for cleanup
+- [x] Export utility for component integration
+
+#### 14.1.3 Integrate with TextInput
+
+- [x] Import and initialize DOSCursor in TextInput component
+- [x] Attach cursor to input field on creation
+- [x] Wire up focus/blur events
+- [x] Wire up input/selection events
+- [x] Ensure proper cleanup in component destroy()
+- [x] Test cursor follows typing accurately
+- [x] Test cursor repositions on click
+
+#### 14.1.4 Integrate with Textarea
+
+- [x] Same integration as TextInput
+- [x] Handle multi-line cursor positioning
+- [x] Handle scroll position offset
+- [x] Test with long text and scrolling
+
+#### 14.1.5 Integrate with PasswordInput
+
+- [x] Same integration as TextInput
+- [x] Handle masked character width calculation
+- [x] Test cursor position with hidden characters
+
+#### 14.1.6 Integrate with SearchInput
+
+- [x] Same integration as TextInput
+- [x] Ensure cursor works with suggestions dropdown
+
+#### 14.1.7 Integrate with Combobox
+
+- [x] Same integration as TextInput
+- [x] Ensure cursor works with dropdown open/close
+
+#### 14.1.8 Integrate with Remaining Input Components
+
+- [x] MultiSelect input field
+- [x] TagInput input field
+- [x] DatePicker input field — N/A (readonly input)
+- [x] TimePicker input field — N/A (uses spinbox)
+- [x] CommandPalette input field
+
+#### 14.1.9 Handle Edge Cases
+
+- [x] RTL text direction support (via CSS)
+- [x] Selection range visualization (highlight, not just cursor) — existing selection CSS preserved
+- [x] Mobile/touch device behavior — works via same events
+- [x] Input resize handling — requestAnimationFrame position updates
+- [x] Disabled/readonly states (hide cursor)
+- [x] Browser compatibility (Chrome, Firefox, Safari, Edge) — JS overlay works everywhere
+
+#### 14.1.10 Testing & Documentation (Update Existing)
+
+- [x] Update `tests/styles/cursor.test.ts`:
+  - [x] Keep existing focus/blur state tests
+  - [x] Add tests for cursor overlay visibility
+  - [x] Add tests for cursor position accuracy
+  - [x] Add tests for blink animation (via CSS class)
+- [x] Create `tests/utils/DOSCursor.test.ts` for utility unit tests
+- [x] Update `docs/cursor.md`:
+  - [x] Remove references to `caret-shape: block`
+  - [x] Document JS overlay implementation
+  - [x] Update customization examples
+  - [x] Add troubleshooting section
+- [x] Update Kitchen Sink demo to show WORKING block cursor
+- [x] Verify no dead/unused code remains in codebase
+
+### 14.2 MenuBar — First Menu Item Highlight Bug
+
+**Priority:** 🔴 CRITICAL
+**Impact:** User experience, interaction fidelity, DOS authenticity
+
+- [x] Review MenuBar highlight state management
+- [x] Fix initialization issue where first item gets default highlight
+- [x] Ensure highlight state is exclusively tied to actual hover/focus
+- [x] Verify only one item is highlighted at a time
+- [x] Test with both mouse and keyboard navigation
+- [x] Match native DOS menu behavior
+- [x] Write regression tests
+
+### 14.3 ContextMenu — Nested Submenu Highlight Bug
+
+**Priority:** 🔴 CRITICAL
+**Impact:** User experience, interaction fidelity, DOS authenticity
+
+- [x] Review highlight state propagation in nested menus
+- [x] Fix parent menu items retaining highlight when child menus are navigated
+- [x] Ensure only one item highlighted per menu level
+- [x] Test thoroughly with deeply nested submenus
+- [x] Match native DOS context menu behavior
+- [x] Write regression tests
+
+### 14.4 Toast — Programmatic Control Demo Fix
+
+**Priority:** 🔴 CRITICAL
+**Impact:** Developer experience, documentation quality, demo credibility
+
+- [x] Fix "Create Toast" to create visible example toast (not semi-permanent modal)
+- [x] Fix console errors on control button clicks
+- [x] Fix incorrect "CREATE A TOAST FIRST!" messages
+- [x] Ensure all control buttons operate on specific toast instance
+- [x] Add clear visual feedback for each action
+- [x] Implement proper cleanup when toast is dismissed
+- [x] Consider showing toast near code example for consistency
+- [x] Test full programmatic control workflow
+
+### 14.5 Alerts & Toasts — Background Color Visibility
+
+**Priority:** 🔴 CRITICAL
+**Impact:** Visibility, accessibility, usability
+
+- [x] Add solid background colors to Alert component
+- [x] Add solid background colors to Toast component
+- [x] Use appropriate DOS color palette (blue, black, or themed)
+- [x] Ensure high contrast between background and text
+- [x] Test visibility against all common page backgrounds
+- [x] Update Kitchen Sink demos to showcase visibility
+
+### 14.6 SkeletonLoader — Animation Fix
+
+**Priority:** 🔴 CRITICAL
+**Impact:** Visual feedback, perceived performance, spec compliance
+
+- [x] Review SkeletonLoader CSS animation implementation
+- [x] Verify keyframes are properly defined
+- [x] Check for CSS specificity issues blocking animation
+- [x] Ensure animation respects `prefers-reduced-motion`
+- [x] Test in multiple browsers
+- [x] Update Kitchen Sink to clearly demonstrate animation
+
+### 14.7 Card, Timeline, EmptyState — Demo Layout Consistency
+
+**Priority:** 🔴 CRITICAL
+**Impact:** Documentation consistency, developer experience, project standards
+
+- [x] Refactor Card demo page:
+  - [x] Use `createDemoSection()` pattern
+  - [x] Inline code snippets per example
+  - [x] Follow: Title → Description → Live Example → Code Snippet
+- [x] Refactor Timeline demo page:
+  - [x] Examples appear inside bordered boxes
+  - [x] Inline code snippets per example
+- [x] Refactor EmptyState demo page:
+  - [x] Match site-wide demo patterns
+  - [x] Inline code snippets per example
+- [x] Reference working examples (Table, Button, TextInput) for correct structure
+
+---
+
+### Phase 14 Checkpoint
+
+- [x] DOS block cursor implemented and working
+- [ ] MenuBar highlight bug fixed
+- [ ] ContextMenu nested submenu bug fixed
+- [ ] Toast programmatic control demo working
+- [ ] Alert and Toast background colors added
+- [ ] SkeletonLoader animation working
+- [ ] Card, Timeline, EmptyState demos consistent with site standards
+- [ ] All regression tests passing
+- [ ] Code review completed
+
+- [ ] ⛔ HUMAN ONLY: I have reviewed and verified Phase 14
+
+---
+
 - [ ] ⛔ HUMAN ONLY: Final verification complete — DOSage is ready for release
 
 ---
@@ -996,6 +1219,7 @@ All phases have been defined. Work through each phase sequentially, stopping at 
 | Phase 11 | Utility Components | Portal, FocusTrap, KeyboardShortcutHandler, ScrollArea, Resizable, Draggable, VisuallyHidden |
 | Phase 12 | Polish & Documentation | API docs, Theming guide, Demo polish, Developer docs |
 | Phase 13 | Quality Assurance | Test coverage, A11y audit, Browser testing, Performance, Bundle analysis |
+| Phase 14 | Critical Tech Debt | DOS cursor, MenuBar highlight, ContextMenu submenu, Toast demo, Alert/Toast backgrounds, SkeletonLoader animation, Demo layout consistency |
 
 ### Key Metrics to Track
 

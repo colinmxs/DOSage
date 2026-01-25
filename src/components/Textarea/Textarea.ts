@@ -6,6 +6,7 @@
  */
 
 import type { TextareaProps, TextareaElement, TextareaResize } from './Textarea.types';
+import { createDOSCursor, type DOSCursorInstance } from '../../utils/DOSCursor';
 import './Textarea.css';
 
 // Unique ID counter for textarea-label association
@@ -173,6 +174,17 @@ export function createTextarea(props: TextareaProps): TextareaElement {
   textareaWrapper.appendChild(textarea);
   wrapper.appendChild(textareaWrapper);
 
+  // Initialize DOS block cursor overlay
+  let cursor: DOSCursorInstance | null = null;
+  if (!disabled) {
+    cursor = createDOSCursor({
+      input: textarea,
+      wrapper: textareaWrapper,
+      readonly,
+      disabled,
+    });
+  }
+
   // Add count element if showing
   if (countElement) {
     wrapper.appendChild(countElement);
@@ -192,6 +204,8 @@ export function createTextarea(props: TextareaProps): TextareaElement {
     if (showCount && countElement) {
       updateCountElement(countElement, newValue.length, maxLength);
     }
+    // Update cursor position when value changes programmatically
+    cursor?.updatePosition();
   };
 
   wrapper.setError = (newError: string | boolean | undefined) => {
@@ -228,9 +242,17 @@ export function createTextarea(props: TextareaProps): TextareaElement {
     if (labelElement) {
       labelElement.classList.toggle('dos-textarea__label--disabled', newDisabled);
     }
+    // Update cursor disabled state
+    cursor?.setDisabled(newDisabled);
   };
 
   wrapper.getTextarea = () => textarea;
+
+  // Add destroy method for cleanup
+  (wrapper as TextareaElement & { destroy: () => void }).destroy = () => {
+    cursor?.destroy();
+    cursor = null;
+  };
 
   return wrapper;
 }

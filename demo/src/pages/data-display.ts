@@ -2647,318 +2647,426 @@ export function renderCardPage(): HTMLElement {
 
   // Section 1: Basic Card
   const basicSection = createDemoSection({
-    title: '1. Basic Card',
-    description: 'A simple card with header and content.'
+    title: 'Basic Card',
+    description: 'A simple card with header and content.',
+    code: `import { createCard } from 'dosage';
+
+const card = createCard({
+  header: 'Basic Card',
+  content: 'This is a simple card with header and content sections.'
+});
+
+document.body.appendChild(card.element);`,
   });
 
-  const basicCard = createCard({
-    header: 'Basic Card',
-    content: 'This is a simple card with header and content sections. Cards are useful for grouping related information.'
-  });
-
-  basicSection.appendChild(basicCard.element);
+  const basicExample = basicSection.querySelector('.dos-demo-section___examples');
+  if (basicExample) {
+    const basicCard = createCard({
+      header: 'Basic Card',
+      content: 'This is a simple card with header and content sections. Cards are useful for grouping related information.',
+    });
+    basicExample.appendChild(basicCard.element);
+  }
   content.appendChild(basicSection);
 
   // Section 2: Card with Footer
   const footerSection = createDemoSection({
-    title: '2. Card with Footer',
-    description: 'Card with header, content, and footer actions.'
+    title: 'Card with Footer',
+    description: 'Card with header, content, and footer actions.',
+    code: `const footerActions = document.createElement('div');
+footerActions.style.display = 'flex';
+footerActions.style.gap = '8px';
+
+const saveBtn = createButton({ label: '[ Save ]', variant: 'primary' });
+const cancelBtn = createButton({ label: '[ Cancel ]', variant: 'secondary' });
+footerActions.appendChild(saveBtn);
+footerActions.appendChild(cancelBtn);
+
+const card = createCard({
+  header: 'Card with Actions',
+  content: 'This card has action buttons in the footer section.',
+  footer: footerActions
+});`,
   });
 
-  const footerActions = document.createElement('div');
-  footerActions.style.display = 'flex';
-  footerActions.style.gap = '8px';
+  const footerExample = footerSection.querySelector('.dos-demo-section___examples');
+  if (footerExample) {
+    const footerActions = document.createElement('div');
+    footerActions.style.display = 'flex';
+    footerActions.style.gap = '8px';
 
-  const saveBtn = createButton({ label: '[ Save ]', variant: 'primary' });
-  const cancelBtn = createButton({ label: '[ Cancel ]', variant: 'secondary' });
-  footerActions.appendChild(saveBtn);
-  footerActions.appendChild(cancelBtn);
+    const saveBtn = createButton({ label: '[ Save ]', variant: 'primary' });
+    const cancelBtn = createButton({ label: '[ Cancel ]', variant: 'secondary' });
+    footerActions.appendChild(saveBtn);
+    footerActions.appendChild(cancelBtn);
 
-  const footerCard = createCard({
-    header: 'Card with Actions',
-    content: 'This card has action buttons in the footer section.',
-    footer: footerActions
-  });
-
-  footerSection.appendChild(footerCard.element);
+    const footerCard = createCard({
+      header: 'Card with Actions',
+      content: 'This card has action buttons in the footer section.',
+      footer: footerActions,
+    });
+    footerExample.appendChild(footerCard.element);
+  }
   content.appendChild(footerSection);
 
   // Section 3: Bordered vs Non-bordered
   const borderSection = createDemoSection({
-    title: '3. Border Styles',
-    description: 'Cards with and without borders.'
+    title: 'Border Styles',
+    description: 'Cards with and without borders.',
+    code: `// Bordered card (default)
+const borderedCard = createCard({
+  header: 'Bordered (Default)',
+  content: 'This card has a visible border.',
+  bordered: true
+});
+
+// Non-bordered card
+const nonBorderedCard = createCard({
+  header: 'No Border',
+  content: 'This card has no border.',
+  bordered: false
+});`,
   });
 
-  const borderWrapper = document.createElement('div');
-  borderWrapper.style.display = 'flex';
-  borderWrapper.style.gap = '16px';
-  borderWrapper.style.flexWrap = 'wrap';
+  const borderExample = borderSection.querySelector('.dos-demo-section___examples');
+  if (borderExample) {
+    borderExample.style.display = 'flex';
+    borderExample.style.gap = '16px';
+    borderExample.style.flexWrap = 'wrap';
 
-  const borderedCard = createCard({
-    header: 'Bordered (Default)',
-    content: 'This card has a visible border.',
-    bordered: true
-  });
+    const borderedCard = createCard({
+      header: 'Bordered (Default)',
+      content: 'This card has a visible border.',
+      bordered: true,
+    });
 
-  const nonBorderedCard = createCard({
-    header: 'No Border',
-    content: 'This card has no border.',
-    bordered: false
-  });
+    const nonBorderedCard = createCard({
+      header: 'No Border',
+      content: 'This card has no border.',
+      bordered: false,
+    });
 
-  borderWrapper.appendChild(borderedCard.element);
-  borderWrapper.appendChild(nonBorderedCard.element);
-  borderSection.appendChild(borderWrapper);
+    borderExample.appendChild(borderedCard.element);
+    borderExample.appendChild(nonBorderedCard.element);
+  }
   content.appendChild(borderSection);
 
   // Section 4: Elevated Card
   const elevatedSection = createDemoSection({
-    title: '4. Elevated Card',
-    description: 'Card with DOS-style shadow effect.'
+    title: 'Elevated Card',
+    description: 'Card with DOS-style shadow effect.',
+    code: `const elevatedCard = createCard({
+  header: 'Elevated Card',
+  content: 'This card has an elevated appearance with a shadow effect.',
+  elevated: true
+});`,
   });
 
-  const elevatedCard = createCard({
-    header: 'Elevated Card',
-    content: 'This card has an elevated appearance with a shadow effect, creating depth on the page.',
-    elevated: true
-  });
-
-  elevatedSection.appendChild(elevatedCard.element);
+  const elevatedExample = elevatedSection.querySelector('.dos-demo-section___examples');
+  if (elevatedExample) {
+    const elevatedCard = createCard({
+      header: 'Elevated Card',
+      content: 'This card has an elevated appearance with a shadow effect, creating depth on the page.',
+      elevated: true,
+    });
+    elevatedExample.appendChild(elevatedCard.element);
+  }
   content.appendChild(elevatedSection);
 
   // Section 5: Interactive Card
   const interactiveSection = createDemoSection({
-    title: '5. Interactive Card',
-    description: 'Clickable cards with keyboard support.'
+    title: 'Interactive Cards',
+    description: 'Clickable cards with keyboard support.',
+    code: `// Clickable card
+const interactiveCard = createCard({
+  header: 'Click Me!',
+  content: 'This card is clickable.',
+  interactive: true,
+  onClick: () => alert('Card clicked!')
+});
+
+// Selectable card
+const selectableCard = createCard({
+  header: 'Selectable Card',
+  content: 'Click to toggle selection state.',
+  interactive: true,
+  selected: false,
+  onClick: () => selectableCard.setSelected(!selectableCard.isSelected())
+});`,
   });
 
-  const interactiveWrapper = document.createElement('div');
-  interactiveWrapper.style.display = 'flex';
-  interactiveWrapper.style.gap = '16px';
-  interactiveWrapper.style.flexWrap = 'wrap';
+  const interactiveExample = interactiveSection.querySelector('.dos-demo-section___examples');
+  if (interactiveExample) {
+    interactiveExample.style.display = 'flex';
+    interactiveExample.style.gap = '16px';
+    interactiveExample.style.flexWrap = 'wrap';
 
-  const interactiveCard = createCard({
-    header: 'Click Me!',
-    content: 'This card is clickable. Click or press Enter/Space when focused.',
-    interactive: true,
-    onClick: () => alert('Card clicked!')
-  });
+    const interactiveCard = createCard({
+      header: 'Click Me!',
+      content: 'This card is clickable. Click or press Enter/Space when focused.',
+      interactive: true,
+      onClick: () => alert('Card clicked!'),
+    });
 
-  // Selectable card demo
-  const selectableCard = createCard({
-    header: 'Selectable Card',
-    content: 'Click to toggle selection state.',
-    interactive: true,
-    selected: false,
-    onClick: () => selectableCard.setSelected(!selectableCard.isSelected())
-  });
+    // Selectable card demo
+    const selectableCard = createCard({
+      header: 'Selectable Card',
+      content: 'Click to toggle selection state.',
+      interactive: true,
+      selected: false,
+      onClick: () => selectableCard.setSelected(!selectableCard.isSelected()),
+    });
 
-  interactiveWrapper.appendChild(interactiveCard.element);
-  interactiveWrapper.appendChild(selectableCard.element);
-  interactiveSection.appendChild(interactiveWrapper);
+    interactiveExample.appendChild(interactiveCard.element);
+    interactiveExample.appendChild(selectableCard.element);
+  }
   content.appendChild(interactiveSection);
 
   // Section 6: Content-Only Cards
   const contentOnlySection = createDemoSection({
-    title: '6. Content-Only Card',
-    description: 'Minimal cards with just content.'
+    title: 'Content-Only Card',
+    description: 'Minimal cards with just content.',
+    code: `const contentOnlyCard = createCard({
+  content: 'A simple note card without header or footer.',
+  bordered: true
+});`,
   });
 
-  const contentOnlyCard = createCard({
-    content: 'A simple note card without header or footer. Useful for displaying brief information.',
-    bordered: true
-  });
-
-  contentOnlySection.appendChild(contentOnlyCard.element);
+  const contentOnlyExample = contentOnlySection.querySelector('.dos-demo-section___examples');
+  if (contentOnlyExample) {
+    const contentOnlyCard = createCard({
+      content: 'A simple note card without header or footer. Useful for displaying brief information.',
+      bordered: true,
+    });
+    contentOnlyExample.appendChild(contentOnlyCard.element);
+  }
   content.appendChild(contentOnlySection);
 
   // Section 7: Card with HTML Content
   const htmlContentSection = createDemoSection({
-    title: '7. Rich Content',
-    description: 'Card with custom HTML content.'
+    title: 'Rich Content',
+    description: 'Card with custom HTML content.',
+    code: `const richContent = document.createElement('div');
+richContent.innerHTML = \`
+  <p>╔════════════════════════════╗</p>
+  <p>║  <strong>File:</strong> README.TXT      ║</p>
+  <p>║  <strong>Size:</strong> 1,024 bytes     ║</p>
+  <p>╚════════════════════════════╝</p>
+\`;
+
+const htmlCard = createCard({
+  header: 'File Properties',
+  content: richContent,
+  elevated: true
+});`,
   });
 
-  const richContent = document.createElement('div');
-  richContent.innerHTML = `
-    <p style="margin: 0 0 8px 0;">╔════════════════════════════╗</p>
-    <p style="margin: 0 0 8px 0;">║  <strong>File:</strong> README.TXT      ║</p>
-    <p style="margin: 0 0 8px 0;">║  <strong>Size:</strong> 1,024 bytes     ║</p>
-    <p style="margin: 0 0 8px 0;">║  <strong>Date:</strong> 01-15-2026      ║</p>
-    <p style="margin: 0;">╚════════════════════════════╝</p>
-  `;
+  const htmlContentExample = htmlContentSection.querySelector('.dos-demo-section___examples');
+  if (htmlContentExample) {
+    const richContent = document.createElement('div');
+    richContent.innerHTML = `
+      <p style="margin: 0 0 8px 0;">╔════════════════════════════╗</p>
+      <p style="margin: 0 0 8px 0;">║  <strong>File:</strong> README.TXT      ║</p>
+      <p style="margin: 0 0 8px 0;">║  <strong>Size:</strong> 1,024 bytes     ║</p>
+      <p style="margin: 0 0 8px 0;">║  <strong>Date:</strong> 01-15-2026      ║</p>
+      <p style="margin: 0;">╚════════════════════════════╝</p>
+    `;
 
-  const htmlCard = createCard({
-    header: 'File Properties',
-    content: richContent,
-    elevated: true
-  });
-
-  htmlContentSection.appendChild(htmlCard.element);
+    const htmlCard = createCard({
+      header: 'File Properties',
+      content: richContent,
+      elevated: true,
+    });
+    htmlContentExample.appendChild(htmlCard.element);
+  }
   content.appendChild(htmlContentSection);
 
   // Section 8: Instance Methods Demo
   const methodsSection = createDemoSection({
-    title: '8. Instance Methods',
-    description: 'Dynamically update card properties.'
+    title: 'Instance Methods',
+    description: 'Dynamically update card properties.',
+    code: `const card = createCard({
+  header: 'Dynamic Card',
+  content: 'Use the buttons below to modify this card.',
+  bordered: true,
+  elevated: false
+});
+
+// Update properties dynamically
+card.setHeader('New Header');
+card.setElevated(true);
+card.setBordered(false);
+card.setFooter(footerElement);
+card.setSelected(true);  // For interactive cards
+
+// Check state
+card.isElevated();
+card.isBordered();
+card.isSelected();
+
+// Clean up
+card.destroy();`,
   });
 
-  const methodsCard = createCard({
-    header: 'Dynamic Card',
-    content: 'Use the buttons below to modify this card.',
-    bordered: true,
-    elevated: false
-  });
+  const methodsExample = methodsSection.querySelector('.dos-demo-section___examples');
+  if (methodsExample) {
+    methodsExample.style.display = 'flex';
+    methodsExample.style.flexDirection = 'column';
+    methodsExample.style.gap = '16px';
 
-  const methodsControls = document.createElement('div');
-  methodsControls.style.display = 'flex';
-  methodsControls.style.gap = '8px';
-  methodsControls.style.flexWrap = 'wrap';
-  methodsControls.style.marginTop = '16px';
+    const methodsCard = createCard({
+      header: 'Dynamic Card',
+      content: 'Use the buttons below to modify this card.',
+      bordered: true,
+      elevated: false,
+    });
 
-  const toggleElevatedBtn = createButton({
-    label: '[ Toggle Elevation ]',
-    onClick: () => methodsCard.setElevated(!methodsCard.isElevated())
-  });
+    const methodsControls = document.createElement('div');
+    methodsControls.style.display = 'flex';
+    methodsControls.style.gap = '8px';
+    methodsControls.style.flexWrap = 'wrap';
 
-  const toggleBorderBtn = createButton({
-    label: '[ Toggle Border ]',
-    onClick: () => methodsCard.setBordered(!methodsCard.isBordered())
-  });
+    const toggleElevatedBtn = createButton({
+      label: '[ Toggle Elevation ]',
+      onClick: () => methodsCard.setElevated(!methodsCard.isElevated()),
+    });
 
-  const changeHeaderBtn = createButton({
-    label: '[ Change Header ]',
-    onClick: () => {
-      const headers = ['Dynamic Card', 'Updated!', 'Changed Header', 'New Title'];
-      const current = methodsCard.getHeader()?.textContent || '';
-      const currentIndex = headers.indexOf(current);
-      const nextIndex = (currentIndex + 1) % headers.length;
-      methodsCard.setHeader(headers[nextIndex]);
-    }
-  });
+    const toggleBorderBtn = createButton({
+      label: '[ Toggle Border ]',
+      onClick: () => methodsCard.setBordered(!methodsCard.isBordered()),
+    });
 
-  const addFooterBtn = createButton({
-    label: '[ Toggle Footer ]',
-    onClick: () => {
-      if (methodsCard.getFooter()) {
-        methodsCard.setFooter(undefined);
-      } else {
-        const footer = document.createElement('span');
-        footer.textContent = 'Footer added dynamically';
-        methodsCard.setFooter(footer);
-      }
-    }
-  });
+    const changeHeaderBtn = createButton({
+      label: '[ Change Header ]',
+      onClick: () => {
+        const headers = ['Dynamic Card', 'Updated!', 'Changed Header', 'New Title'];
+        const current = methodsCard.getHeader()?.textContent || '';
+        const currentIndex = headers.indexOf(current);
+        const nextIndex = (currentIndex + 1) % headers.length;
+        methodsCard.setHeader(headers[nextIndex]);
+      },
+    });
 
-  methodsControls.appendChild(toggleElevatedBtn);
-  methodsControls.appendChild(toggleBorderBtn);
-  methodsControls.appendChild(changeHeaderBtn);
-  methodsControls.appendChild(addFooterBtn);
+    const addFooterBtn = createButton({
+      label: '[ Toggle Footer ]',
+      onClick: () => {
+        if (methodsCard.getFooter()) {
+          methodsCard.setFooter(undefined);
+        } else {
+          const footer = document.createElement('span');
+          footer.textContent = 'Footer added dynamically';
+          methodsCard.setFooter(footer);
+        }
+      },
+    });
 
-  methodsSection.appendChild(methodsCard.element);
-  methodsSection.appendChild(methodsControls);
+    methodsControls.appendChild(toggleElevatedBtn);
+    methodsControls.appendChild(toggleBorderBtn);
+    methodsControls.appendChild(changeHeaderBtn);
+    methodsControls.appendChild(addFooterBtn);
+
+    methodsExample.appendChild(methodsCard.element);
+    methodsExample.appendChild(methodsControls);
+  }
   content.appendChild(methodsSection);
 
   // Section 9: Card Grid Layout
   const gridSection = createDemoSection({
-    title: '9. Card Grid',
-    description: 'Multiple cards in a grid layout.'
+    title: 'Card Grid',
+    description: 'Multiple cards in a grid layout.',
+    code: `const cardGrid = document.createElement('div');
+cardGrid.style.display = 'grid';
+cardGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(200px, 1fr))';
+cardGrid.style.gap = '16px';
+
+const programs = [
+  { name: 'EDIT.COM', desc: 'DOS Text Editor' },
+  { name: 'DEBUG.EXE', desc: 'Assembly Debugger' },
+  { name: 'FORMAT.COM', desc: 'Disk Formatter' }
+];
+
+programs.forEach(prog => {
+  const card = createCard({
+    header: prog.name,
+    content: prog.desc,
+    bordered: true
+  });
+  cardGrid.appendChild(card.element);
+});`,
   });
 
-  const cardGrid = document.createElement('div');
-  cardGrid.style.display = 'grid';
-  cardGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(200px, 1fr))';
-  cardGrid.style.gap = '16px';
+  const gridExample = gridSection.querySelector('.dos-demo-section___examples');
+  if (gridExample) {
+    const cardGrid = document.createElement('div');
+    cardGrid.style.display = 'grid';
+    cardGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(200px, 1fr))';
+    cardGrid.style.gap = '16px';
 
-  const programs = [
-    { name: 'EDIT.COM', desc: 'DOS Text Editor', type: 'Utility' },
-    { name: 'DEBUG.EXE', desc: 'Assembly Debugger', type: 'Development' },
-    { name: 'FORMAT.COM', desc: 'Disk Formatter', type: 'System' },
-    { name: 'CHKDSK.EXE', desc: 'Disk Check', type: 'System' },
-    { name: 'XCOPY.EXE', desc: 'Extended Copy', type: 'Utility' },
-    { name: 'QBASIC.EXE', desc: 'BASIC IDE', type: 'Development' }
-  ];
+    const programs = [
+      { name: 'EDIT.COM', desc: 'DOS Text Editor', type: 'Utility' },
+      { name: 'DEBUG.EXE', desc: 'Assembly Debugger', type: 'Development' },
+      { name: 'FORMAT.COM', desc: 'Disk Formatter', type: 'System' },
+      { name: 'CHKDSK.EXE', desc: 'Disk Check', type: 'System' },
+      { name: 'XCOPY.EXE', desc: 'Extended Copy', type: 'Utility' },
+      { name: 'QBASIC.EXE', desc: 'BASIC IDE', type: 'Development' },
+    ];
 
-  programs.forEach(prog => {
-    const card = createCard({
-      header: prog.name,
-      content: `${prog.desc}\n\nType: ${prog.type}`,
-      bordered: true
+    programs.forEach((prog) => {
+      const card = createCard({
+        header: prog.name,
+        content: `${prog.desc}\n\nType: ${prog.type}`,
+        bordered: true,
+      });
+      cardGrid.appendChild(card.element);
     });
-    cardGrid.appendChild(card.element);
-  });
 
-  gridSection.appendChild(cardGrid);
+    gridExample.appendChild(cardGrid);
+  }
   content.appendChild(gridSection);
 
-  // Section 10: Code Example
-  const codeSection = createDemoSection({
-    title: '10. Code Example',
-    description: 'How to create cards programmatically.'
-  });
-
-  const codeBlock = document.createElement('pre');
-  codeBlock.className = 'dos-code-block';
-  codeBlock.textContent = `import { createCard, createButton } from 'dosage';
-
-// Basic card
-const card = createCard({
-  header: 'Card Title',
-  content: 'Card body content here.',
-  bordered: true,
-  elevated: true
-});
-document.body.appendChild(card.element);
-
-// Card with footer actions
-const footerEl = document.createElement('div');
-const saveBtn = createButton({ label: '[ Save ]' });
-footerEl.appendChild(saveBtn);
-
-const actionCard = createCard({
-  header: 'Action Card',
-  content: 'Card with footer buttons.',
-  footer: footerEl
+  // Section 10: Accessibility
+  const a11ySection = createDemoSection({
+    title: 'Accessibility',
+    description: 'Card accessibility features and ARIA support.',
+    code: `// Non-interactive card - uses role="article"
+const articleCard = createCard({
+  header: 'Article Card',
+  content: 'Content here...'
 });
 
-// Interactive card
-const clickableCard = createCard({
-  header: 'Clickable Card',
+// Interactive card - uses role="button", tabindex="0"
+const buttonCard = createCard({
+  header: 'Interactive Card',
   content: 'Click me!',
   interactive: true,
-  onClick: () => console.log('Card clicked!')
+  onClick: () => { /* handle click */ }
 });
 
-// Instance methods
-card.setHeader('New Header');
-card.setElevated(true);
-card.setSelected(true);  // For interactive cards
-
-// Clean up
-card.destroy();`;
-
-  codeSection.appendChild(codeBlock);
-  content.appendChild(codeSection);
-
-  // Section 11: Accessibility
-  const a11ySection = createDemoSection({
-    title: '11. Accessibility',
-    description: 'Card accessibility features.'
+// Custom aria-label
+const labeledCard = createCard({
+  header: 'Custom Label',
+  content: 'Content',
+  ariaLabel: 'Custom accessibility label for this card'
+});`,
   });
 
-  const a11yList = document.createElement('ul');
-  a11yList.style.marginLeft = '20px';
-  a11yList.innerHTML = `
-    <li>Non-interactive cards use <code>role="article"</code></li>
-    <li>Interactive cards use <code>role="button"</code></li>
-    <li>Interactive cards are focusable with <code>tabindex="0"</code></li>
-    <li>Header is used for <code>aria-labelledby</code> when present</li>
-    <li>Custom <code>aria-label</code> can override automatic labeling</li>
-    <li>Selected state uses <code>aria-pressed</code></li>
-    <li>Keyboard: Enter/Space activates interactive cards</li>
-    <li>Tab navigation moves between focusable elements</li>
-  `;
-
-  a11ySection.appendChild(a11yList);
+  const a11yExample = a11ySection.querySelector('.dos-demo-section___examples');
+  if (a11yExample) {
+    const a11yList = document.createElement('ul');
+    a11yList.style.marginLeft = '20px';
+    a11yList.style.listStyleType = 'disc';
+    a11yList.innerHTML = `
+      <li>Non-interactive cards use <code>role="article"</code></li>
+      <li>Interactive cards use <code>role="button"</code></li>
+      <li>Interactive cards are focusable with <code>tabindex="0"</code></li>
+      <li>Header is used for <code>aria-labelledby</code> when present</li>
+      <li>Custom <code>aria-label</code> can override automatic labeling</li>
+      <li>Selected state uses <code>aria-pressed</code></li>
+      <li>Keyboard: Enter/Space activates interactive cards</li>
+      <li>Tab navigation moves between focusable elements</li>
+    `;
+    a11yExample.appendChild(a11yList);
+  }
   content.appendChild(a11ySection);
 
   page.appendChild(content);
@@ -2992,283 +3100,297 @@ export function renderTimelinePage(): HTMLElement {
 
   // Section 1: Basic Timeline
   const basicSection = createDemoSection({
-    title: '1. Basic Timeline',
-    description: 'A simple vertical timeline with events.'
+    title: 'Basic Timeline',
+    description: 'A simple vertical timeline with events.',
+    code: `import { createTimeline } from 'dosage';
+
+const events = [
+  { id: '1', title: 'Project Started', description: 'Initial setup', timestamp: '01/01/2026', status: 'completed' },
+  { id: '2', title: 'Development', description: 'In progress', timestamp: '01/15/2026', status: 'current' },
+  { id: '3', title: 'Testing', timestamp: '01/25/2026', status: 'upcoming' },
+  { id: '4', title: 'Launch', timestamp: '02/01/2026', status: 'upcoming' }
+];
+
+const timeline = createTimeline({ events });
+document.body.appendChild(timeline.element);`,
   });
 
-  const basicEvents: TimelineEvent[] = [
-    {
-      id: '1',
-      title: 'Project Started',
-      description: 'Initial project setup completed',
-      timestamp: '01/01/2026',
-      status: 'completed'
-    },
-    {
-      id: '2',
-      title: 'Development Phase',
-      description: 'Active development in progress',
-      timestamp: '01/15/2026',
-      status: 'current'
-    },
-    {
-      id: '3',
-      title: 'Testing',
-      description: 'Quality assurance testing',
-      timestamp: '01/25/2026',
-      status: 'upcoming'
-    },
-    {
-      id: '4',
-      title: 'Launch',
-      timestamp: '02/01/2026',
-      status: 'upcoming'
-    }
-  ];
-
-  const basicTimeline = createTimeline({ events: basicEvents });
-  basicSection.appendChild(basicTimeline.element);
+  const basicExample = basicSection.querySelector('.dos-demo-section___examples');
+  if (basicExample) {
+    const basicEvents: TimelineEvent[] = [
+      { id: '1', title: 'Project Started', description: 'Initial project setup completed', timestamp: '01/01/2026', status: 'completed' },
+      { id: '2', title: 'Development Phase', description: 'Active development in progress', timestamp: '01/15/2026', status: 'current' },
+      { id: '3', title: 'Testing', description: 'Quality assurance testing', timestamp: '01/25/2026', status: 'upcoming' },
+      { id: '4', title: 'Launch', timestamp: '02/01/2026', status: 'upcoming' },
+    ];
+    const basicTimeline = createTimeline({ events: basicEvents });
+    basicExample.appendChild(basicTimeline.element);
+  }
   content.appendChild(basicSection);
 
   // Section 2: Status Indicators
   const statusSection = createDemoSection({
-    title: '2. Status Indicators',
-    description: 'Timeline events use different markers based on status: ● completed, ○ current, ◌ upcoming.'
+    title: 'Status Indicators',
+    description: 'Timeline events use different markers based on status.',
+    code: `// Status options: 'completed', 'current', 'upcoming'
+const events = [
+  { id: '1', title: 'Done', status: 'completed' },    // ● green
+  { id: '2', title: 'Active', status: 'current' },    // ○ yellow
+  { id: '3', title: 'Pending', status: 'upcoming' }   // ◌ gray
+];`,
   });
 
-  const statusInfo = document.createElement('div');
-  statusInfo.style.marginBottom = '16px';
-  statusInfo.innerHTML = `
-    <div style="margin-bottom: 8px;"><span style="color: #55FF55;">●</span> Completed - Task finished</div>
-    <div style="margin-bottom: 8px;"><span style="color: #FFFF55;">○</span> Current - Currently active</div>
-    <div><span style="color: #AAAAAA;">◌</span> Upcoming - Not yet started</div>
-  `;
-  statusSection.appendChild(statusInfo);
+  const statusExample = statusSection.querySelector('.dos-demo-section___examples');
+  if (statusExample) {
+    const statusInfo = document.createElement('div');
+    statusInfo.innerHTML = `
+      <div style="margin-bottom: 8px;"><span style="color: #55FF55;">●</span> <strong>Completed</strong> - Task finished</div>
+      <div style="margin-bottom: 8px;"><span style="color: #FFFF55;">○</span> <strong>Current</strong> - Currently active</div>
+      <div><span style="color: #AAAAAA;">◌</span> <strong>Upcoming</strong> - Not yet started</div>
+    `;
+    statusExample.appendChild(statusInfo);
+  }
   content.appendChild(statusSection);
 
   // Section 3: Custom Icons
   const iconsSection = createDemoSection({
-    title: '3. Custom Icons',
-    description: 'Events can display custom icons instead of status markers.'
+    title: 'Custom Icons',
+    description: 'Events can display custom icons instead of status markers.',
+    code: `const events = [
+  { id: '1', title: 'File Created', icon: '📄', status: 'completed' },
+  { id: '2', title: 'Code Written', icon: '💻', status: 'completed' },
+  { id: '3', title: 'Bug Fixed', icon: '🐛', status: 'current' },
+  { id: '4', title: 'Deployed', icon: '🚀', status: 'upcoming' }
+];`,
   });
 
-  const iconEvents: TimelineEvent[] = [
-    { id: '1', title: 'File Created', icon: '📄', timestamp: '01/01/2026', status: 'completed' },
-    { id: '2', title: 'Code Written', icon: '💻', timestamp: '01/05/2026', status: 'completed' },
-    { id: '3', title: 'Bug Fixed', icon: '🐛', timestamp: '01/10/2026', status: 'current' },
-    { id: '4', title: 'Deployed', icon: '🚀', timestamp: '01/15/2026', status: 'upcoming' }
-  ];
-
-  const iconTimeline = createTimeline({ events: iconEvents });
-  iconsSection.appendChild(iconTimeline.element);
+  const iconsExample = iconsSection.querySelector('.dos-demo-section___examples');
+  if (iconsExample) {
+    const iconEvents: TimelineEvent[] = [
+      { id: '1', title: 'File Created', icon: '📄', timestamp: '01/01/2026', status: 'completed' },
+      { id: '2', title: 'Code Written', icon: '💻', timestamp: '01/05/2026', status: 'completed' },
+      { id: '3', title: 'Bug Fixed', icon: '🐛', timestamp: '01/10/2026', status: 'current' },
+      { id: '4', title: 'Deployed', icon: '🚀', timestamp: '01/15/2026', status: 'upcoming' },
+    ];
+    const iconTimeline = createTimeline({ events: iconEvents });
+    iconsExample.appendChild(iconTimeline.element);
+  }
   content.appendChild(iconsSection);
 
   // Section 4: Without Connectors
   const noConnectorSection = createDemoSection({
-    title: '4. Without Connectors',
-    description: 'Timeline can hide connecting lines between events.'
+    title: 'Without Connectors',
+    description: 'Timeline can hide connecting lines between events.',
+    code: `const timeline = createTimeline({
+  events: [...],
+  showConnectors: false
+});`,
   });
 
-  const noConnectorEvents: TimelineEvent[] = [
-    { id: '1', title: 'Event A', timestamp: '10:00 AM', status: 'completed' },
-    { id: '2', title: 'Event B', timestamp: '11:00 AM', status: 'current' },
-    { id: '3', title: 'Event C', timestamp: '12:00 PM', status: 'upcoming' }
-  ];
-
-  const noConnectorTimeline = createTimeline({
-    events: noConnectorEvents,
-    showConnectors: false
-  });
-  noConnectorSection.appendChild(noConnectorTimeline.element);
+  const noConnectorExample = noConnectorSection.querySelector('.dos-demo-section___examples');
+  if (noConnectorExample) {
+    const noConnectorEvents: TimelineEvent[] = [
+      { id: '1', title: 'Event A', timestamp: '10:00 AM', status: 'completed' },
+      { id: '2', title: 'Event B', timestamp: '11:00 AM', status: 'current' },
+      { id: '3', title: 'Event C', timestamp: '12:00 PM', status: 'upcoming' },
+    ];
+    const noConnectorTimeline = createTimeline({
+      events: noConnectorEvents,
+      showConnectors: false,
+    });
+    noConnectorExample.appendChild(noConnectorTimeline.element);
+  }
   content.appendChild(noConnectorSection);
 
   // Section 5: DOS History Timeline
   const dosSection = createDemoSection({
-    title: '5. DOS History',
-    description: 'A timeline of MS-DOS releases.'
+    title: 'DOS History',
+    description: 'A timeline of MS-DOS releases showcasing the component.',
+    code: `const dosHistory = [
+  { id: '1', title: 'MS-DOS 1.0', description: 'Initial release', timestamp: '08/12/1981', status: 'completed' },
+  { id: '2', title: 'MS-DOS 3.0', description: 'Introduced FAT16', timestamp: '08/14/1984', status: 'completed' },
+  // ...more events
+];`,
   });
 
-  const dosHistory: TimelineEvent[] = [
-    { id: '1', title: 'MS-DOS 1.0', description: 'Initial release for IBM PC', timestamp: '08/12/1981', status: 'completed' },
-    { id: '2', title: 'MS-DOS 3.0', description: 'Introduced FAT16', timestamp: '08/14/1984', status: 'completed' },
-    { id: '3', title: 'MS-DOS 5.0', description: 'Added QBASIC and EDIT', timestamp: '06/11/1991', status: 'completed' },
-    { id: '4', title: 'MS-DOS 6.0', description: 'DoubleSpace compression', timestamp: '03/30/1993', status: 'completed' },
-    { id: '5', title: 'Windows 95', description: 'DOS became underlying layer', timestamp: '08/24/1995', status: 'completed' }
-  ];
-
-  const dosTimeline = createTimeline({ events: dosHistory });
-  dosSection.appendChild(dosTimeline.element);
+  const dosExample = dosSection.querySelector('.dos-demo-section___examples');
+  if (dosExample) {
+    const dosHistory: TimelineEvent[] = [
+      { id: '1', title: 'MS-DOS 1.0', description: 'Initial release for IBM PC', timestamp: '08/12/1981', status: 'completed' },
+      { id: '2', title: 'MS-DOS 3.0', description: 'Introduced FAT16', timestamp: '08/14/1984', status: 'completed' },
+      { id: '3', title: 'MS-DOS 5.0', description: 'Added QBASIC and EDIT', timestamp: '06/11/1991', status: 'completed' },
+      { id: '4', title: 'MS-DOS 6.0', description: 'DoubleSpace compression', timestamp: '03/30/1993', status: 'completed' },
+      { id: '5', title: 'Windows 95', description: 'DOS became underlying layer', timestamp: '08/24/1995', status: 'completed' },
+    ];
+    const dosTimeline = createTimeline({ events: dosHistory });
+    dosExample.appendChild(dosTimeline.element);
+  }
   content.appendChild(dosSection);
 
   // Section 6: Instance Methods
   const methodsSection = createDemoSection({
-    title: '6. Instance Methods',
-    description: 'Dynamically add, remove, and update events.'
+    title: 'Instance Methods',
+    description: 'Dynamically add, remove, and update events.',
+    code: `const timeline = createTimeline({ events: [...] });
+
+// Add new event
+timeline.addEvent({
+  id: 'new',
+  title: 'New Event',
+  status: 'upcoming'
+});
+
+// Update event
+timeline.updateEvent('1', { status: 'completed' });
+
+// Remove event
+timeline.removeEvent('1');
+
+// Get all events
+const events = timeline.getEvents();
+
+// Clear all events
+timeline.setEvents([]);`,
   });
 
-  const methodsEvents: TimelineEvent[] = [
-    { id: '1', title: 'Initial Event', status: 'completed' }
-  ];
+  const methodsExample = methodsSection.querySelector('.dos-demo-section___examples');
+  if (methodsExample) {
+    methodsExample.style.display = 'flex';
+    methodsExample.style.flexDirection = 'column';
+    methodsExample.style.gap = '16px';
 
-  const methodsTimeline = createTimeline({ events: methodsEvents });
+    const methodsEvents: TimelineEvent[] = [{ id: '1', title: 'Initial Event', status: 'completed' }];
+    const methodsTimeline = createTimeline({ events: methodsEvents });
 
-  const methodsControls = document.createElement('div');
-  methodsControls.style.display = 'flex';
-  methodsControls.style.gap = '8px';
-  methodsControls.style.flexWrap = 'wrap';
-  methodsControls.style.marginTop = '16px';
+    const methodsControls = document.createElement('div');
+    methodsControls.style.display = 'flex';
+    methodsControls.style.gap = '8px';
+    methodsControls.style.flexWrap = 'wrap';
 
-  let eventCounter = 2;
+    let eventCounter = 2;
 
-  const addEventBtn = createButton({
-    label: '[ Add Event ]',
-    onClick: () => {
-      methodsTimeline.addEvent({
-        id: String(eventCounter),
-        title: `Event ${eventCounter}`,
-        timestamp: new Date().toLocaleTimeString(),
-        status: 'upcoming'
-      });
-      eventCounter++;
-    }
-  });
-
-  const markCurrentBtn = createButton({
-    label: '[ Mark Current ]',
-    onClick: () => {
-      const events = methodsTimeline.getEvents();
-      const lastUpcoming = events.filter(e => e.status === 'upcoming')[0];
-      if (lastUpcoming) {
-        // First, mark all current as completed
-        events.forEach(e => {
-          if (e.status === 'current') {
-            methodsTimeline.updateEvent(e.id, { status: 'completed' });
-          }
+    const addEventBtn = createButton({
+      label: '[ Add Event ]',
+      onClick: () => {
+        methodsTimeline.addEvent({
+          id: String(eventCounter),
+          title: `Event ${eventCounter}`,
+          timestamp: new Date().toLocaleTimeString(),
+          status: 'upcoming',
         });
-        methodsTimeline.updateEvent(lastUpcoming.id, { status: 'current' });
-      }
-    }
-  });
+        eventCounter++;
+      },
+    });
 
-  const clearBtn = createButton({
-    label: '[ Clear All ]',
-    onClick: () => {
-      methodsTimeline.setEvents([]);
-      eventCounter = 1;
-    }
-  });
+    const markCurrentBtn = createButton({
+      label: '[ Mark Current ]',
+      onClick: () => {
+        const events = methodsTimeline.getEvents();
+        const lastUpcoming = events.filter((e) => e.status === 'upcoming')[0];
+        if (lastUpcoming) {
+          events.forEach((e) => {
+            if (e.status === 'current') {
+              methodsTimeline.updateEvent(e.id, { status: 'completed' });
+            }
+          });
+          methodsTimeline.updateEvent(lastUpcoming.id, { status: 'current' });
+        }
+      },
+    });
 
-  methodsControls.appendChild(addEventBtn);
-  methodsControls.appendChild(markCurrentBtn);
-  methodsControls.appendChild(clearBtn);
+    const clearBtn = createButton({
+      label: '[ Clear All ]',
+      onClick: () => {
+        methodsTimeline.setEvents([]);
+        eventCounter = 1;
+      },
+    });
 
-  methodsSection.appendChild(methodsTimeline.element);
-  methodsSection.appendChild(methodsControls);
+    methodsControls.appendChild(addEventBtn);
+    methodsControls.appendChild(markCurrentBtn);
+    methodsControls.appendChild(clearBtn);
+
+    methodsExample.appendChild(methodsTimeline.element);
+    methodsExample.appendChild(methodsControls);
+  }
   content.appendChild(methodsSection);
 
   // Section 7: Custom Date Formatting
   const dateFormatSection = createDemoSection({
-    title: '7. Custom Date Formatting',
-    description: 'Use a custom function to format dates.'
-  });
-
-  const dateEvents: TimelineEvent[] = [
-    { id: '1', title: 'Event 1', timestamp: new Date(2026, 0, 15), status: 'completed' },
-    { id: '2', title: 'Event 2', timestamp: new Date(2026, 1, 20), status: 'current' },
-    { id: '3', title: 'Event 3', timestamp: new Date(2026, 2, 25), status: 'upcoming' }
-  ];
-
-  const dateTimeline = createTimeline({
-    events: dateEvents,
-    formatDate: (date) => {
-      if (date instanceof Date) {
-        return date.toLocaleDateString('en-US', {
-          weekday: 'short',
-          month: 'short',
-          day: 'numeric'
-        });
-      }
-      return date;
+    title: 'Custom Date Formatting',
+    description: 'Use a custom function to format dates.',
+    code: `const timeline = createTimeline({
+  events: [...],
+  formatDate: (date) => {
+    if (date instanceof Date) {
+      return date.toLocaleDateString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric'
+      });
     }
+    return date;
+  }
+});`,
   });
 
-  dateFormatSection.appendChild(dateTimeline.element);
+  const dateFormatExample = dateFormatSection.querySelector('.dos-demo-section___examples');
+  if (dateFormatExample) {
+    const dateEvents: TimelineEvent[] = [
+      { id: '1', title: 'Event 1', timestamp: new Date(2026, 0, 15), status: 'completed' },
+      { id: '2', title: 'Event 2', timestamp: new Date(2026, 1, 20), status: 'current' },
+      { id: '3', title: 'Event 3', timestamp: new Date(2026, 2, 25), status: 'upcoming' },
+    ];
+
+    const dateTimeline = createTimeline({
+      events: dateEvents,
+      formatDate: (date) => {
+        if (date instanceof Date) {
+          return date.toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric',
+          });
+        }
+        return date;
+      },
+    });
+
+    dateFormatExample.appendChild(dateTimeline.element);
+  }
   content.appendChild(dateFormatSection);
 
-  // Section 8: Code Example
-  const codeSection = createDemoSection({
-    title: '8. Code Example',
-    description: 'How to create timelines programmatically.'
-  });
-
-  const codeBlock = document.createElement('pre');
-  codeBlock.className = 'dos-code-block';
-  codeBlock.textContent = `import { createTimeline } from 'dosage';
-import type { TimelineEvent } from 'dosage';
-
-// Define events
-const events: TimelineEvent[] = [
-  {
-    id: '1',
-    title: 'Task Started',
-    description: 'Initial setup completed',
-    timestamp: '01/01/2026',
-    status: 'completed'
-  },
-  {
-    id: '2',
-    title: 'In Progress',
-    description: 'Currently working on this',
-    timestamp: '01/15/2026',
-    status: 'current'
-  },
-  {
-    id: '3',
-    title: 'Future Task',
-    timestamp: '02/01/2026',
-    status: 'upcoming'
-  }
-];
-
-// Create timeline
+  // Section 8: Accessibility
+  const a11ySection = createDemoSection({
+    title: 'Accessibility',
+    description: 'Timeline accessibility features and ARIA support.',
+    code: `// Custom aria-label for the timeline
 const timeline = createTimeline({
-  events,
-  orientation: 'vertical',  // or 'horizontal'
-  showConnectors: true,
-  'aria-label': 'Project timeline'
+  events: [...],
+  'aria-label': 'Project progress timeline'
 });
 
-document.body.appendChild(timeline.element);
-
-// Instance methods
-timeline.addEvent({ id: '4', title: 'New Task', status: 'upcoming' });
-timeline.updateEvent('2', { status: 'completed' });
-timeline.removeEvent('3');
-
-const current = timeline.getCurrentEvent();
-console.log('Current task:', current?.title);`;
-
-  codeSection.appendChild(codeBlock);
-  content.appendChild(codeSection);
-
-  // Section 9: Accessibility
-  const a11ySection = createDemoSection({
-    title: '9. Accessibility',
-    description: 'Timeline accessibility features.'
+// Events use semantic elements:
+// - Container: role="list"
+// - Events: role="listitem"
+// - Timestamps: <time datetime="...">`,
   });
 
-  const a11yList = document.createElement('ul');
-  a11yList.style.marginLeft = '20px';
-  a11yList.innerHTML = `
-    <li>Uses <code>role="list"</code> for the timeline container</li>
-    <li>Each event uses <code>role="listitem"</code></li>
-    <li>Timestamps use semantic <code>&lt;time&gt;</code> elements</li>
-    <li>Date timestamps include <code>datetime</code> attribute for machine readability</li>
-    <li>Custom <code>aria-label</code> can describe the timeline's purpose</li>
-    <li>Status markers provide visual differentiation</li>
-  `;
-
-  a11ySection.appendChild(a11yList);
+  const a11yExample = a11ySection.querySelector('.dos-demo-section___examples');
+  if (a11yExample) {
+    const a11yList = document.createElement('ul');
+    a11yList.style.marginLeft = '20px';
+    a11yList.style.listStyleType = 'disc';
+    a11yList.innerHTML = `
+      <li>Uses <code>role="list"</code> for the timeline container</li>
+      <li>Each event uses <code>role="listitem"</code></li>
+      <li>Timestamps use semantic <code>&lt;time&gt;</code> elements</li>
+      <li>Date timestamps include <code>datetime</code> attribute</li>
+      <li>Custom <code>aria-label</code> can describe the timeline's purpose</li>
+      <li>Status markers provide visual differentiation</li>
+    `;
+    a11yExample.appendChild(a11yList);
+  }
   content.appendChild(a11ySection);
 
   page.appendChild(content);
@@ -3302,352 +3424,427 @@ export function renderEmptyStatePage(): HTMLElement {
 
   // Section 1: Basic Empty State
   const basicSection = createDemoSection({
-    title: '1. Basic Empty State',
-    description: 'A simple empty state with just a title.'
+    title: 'Basic Empty State',
+    description: 'A simple empty state with just a title.',
+    code: `import { createEmptyState } from 'dosage';
+
+const emptyState = createEmptyState({
+  title: 'No data available'
+});
+
+document.body.appendChild(emptyState.element);`,
   });
 
-  const basicEmpty = createEmptyState({
-    title: 'No data available'
-  });
-
-  basicSection.appendChild(basicEmpty.element);
+  const basicExample = basicSection.querySelector('.dos-demo-section___examples');
+  if (basicExample) {
+    const basicEmpty = createEmptyState({
+      title: 'No data available',
+    });
+    basicExample.appendChild(basicEmpty.element);
+  }
   content.appendChild(basicSection);
 
   // Section 2: With Description
   const descSection = createDemoSection({
-    title: '2. With Description',
-    description: 'Empty state with title and description text.'
+    title: 'With Description',
+    description: 'Empty state with title and description text.',
+    code: `const emptyState = createEmptyState({
+  title: 'No files found',
+  description: 'Try adjusting your search terms or check a different folder.'
+});`,
   });
 
-  const descEmpty = createEmptyState({
-    title: 'No files found',
-    description: 'Try adjusting your search terms or check a different folder.'
-  });
-
-  descSection.appendChild(descEmpty.element);
+  const descExample = descSection.querySelector('.dos-demo-section___examples');
+  if (descExample) {
+    const descEmpty = createEmptyState({
+      title: 'No files found',
+      description: 'Try adjusting your search terms or check a different folder.',
+    });
+    descExample.appendChild(descEmpty.element);
+  }
   content.appendChild(descSection);
 
   // Section 3: Preset Icons
   const iconsSection = createDemoSection({
-    title: '3. Preset Icons',
-    description: 'Empty states with built-in ASCII art icons.'
+    title: 'Preset Icons',
+    description: 'Empty states with built-in ASCII art icons.',
+    code: `// Available presets: 'folder', 'search', 'error', 'data', 'file'
+const emptyState = createEmptyState({
+  title: 'No Results',
+  icon: 'search',
+  size: 'small'
+});`,
   });
 
-  const iconGrid = document.createElement('div');
-  iconGrid.style.display = 'grid';
-  iconGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(250px, 1fr))';
-  iconGrid.style.gap = '24px';
+  const iconsExample = iconsSection.querySelector('.dos-demo-section___examples');
+  if (iconsExample) {
+    const iconGrid = document.createElement('div');
+    iconGrid.style.display = 'grid';
+    iconGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(250px, 1fr))';
+    iconGrid.style.gap = '24px';
 
-  const presets: { preset: EmptyStateIconPreset; title: string }[] = [
-    { preset: 'folder', title: 'Empty Folder' },
-    { preset: 'search', title: 'No Results' },
-    { preset: 'error', title: 'Error Occurred' },
-    { preset: 'data', title: 'No Data' },
-    { preset: 'file', title: 'File Not Found' }
-  ];
+    const presets: { preset: EmptyStateIconPreset; title: string }[] = [
+      { preset: 'folder', title: 'Empty Folder' },
+      { preset: 'search', title: 'No Results' },
+      { preset: 'error', title: 'Error Occurred' },
+      { preset: 'data', title: 'No Data' },
+      { preset: 'file', title: 'File Not Found' },
+    ];
 
-  presets.forEach(({ preset, title }) => {
-    const emptyState = createEmptyState({
-      title,
-      icon: preset,
-      size: 'small'
+    presets.forEach(({ preset, title }) => {
+      const emptyState = createEmptyState({
+        title,
+        icon: preset,
+        size: 'small',
+      });
+      emptyState.element.style.border = '1px solid #555';
+      emptyState.element.style.padding = '16px';
+      iconGrid.appendChild(emptyState.element);
     });
-    emptyState.element.style.border = '1px solid #555';
-    emptyState.element.style.padding = '16px';
-    iconGrid.appendChild(emptyState.element);
-  });
 
-  iconsSection.appendChild(iconGrid);
+    iconsExample.appendChild(iconGrid);
+  }
   content.appendChild(iconsSection);
 
   // Section 4: With Action Button
   const actionSection = createDemoSection({
-    title: '4. With Action Button',
-    description: 'Empty state with an actionable button.'
+    title: 'With Action Button',
+    description: 'Empty state with an actionable button.',
+    code: `const actionBtn = createButton({
+  label: '[ Browse Files ]',
+  onClick: () => alert('Browse files clicked!')
+});
+
+const emptyState = createEmptyState({
+  title: 'No files selected',
+  description: 'Select files to upload or browse your computer.',
+  icon: 'folder',
+  action: actionBtn
+});`,
   });
 
-  const actionBtn = createButton({
-    label: '[ Browse Files ]',
-    onClick: () => alert('Browse files clicked!')
-  });
+  const actionExample = actionSection.querySelector('.dos-demo-section___examples');
+  if (actionExample) {
+    const actionBtn = createButton({
+      label: '[ Browse Files ]',
+      onClick: () => alert('Browse files clicked!'),
+    });
 
-  const actionEmpty = createEmptyState({
-    title: 'No files selected',
-    description: 'Select files to upload or browse your computer.',
-    icon: 'folder',
-    action: actionBtn
-  });
-
-  actionSection.appendChild(actionEmpty.element);
+    const actionEmpty = createEmptyState({
+      title: 'No files selected',
+      description: 'Select files to upload or browse your computer.',
+      icon: 'folder',
+      action: actionBtn,
+    });
+    actionExample.appendChild(actionEmpty.element);
+  }
   content.appendChild(actionSection);
 
   // Section 5: Sizes
   const sizesSection = createDemoSection({
-    title: '5. Size Variants',
-    description: 'Empty states in small, medium, and large sizes.'
+    title: 'Size Variants',
+    description: 'Empty states in small, medium, and large sizes.',
+    code: `// Available sizes: 'small', 'medium', 'large'
+const smallEmpty = createEmptyState({
+  title: 'Small Empty State',
+  icon: 'file',
+  size: 'small'
+});
+
+const largeEmpty = createEmptyState({
+  title: 'Large Empty State',
+  icon: 'file',
+  size: 'large'
+});`,
   });
 
-  const sizesWrapper = document.createElement('div');
-  sizesWrapper.style.display = 'flex';
-  sizesWrapper.style.flexDirection = 'column';
-  sizesWrapper.style.gap = '24px';
+  const sizesExample = sizesSection.querySelector('.dos-demo-section___examples');
+  if (sizesExample) {
+    const sizesWrapper = document.createElement('div');
+    sizesWrapper.style.display = 'flex';
+    sizesWrapper.style.flexDirection = 'column';
+    sizesWrapper.style.gap = '24px';
 
-  const sizes: ('small' | 'medium' | 'large')[] = ['small', 'medium', 'large'];
-  sizes.forEach(size => {
-    const sizeLabel = document.createElement('div');
-    sizeLabel.style.color = '#AAAAAA';
-    sizeLabel.textContent = `Size: ${size}`;
-    
-    const emptyState = createEmptyState({
-      title: `${size.charAt(0).toUpperCase() + size.slice(1)} Empty State`,
-      description: 'Description text goes here.',
-      icon: 'file',
-      size
+    const sizes: ('small' | 'medium' | 'large')[] = ['small', 'medium', 'large'];
+    sizes.forEach((size) => {
+      const sizeLabel = document.createElement('div');
+      sizeLabel.style.color = '#AAAAAA';
+      sizeLabel.textContent = `Size: ${size}`;
+
+      const emptyState = createEmptyState({
+        title: `${size.charAt(0).toUpperCase() + size.slice(1)} Empty State`,
+        description: 'Description text goes here.',
+        icon: 'file',
+        size,
+      });
+      emptyState.element.style.border = '1px dashed #555';
+
+      const wrapper = document.createElement('div');
+      wrapper.appendChild(sizeLabel);
+      wrapper.appendChild(emptyState.element);
+      sizesWrapper.appendChild(wrapper);
     });
-    emptyState.element.style.border = '1px dashed #555';
 
-    const wrapper = document.createElement('div');
-    wrapper.appendChild(sizeLabel);
-    wrapper.appendChild(emptyState.element);
-    sizesWrapper.appendChild(wrapper);
-  });
-
-  sizesSection.appendChild(sizesWrapper);
+    sizesExample.appendChild(sizesWrapper);
+  }
   content.appendChild(sizesSection);
 
   // Section 6: Custom ASCII Art
   const customSection = createDemoSection({
-    title: '6. Custom ASCII Art',
-    description: 'Empty state with custom ASCII art icon.'
+    title: 'Custom ASCII Art',
+    description: 'Empty state with custom ASCII art icon.',
+    code: `const customArt = \`
+    ╔═══════════╗
+    ║    404    ║
+    ║ ¯\\_(ツ)_/¯ ║
+    ╚═══════════╝
+\`;
+
+const emptyState = createEmptyState({
+  title: 'Page Not Found',
+  description: 'The page you are looking for does not exist.',
+  icon: customArt
+});`,
   });
 
-  const customArt = `
+  const customExample = customSection.querySelector('.dos-demo-section___examples');
+  if (customExample) {
+    const customArt = `
     ╔═══════════╗
     ║  404  ║
     ║ ¯\\_(ツ)_/¯ ║
     ╚═══════════╝
   `;
 
-  const customEmpty = createEmptyState({
-    title: 'Page Not Found',
-    description: 'The page you are looking for does not exist.',
-    icon: customArt
-  });
-
-  customSection.appendChild(customEmpty.element);
+    const customEmpty = createEmptyState({
+      title: 'Page Not Found',
+      description: 'The page you are looking for does not exist.',
+      icon: customArt,
+    });
+    customExample.appendChild(customEmpty.element);
+  }
   content.appendChild(customSection);
 
   // Section 7: Error State
   const errorSection = createDemoSection({
-    title: '7. Error State',
-    description: 'Empty state for error situations.'
+    title: 'Error State',
+    description: 'Empty state for error situations.',
+    code: `const retryBtn = createButton({
+  label: '[ Retry ]',
+  variant: 'primary',
+  onClick: () => alert('Retrying...')
+});
+
+const errorEmpty = createEmptyState({
+  title: 'Something went wrong',
+  description: 'Unable to load data. Please check your connection.',
+  icon: 'error',
+  action: retryBtn,
+  size: 'large'
+});`,
   });
 
-  const retryBtn = createButton({
-    label: '[ Retry ]',
-    variant: 'primary',
-    onClick: () => alert('Retrying...')
-  });
+  const errorExample = errorSection.querySelector('.dos-demo-section___examples');
+  if (errorExample) {
+    const retryBtn = createButton({
+      label: '[ Retry ]',
+      variant: 'primary',
+      onClick: () => alert('Retrying...'),
+    });
 
-  const errorEmpty = createEmptyState({
-    title: 'Something went wrong',
-    description: 'Unable to load data. Please check your connection and try again.',
-    icon: 'error',
-    action: retryBtn,
-    size: 'large'
-  });
-
-  errorSection.appendChild(errorEmpty.element);
+    const errorEmpty = createEmptyState({
+      title: 'Something went wrong',
+      description: 'Unable to load data. Please check your connection and try again.',
+      icon: 'error',
+      action: retryBtn,
+      size: 'large',
+    });
+    errorExample.appendChild(errorEmpty.element);
+  }
   content.appendChild(errorSection);
 
   // Section 8: Dynamic Empty State
   const dynamicSection = createDemoSection({
-    title: '8. Dynamic Empty State',
-    description: 'Empty state shown dynamically with screen reader announcement.'
+    title: 'Dynamic Empty State',
+    description: 'Empty state shown dynamically with screen reader announcement using role="status" and aria-live.',
+    code: `// Dynamic empty states are announced to screen readers
+const dynamicEmpty = createEmptyState({
+  title: 'Search Complete',
+  description: 'No matching results found.',
+  icon: 'search',
+  dynamic: true  // Adds role="status" and aria-live="polite"
+});`,
   });
 
-  const dynamicContainer = document.createElement('div');
-  dynamicContainer.style.minHeight = '200px';
-  dynamicContainer.style.border = '1px solid #555';
-  dynamicContainer.style.padding = '16px';
+  const dynamicExample = dynamicSection.querySelector('.dos-demo-section___examples');
+  if (dynamicExample) {
+    const dynamicContainer = document.createElement('div');
+    dynamicContainer.style.minHeight = '200px';
+    dynamicContainer.style.border = '1px solid #555';
+    dynamicContainer.style.padding = '16px';
 
-  let isShowing = false;
-  const toggleBtn = createButton({
-    label: '[ Toggle Empty State ]',
-    onClick: () => {
-      isShowing = !isShowing;
-      dynamicContainer.innerHTML = '';
-      
-      if (isShowing) {
-        const dynamicEmpty = createEmptyState({
-          title: 'Search Complete',
-          description: 'No matching results found.',
-          icon: 'search',
-          dynamic: true
-        });
-        dynamicContainer.appendChild(dynamicEmpty.element);
-      } else {
-        dynamicContainer.innerHTML = '<p style="padding: 60px; text-align: center;">Click the button to show empty state</p>';
-      }
-    }
-  });
+    let isShowing = false;
+    const toggleBtn = createButton({
+      label: '[ Toggle Empty State ]',
+      onClick: () => {
+        isShowing = !isShowing;
+        dynamicContainer.innerHTML = '';
 
-  dynamicContainer.innerHTML = '<p style="padding: 60px; text-align: center;">Click the button to show empty state</p>';
-  
-  dynamicSection.appendChild(toggleBtn);
-  dynamicSection.appendChild(document.createElement('br'));
-  dynamicSection.appendChild(document.createElement('br'));
-  dynamicSection.appendChild(dynamicContainer);
+        if (isShowing) {
+          const dynamicEmpty = createEmptyState({
+            title: 'Search Complete',
+            description: 'No matching results found.',
+            icon: 'search',
+            dynamic: true,
+          });
+          dynamicContainer.appendChild(dynamicEmpty.element);
+        } else {
+          dynamicContainer.innerHTML =
+            '<p style="padding: 60px; text-align: center;">Click the button to show empty state</p>';
+        }
+      },
+    });
+
+    dynamicContainer.innerHTML =
+      '<p style="padding: 60px; text-align: center;">Click the button to show empty state</p>';
+
+    dynamicExample.appendChild(toggleBtn);
+    dynamicExample.appendChild(document.createElement('br'));
+    dynamicExample.appendChild(document.createElement('br'));
+    dynamicExample.appendChild(dynamicContainer);
+  }
   content.appendChild(dynamicSection);
 
   // Section 9: Instance Methods
   const methodsSection = createDemoSection({
-    title: '9. Instance Methods',
-    description: 'Dynamically update empty state properties.'
-  });
-
-  const methodsEmpty = createEmptyState({
-    title: 'Initial Title',
-    description: 'Initial description text.',
-    icon: 'folder',
-    size: 'medium'
-  });
-
-  const methodsControls = document.createElement('div');
-  methodsControls.style.display = 'flex';
-  methodsControls.style.gap = '8px';
-  methodsControls.style.flexWrap = 'wrap';
-  methodsControls.style.marginTop = '16px';
-
-  const changeIconBtn = createButton({
-    label: '[ Change Icon ]',
-    onClick: () => {
-      const icons: EmptyStateIconPreset[] = ['folder', 'search', 'error', 'data', 'file'];
-      const currentIndex = icons.indexOf(methodsEmpty.getSize() as unknown as EmptyStateIconPreset);
-      const randomIcon = icons[Math.floor(Math.random() * icons.length)];
-      methodsEmpty.setIcon(randomIcon);
-    }
-  });
-
-  const changeTitleBtn = createButton({
-    label: '[ Change Title ]',
-    onClick: () => {
-      const titles = ['Updated Title', 'New Title', 'Changed!', 'Different Text'];
-      const randomTitle = titles[Math.floor(Math.random() * titles.length)];
-      methodsEmpty.setTitle(randomTitle);
-    }
-  });
-
-  const toggleDescBtn = createButton({
-    label: '[ Toggle Description ]',
-    onClick: () => {
-      if (methodsEmpty.getDescription()) {
-        methodsEmpty.setDescription(undefined);
-      } else {
-        methodsEmpty.setDescription('Description has been restored.');
-      }
-    }
-  });
-
-  const toggleActionBtn = createButton({
-    label: '[ Toggle Action ]',
-    onClick: () => {
-      if (methodsEmpty.getAction()) {
-        methodsEmpty.setAction(undefined);
-      } else {
-        const btn = createButton({ label: '[ Action Button ]' });
-        methodsEmpty.setAction(btn);
-      }
-    }
-  });
-
-  methodsControls.appendChild(changeIconBtn);
-  methodsControls.appendChild(changeTitleBtn);
-  methodsControls.appendChild(toggleDescBtn);
-  methodsControls.appendChild(toggleActionBtn);
-
-  methodsSection.appendChild(methodsEmpty.element);
-  methodsSection.appendChild(methodsControls);
-  content.appendChild(methodsSection);
-
-  // Section 10: Code Example
-  const codeSection = createDemoSection({
-    title: '10. Code Example',
-    description: 'How to create empty states programmatically.'
-  });
-
-  const codeBlock = document.createElement('pre');
-  codeBlock.className = 'dos-code-block';
-  codeBlock.textContent = `import { createEmptyState, createButton } from 'dosage';
-
-// Basic empty state
-const emptyState = createEmptyState({
-  title: 'No data available',
-  description: 'Try adjusting your filters.',
+    title: 'Instance Methods',
+    description: 'Dynamically update empty state properties using instance methods.',
+    code: `const emptyState = createEmptyState({
+  title: 'Initial Title',
+  description: 'Initial description.',
   icon: 'folder',
   size: 'medium'
 });
-document.body.appendChild(emptyState.element);
 
-// With action button
-const button = createButton({
-  label: '[ Browse Files ]',
-  onClick: () => console.log('Browse clicked')
-});
-
-const actionEmpty = createEmptyState({
-  title: 'No files selected',
-  description: 'Select files to continue.',
-  icon: 'file',
-  action: button.element
-});
-
-// Dynamic empty state (announces to screen readers)
-const dynamicEmpty = createEmptyState({
-  title: 'Search Complete',
-  description: 'No results found.',
-  icon: 'search',
-  dynamic: true  // Adds role="status" and aria-live="polite"
-});
-
-// Custom ASCII art icon
-const customEmpty = createEmptyState({
-  title: 'Custom Icon',
-  icon: \`
-    [X]
-   /   \\\\
-  \`
-});
-
-// Instance methods
+// Update properties dynamically
 emptyState.setTitle('New Title');
-emptyState.setDescription('New description');
+emptyState.setDescription('Updated description');
 emptyState.setIcon('error');
 emptyState.setSize('large');
-emptyState.focusAction();  // Focus the action button
-emptyState.destroy();`;
 
-  codeSection.appendChild(codeBlock);
-  content.appendChild(codeSection);
+// Getters
+emptyState.getTitle();       // 'New Title'
+emptyState.getDescription(); // 'Updated description'
+emptyState.getSize();        // 'large'
 
-  // Section 11: Accessibility
-  const a11ySection = createDemoSection({
-    title: '11. Accessibility',
-    description: 'EmptyState accessibility features.'
+// Action management
+emptyState.setAction(buttonElement);
+emptyState.getAction();
+emptyState.focusAction();`,
   });
 
-  const a11yList = document.createElement('ul');
-  a11yList.style.marginLeft = '20px';
-  a11yList.innerHTML = `
-    <li>Icons are hidden from screen readers (<code>aria-hidden="true"</code>)</li>
-    <li>Title and description are read by screen readers</li>
-    <li>Dynamic empty states use <code>role="status"</code> and <code>aria-live="polite"</code></li>
-    <li>Action buttons are focusable and announced</li>
-    <li>Custom <code>aria-label</code> can override default labeling</li>
-    <li><code>focusAction()</code> method helps manage focus programmatically</li>
-  `;
+  const methodsExample = methodsSection.querySelector('.dos-demo-section___examples');
+  if (methodsExample) {
+    const methodsEmpty = createEmptyState({
+      title: 'Initial Title',
+      description: 'Initial description text.',
+      icon: 'folder',
+      size: 'medium',
+    });
 
-  a11ySection.appendChild(a11yList);
+    const methodsControls = document.createElement('div');
+    methodsControls.style.display = 'flex';
+    methodsControls.style.gap = '8px';
+    methodsControls.style.flexWrap = 'wrap';
+    methodsControls.style.marginTop = '16px';
+
+    const changeIconBtn = createButton({
+      label: '[ Change Icon ]',
+      onClick: () => {
+        const icons: EmptyStateIconPreset[] = ['folder', 'search', 'error', 'data', 'file'];
+        const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+        methodsEmpty.setIcon(randomIcon);
+      },
+    });
+
+    const changeTitleBtn = createButton({
+      label: '[ Change Title ]',
+      onClick: () => {
+        const titles = ['Updated Title', 'New Title', 'Changed!', 'Different Text'];
+        const randomTitle = titles[Math.floor(Math.random() * titles.length)];
+        methodsEmpty.setTitle(randomTitle);
+      },
+    });
+
+    const toggleDescBtn = createButton({
+      label: '[ Toggle Description ]',
+      onClick: () => {
+        if (methodsEmpty.getDescription()) {
+          methodsEmpty.setDescription(undefined);
+        } else {
+          methodsEmpty.setDescription('Description has been restored.');
+        }
+      },
+    });
+
+    const toggleActionBtn = createButton({
+      label: '[ Toggle Action ]',
+      onClick: () => {
+        if (methodsEmpty.getAction()) {
+          methodsEmpty.setAction(undefined);
+        } else {
+          const btn = createButton({ label: '[ Action Button ]' });
+          methodsEmpty.setAction(btn);
+        }
+      },
+    });
+
+    methodsControls.appendChild(changeIconBtn);
+    methodsControls.appendChild(changeTitleBtn);
+    methodsControls.appendChild(toggleDescBtn);
+    methodsControls.appendChild(toggleActionBtn);
+
+    methodsExample.appendChild(methodsEmpty.element);
+    methodsExample.appendChild(methodsControls);
+  }
+  content.appendChild(methodsSection);
+
+  // Section 10: Accessibility
+  const a11ySection = createDemoSection({
+    title: 'Accessibility',
+    description: 'EmptyState accessibility features and best practices.',
+    code: `// Accessibility features built into EmptyState:
+// - Icons use aria-hidden="true"
+// - Dynamic states: role="status", aria-live="polite"
+// - Action buttons maintain focus order
+// - Custom aria-label support
+
+const emptyState = createEmptyState({
+  title: 'No Results',
+  description: 'Adjust your search.',
+  icon: 'search',
+  dynamic: true,  // Screen reader announces on appearance
+  ariaLabel: 'Search results empty'  // Custom label
+});
+
+// Programmatic focus management
+emptyState.focusAction();`,
+  });
+
+  const a11yExample = a11ySection.querySelector('.dos-demo-section___examples');
+  if (a11yExample) {
+    const a11yList = document.createElement('ul');
+    a11yList.style.marginLeft = '20px';
+    a11yList.innerHTML = `
+      <li>Icons are hidden from screen readers (<code>aria-hidden="true"</code>)</li>
+      <li>Title and description are read by screen readers</li>
+      <li>Dynamic empty states use <code>role="status"</code> and <code>aria-live="polite"</code></li>
+      <li>Action buttons are focusable and announced</li>
+      <li>Custom <code>aria-label</code> can override default labeling</li>
+      <li><code>focusAction()</code> method helps manage focus programmatically</li>
+    `;
+    a11yExample.appendChild(a11yList);
+  }
   content.appendChild(a11ySection);
 
   page.appendChild(content);

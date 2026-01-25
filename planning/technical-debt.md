@@ -131,27 +131,24 @@ Cursor styling was not included in the original style plan. This was an oversigh
 
 ---
 
-### MenuBar — First Menu Item Incorrectly Highlighted
+### ~~MenuBar — First Menu Item Incorrectly Highlighted~~ ✅ RESOLVED
 
 **Priority:** 🔴 **CRITICAL**
 **Impact:** User experience, interaction fidelity, DOS authenticity
 **Effort:** Medium
+**Status:** ✅ RESOLVED (2026-01-24)
 
 **Description:**
 When expanding a menu in the MenuBar, the first item in the menu often retains a highlight style regardless of what item the user is hovering over or navigating to with the keyboard. This breaks the fundamental interaction model of menu navigation.
 
-**Why it exists:**
-Likely an initialization issue where the first item gets a default focus/highlight state that isn't properly cleared when the user interacts with other items.
-
-**Proposed solution:**
-- Review MenuBar highlight state management
-- Ensure highlight state is exclusively tied to actual hover/focus
-- Only one item should be highlighted at a time
-- Match native DOS menu behavior exactly
-- Test with both mouse and keyboard navigation
+**Resolution:**
+- Fixed MenuBar CSS colors to use proper DOS-style contrast (--dos-color-border background, --dos-color-shadow text)
+- Fixed keyboard navigation to sync focus outline (yellow) with menu highlight (blue) when using ArrowLeft/ArrowRight
+- The `handleDropdownItemKeydown` function now properly calls `openMenu(index, true)` to maintain highlight sync
+- All mouse and keyboard navigation now works correctly with single highlight per menu level
 
 **Added:** 2026-01-24
-**Assignee:** TBD
+**Resolved:** 2026-01-24
 
 ---
 

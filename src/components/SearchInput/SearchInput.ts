@@ -13,6 +13,7 @@ import type {
   SearchInputEventDetail,
   SearchSelectEventDetail,
 } from './SearchInput.types';
+import { createDOSCursor, type DOSCursorInstance } from '../../utils/DOSCursor';
 import './SearchInput.css';
 
 /**
@@ -154,6 +155,17 @@ export function createSearchInput(props: SearchInputProps): SearchInputElement {
   // Assemble container
   container.appendChild(inputWrapper);
   container.appendChild(suggestionsDropdown);
+
+  // Initialize DOS block cursor overlay
+  let cursor: DOSCursorInstance | null = null;
+  if (!initialDisabled) {
+    cursor = createDOSCursor({
+      input,
+      wrapper: inputWrapper,
+      readonly: false,
+      disabled: initialDisabled,
+    });
+  }
 
   /**
    * Build container class string
@@ -693,6 +705,8 @@ export function createSearchInput(props: SearchInputProps): SearchInputElement {
     state.value = value;
     input.value = value;
     updateClearButton();
+    // Update cursor position when value changes programmatically
+    cursor?.updatePosition();
 
     if (onChange) {
       onChange(value);
@@ -751,6 +765,8 @@ export function createSearchInput(props: SearchInputProps): SearchInputElement {
     isDisabled = disabled;
     input.disabled = disabled;
     updateContainerClasses();
+    // Update cursor disabled state
+    cursor?.setDisabled(disabled);
     if (disabled) {
       closeSuggestionsDropdown();
     }
@@ -769,6 +785,10 @@ export function createSearchInput(props: SearchInputProps): SearchInputElement {
     if (debounceTimer !== null) {
       clearTimeout(debounceTimer);
     }
+
+    // Clean up cursor
+    cursor?.destroy();
+    cursor = null;
   };
 
   return container;

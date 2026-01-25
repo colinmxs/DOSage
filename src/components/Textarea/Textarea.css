@@ -56,7 +56,7 @@
   padding: var(--dos-space-sm);
   margin: 0;
   outline: none;
-  caret-color: var(--dos-color-primary);
+  /* Cursor styling handled by global cursor.css */
   resize: vertical;
 }
 

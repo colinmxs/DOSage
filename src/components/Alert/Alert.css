@@ -92,21 +92,21 @@
 
 /* Type Variants */
 
-/* Info (default) */
+/* Info (default) - DOS blue with cyan accent */
 .dos-alert--info {
-  border-color: var(--dos-color-primary);
+  border-color: var(--dos-color-secondary);
   background-color: var(--dos-color-bg-secondary);
-  color: var(--dos-color-text-secondary);
+  color: var(--dos-color-text-primary);
 }
 
 .dos-alert--info .dos-alert__icon {
-  color: var(--dos-color-primary);
+  color: var(--dos-color-secondary);
 }
 
-/* Success */
+/* Success - Darker green background for visibility */
 .dos-alert--success {
   border-color: var(--dos-color-success);
-  background-color: var(--dos-color-bg-primary);
+  background-color: #003300;
   color: var(--dos-color-text-primary);
 }
 
@@ -117,14 +117,14 @@
 .dos-alert--success .dos-alert__dismiss:hover,
 .dos-alert--success .dos-alert__dismiss:focus {
   background-color: var(--dos-color-success);
-  color: var(--dos-color-bg-primary);
+  color: #003300;
   border-color: var(--dos-color-success);
 }
 
-/* Warning */
+/* Warning - Darker yellow/brown background for visibility */
 .dos-alert--warning {
   border-color: var(--dos-color-warning);
-  background-color: var(--dos-color-bg-primary);
+  background-color: #333300;
   color: var(--dos-color-text-primary);
 }
 
@@ -135,14 +135,14 @@
 .dos-alert--warning .dos-alert__dismiss:hover,
 .dos-alert--warning .dos-alert__dismiss:focus {
   background-color: var(--dos-color-warning);
-  color: var(--dos-color-bg-primary);
+  color: #333300;
   border-color: var(--dos-color-warning);
 }
 
-/* Error */
+/* Error - Darker red background for visibility */
 .dos-alert--error {
   border-color: var(--dos-color-error);
-  background-color: var(--dos-color-bg-primary);
+  background-color: #330000;
   color: var(--dos-color-text-primary);
 }
 
@@ -153,7 +153,7 @@
 .dos-alert--error .dos-alert__dismiss:hover,
 .dos-alert--error .dos-alert__dismiss:focus {
   background-color: var(--dos-color-error);
-  color: var(--dos-color-bg-primary);
+  color: #330000;
   border-color: var(--dos-color-error);
 }
 

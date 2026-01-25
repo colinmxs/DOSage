@@ -167,6 +167,64 @@ const input = createTextInput({
   }
   content.appendChild(maxLengthSection);
 
+  // DOS Block Cursor Demo
+  const cursorSection = createDemoSection({
+    title: 'DOS Block Cursor',
+    description:
+      'All text inputs feature an authentic DOS-style blinking block cursor (█). The cursor is rendered as a JavaScript overlay for maximum browser compatibility, blinking at ~530ms matching classic DOS timing.',
+    code: `/* Cursor is automatic! Customize via CSS custom properties: */
+:root {
+  --dos-cursor-color: #FFFF55;        /* Cursor color */
+  --dos-cursor-blink-rate: 530ms;     /* Blink speed */
+  --dos-selection-bg: #FFFFFF;        /* Selection background */
+  --dos-selection-fg: #0000AA;        /* Selection text color */
+}
+
+/* Utility classes available: */
+/* .dos-cursor-none    - Hide cursor */
+/* .dos-cursor-steady  - No blinking */
+/* .dos-cursor-blink   - Force blinking */
+
+/* For custom inputs, use the DOSCursor utility: */
+import { attachDOSCursor } from 'dosage';
+const cursor = attachDOSCursor(inputElement, wrapperElement);`,
+  });
+
+  const cursorExample = cursorSection.querySelector('.dos-demo-section___examples');
+  if (cursorExample) {
+    const cursorDemo = document.createElement('div');
+    cursorDemo.style.display = 'flex';
+    cursorDemo.style.flexDirection = 'column';
+    cursorDemo.style.gap = 'var(--dos-space-md)';
+
+    // Normal input showing cursor
+    const normalInput = createTextInput({
+      label: 'Click to see the DOS block cursor',
+      name: 'cursor-demo',
+      placeholder: 'Focus here and type...',
+    });
+    cursorDemo.appendChild(normalInput);
+
+    // Cursor description
+    const cursorNote = document.createElement('p');
+    cursorNote.style.color = 'var(--dos-color-fg)';
+    cursorNote.style.fontSize = 'var(--dos-font-size-sm)';
+    cursorNote.style.margin = '0';
+    cursorNote.innerHTML = `
+      <strong>Features:</strong><br>
+      █ Authentic block cursor (█) via JS overlay<br>
+      █ ~530ms blink rate (classic DOS timing)<br>
+      █ Works in all modern browsers<br>
+      █ DOS-style inverse selection colors<br>
+      █ Respects prefers-reduced-motion<br>
+      █ Theme-aware cursor colors
+    `;
+    cursorDemo.appendChild(cursorNote);
+
+    cursorExample.appendChild(cursorDemo);
+  }
+  content.appendChild(cursorSection);
+
   page.appendChild(content);
   return page;
 }

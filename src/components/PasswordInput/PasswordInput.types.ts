@@ -127,4 +127,6 @@ export interface PasswordInputElement extends HTMLDivElement {
   toggleVisibility: () => void;
   /** Get current visibility state */
   isVisible: () => boolean;
+  /** Destroy the component and clean up resources */
+  destroy?: () => void;
 }

@@ -12,6 +12,7 @@ import type {
   MultiSelectElement,
   MultiSelectChangeEventDetail,
 } from './MultiSelect.types';
+import { createDOSCursor, type DOSCursorInstance } from '../../utils/DOSCursor';
 import './MultiSelect.css';
 
 /**
@@ -131,8 +132,10 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
 
   // Create search input (if searchable)
   let searchInput: HTMLInputElement | null = null;
+  let searchWrapper: HTMLDivElement | null = null;
+  let cursor: DOSCursorInstance | null = null;
   if (searchable) {
-    const searchWrapper = document.createElement('div');
+    searchWrapper = document.createElement('div');
     searchWrapper.className = 'dos-multiselect__search';
 
     searchInput = document.createElement('input');
@@ -143,6 +146,16 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
 
     searchWrapper.appendChild(searchInput);
     dropdown.appendChild(searchWrapper);
+    
+    // Initialize DOS block cursor overlay for search input
+    if (!initialDisabled) {
+      cursor = createDOSCursor({
+        input: searchInput,
+        wrapper: searchWrapper,
+        readonly: false,
+        disabled: initialDisabled,
+      });
+    }
   }
 
   // Create actions (Select All / Clear All)
@@ -922,6 +935,8 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
     trigger.setAttribute('tabindex', disabled ? '-1' : '0');
     updateContainerClasses();
     renderTags();
+    // Update cursor disabled state
+    cursor?.setDisabled(disabled);
     if (disabled) {
       closeDropdown();
     }
@@ -941,6 +956,9 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
       searchInput.removeEventListener('keydown', handleKeyDown);
     }
     document.removeEventListener('click', handleDocumentClick);
+    // Clean up cursor
+    cursor?.destroy();
+    cursor = null;
   };
 
   return container;

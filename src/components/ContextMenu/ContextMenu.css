@@ -62,11 +62,25 @@
   text-align: left;
 }
 
-.dos-context-menu__item:hover,
+/* Highlight state - managed by JavaScript to handle nested submenus correctly */
+.dos-context-menu__item--highlighted,
 .dos-context-menu__item:focus {
   background-color: var(--dos-color-bg-primary, #0000AA);
   color: var(--dos-color-text-inverse, #FFFFFF);
   outline: none;
+}
+
+/* Hover only applies highlight when not in a submenu context */
+.dos-context-menu__item:hover:not(.dos-context-menu__item--has-open-submenu) {
+  background-color: var(--dos-color-bg-primary, #0000AA);
+  color: var(--dos-color-text-inverse, #FFFFFF);
+  outline: none;
+}
+
+/* When item has an open submenu, keep it highlighted but let children take over */
+.dos-context-menu__item--has-open-submenu {
+  background-color: var(--dos-color-bg-primary, #0000AA);
+  color: var(--dos-color-text-inverse, #FFFFFF);
 }
 
 .dos-context-menu__item:focus-visible {
@@ -109,7 +123,9 @@
   font-size: var(--dos-font-size-sm, 14px);
 }
 
-.dos-context-menu__item:hover .dos-context-menu__shortcut,
+.dos-context-menu__item--highlighted .dos-context-menu__shortcut,
+.dos-context-menu__item:hover:not(.dos-context-menu__item--has-open-submenu) .dos-context-menu__shortcut,
+.dos-context-menu__item--has-open-submenu .dos-context-menu__shortcut,
 .dos-context-menu__item:focus .dos-context-menu__shortcut {
   color: var(--dos-color-text-inverse, #FFFFFF);
 }

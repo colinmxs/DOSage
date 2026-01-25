@@ -331,7 +331,7 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
   }
 
   // Open a menu by index
-  function openMenu(index: number): void {
+  function openMenu(index: number, focusFirstItem = false): void {
     // Close any currently open menu
     if (openMenuIndex !== -1) {
       closeMenuAt(openMenuIndex);
@@ -354,11 +354,19 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
     trigger.setAttribute('aria-expanded', 'true');
     dropdown?.classList.add('dos-menu-bar__dropdown--open');
 
-    // Focus first item in dropdown
-    const firstItem = dropdown?.querySelector(
-      '.dos-menu-bar__dropdown-trigger:not([aria-disabled="true"])'
-    ) as HTMLElement;
-    firstItem?.focus();
+    // Clear any existing highlights on dropdown items
+    dropdown
+      ?.querySelectorAll('.dos-menu-bar__dropdown-trigger--highlighted')
+      .forEach((el) => el.classList.remove('dos-menu-bar__dropdown-trigger--highlighted'));
+
+    // Only focus first item when explicitly requested (keyboard navigation)
+    // This matches native DOS behavior where items aren't highlighted until interacted with
+    if (focusFirstItem) {
+      const firstItem = dropdown?.querySelector(
+        '.dos-menu-bar__dropdown-trigger:not([aria-disabled="true"])'
+      ) as HTMLElement;
+      firstItem?.focus();
+    }
 
     onMenuOpen?.(item.label);
   }
@@ -487,7 +495,8 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
       case ' ':
         e.preventDefault();
         if (items[index] && !items[index].disabled) {
-          openMenu(index);
+          // Focus first item when opening via keyboard for accessibility
+          openMenu(index, true);
         }
         break;
 
@@ -559,10 +568,14 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
           ) as HTMLElement;
           firstSubItem?.focus();
         } else if (openMenuIndex !== -1) {
-          // Move to next menu
+          // Move to next menu and focus first item in dropdown
           const nextIndex = (openMenuIndex + 1) % items.length;
-          closeMenu();
-          openMenu(nextIndex);
+          openMenu(nextIndex, true);
+          // Update tabindex on triggers to match
+          const triggers = menuList.querySelectorAll('.dos-menu-bar__trigger');
+          triggers.forEach((t, i) => {
+            t.setAttribute('tabindex', i === nextIndex ? '0' : '-1');
+          });
         }
         break;
 
@@ -580,10 +593,14 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
             parentTrigger?.focus();
           }
         } else if (openMenuIndex !== -1) {
-          // Move to previous menu
+          // Move to previous menu and focus first item in dropdown
           const prevIndex = (openMenuIndex - 1 + items.length) % items.length;
-          closeMenu();
-          openMenu(prevIndex);
+          openMenu(prevIndex, true);
+          // Update tabindex on triggers to match
+          const triggers = menuList.querySelectorAll('.dos-menu-bar__trigger');
+          triggers.forEach((t, i) => {
+            t.setAttribute('tabindex', i === prevIndex ? '0' : '-1');
+          });
         }
         break;
       }
@@ -649,15 +666,19 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
   // Focus a menu bar item
   function focusMenuBarItem(index: number): void {
     const triggers = menuList.querySelectorAll('.dos-menu-bar__trigger');
-    triggers.forEach((t, i) => {
-      t.setAttribute('tabindex', i === index ? '0' : '-1');
-    });
-    (triggers[index] as HTMLElement)?.focus();
-
-    // If a menu is open, switch to the new menu
+    
+    // If a menu is open, switch to the new menu first
     if (openMenuIndex !== -1) {
       openMenu(index);
     }
+    
+    // Update tabindex for all triggers
+    triggers.forEach((t, i) => {
+      t.setAttribute('tabindex', i === index ? '0' : '-1');
+    });
+    
+    // Focus the trigger
+    (triggers[index] as HTMLElement)?.focus();
   }
 
   // Handle Alt+key shortcuts

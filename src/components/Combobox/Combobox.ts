@@ -13,6 +13,7 @@ import type {
   ComboboxElement,
   ComboboxChangeEventDetail,
 } from './Combobox.types';
+import { createDOSCursor, type DOSCursorInstance } from '../../utils/DOSCursor';
 import './Combobox.css';
 
 /**
@@ -144,6 +145,17 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
   // Assemble container
   container.appendChild(inputWrapper);
   container.appendChild(dropdown);
+
+  // Initialize DOS block cursor overlay
+  let cursor: DOSCursorInstance | null = null;
+  if (!initialDisabled) {
+    cursor = createDOSCursor({
+      input,
+      wrapper: inputWrapper,
+      readonly: false,
+      disabled: initialDisabled,
+    });
+  }
 
   /**
    * Build container class string
@@ -718,6 +730,8 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
       state.inputValue = value;
       input.value = value;
     }
+    // Update cursor position when value changes programmatically
+    cursor?.updatePosition();
   };
 
   container.getSelectedOption = () => {
@@ -756,6 +770,8 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
     input.disabled = disabled;
     toggleButton.disabled = disabled;
     updateContainerClasses();
+    // Update cursor disabled state
+    cursor?.setDisabled(disabled);
     if (disabled) {
       closeDropdown();
     }
@@ -768,6 +784,9 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
     input.removeEventListener('blur', handleBlur);
     toggleButton.removeEventListener('click', handleToggleClick);
     document.removeEventListener('click', handleDocumentClick);
+    // Clean up cursor
+    cursor?.destroy();
+    cursor = null;
   };
 
   return container;

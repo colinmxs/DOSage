@@ -32,11 +32,22 @@
   /* Disabled state color - intentionally lower contrast to indicate unavailable state */
   --dos-color-disabled: #888888;
 
+  /* Warning color - DOS yellow for caution */
+  --dos-color-warning: #FFFF55;
+
   /* Error/danger color - WCAG AA compliant on DOS blue background */
   --dos-color-error: #FF6666;
 
   /* Success color */
   --dos-color-success: #55FF55;
+
+  /* Component backgrounds - solid colors for visibility */
+  --dos-color-bg-primary: #0000AA;
+  --dos-color-bg-secondary: #000055;
+
+  /* Component text colors */
+  --dos-color-text-primary: #FFFFFF;
+  --dos-color-text-secondary: #AAAAAA;
 
   /* ===== TYPOGRAPHY ===== */
   /* Primary font family - DOS-style monospace */

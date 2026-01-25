@@ -271,14 +271,20 @@ export function createContextMenu(props: ContextMenuProps): ContextMenuElement {
    * Opens a submenu
    */
   function openSubmenu(parentItem: HTMLElement, submenu: HTMLElement): void {
-    // Close other submenus at same level
+    // Close other submenus at same level (only direct child submenus of siblings)
     const parent = parentItem.parentElement;
     if (parent) {
-      const otherSubmenus = parent.querySelectorAll('.dos-context-menu__submenu--open');
-      otherSubmenus.forEach((sm) => {
-        if (sm !== submenu) {
-          closeSubmenu(sm as HTMLElement);
+      // Find sibling items with open submenus
+      const siblingItems = Array.from(parent.children).filter(
+        (child) => child !== parentItem && child.classList.contains('dos-context-menu__item')
+      );
+      
+      siblingItems.forEach((sibling) => {
+        const siblingSubmenu = sibling.querySelector(':scope > .dos-context-menu__submenu--open');
+        if (siblingSubmenu) {
+          closeSubmenu(siblingSubmenu as HTMLElement);
         }
+        sibling.classList.remove('dos-context-menu__item--has-open-submenu');
       });
     }
 
@@ -294,6 +300,7 @@ export function createContextMenu(props: ContextMenuProps): ContextMenuElement {
 
     submenu.classList.add('dos-context-menu__submenu--open');
     parentItem.setAttribute('aria-expanded', 'true');
+    parentItem.classList.add('dos-context-menu__item--has-open-submenu');
     activeSubmenuStack.push(submenu);
   }
 
@@ -306,6 +313,7 @@ export function createContextMenu(props: ContextMenuProps): ContextMenuElement {
     const parentItem = submenu.parentElement;
     if (parentItem) {
       parentItem.setAttribute('aria-expanded', 'false');
+      parentItem.classList.remove('dos-context-menu__item--has-open-submenu');
     }
 
     // Close nested submenus
@@ -315,6 +323,7 @@ export function createContextMenu(props: ContextMenuProps): ContextMenuElement {
       const nestedParent = nested.parentElement;
       if (nestedParent) {
         nestedParent.setAttribute('aria-expanded', 'false');
+        nestedParent.classList.remove('dos-context-menu__item--has-open-submenu');
       }
     });
 

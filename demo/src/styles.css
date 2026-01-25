@@ -5,6 +5,7 @@
 /* Import library base styles */
 @import '../../src/themes/base.css';
 @import '../../src/themes/presets/index.css';
+@import '../../src/styles/cursor.css';
 
 /* ===== RESET ===== */
 *,

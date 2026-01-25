@@ -128,4 +128,6 @@ export interface TextareaElement extends HTMLDivElement {
   setDisabled: (disabled: boolean) => void;
   /** Get the underlying textarea element */
   getTextarea: () => HTMLTextAreaElement;
+  /** Destroy the component and clean up resources */
+  destroy?: () => void;
 }

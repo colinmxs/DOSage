@@ -222,6 +222,87 @@ describe('Toast', () => {
       });
     });
 
+    describe('setMessage', () => {
+      it('updates the toast message', () => {
+        const t = createToast({ message: 'Initial message', duration: 0 });
+        container.appendChild(t.element);
+
+        t.setMessage('Updated message');
+        
+        const messageEl = t.element.querySelector('.dos-toast__message');
+        expect(messageEl?.textContent).toBe('Updated message');
+      });
+
+      it('can update message multiple times', () => {
+        const t = createToast({ message: 'First', duration: 0 });
+        container.appendChild(t.element);
+
+        t.setMessage('Second');
+        t.setMessage('Third');
+        
+        const messageEl = t.element.querySelector('.dos-toast__message');
+        expect(messageEl?.textContent).toBe('Third');
+      });
+    });
+
+    describe('setType', () => {
+      it('updates the toast type class', () => {
+        const t = createToast({ message: 'Test', type: 'info', duration: 0 });
+        container.appendChild(t.element);
+        expect(t.element.classList.contains('dos-toast--info')).toBe(true);
+
+        t.setType('error');
+        
+        expect(t.element.classList.contains('dos-toast--error')).toBe(true);
+        expect(t.element.classList.contains('dos-toast--info')).toBe(false);
+      });
+
+      it('updates the icon for each type', () => {
+        const t = createToast({ message: 'Test', type: 'info', duration: 0 });
+        container.appendChild(t.element);
+        const iconEl = t.element.querySelector('.dos-toast__icon') as HTMLElement;
+
+        t.setType('success');
+        expect(iconEl.textContent).toBe('✓');
+
+        t.setType('warning');
+        expect(iconEl.textContent).toBe('!');
+
+        t.setType('error');
+        expect(iconEl.textContent).toBe('✗');
+
+        t.setType('info');
+        expect(iconEl.textContent).toBe('i');
+      });
+
+      it('updates ARIA role based on type', () => {
+        const t = createToast({ message: 'Test', type: 'info', duration: 0 });
+        container.appendChild(t.element);
+        expect(t.element.getAttribute('role')).toBe('status');
+
+        t.setType('error');
+        expect(t.element.getAttribute('role')).toBe('alert');
+
+        t.setType('warning');
+        expect(t.element.getAttribute('role')).toBe('alert');
+
+        t.setType('success');
+        expect(t.element.getAttribute('role')).toBe('status');
+      });
+
+      it('updates aria-live based on type', () => {
+        const t = createToast({ message: 'Test', type: 'info', duration: 0 });
+        container.appendChild(t.element);
+        expect(t.element.getAttribute('aria-live')).toBe('polite');
+
+        t.setType('error');
+        expect(t.element.getAttribute('aria-live')).toBe('assertive');
+
+        t.setType('success');
+        expect(t.element.getAttribute('aria-live')).toBe('polite');
+      });
+    });
+
     describe('accessibility', () => {
       it('has role="status" for info type', () => {
         const t = createToast({ message: 'Test', type: 'info' });

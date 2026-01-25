@@ -129,4 +129,6 @@ export interface TextInputElement extends HTMLDivElement {
   setDisabled: (disabled: boolean) => void;
   /** Get the underlying input element */
   getInput: () => HTMLInputElement;
+  /** Destroy the component and clean up resources */
+  destroy?: () => void;
 }

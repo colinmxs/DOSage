@@ -803,4 +803,96 @@ describe('MenuBar', () => {
       expect(menuBar.getOpenMenu()).toBe(null);
     });
   });
+
+  describe('highlight state management', () => {
+    it('does not highlight first dropdown item when menu opens via click', () => {
+      const menuBar = createMenuBar({ items: basicItems });
+      container.appendChild(menuBar);
+
+      // Click to open menu
+      const trigger = menuBar.querySelector('.dos-menu-bar__trigger') as HTMLButtonElement;
+      trigger.click();
+
+      // No dropdown items should be highlighted (focused)
+      const highlightedItems = menuBar.querySelectorAll('.dos-menu-bar__dropdown-trigger--highlighted');
+      expect(highlightedItems.length).toBe(0);
+
+      // The first dropdown item should NOT have focus since we clicked (mouse interaction)
+      // Focus should remain on the trigger or be neutral
+      const dropdown = menuBar.querySelector('.dos-menu-bar__dropdown--open');
+      expect(dropdown).toBeTruthy();
+    });
+
+    it('focuses first dropdown item when menu opens via keyboard', () => {
+      const menuBar = createMenuBar({ items: basicItems });
+      container.appendChild(menuBar);
+
+      const trigger = menuBar.querySelector('.dos-menu-bar__trigger') as HTMLButtonElement;
+      trigger.focus();
+
+      // Open via keyboard (ArrowDown)
+      trigger.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true })
+      );
+
+      // Menu should be open
+      expect(menuBar.getOpenMenu()).toBe('File');
+
+      // First item should be focused for keyboard accessibility
+      const firstDropdownItem = menuBar.querySelector(
+        '.dos-menu-bar__dropdown-trigger:not([aria-disabled="true"])'
+      ) as HTMLElement;
+      expect(document.activeElement).toBe(firstDropdownItem);
+    });
+
+    it('only highlights one dropdown item at a time on hover', () => {
+      const menuBar = createMenuBar({ items: basicItems });
+      container.appendChild(menuBar);
+
+      // Open menu
+      const trigger = menuBar.querySelector('.dos-menu-bar__trigger') as HTMLButtonElement;
+      trigger.click();
+
+      const dropdownItems = menuBar.querySelectorAll('.dos-menu-bar__dropdown-trigger');
+
+      // Hover over first item
+      dropdownItems[0].dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+      expect(dropdownItems[0].classList.contains('dos-menu-bar__dropdown-trigger--highlighted')).toBe(true);
+
+      // Hover over second item
+      dropdownItems[1].dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+      expect(dropdownItems[0].classList.contains('dos-menu-bar__dropdown-trigger--highlighted')).toBe(false);
+      expect(dropdownItems[1].classList.contains('dos-menu-bar__dropdown-trigger--highlighted')).toBe(true);
+
+      // Hover over third item
+      dropdownItems[2].dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+      expect(dropdownItems[1].classList.contains('dos-menu-bar__dropdown-trigger--highlighted')).toBe(false);
+      expect(dropdownItems[2].classList.contains('dos-menu-bar__dropdown-trigger--highlighted')).toBe(true);
+
+      // Only one item highlighted at a time
+      const allHighlighted = menuBar.querySelectorAll('.dos-menu-bar__dropdown-trigger--highlighted');
+      expect(allHighlighted.length).toBe(1);
+    });
+
+    it('clears highlight when menu switches to different menu bar item', () => {
+      const menuBar = createMenuBar({ items: basicItems });
+      container.appendChild(menuBar);
+
+      // Open File menu
+      const triggers = menuBar.querySelectorAll('.dos-menu-bar__trigger');
+      (triggers[0] as HTMLElement).click();
+
+      // Hover over first dropdown item to highlight it
+      const fileDropdownItems = menuBar.querySelectorAll('.dos-menu-bar__dropdown-trigger');
+      fileDropdownItems[0].dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+
+      // Switch to Edit menu
+      (triggers[1] as HTMLElement).dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+
+      // The new dropdown should have no highlighted items
+      const editDropdown = menuBar.querySelectorAll('.dos-menu-bar__item')[1].querySelector('.dos-menu-bar__dropdown');
+      const highlightedInEdit = editDropdown?.querySelectorAll('.dos-menu-bar__dropdown-trigger--highlighted');
+      expect(highlightedInEdit?.length).toBe(0);
+    });
+  });
 });

@@ -14,6 +14,7 @@ import type {
   CommandPaletteOpenEventDetail,
   CommandPaletteExecuteEventDetail,
 } from './CommandPalette.types';
+import { createDOSCursor, type DOSCursorInstance } from '../../utils/DOSCursor';
 import './CommandPalette.css';
 
 /**
@@ -132,6 +133,15 @@ export function createCommandPalette(props: CommandPaletteProps): CommandPalette
   // Assemble container
   container.appendChild(overlay);
   container.appendChild(modal);
+
+  // Initialize DOS block cursor overlay
+  let cursor: DOSCursorInstance | null = null;
+  cursor = createDOSCursor({
+    input,
+    wrapper: inputContainer,
+    readonly: false,
+    disabled: false,
+  });
 
   /**
    * Build container class string
@@ -734,6 +744,9 @@ export function createCommandPalette(props: CommandPaletteProps): CommandPalette
     input.removeEventListener('input', handleInput);
     input.removeEventListener('keydown', handleKeyDown);
     overlay.removeEventListener('click', handleOverlayClick);
+    // Clean up cursor
+    cursor?.destroy();
+    cursor = null;
   };
 
   return container;

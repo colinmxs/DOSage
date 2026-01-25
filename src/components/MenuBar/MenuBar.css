@@ -11,8 +11,8 @@
   align-items: center;
   font-family: var(--dos-font-family, 'Perfect DOS VGA 437', 'Consolas', monospace);
   font-size: var(--dos-font-size, 16px);
-  background-color: var(--dos-color-bg-secondary, #aaaaaa);
-  color: var(--dos-color-bg, #0000aa);
+  background-color: var(--dos-color-border, #aaaaaa);
+  color: var(--dos-color-shadow, #000000);
   width: 100%;
   min-height: 1.75em;
   user-select: none;
@@ -67,7 +67,7 @@
 
 /* Disabled menu trigger */
 .dos-menu-bar__trigger--disabled {
-  color: var(--dos-color-disabled, #666666);
+  color: var(--dos-color-disabled, #555555);
   cursor: not-allowed;
 }
 
@@ -83,9 +83,9 @@
   left: 0;
   z-index: 1000;
   min-width: 200px;
-  background-color: var(--dos-color-bg-secondary, #aaaaaa);
-  color: var(--dos-color-bg, #0000aa);
-  border: 2px solid var(--dos-color-border, #000000);
+  background-color: var(--dos-color-border, #aaaaaa);
+  color: var(--dos-color-shadow, #000000);
+  border: 2px solid var(--dos-color-shadow, #000000);
   box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
   list-style: none;
   margin: 0;
@@ -134,7 +134,7 @@
 
 /* Disabled dropdown item */
 .dos-menu-bar__dropdown-trigger--disabled {
-  color: var(--dos-color-disabled, #666666);
+  color: var(--dos-color-disabled, #555555);
   cursor: not-allowed;
 }
 
@@ -157,7 +157,7 @@
 
 /* Dropdown Shortcut */
 .dos-menu-bar__dropdown-shortcut {
-  color: var(--dos-color-secondary-text, #555555);
+  color: var(--dos-color-disabled, #555555);
   margin-left: var(--dos-space-md, 16px);
   text-align: right;
   flex-shrink: 0;

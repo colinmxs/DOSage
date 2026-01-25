@@ -183,6 +183,30 @@ export function createToast(props: ToastProps): ToastInstance {
   }
 
   /**
+   * Update the toast message
+   */
+  function setMessage(newMessage: string): void {
+    messageEl.textContent = newMessage;
+  }
+
+  /**
+   * Update the toast type
+   */
+  function setType(newType: ToastProps['type']): void {
+    const validType = newType || 'info';
+    // Update class
+    toastEl.className = toastEl.className.replace(
+      /dos-toast--(?:info|success|warning|error)/,
+      `dos-toast--${validType}`
+    );
+    // Update icon
+    iconEl.textContent = TOAST_ICONS[validType];
+    // Update ARIA role based on severity
+    toastEl.setAttribute('role', validType === 'error' || validType === 'warning' ? 'alert' : 'status');
+    toastEl.setAttribute('aria-live', validType === 'error' || validType === 'warning' ? 'assertive' : 'polite');
+  }
+
+  /**
    * Remove the toast from DOM and clean up
    */
   function destroy(): void {
@@ -207,6 +231,8 @@ export function createToast(props: ToastProps): ToastInstance {
     pause,
     resume,
     destroy,
+    setMessage,
+    setType,
   };
 }
 

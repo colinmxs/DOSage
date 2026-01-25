@@ -6,6 +6,7 @@
  */
 
 import type { PasswordInputProps, PasswordInputElement } from './PasswordInput.types';
+import { createDOSCursor, type DOSCursorInstance } from '../../utils/DOSCursor';
 import './PasswordInput.css';
 
 // Unique ID counter for input-label association
@@ -177,6 +178,17 @@ export function createPasswordInput(props: PasswordInputProps): PasswordInputEle
 
   wrapper.appendChild(inputWrapper);
 
+  // Initialize DOS block cursor overlay
+  let cursor: DOSCursorInstance | null = null;
+  if (!disabled) {
+    cursor = createDOSCursor({
+      input,
+      wrapper: inputWrapper,
+      readonly: false,
+      disabled,
+    });
+  }
+
   // Create error message if provided as string
   let errorElement: HTMLDivElement | null = null;
   if (typeof error === 'string' && error) {
@@ -189,6 +201,8 @@ export function createPasswordInput(props: PasswordInputProps): PasswordInputEle
 
   wrapper.setValue = (newValue: string) => {
     input.value = newValue;
+    // Update cursor position when value changes programmatically
+    cursor?.updatePosition();
   };
 
   wrapper.setError = (newError: string | boolean | undefined) => {
@@ -230,6 +244,8 @@ export function createPasswordInput(props: PasswordInputProps): PasswordInputEle
     if (toggleButton) {
       toggleButton.disabled = newDisabled;
     }
+    // Update cursor disabled state
+    cursor?.setDisabled(newDisabled);
   };
 
   wrapper.getInput = () => input;
@@ -243,6 +259,12 @@ export function createPasswordInput(props: PasswordInputProps): PasswordInputEle
   };
 
   wrapper.isVisible = () => isPasswordVisible;
+
+  // Add destroy method for cleanup
+  (wrapper as PasswordInputElement & { destroy: () => void }).destroy = () => {
+    cursor?.destroy();
+    cursor = null;
+  };
 
   return wrapper;
 }

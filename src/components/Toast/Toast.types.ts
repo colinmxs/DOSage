@@ -137,6 +137,16 @@ export interface ToastInstance {
    * Remove the toast from DOM and clean up
    */
   destroy: () => void;
+
+  /**
+   * Update the toast message
+   */
+  setMessage: (message: string) => void;
+
+  /**
+   * Update the toast type
+   */
+  setType: (type: ToastType) => void;
 }
 
 /**
