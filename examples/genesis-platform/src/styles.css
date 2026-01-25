@@ -1,0 +1,13 @@
+/* Import DOSage library styles */
+@import '../../../src/themes/base.css';
+@import '../../../src/themes/presets/index.css';
+@import '../../../src/styles/cursor.css';
+
+/* App-specific styles */
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
