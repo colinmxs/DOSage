@@ -764,8 +764,8 @@ export function createTagInput(props: TagInputProps): TagInputElement {
           event.preventDefault();
           if (initialSuggestions.length > 0) {
             filterStaticSuggestions(value);
-            // Highlight first suggestion when opening with ArrowDown
-            if (state.suggestionsOpen && state.suggestions.length > 0) {
+            // Highlight first suggestion if suggestions opened successfully
+            if (state.suggestions.length > 0) {
               state.highlightedSuggestionIndex = 0;
               updateSuggestionHighlight();
             }
@@ -787,8 +787,8 @@ export function createTagInput(props: TagInputProps): TagInputElement {
           event.preventDefault();
           if (initialSuggestions.length > 0) {
             filterStaticSuggestions(value);
-            // Highlight last suggestion when opening with ArrowUp
-            if (state.suggestionsOpen && state.suggestions.length > 0) {
+            // Highlight last suggestion if suggestions opened successfully
+            if (state.suggestions.length > 0) {
               state.highlightedSuggestionIndex = state.suggestions.length - 1;
               updateSuggestionHighlight();
             }
