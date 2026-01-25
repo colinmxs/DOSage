@@ -2,7 +2,9 @@
 
 > A TypeScript component library recreating DOS-era interfaces for modern web applications.
 
+[![CI Status](https://github.com/colinmxs/DOSage/actions/workflows/ci.yml/badge.svg)](https://github.com/colinmxs/DOSage/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/dosage.svg)](https://www.npmjs.com/package/dosage)
+[![npm downloads](https://img.shields.io/npm/dm/dosage.svg)](https://www.npmjs.com/package/dosage)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ```

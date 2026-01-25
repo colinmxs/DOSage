@@ -38,7 +38,10 @@
     "format": "prettier --write \"src/**/*.{ts,css}\" \"tests/**/*.ts\"",
     "typecheck": "tsc --noEmit",
     "docs": "typedoc",
-    "docs:watch": "typedoc --watch"
+    "docs:watch": "typedoc --watch",
+    "prepublishOnly": "npm run build && npm run test",
+    "version": "npm run build && git add -A",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [
     "dos",
@@ -51,16 +54,23 @@
     "nostalgic",
     "vintage"
   ],
-  "author": "",
+  "author": {
+    "name": "colinmxs",
+    "email": "the.sbmt.api@gmail.com",
+    "url": "https://github.com/colinmxs/DOSage"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/colinmxs/DOSage.git"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/colinmxs/DOSage/issues"
   },
-  "homepage": "",
+  "homepage": "https://github.com/colinmxs/DOSage",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
