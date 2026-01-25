@@ -154,6 +154,8 @@ export function createProgressBar(props: ProgressBarProps = {}): ProgressBarInst
       element.setAttribute('aria-valuetext', valueFormat(currentValue, currentMax));
 
       // Update fill width
+      // Use CSS custom property so boxed style can adjust for brackets
+      fill.style.setProperty('--progress-percentage', `${Math.min(100, Math.max(0, percentage))}`);
       fill.style.width = `${Math.min(100, Math.max(0, percentage))}%`;
 
       if (valueElement) {

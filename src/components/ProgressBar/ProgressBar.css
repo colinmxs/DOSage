@@ -97,9 +97,15 @@
 }
 
 /* Boxed style: [████████        ] */
+.dos-progress-bar--boxed {
+  /* Scale factor for boxed style: inner space (20ch) / total width (22ch) */
+  --boxed-scale-factor: 0.909090909;
+}
+
 .dos-progress-bar--boxed .dos-progress-bar__track {
   background-color: transparent;
   border: none;
+  width: 22ch; /* Total width including brackets */
 }
 
 .dos-progress-bar--boxed .dos-progress-bar__track::before {
@@ -114,7 +120,14 @@
 .dos-progress-bar--boxed .dos-progress-bar__fill {
   background-color: transparent;
   color: var(--dos-color-primary, #5555ff);
-  margin-left: 1ch;
+  margin-left: 1ch; /* Offset for opening bracket */
+  /* 
+   * Adjust width to scale against inner 20ch space (not full 22ch).
+   * Formula: percentage × (20/22) = percentage × --boxed-scale-factor
+   * This ensures 60% shows 12 blocks (60% of 20ch), not 13.2 blocks (60% of 22ch).
+   * The !important is necessary to override the inline width style set by TypeScript.
+   */
+  width: calc(var(--progress-percentage, 0) * var(--boxed-scale-factor) * 1%) !important;
 }
 
 .dos-progress-bar--boxed .dos-progress-bar__fill::before {
