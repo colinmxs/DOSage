@@ -123,39 +123,7 @@
 /* Note: Content is set via JavaScript textContent, not ::before pseudo-elements */
 
 /* Without lines - simpler toggle */
-.dos-tree-view--no-lines .dos-tree-view___toggle--collapsed::before {
-  content: '►';
-}
-
-.dos-tree-view--no-lines .dos-tree-view___toggle--expanded::before {
-  content: '▼';
-}
-
-/* Icon variants */
-.dos-tree-view___icon--folder::before {
-  content: '📁';
-}
-
-.dos-tree-view___icon--folder-open::before {
-  content: '📂';
-}
-
-.dos-tree-view___icon--file::before {
-  content: '📄';
-}
-
-/* Simple ASCII icons (default) */
-.dos-tree-view--ascii-icons .dos-tree-view___icon--folder::before {
-  content: '[■]';
-}
-
-.dos-tree-view--ascii-icons .dos-tree-view___icon--folder-open::before {
-  content: '[□]';
-}
-
-.dos-tree-view--ascii-icons .dos-tree-view___icon--file::before {
-  content: '[ ]';
-}
+/* Note: Icons can be customized via folderIconClosed/folderIconOpen props */
 
 /* Line characters: ├── └── │    */
 .dos-tree-view___line-mid {
