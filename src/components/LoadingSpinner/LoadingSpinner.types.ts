@@ -53,6 +53,14 @@ export interface LoadingSpinnerProps {
    * Additional CSS class names
    */
   className?: string;
+
+  /**
+   * Color for the spinner
+   * - 'inherit': Inherit color from parent (recommended for buttons)
+   * - Custom CSS color value (e.g., '#ffffff', 'rgb(255, 255, 255)')
+   * @default undefined (uses --dos-color-primary)
+   */
+  color?: string;
 }
 
 /**

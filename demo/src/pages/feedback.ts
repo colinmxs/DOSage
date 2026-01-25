@@ -3152,9 +3152,12 @@ spinner.destroy();`,
   const contextSection = createDemoSection({
     title: 'In Context',
     description: 'Examples of spinners used in common UI patterns.',
-    code: `// With button loading state
+    code: `// With button loading state - use inherit for visibility
 button.disabled = true;
-const spinner = createLoadingSpinner({ size: 'small' });
+const spinner = createLoadingSpinner({ 
+  size: 'small',
+  color: 'inherit' // Inherits button text color
+});
 button.prepend(spinner.element);
 
 // Inline loading indicator
@@ -3187,7 +3190,7 @@ button.prepend(spinner.element);
       if (isLoading) return;
 
       isLoading = true;
-      btnSpinner = createLoadingSpinner({ size: 'small' });
+      btnSpinner = createLoadingSpinner({ size: 'small', color: 'inherit' });
       pageSpinners.push(btnSpinner);
       loadingBtn.prepend(btnSpinner.element);
       loadingBtn.querySelector('.dos-button__label')!.textContent = 'Loading...';
@@ -3232,6 +3235,36 @@ button.prepend(spinner.element);
     inlineExample.appendChild(text2);
 
     contextExample.appendChild(inlineExample);
+
+    // Button variants example
+    const buttonVariantsLabel = document.createElement('div');
+    buttonVariantsLabel.style.marginTop = 'var(--dos-space-md)';
+    buttonVariantsLabel.innerHTML = '<strong>Button Variants with Spinners:</strong>';
+    contextExample.appendChild(buttonVariantsLabel);
+
+    const buttonVariantsContainer = document.createElement('div');
+    buttonVariantsContainer.style.display = 'flex';
+    buttonVariantsContainer.style.flexWrap = 'wrap';
+    buttonVariantsContainer.style.gap = 'var(--dos-space-sm)';
+
+    const variants = ['primary', 'secondary', 'danger', 'ghost'] as const;
+    variants.forEach((variant) => {
+      const btn = createButton({
+        label: 'Loading',
+        variant: variant,
+      });
+      btn.style.display = 'inline-flex';
+      btn.style.alignItems = 'center';
+      btn.style.gap = 'var(--dos-space-xs)';
+
+      const spinner = createLoadingSpinner({ size: 'small', color: 'inherit' });
+      pageSpinners.push(spinner);
+      btn.prepend(spinner.element);
+
+      buttonVariantsContainer.appendChild(btn);
+    });
+
+    contextExample.appendChild(buttonVariantsContainer);
   }
   content.appendChild(contextSection);
 
