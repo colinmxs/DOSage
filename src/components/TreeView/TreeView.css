@@ -120,17 +120,7 @@
 }
 
 /* Expansion states */
-.dos-tree-view___toggle--collapsed::before {
-  content: '[+]';
-}
-
-.dos-tree-view___toggle--expanded::before {
-  content: '[-]';
-}
-
-.dos-tree-view___toggle--leaf::before {
-  content: '   ';
-}
+/* Note: Content is set via JavaScript textContent, not ::before pseudo-elements */
 
 /* Without lines - simpler toggle */
 .dos-tree-view--no-lines .dos-tree-view___toggle--collapsed::before {
