@@ -94,10 +94,34 @@
 .dos-sidebar__section-content {
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  max-height: 300px;
+  
+  /* Firefox scrollbar styling */
+  scrollbar-width: thin;
+  scrollbar-color: var(--dos-color-border, #ffffff) var(--dos-color-bg-secondary, #000080);
 }
 
 .dos-sidebar__section--collapsed .dos-sidebar__section-content {
   display: none;
+}
+
+/* Scrollbar styling for section content */
+.dos-sidebar__section-content::-webkit-scrollbar {
+  width: 12px;
+}
+
+.dos-sidebar__section-content::-webkit-scrollbar-track {
+  background: var(--dos-color-bg-secondary, #000080);
+  border-left: 1px solid var(--dos-color-border, #ffffff);
+}
+
+.dos-sidebar__section-content::-webkit-scrollbar-thumb {
+  background: var(--dos-color-border, #ffffff);
+}
+
+.dos-sidebar__section-content::-webkit-scrollbar-thumb:hover {
+  background: var(--dos-color-text-highlight, #ffff55);
 }
 
 /* Individual sidebar item */
