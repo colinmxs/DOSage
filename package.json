@@ -39,6 +39,11 @@
     "typecheck": "tsc --noEmit",
     "docs": "typedoc",
     "docs:watch": "typedoc --watch",
+    "mcp:install": "cd mcp-server && npm install",
+    "mcp:build": "cd mcp-server && npm run build",
+    "mcp:server": "node mcp-server/dist/index.js",
+    "mcp:start": "npm run docs && npm run mcp:build && npm run mcp:server",
+    "mcp:setup": "npm run docs && npm run mcp:install && npm run mcp:build",
     "prepublishOnly": "npm run build && npm run test",
     "version": "npm run build && git add -A",
     "postversion": "git push && git push --tags"
