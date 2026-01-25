@@ -1,6 +1,6 @@
 /**
  * Genesis AI - Header Component
- * Top menu bar with File, Edit, View, Help menus
+ * Title bar + full-width menu bar
  */
 
 import {
@@ -137,37 +137,45 @@ export function createHeader(props: HeaderProps): HeaderInstance {
     ],
   });
 
-  // Create the header container with logo on the right
+  // Create the main header container (vertical stack)
   const header = createBox({
-    display: 'flex',
     className: 'genesis-header',
   });
-
-  // Style the header for flex layout
   header.style.cssText = `
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid currentColor;
+    flex-direction: column;
+    flex-shrink: 0;
   `;
 
-  // Menu bar on the left
-  const menuWrapper = createBox({});
-  menuWrapper.appendChild(menuBar);
+  // Title bar at the top with app name right-aligned
+  const titleBar = createBox({});
+  titleBar.style.cssText = `
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 2px 8px;
+    background-color: var(--dos-color-shadow);
+    border-bottom: 1px solid var(--dos-color-border);
+  `;
 
-  // Logo on the right
-  const logoWrapper = createBox({
-    padding: 'sm',
-  });
-  const logoText = createText({
-    children: `[${APP_NAME}]`,
+  const titleText = createText({
+    children: `█ ${APP_NAME} █`,
     weight: 'bold',
     size: 'sm',
   });
-  logoWrapper.appendChild(logoText);
+  titleBar.appendChild(titleText);
 
+  // Menu bar wrapper - full width
+  const menuWrapper = createBox({});
+  menuWrapper.style.cssText = `
+    border-bottom: 1px solid var(--dos-color-border);
+  `;
+  menuBar.style.width = '100%';
+  menuWrapper.appendChild(menuBar);
+
+  // Assemble: title bar on top, menu bar below
+  header.appendChild(titleBar);
   header.appendChild(menuWrapper);
-  header.appendChild(logoWrapper);
 
   return {
     element: header,

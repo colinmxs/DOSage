@@ -18,4 +18,13 @@
   --dos-color-disabled: #664400;
   --dos-color-error: #FF4400;
   --dos-color-success: #88CC00;
+
+  /* Selection & interactive states */
+  --dos-color-selection: #332200;
+  --dos-color-selection-hover: #443300;
+  --dos-color-bg-hover: #2A1800;
+  --dos-color-bg-focus: #3A2500;
+  --dos-color-focus: #FFCC00;
+  --dos-color-fg-secondary: #CC9933;
+  --dos-color-border-subtle: #4D3800;
 }

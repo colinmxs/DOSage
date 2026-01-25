@@ -26,6 +26,21 @@
   /* Highlight/selection color */
   --dos-color-highlight: #FFFFFF;
 
+  /* Selection background - for selected items in lists, etc. */
+  --dos-color-selection: #0000CC;
+  --dos-color-selection-hover: #0000DD;
+
+  /* Interactive state colors */
+  --dos-color-bg-hover: #000088;
+  --dos-color-bg-focus: #0000BB;
+  --dos-color-focus: #FFFF55;
+
+  /* Secondary foreground - dimmer text */
+  --dos-color-fg-secondary: #CCCCCC;
+
+  /* Subtle border - for dividers within components */
+  --dos-color-border-subtle: #000066;
+
   /* Shadow color */
   --dos-color-shadow: #000000;
 
