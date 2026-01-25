@@ -4,6 +4,11 @@
  * @packageDocumentation
  */
 
+// Import theme CSS - automatically loads theme system styles
+import './themes/base.css';
+import './themes/presets/index.css';
+import './styles/cursor.css';
+
 // Core exports (will be added as components are implemented)
 // export * from './core';
 

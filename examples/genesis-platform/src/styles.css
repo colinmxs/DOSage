@@ -1,7 +1,4 @@
-/* Import DOSage library styles */
-@import '../../../src/themes/base.css';
-@import '../../../src/themes/presets/index.css';
-@import '../../../src/styles/cursor.css';
+/* Theme CSS is now auto-loaded by the library */
 
 /* App-specific styles */
 #app {
