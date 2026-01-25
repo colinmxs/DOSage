@@ -6,16 +6,25 @@
  * Foreground: Warm amber (#FFB000)
  */
 
-[data-dos-theme="amber"] {
+[data-dos-theme='amber'] {
   /* Colors */
-  --dos-color-bg: #1A1000;
-  --dos-color-fg: #FFB000;
-  --dos-color-primary: #FFCC00;
-  --dos-color-secondary: #CC8800;
+  --dos-color-bg: #1a1000;
+  --dos-color-fg: #ffb000;
+  --dos-color-primary: #ffcc00;
+  --dos-color-secondary: #cc8800;
   --dos-color-border: #805800;
-  --dos-color-highlight: #FFDD44;
-  --dos-color-shadow: #0D0800;
+  --dos-color-highlight: #ffdd44;
+  --dos-color-shadow: #0d0800;
   --dos-color-disabled: #664400;
-  --dos-color-error: #FF4400;
-  --dos-color-success: #88CC00;
+  --dos-color-error: #ff4400;
+  --dos-color-success: #88cc00;
+
+  /* Interactive states */
+  --dos-color-selection: #332200;
+  --dos-color-selection-hover: #442800;
+  --dos-color-bg-hover: #261800;
+  --dos-color-bg-focus: #2a1a00;
+  --dos-color-focus: #ffcc00;
+  --dos-color-fg-secondary: #dd9900;
+  --dos-color-border-subtle: #402800;
 }

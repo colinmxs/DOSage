@@ -6,16 +6,25 @@
  * Foreground: Bright white (#FFFFFF)
  */
 
-[data-dos-theme="dos-blue"] {
+[data-dos-theme='dos-blue'] {
   /* Colors */
-  --dos-color-bg: #0000AA;
-  --dos-color-fg: #FFFFFF;
-  --dos-color-primary: #FFFF55;
-  --dos-color-secondary: #55FFFF;
-  --dos-color-border: #AAAAAA;
-  --dos-color-highlight: #FFFFFF;
+  --dos-color-bg: #0000aa;
+  --dos-color-fg: #ffffff;
+  --dos-color-primary: #ffff55;
+  --dos-color-secondary: #55ffff;
+  --dos-color-border: #aaaaaa;
+  --dos-color-highlight: #ffffff;
   --dos-color-shadow: #000055;
   --dos-color-disabled: #555555;
-  --dos-color-error: #FF5555;
-  --dos-color-success: #55FF55;
+  --dos-color-error: #ff5555;
+  --dos-color-success: #55ff55;
+
+  /* Interactive states */
+  --dos-color-selection: #0000cc;
+  --dos-color-selection-hover: #0000dd;
+  --dos-color-bg-hover: #000099;
+  --dos-color-bg-focus: #0000bb;
+  --dos-color-focus: #ffff55;
+  --dos-color-fg-secondary: #cccccc;
+  --dos-color-border-subtle: #000066;
 }

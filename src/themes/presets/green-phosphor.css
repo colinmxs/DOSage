@@ -6,16 +6,25 @@
  * Foreground: Bright green (#00FF00)
  */
 
-[data-dos-theme="green-phosphor"] {
+[data-dos-theme='green-phosphor'] {
   /* Colors */
   --dos-color-bg: #001100;
-  --dos-color-fg: #00FF00;
-  --dos-color-primary: #33FF33;
-  --dos-color-secondary: #00CC00;
+  --dos-color-fg: #00ff00;
+  --dos-color-primary: #33ff33;
+  --dos-color-secondary: #00cc00;
   --dos-color-border: #006600;
-  --dos-color-highlight: #66FF66;
+  --dos-color-highlight: #66ff66;
   --dos-color-shadow: #000800;
   --dos-color-disabled: #004400;
-  --dos-color-error: #FF3300;
-  --dos-color-success: #00FF66;
+  --dos-color-error: #ff3300;
+  --dos-color-success: #00ff66;
+
+  /* Interactive states */
+  --dos-color-selection: #002200;
+  --dos-color-selection-hover: #002800;
+  --dos-color-bg-hover: #001800;
+  --dos-color-bg-focus: #001a00;
+  --dos-color-focus: #33ff33;
+  --dos-color-fg-secondary: #00dd00;
+  --dos-color-border-subtle: #003300;
 }
