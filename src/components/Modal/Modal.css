@@ -146,21 +146,6 @@
   display: none;
 }
 
-/* ===== BOX-DRAWING BORDER VARIANT ===== */
-
-/* Double-line border decoration */
-.dos-modal__dialog::before {
-  content: '╔' attr(data-top-border) '╗';
-  position: absolute;
-  top: -1em;
-  left: 0;
-  right: 0;
-  text-align: center;
-  pointer-events: none;
-  color: var(--dos-color-border);
-  font-family: var(--dos-font-family);
-}
-
 /* ===== FOCUS TRAP INDICATOR ===== */
 
 .dos-modal__focus-trap {
