@@ -210,6 +210,40 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
   }
 
   /**
+   * Find next non-disabled option index
+   */
+  function findNextEnabledIndex(startIndex: number, direction: 1 | -1): number {
+    if (state.filteredOptions.length === 0) return -1;
+    
+    const length = state.filteredOptions.length;
+    let index = startIndex;
+    let attempts = 0;
+    
+    // Try to find a non-disabled option, max one full loop
+    while (attempts < length) {
+      index = direction === 1
+        ? (index + 1) % length
+        : (index - 1 + length) % length;
+      
+      const option = state.filteredOptions[index];
+      if (option && !option.disabled) {
+        return index;
+      }
+      attempts++;
+    }
+    
+    // All options are disabled, return -1
+    return -1;
+  }
+
+  /**
+   * Find first non-disabled option index
+   */
+  function findFirstEnabledIndex(): number {
+    return state.filteredOptions.findIndex(opt => !opt.disabled);
+  }
+
+  /**
    * Open dropdown
    */
   function openDropdown(): void {
@@ -217,7 +251,15 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
 
     state.isOpen = true;
     state.filteredOptions = filterOptions(state.inputValue);
-    state.highlightedIndex = findSelectedIndex();
+    
+    // Set initial highlight to selected option or -1 (no highlight)
+    // This allows arrow keys to move to first option on initial press
+    const selectedIndex = findSelectedIndex();
+    if (selectedIndex >= 0 && !state.filteredOptions[selectedIndex]?.disabled) {
+      state.highlightedIndex = selectedIndex;
+    } else {
+      state.highlightedIndex = -1;
+    }
 
     dropdown.hidden = false;
     input.setAttribute('aria-expanded', 'true');
@@ -567,7 +609,10 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
 
     // Update filtered options
     state.filteredOptions = filterOptions(newValue);
-    state.highlightedIndex = state.filteredOptions.length > 0 ? 0 : -1;
+    
+    // Set highlight to first enabled option
+    const firstEnabled = findFirstEnabledIndex();
+    state.highlightedIndex = firstEnabled;
 
     if (!state.isOpen && newValue.length > 0) {
       openDropdown();
@@ -586,7 +631,16 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
         if (!state.isOpen) {
           openDropdown();
         } else if (state.filteredOptions.length > 0) {
-          state.highlightedIndex = (state.highlightedIndex + 1) % state.filteredOptions.length;
+          // Find next enabled option
+          if (state.highlightedIndex === -1) {
+            // Start from beginning
+            state.highlightedIndex = findFirstEnabledIndex();
+          } else {
+            const nextIndex = findNextEnabledIndex(state.highlightedIndex, 1);
+            if (nextIndex >= 0) {
+              state.highlightedIndex = nextIndex;
+            }
+          }
           updateHighlight();
         }
         break;
@@ -596,8 +650,21 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
         if (!state.isOpen) {
           openDropdown();
         } else if (state.filteredOptions.length > 0) {
-          state.highlightedIndex =
-            (state.highlightedIndex - 1 + state.filteredOptions.length) % state.filteredOptions.length;
+          // Find previous enabled option
+          if (state.highlightedIndex === -1) {
+            // Start from end
+            for (let i = state.filteredOptions.length - 1; i >= 0; i--) {
+              if (!state.filteredOptions[i]?.disabled) {
+                state.highlightedIndex = i;
+                break;
+              }
+            }
+          } else {
+            const prevIndex = findNextEnabledIndex(state.highlightedIndex, -1);
+            if (prevIndex >= 0) {
+              state.highlightedIndex = prevIndex;
+            }
+          }
           updateHighlight();
         }
         break;
@@ -630,6 +697,7 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
       case 'Tab':
         // Close and commit value on Tab
         if (state.isOpen) {
+          event.preventDefault(); // Prevent default Tab behavior when dropdown is open
           if (state.highlightedIndex >= 0) {
             const option = state.filteredOptions[state.highlightedIndex];
             if (option && !option.disabled) {
@@ -639,13 +707,26 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
             setFreeformValue(input.value);
           }
           closeDropdown();
+          // Manually move focus to next element after selection is complete
+          setTimeout(() => {
+            const focusable = Array.from(
+              document.querySelectorAll<HTMLElement>(
+                'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+              )
+            );
+            const currentIndex = focusable.indexOf(input);
+            const nextElement = event.shiftKey ? focusable[currentIndex - 1] : focusable[currentIndex + 1];
+            if (nextElement) {
+              nextElement.focus();
+            }
+          }, 0);
         }
         break;
 
       case 'Home':
         if (state.isOpen && state.filteredOptions.length > 0) {
           event.preventDefault();
-          state.highlightedIndex = 0;
+          state.highlightedIndex = findFirstEnabledIndex();
           updateHighlight();
         }
         break;
@@ -653,7 +734,13 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
       case 'End':
         if (state.isOpen && state.filteredOptions.length > 0) {
           event.preventDefault();
-          state.highlightedIndex = state.filteredOptions.length - 1;
+          // Find last enabled option
+          for (let i = state.filteredOptions.length - 1; i >= 0; i--) {
+            if (!state.filteredOptions[i]?.disabled) {
+              state.highlightedIndex = i;
+              break;
+            }
+          }
           updateHighlight();
         }
         break;

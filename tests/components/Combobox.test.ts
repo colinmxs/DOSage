@@ -374,6 +374,57 @@ describe('Combobox', () => {
       expect(input.value).toBe('Option 2');
       expect(combo.isOpen()).toBe(false);
     });
+
+    it('selects highlighted option on Tab key', () => {
+      const combo = createCombobox({ options: defaultOptions });
+      container.appendChild(combo);
+
+      combo.open();
+
+      const input = combo.querySelector('.dos-combobox__input') as HTMLInputElement;
+
+      // Navigate to second option
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+
+      // Press Tab
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', bubbles: true }));
+
+      expect(combo.getValue()).toBe('opt2');
+      expect(input.value).toBe('Option 2');
+      expect(combo.isOpen()).toBe(false);
+    });
+
+    it('Tab key prevents default when dropdown is open', () => {
+      const combo = createCombobox({ options: defaultOptions });
+      container.appendChild(combo);
+
+      combo.open();
+
+      const input = combo.querySelector('.dos-combobox__input') as HTMLInputElement;
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+
+      const tabEvent = new KeyboardEvent('keydown', { key: 'Tab', bubbles: true, cancelable: true });
+      const preventDefaultSpy = vi.spyOn(tabEvent, 'preventDefault');
+      
+      input.dispatchEvent(tabEvent);
+
+      expect(preventDefaultSpy).toHaveBeenCalled();
+    });
+
+    it('Tab key allows default when dropdown is closed', () => {
+      const combo = createCombobox({ options: defaultOptions });
+      container.appendChild(combo);
+
+      const input = combo.querySelector('.dos-combobox__input') as HTMLInputElement;
+      
+      const tabEvent = new KeyboardEvent('keydown', { key: 'Tab', bubbles: true, cancelable: true });
+      const preventDefaultSpy = vi.spyOn(tabEvent, 'preventDefault');
+      
+      input.dispatchEvent(tabEvent);
+
+      expect(preventDefaultSpy).not.toHaveBeenCalled();
+    });
   });
 
   describe('option selection', () => {
@@ -908,6 +959,139 @@ describe('Combobox', () => {
       combo.click();
 
       expect(combo.isOpen()).toBe(true);
+    });
+  });
+
+  describe('disabled option navigation', () => {
+    const optionsWithDisabled: ComboboxOption[] = [
+      { value: 'opt1', label: 'Option 1' },
+      { value: 'opt2', label: 'Option 2', disabled: true },
+      { value: 'opt3', label: 'Option 3' },
+      { value: 'opt4', label: 'Option 4', disabled: true },
+      { value: 'opt5', label: 'Option 5' },
+    ];
+
+    it('skips disabled options when navigating down with ArrowDown', () => {
+      const combo = createCombobox({ options: optionsWithDisabled });
+      container.appendChild(combo);
+
+      const input = combo.querySelector('.dos-combobox__input') as HTMLInputElement;
+      combo.open();
+
+      // First arrow down should go to opt1 (index 0, enabled)
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+      expect(combo.getHighlightedOption()?.value).toBe('opt1');
+
+      // Second arrow down should skip opt2 (disabled) and go to opt3 (index 2, enabled)
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+      expect(combo.getHighlightedOption()?.value).toBe('opt3');
+
+      // Third arrow down should skip opt4 (disabled) and go to opt5 (index 4, enabled)
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+      expect(combo.getHighlightedOption()?.value).toBe('opt5');
+    });
+
+    it('skips disabled options when navigating up with ArrowUp', () => {
+      const combo = createCombobox({ options: optionsWithDisabled });
+      container.appendChild(combo);
+
+      const input = combo.querySelector('.dos-combobox__input') as HTMLInputElement;
+      combo.open();
+
+      // Arrow up from -1 should go to last enabled option (opt5, index 4)
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
+      expect(combo.getHighlightedOption()?.value).toBe('opt5');
+
+      // Arrow up should skip opt4 (disabled) and go to opt3 (index 2, enabled)
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
+      expect(combo.getHighlightedOption()?.value).toBe('opt3');
+
+      // Arrow up should skip opt2 (disabled) and go to opt1 (index 0, enabled)
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
+      expect(combo.getHighlightedOption()?.value).toBe('opt1');
+    });
+
+    it('wraps around skipping disabled options', () => {
+      const combo = createCombobox({ options: optionsWithDisabled });
+      container.appendChild(combo);
+
+      const input = combo.querySelector('.dos-combobox__input') as HTMLInputElement;
+      combo.open();
+
+      // Navigate to last enabled option (opt5)
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'End', bubbles: true }));
+      expect(combo.getHighlightedOption()?.value).toBe('opt5');
+
+      // Arrow down should wrap to first enabled option (opt1), skipping disabled ones
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+      expect(combo.getHighlightedOption()?.value).toBe('opt1');
+    });
+
+    it('does not highlight disabled options on mouse hover', () => {
+      const combo = createCombobox({ options: optionsWithDisabled });
+      container.appendChild(combo);
+
+      combo.open();
+
+      const disabledOption = combo.querySelector('[data-value="opt2"]') as HTMLElement;
+      disabledOption.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+
+      // Disabled option should not be highlighted
+      expect(combo.getHighlightedOption()?.value).not.toBe('opt2');
+    });
+
+    it('does not select disabled options on click', () => {
+      const onChange = vi.fn();
+      const combo = createCombobox({ options: optionsWithDisabled, onChange });
+      container.appendChild(combo);
+
+      combo.open();
+
+      const disabledOption = combo.querySelector('[data-value="opt2"]') as HTMLElement;
+      disabledOption.click();
+
+      // onChange should not be called
+      expect(onChange).not.toHaveBeenCalled();
+      expect(combo.getValue()).toBe('');
+    });
+
+    it('Home key goes to first enabled option', () => {
+      const combo = createCombobox({ 
+        options: [
+          { value: 'opt1', label: 'Option 1', disabled: true },
+          { value: 'opt2', label: 'Option 2' },
+          { value: 'opt3', label: 'Option 3' },
+        ]
+      });
+      container.appendChild(combo);
+
+      const input = combo.querySelector('.dos-combobox__input') as HTMLInputElement;
+      combo.open();
+
+      // Navigate to last option
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'End', bubbles: true }));
+
+      // Home should go to first enabled option (opt2), skipping disabled opt1
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Home', bubbles: true }));
+      expect(combo.getHighlightedOption()?.value).toBe('opt2');
+    });
+
+    it('End key goes to last enabled option', () => {
+      const combo = createCombobox({ 
+        options: [
+          { value: 'opt1', label: 'Option 1' },
+          { value: 'opt2', label: 'Option 2' },
+          { value: 'opt3', label: 'Option 3', disabled: true },
+        ]
+      });
+      container.appendChild(combo);
+
+      const input = combo.querySelector('.dos-combobox__input') as HTMLInputElement;
+      combo.open();
+
+      // End should go to last enabled option (opt2), skipping disabled opt3
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'End', bubbles: true }));
+      expect(combo.getHighlightedOption()?.value).toBe('opt2');
     });
   });
 });
