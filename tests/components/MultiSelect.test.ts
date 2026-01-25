@@ -616,6 +616,57 @@ describe('MultiSelect', () => {
 
       expect(select.getHighlightedOption()?.value).toBe('opt3');
     });
+
+    it('adds highlighted class to option on arrow key navigation', () => {
+      const select = createMultiSelect({ options: defaultOptions });
+      container.appendChild(select);
+
+      select.open();
+
+      const trigger = select.querySelector('.dos-multiselect__trigger') as HTMLElement;
+      trigger.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+
+      const optionsList = select.querySelector('.dos-multiselect__options');
+      const firstOption = optionsList?.querySelector('[data-value="opt1"]');
+      expect(firstOption?.classList.contains('dos-multiselect__option--highlighted')).toBe(true);
+    });
+
+    it('adds highlighted class to option on mouse hover', () => {
+      const select = createMultiSelect({ options: defaultOptions });
+      container.appendChild(select);
+
+      select.open();
+
+      const optionsList = select.querySelector('.dos-multiselect__options');
+      const secondOption = optionsList?.querySelector('[data-value="opt2"]') as HTMLElement;
+      
+      // Simulate mouse enter
+      secondOption.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+
+      expect(secondOption?.classList.contains('dos-multiselect__option--highlighted')).toBe(true);
+    });
+
+    it('distinguishes between highlighted and selected states', () => {
+      const select = createMultiSelect({ options: defaultOptions, value: ['opt1'] });
+      container.appendChild(select);
+
+      select.open();
+
+      const optionsList = select.querySelector('.dos-multiselect__options');
+      const firstOption = optionsList?.querySelector('[data-value="opt1"]') as HTMLElement;
+      const secondOption = optionsList?.querySelector('[data-value="opt2"]') as HTMLElement;
+
+      // First option is selected but not highlighted
+      expect(firstOption?.classList.contains('dos-multiselect__option--selected')).toBe(true);
+      expect(firstOption?.classList.contains('dos-multiselect__option--highlighted')).toBe(false);
+
+      // Hover over the selected option
+      firstOption.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+
+      // Now it should have both classes
+      expect(firstOption?.classList.contains('dos-multiselect__option--selected')).toBe(true);
+      expect(firstOption?.classList.contains('dos-multiselect__option--highlighted')).toBe(true);
+    });
   });
 
   describe('option groups', () => {
