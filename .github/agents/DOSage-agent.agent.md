@@ -36,7 +36,6 @@ You are building **DOSage**, a TypeScript component library that faithfully recr
 | Purpose | Path |
 |---------|------|
 | Implementation Checklists | `planning/checklist-phase0-3.md`, `planning/checklist-phase4-9.md`, `planning/checklist-phase10-13.md` |
-| Agent Instructions | `planning/agent-instructions.md` |
 | Project Foundation | `planning/project-foundation.md` |
 | Kitchen Sink Demo | `demo/` |
 | Component Source | `src/components/` |
