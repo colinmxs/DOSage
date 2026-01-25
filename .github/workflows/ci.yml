@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - '**'  # Run on all branches
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test (Node ${{ matrix.node }} on ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [18.x, 20.x, 22.x]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run linting
+        run: npm run lint
+      
+      - name: Run type checking
+        run: npm run typecheck
+      
+      - name: Run tests with coverage
+        run: npm test -- --coverage
+      
+      - name: Build library
+        run: npm run build
+      
+      - name: Verify build artifacts
+        shell: bash
+        run: |
+          echo "Checking build output structure..."
+          test -d dist/esm || { echo "❌ dist/esm not found"; exit 1; }
+          test -d dist/cjs || { echo "❌ dist/cjs not found"; exit 1; }
+          test -d dist/types || { echo "❌ dist/types not found"; exit 1; }
+          test -d dist/css || { echo "❌ dist/css not found"; exit 1; }
+          test -f dist/esm/index.js || { echo "❌ dist/esm/index.js not found"; exit 1; }
+          test -f dist/cjs/index.cjs || { echo "❌ dist/cjs/index.cjs not found"; exit 1; }
+          test -f dist/types/index.d.ts || { echo "❌ dist/types/index.d.ts not found"; exit 1; }
+          test -f dist/css/dosage.css || { echo "❌ dist/css/dosage.css not found"; exit 1; }
+          echo "✅ All build artifacts verified successfully"
+      
+      - name: Upload coverage to Codecov (Ubuntu + Node 20 only)
+        if: matrix.os == 'ubuntu-latest' && matrix.node == '20.x'
+        uses: codecov/codecov-action@v4
+        continue-on-error: true
+        with:
+          files: ./coverage/coverage-final.json
+          flags: unittests
+          name: codecov-dosage

@@ -7,6 +7,7 @@ Thank you for your interest in contributing to DOSage! This document provides gu
 - [Code of Conduct](#code-of-conduct)
 - [Development Setup](#development-setup)
 - [Running Tests](#running-tests)
+- [Branch Naming Conventions](#branch-naming-conventions)
 - [Pull Request Process](#pull-request-process)
 - [Code Style Requirements](#code-style-requirements)
 - [Component Creation Guidelines](#component-creation-guidelines)
@@ -156,6 +157,70 @@ describe('MyComponent', () => {
   });
 });
 ```
+
+---
+
+## Branch Naming Conventions
+
+We follow a structured branch naming strategy to keep the repository organized and make it easy to understand the purpose of each branch.
+
+### Main Branches
+
+| Branch | Purpose | Who Can Push |
+|--------|---------|--------------|
+| `main` | Production releases only. All code here is stable and released. | Maintainers only (via PR) |
+| `develop` | Integration branch for features (optional, not currently used) | - |
+
+### Feature Branches
+
+Use these naming conventions for your work:
+
+| Prefix | Purpose | Example |
+|--------|---------|---------|
+| `feature/*` | New features or enhancements | `feature/add-menu-component` |
+| `fix/*` | Bug fixes | `fix/button-focus-state` |
+| `docs/*` | Documentation updates | `docs/update-readme` |
+| `refactor/*` | Code refactoring without behavior changes | `refactor/simplify-theme-manager` |
+| `test/*` | Adding or updating tests | `test/add-modal-tests` |
+| `chore/*` | Maintenance tasks | `chore/update-dependencies` |
+| `release/*` | Release preparation | `release/v0.2.0` |
+
+### Branch Naming Best Practices
+
+- Use lowercase letters and hyphens
+- Be descriptive but concise
+- Reference issue numbers when applicable: `fix/123-button-alignment`
+- Examples:
+  - ✅ `feature/command-palette`
+  - ✅ `fix/modal-escape-key`
+  - ✅ `docs/api-examples`
+  - ❌ `my-branch`
+  - ❌ `FEATURE/NEW-STUFF`
+  - ❌ `fix_something`
+
+### Workflow
+
+1. **Create a branch** from `main`:
+   ```bash
+   git checkout main
+   git pull origin main
+   git checkout -b feature/your-feature-name
+   ```
+
+2. **Make your changes** and commit regularly
+
+3. **Push your branch**:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+4. **Open a Pull Request** to `main`
+
+5. **After PR is merged**, delete your branch:
+   ```bash
+   git branch -d feature/your-feature-name
+   git push origin --delete feature/your-feature-name
+   ```
 
 ---
 

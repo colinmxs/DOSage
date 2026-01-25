@@ -35,7 +35,7 @@ This checklist guides implementation of automated CI/CD pipelines for GitHub rel
 ## Phase R2: Branch Protection & Strategy
 
 ### R2.1 Branch Naming Convention
-- [ ] Document branch naming in CONTRIBUTING.md:
+- [x] Document branch naming in CONTRIBUTING.md:
   - `main` - production releases only
   - `develop` - integration branch (optional)
   - `feature/*` - new features
@@ -58,25 +58,25 @@ This checklist guides implementation of automated CI/CD pipelines for GitHub rel
 ## Phase R3: GitHub Actions - CI Workflow
 
 ### R3.1 Create CI Workflow
-- [ ] Create `.github/workflows/ci.yml`
-- [ ] Trigger on: `push` to all branches, `pull_request` to `main`
-- [ ] Matrix test: Node 18.x, 20.x, 22.x
-- [ ] Matrix OS: ubuntu-latest (primary), windows-latest, macos-latest (optional)
-- [ ] Steps:
-  - [ ] Checkout code
-  - [ ] Setup Node.js with caching
-  - [ ] Install dependencies (`npm ci`)
-  - [ ] Run linting (`npm run lint`)
-  - [ ] Run type checking (`npm run typecheck`)
-  - [ ] Run tests with coverage (`npm run test -- --coverage`)
-  - [ ] Upload coverage to Codecov (optional)
-  - [ ] Build library (`npm run build`)
-  - [ ] Verify build artifacts exist
+- [x] Create `.github/workflows/ci.yml`
+- [x] Trigger on: `push` to all branches, `pull_request` to `main`
+- [x] Matrix test: Node 18.x, 20.x, 22.x
+- [x] Matrix OS: ubuntu-latest (primary), windows-latest, macos-latest (optional)
+- [x] Steps:
+  - [x] Checkout code
+  - [x] Setup Node.js with caching
+  - [x] Install dependencies (`npm ci`)
+  - [x] Run linting (`npm run lint`)
+  - [x] Run type checking (`npm run typecheck`)
+  - [x] Run tests with coverage (`npm run test -- --coverage`)
+  - [x] Upload coverage to Codecov (optional)
+  - [x] Build library (`npm run build`)
+  - [x] Verify build artifacts exist
 
 ### R3.2 CI Quality Gates
-- [ ] Ensure CI fails on: lint errors, type errors, test failures
-- [ ] Add test for build output structure (esm/, cjs/, types/, css/)
-- [ ] Consider adding bundle size check (optional)
+- [x] Ensure CI fails on: lint errors, type errors, test failures
+- [x] Add test for build output structure (esm/, cjs/, types/, css/)
+- [x] Consider adding bundle size check (optional)
 
 ---
 
