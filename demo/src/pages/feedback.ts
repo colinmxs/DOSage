@@ -848,7 +848,7 @@ createAlert({
     const resetBtn = createButton({
       label: 'Show Dismissible Alert',
       onClick: () => {
-        const existing = dismissExample.querySelector('.dos-alert');
+        const existing = dismissExample.querySelector('.dos-alert:not(.dos-alert--hidden)');
         if (!existing) {
           dismissExample.insertBefore(createDismissibleAlert(), dismissExample.firstChild);
         }
