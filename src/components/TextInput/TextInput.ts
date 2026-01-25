@@ -182,15 +182,15 @@ export function createTextInput(props: TextInputProps): TextInputElement {
   }
 
   // Attach methods to the wrapper element
-  wrapper.getValue = () => input.value;
+  wrapper.getValue = (): string => input.value;
 
-  wrapper.setValue = (newValue: string) => {
+  wrapper.setValue = (newValue: string): void => {
     input.value = newValue;
     // Update cursor position when value changes programmatically
     cursor?.updatePosition();
   };
 
-  wrapper.setError = (newError: string | boolean | undefined) => {
+  wrapper.setError = (newError: string | boolean | undefined): void => {
     // Remove existing error element
     const existingError = wrapper.querySelector('.dos-text-input__error');
     if (existingError) {
@@ -216,11 +216,11 @@ export function createTextInput(props: TextInputProps): TextInputElement {
     }
   };
 
-  wrapper.focusInput = () => {
+  wrapper.focusInput = (): void => {
     input.focus();
   };
 
-  wrapper.setDisabled = (newDisabled: boolean) => {
+  wrapper.setDisabled = (newDisabled: boolean): void => {
     input.disabled = newDisabled;
     wrapper.classList.toggle('dos-text-input--disabled', newDisabled);
     if (labelElement) {
@@ -230,10 +230,10 @@ export function createTextInput(props: TextInputProps): TextInputElement {
     cursor?.setDisabled(newDisabled);
   };
 
-  wrapper.getInput = () => input;
+  wrapper.getInput = (): HTMLInputElement => input;
 
   // Add destroy method for cleanup
-  (wrapper as TextInputElement & { destroy: () => void }).destroy = () => {
+  (wrapper as TextInputElement & { destroy: () => void }).destroy = (): void => {
     cursor?.destroy();
     cursor = null;
   };

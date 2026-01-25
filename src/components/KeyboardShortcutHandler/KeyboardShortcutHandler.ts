@@ -78,7 +78,7 @@ export function parseShortcut(shortcutString: string): ParsedShortcut {
       result[MODIFIER_MAP[part]] = true;
     } else {
       // This is the key
-      result.key = KEY_ALIASES[part] || part;
+      result.key = KEY_ALIASES[part] ?? part;
     }
   }
 
@@ -105,10 +105,10 @@ export function formatShortcutString(shortcut: ParsedShortcut | ShortcutDefiniti
     // It's a ShortcutDefinition
     return formatShortcutString({
       key: shortcut.key,
-      ctrl: shortcut.modifiers?.ctrl || false,
-      alt: shortcut.modifiers?.alt || false,
-      shift: shortcut.modifiers?.shift || false,
-      meta: shortcut.modifiers?.meta || false,
+      ctrl: shortcut.modifiers?.ctrl ?? false,
+      alt: shortcut.modifiers?.alt ?? false,
+      shift: shortcut.modifiers?.shift ?? false,
+      meta: shortcut.modifiers?.meta ?? false,
     });
   } else {
     parsed = shortcut;
@@ -225,7 +225,7 @@ export function createKeyboardShortcutHandler(
    * Generates a unique key for a shortcut based on its modifiers and key.
    */
   function getShortcutKey(shortcut: ShortcutDefinition): string {
-    const mods = shortcut.modifiers || {};
+    const mods = shortcut.modifiers ?? {};
     return [
       mods.ctrl ? 'ctrl' : '',
       mods.alt ? 'alt' : '',
@@ -258,9 +258,9 @@ export function createKeyboardShortcutHandler(
       ...shortcut,
       enabled: shortcut.enabled !== false,
       preventDefault: shortcut.preventDefault !== false,
-      stopPropagation: shortcut.stopPropagation || false,
-      allowRepeat: shortcut.allowRepeat || false,
-      priority: shortcut.priority || 0,
+      stopPropagation: shortcut.stopPropagation ?? false,
+      allowRepeat: shortcut.allowRepeat ?? false,
+      priority: shortcut.priority ?? 0,
     });
 
     // Parse and cache
@@ -289,7 +289,7 @@ export function createKeyboardShortcutHandler(
     sequences.set(sequence.id, {
       ...sequence,
       enabled: sequence.enabled !== false,
-      timeout: sequence.timeout || 1000,
+      timeout: sequence.timeout ?? 1000,
     });
   }
 
@@ -408,7 +408,7 @@ export function createKeyboardShortcutHandler(
     // Sort by priority (higher first)
     const sortedShortcuts = Array.from(shortcuts.values())
       .filter(s => s.enabled !== false)
-      .sort((a, b) => (b.priority || 0) - (a.priority || 0));
+      .sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
 
     for (const shortcut of sortedShortcuts) {
       const parsed = parsedShortcuts.get(shortcut.id);

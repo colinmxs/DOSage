@@ -171,5 +171,5 @@ function getCharASCII(char: string): string[] {
     ' ': ['   ', '   ', '   '],
   };
   
-  return basic[char] || ['███', '███', '▀▀▀'];
+  return basic[char] ?? ['███', '███', '▀▀▀'];
 }

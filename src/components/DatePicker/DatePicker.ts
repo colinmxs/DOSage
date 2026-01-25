@@ -594,9 +594,7 @@ export function createDatePicker(props: DatePickerProps): DatePickerElement {
    * Navigate focused date by days
    */
   function moveFocus(days: number): void {
-    if (!state.focusedDate) {
-      state.focusedDate = selectedDate ?? new Date();
-    }
+    state.focusedDate ??= selectedDate ?? new Date();
 
     const newDate = new Date(state.focusedDate);
     newDate.setDate(newDate.getDate() + days);
@@ -791,9 +789,9 @@ export function createDatePicker(props: DatePickerProps): DatePickerElement {
   document.addEventListener('click', handleOutsideClick);
 
   // Public API
-  container.getValue = () => selectedDate;
+  container.getValue = (): Date | null => selectedDate;
 
-  container.setValue = (value: Date | string | null) => {
+  container.setValue = (value: Date | string | null): void => {
     selectedDate = parseDate(value);
     const formatted = formatDate(selectedDate, format);
     input.value = formatted;
@@ -809,14 +807,14 @@ export function createDatePicker(props: DatePickerProps): DatePickerElement {
     }
   };
 
-  container.getFormattedValue = () => formatDate(selectedDate, format);
+  container.getFormattedValue = (): string => formatDate(selectedDate, format);
 
   container.open = openCalendar;
   container.close = closeCalendar;
   container.toggle = toggleCalendar;
-  container.isOpen = () => state.isOpen;
+  container.isOpen = (): boolean => state.isOpen;
 
-  container.setDisabled = (disabled: boolean) => {
+  container.setDisabled = (disabled: boolean): void => {
     currentDisabled = disabled;
     input.disabled = disabled;
     toggleButton.disabled = disabled;
@@ -827,7 +825,7 @@ export function createDatePicker(props: DatePickerProps): DatePickerElement {
     }
   };
 
-  container.setError = (error: boolean | string) => {
+  container.setError = (error: boolean | string): void => {
     currentError = error;
     container.classList.toggle('dos-date-picker--error', !!error);
     
@@ -838,7 +836,7 @@ export function createDatePicker(props: DatePickerProps): DatePickerElement {
     }
   };
 
-  container.clear = () => {
+  container.clear = (): void => {
     selectedDate = null;
     input.value = '';
     hiddenInput.value = '';
@@ -850,7 +848,7 @@ export function createDatePicker(props: DatePickerProps): DatePickerElement {
     onChange?.(null, '');
   };
 
-  container.navigateTo = (month: number, year: number) => {
+  container.navigateTo = (month: number, year: number): void => {
     state.viewMonth = month;
     state.viewYear = year;
     
@@ -859,11 +857,11 @@ export function createDatePicker(props: DatePickerProps): DatePickerElement {
     }
   };
 
-  container.focus = () => {
+  container.focus = (): void => {
     input.focus();
   };
 
-  container.destroy = () => {
+  container.destroy = (): void => {
     document.removeEventListener('click', handleOutsideClick);
     input.removeEventListener('click', handleInputClick);
     input.removeEventListener('keydown', handleInputKeyDown);

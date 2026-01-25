@@ -111,7 +111,7 @@ describe('Portal', () => {
     it('falls back to document.body when target selector not found', () => {
       const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
-      const portal = createPortal({
+      const _portal = createPortal({
         content: '<div class="fallback-content">Fallback</div>',
         target: '#nonexistent-target',
       });
@@ -306,7 +306,7 @@ describe('Portal', () => {
 
     it('removes from tracking when destroyed', () => {
       const portal1 = createPortal({ content: 'One' });
-      const portal2 = createPortal({ content: 'Two' });
+      const _portal2 = createPortal({ content: 'Two' });
 
       expect(getActivePortals().length).toBe(2);
 

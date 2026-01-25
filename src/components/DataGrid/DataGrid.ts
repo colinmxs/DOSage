@@ -52,11 +52,11 @@ export function createDataGrid(props: DataGridProps): DataGridInstance {
   // State
   let columns = [...initialColumns];
   let data = [...initialData];
-  let sortColumnState = initialSortColumn || null;
-  let sortDirectionState: SortDirection | null = initialSortDirection || null;
+  let sortColumnState = initialSortColumn ?? null;
+  let sortDirectionState: SortDirection | null = initialSortDirection ?? null;
   let selectedRowsState = new Set<string>(initialSelectedRows);
-  let currentPage = pagination?.currentPage || 1;
-  let pageSize = pagination?.pageSize || 10;
+  let currentPage = pagination?.currentPage ?? 1;
+  let pageSize = pagination?.pageSize ?? 10;
   let editingCell: { rowId: string; column: string; element: HTMLElement } | null = null;
   const columnWidths: Record<string, number> = {};
   let columnOrder: string[] = columns.map(col => col.key);
@@ -90,7 +90,7 @@ export function createDataGrid(props: DataGridProps): DataGridInstance {
   table.className = 'dos-data-grid___table';
 
   // Generate unique IDs (used for internal element id attributes)
-  void (id || `datagrid-${Math.random().toString(36).slice(2, 9)}`);
+  void (id ?? `datagrid-${Math.random().toString(36).slice(2, 9)}`);
 
   /**
    * Get data for current page
@@ -319,7 +319,7 @@ export function createDataGrid(props: DataGridProps): DataGridInstance {
         td.dataset.columnKey = column.key;
 
         // Alignment
-        const align = column.align || 'left';
+        const align = column.align ?? 'left';
         td.classList.add(`dos-data-grid___cell--align-${align}`);
 
         // Editable
@@ -333,7 +333,7 @@ export function createDataGrid(props: DataGridProps): DataGridInstance {
         }
 
         // Check if this cell is being edited
-        if (editingCell && editingCell.rowId === row.id && editingCell.column === column.key) {
+        if (editingCell?.rowId === row.id && editingCell.column === column.key) {
           td.classList.add('dos-data-grid___cell--editing');
           renderCellEditor(td, row, column);
         } else {
@@ -461,7 +461,7 @@ export function createDataGrid(props: DataGridProps): DataGridInstance {
       select.className = 'dos-data-grid___page-size-select';
       select.setAttribute('aria-label', 'Rows per page');
 
-      const options = pagination.pageSizeOptions || [10, 25, 50, 100];
+      const options = pagination.pageSizeOptions ?? [10, 25, 50, 100];
       options.forEach(size => {
         const option = document.createElement('option');
         option.value = String(size);
@@ -979,7 +979,7 @@ export function createDataGrid(props: DataGridProps): DataGridInstance {
 
     sort: (column: string, direction?: SortDirection) => {
       sortColumnState = column;
-      sortDirectionState = direction || 'asc';
+      sortDirectionState = direction ?? 'asc';
       onSort?.(sortColumnState, sortDirectionState);
       render();
     },
@@ -1024,9 +1024,10 @@ export function createDataGrid(props: DataGridProps): DataGridInstance {
 
     commitEdit: () => {
       if (!editingCell) return;
-      const row = data.find(r => r.id === editingCell!.rowId);
-      const column = columns.find(c => c.key === editingCell!.column);
-      const editor = editingCell.element.querySelector('.dos-data-grid___cell-editor') as HTMLInputElement | HTMLSelectElement;
+      const cell = editingCell;
+      const row = data.find(r => r.id === cell.rowId);
+      const column = columns.find(c => c.key === cell.column);
+      const editor = cell.element.querySelector('.dos-data-grid___cell-editor') as HTMLInputElement | HTMLSelectElement;
       if (row && column && editor) {
         commitCellEdit(editor.value, row, column);
       }

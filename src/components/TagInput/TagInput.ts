@@ -122,7 +122,7 @@ export function createTagInput(props: TagInputProps): TagInputElement {
   }
 
   // ARIA attributes
-  const suggestionsId = `${id || 'taginput'}-suggestions`;
+  const suggestionsId = `${id ?? 'taginput'}-suggestions`;
   input.setAttribute('role', 'combobox');
   input.setAttribute('aria-autocomplete', 'list');
   input.setAttribute('aria-expanded', 'false');
@@ -264,7 +264,7 @@ export function createTagInput(props: TagInputProps): TagInputElement {
 
     state.suggestions.forEach((suggestion, index) => {
       const item = document.createElement('div');
-      item.id = `${id || 'taginput'}-suggestion-${index}`;
+      item.id = `${id ?? 'taginput'}-suggestion-${index}`;
       item.className = 'dos-taginput__suggestion';
       item.setAttribute('role', 'option');
       item.setAttribute('data-value', suggestion.value);
@@ -337,7 +337,7 @@ export function createTagInput(props: TagInputProps): TagInputElement {
 
     // Update aria-activedescendant
     if (state.highlightedSuggestionIndex >= 0) {
-      const activeId = `${id || 'taginput'}-suggestion-${state.highlightedSuggestionIndex}`;
+      const activeId = `${id ?? 'taginput'}-suggestion-${state.highlightedSuggestionIndex}`;
       input.setAttribute('aria-activedescendant', activeId);
     } else {
       input.setAttribute('aria-activedescendant', '');
@@ -473,8 +473,8 @@ export function createTagInput(props: TagInputProps): TagInputElement {
     // Validate
     const result = await validateTag(trimmed);
     if (!result.valid) {
-      showError(result.message || invalidTagMessage);
-      dispatchInvalidEvent(trimmed, result.message || invalidTagMessage);
+      showError(result.message ?? invalidTagMessage);
+      dispatchInvalidEvent(trimmed, result.message ?? invalidTagMessage);
       return false;
     }
 
@@ -943,10 +943,10 @@ export function createTagInput(props: TagInputProps): TagInputElement {
   }
 
   // Public API
-  container.getTags = () => [...state.tags];
+  container.getTags = (): Tag[] => [...state.tags];
 
-  container.setTags = (tags: Tag[]) => {
-    state.tags = tags.map((t) => ({ ...t, id: t.id || generateTagId() }));
+  container.setTags = (tags: Tag[]): void => {
+    state.tags = tags.map((t) => ({ ...t, id: t.id ?? generateTagId() }));
     if (maxTags && state.tags.length > maxTags) {
       state.tags = state.tags.slice(0, maxTags);
     }
@@ -955,15 +955,15 @@ export function createTagInput(props: TagInputProps): TagInputElement {
     updateContainerClasses();
   };
 
-  container.addTag = async (label: string) => {
+  container.addTag = async (label: string): Promise<boolean> => {
     return addTagFromValue(label);
   };
 
-  container.removeTag = (tagId: string) => {
+  container.removeTag = (tagId: string): void => {
     removeTagById(tagId);
   };
 
-  container.clearTags = () => {
+  container.clearTags = (): void => {
     state.tags = [];
     state.focusedTagIndex = -1;
     renderTags();
@@ -971,24 +971,24 @@ export function createTagInput(props: TagInputProps): TagInputElement {
     dispatchChangeEvent();
   };
 
-  container.getInputValue = () => state.inputValue;
+  container.getInputValue = (): string => state.inputValue;
 
-  container.setInputValue = (value: string) => {
+  container.setInputValue = (value: string): void => {
     state.inputValue = value;
     input.value = value;
   };
 
-  container.clearInput = () => {
+  container.clearInput = (): void => {
     state.inputValue = '';
     input.value = '';
   };
 
-  container.focus = () => input.focus();
-  container.blur = () => input.blur();
+  container.focus = (): void => input.focus();
+  container.blur = (): void => input.blur();
 
-  container.isDisabled = () => isDisabled;
+  container.isDisabled = (): boolean => isDisabled;
 
-  container.setDisabled = (disabled: boolean) => {
+  container.setDisabled = (disabled: boolean): void => {
     isDisabled = disabled;
     input.disabled = disabled;
     updateContainerClasses();
@@ -1000,26 +1000,26 @@ export function createTagInput(props: TagInputProps): TagInputElement {
     }
   };
 
-  container.setSuggestions = (suggestions: TagSuggestion[]) => {
+  container.setSuggestions = (suggestions: TagSuggestion[]): void => {
     state.suggestions = suggestions;
     if (state.suggestionsOpen) {
       renderSuggestions();
     }
   };
 
-  container.openSuggestions = () => {
+  container.openSuggestions = (): void => {
     if (state.suggestions.length > 0 || state.isLoading) {
       openSuggestions();
     }
   };
 
-  container.closeSuggestions = () => closeSuggestions();
+  container.closeSuggestions = (): void => closeSuggestions();
 
-  container.isMaxTagsReached = () => {
+  container.isMaxTagsReached = (): boolean => {
     return maxTags !== undefined && state.tags.length >= maxTags;
   };
 
-  container.destroy = () => {
+  container.destroy = (): void => {
     input.removeEventListener('input', handleInput);
     input.removeEventListener('keydown', handleKeyDown);
     input.removeEventListener('paste', handlePaste);

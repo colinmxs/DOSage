@@ -108,7 +108,7 @@ export function createCommandPalette(props: CommandPaletteProps): CommandPalette
   input.setAttribute('role', 'combobox');
   input.setAttribute('aria-autocomplete', 'list');
   input.setAttribute('aria-expanded', 'false');
-  input.setAttribute('aria-controls', `${id || 'cmdpalette'}-results`);
+  input.setAttribute('aria-controls', `${id ?? 'cmdpalette'}-results`);
   input.setAttribute('aria-haspopup', 'listbox');
 
   inputContainer.appendChild(promptEl);
@@ -117,7 +117,7 @@ export function createCommandPalette(props: CommandPaletteProps): CommandPalette
   // Create results container
   const results = document.createElement('div');
   results.className = 'dos-commandpalette__results';
-  results.id = `${id || 'cmdpalette'}-results`;
+  results.id = `${id ?? 'cmdpalette'}-results`;
   results.setAttribute('role', 'listbox');
 
   // Create empty state
@@ -200,7 +200,7 @@ export function createCommandPalette(props: CommandPaletteProps): CommandPalette
       command.label,
       command.description,
       command.category,
-      ...(command.keywords || []),
+      ...(command.keywords ?? []),
     ]
       .filter(Boolean)
       .join(' ')
@@ -217,7 +217,7 @@ export function createCommandPalette(props: CommandPaletteProps): CommandPalette
       command.label,
       command.description,
       command.category,
-      ...(command.keywords || []),
+      ...(command.keywords ?? []),
     ]
       .filter(Boolean)
       .join(' ')
@@ -259,7 +259,7 @@ export function createCommandPalette(props: CommandPaletteProps): CommandPalette
     }
 
     // Update aria-activedescendant
-    const activeId = `${id || 'cmdpalette'}-item-${state.highlightedIndex}`;
+    const activeId = `${id ?? 'cmdpalette'}-item-${state.highlightedIndex}`;
     input.setAttribute('aria-activedescendant', activeId);
   }
 
@@ -270,25 +270,29 @@ export function createCommandPalette(props: CommandPaletteProps): CommandPalette
     const grouped = new Map<string, CommandItem[]>();
 
     state.filteredCommands.forEach((cmd) => {
-      const categoryId = cmd.category || 'uncategorized';
+      const categoryId = cmd.category ?? 'uncategorized';
       if (!grouped.has(categoryId)) {
         grouped.set(categoryId, []);
       }
-      grouped.get(categoryId)!.push(cmd);
+      const categoryCommands = grouped.get(categoryId);
+      if (categoryCommands) {
+        categoryCommands.push(cmd);
+      }
     });
 
     // Sort categories
     const sortedCategories = Array.from(grouped.keys()).sort((a, b) => {
       const catA = categoryMap.get(a);
       const catB = categoryMap.get(b);
-      return (catA?.order || 999) - (catB?.order || 999);
+      return (catA?.order ?? 999) - (catB?.order ?? 999);
     });
 
     let globalIndex = 0;
 
     sortedCategories.forEach((categoryId) => {
       const category = categoryMap.get(categoryId);
-      const categoryCommands = grouped.get(categoryId)!;
+      const categoryCommands = grouped.get(categoryId);
+      if (!categoryCommands) return;
 
       // Category header
       if (category) {
@@ -364,7 +368,7 @@ export function createCommandPalette(props: CommandPaletteProps): CommandPalette
   function createCommandItem(command: CommandItem, index: number): HTMLDivElement {
     const item = document.createElement('div');
     item.className = 'dos-commandpalette__item';
-    item.id = `${id || 'cmdpalette'}-item-${index}`;
+    item.id = `${id ?? 'cmdpalette'}-item-${index}`;
     item.setAttribute('role', 'option');
     item.setAttribute('data-command-id', command.id);
     item.setAttribute('data-index', String(index));
@@ -480,7 +484,7 @@ export function createCommandPalette(props: CommandPaletteProps): CommandPalette
     });
 
     // Update aria-activedescendant
-    const activeId = `${id || 'cmdpalette'}-item-${state.highlightedIndex}`;
+    const activeId = `${id ?? 'cmdpalette'}-item-${state.highlightedIndex}`;
     input.setAttribute('aria-activedescendant', activeId);
   }
 
@@ -667,31 +671,31 @@ export function createCommandPalette(props: CommandPaletteProps): CommandPalette
   }
 
   // Public API methods
-  container.open = () => openPalette();
-  container.close = () => closePalette();
-  container.toggle = () => (state.isOpen ? closePalette() : openPalette());
-  container.isOpen = () => state.isOpen;
+  container.open = (): void => openPalette();
+  container.close = (): void => closePalette();
+  container.toggle = (): void => (state.isOpen ? closePalette() : openPalette());
+  container.isOpen = (): boolean => state.isOpen;
 
-  container.getQuery = () => state.query;
+  container.getQuery = (): string => state.query;
 
-  container.setQuery = (query: string) => {
+  container.setQuery = (query: string): void => {
     input.value = query;
     handleInput();
   };
 
-  container.clearQuery = () => {
+  container.clearQuery = (): void => {
     input.value = '';
     handleInput();
   };
 
-  container.executeCommand = (commandId: string) => {
+  container.executeCommand = (commandId: string): void => {
     const command = commands.find((c) => c.id === commandId);
     if (command && !command.disabled) {
       executeCommandInternal(command);
     }
   };
 
-  container.getFilteredCommands = () => [...state.filteredCommands];
+  container.getFilteredCommands = (): CommandItem[] => [...state.filteredCommands];
 
   container.getHighlightedCommand = (): CommandItem | null => {
     if (state.highlightedIndex >= 0 && state.highlightedIndex < state.filteredCommands.length) {
@@ -700,13 +704,13 @@ export function createCommandPalette(props: CommandPaletteProps): CommandPalette
     return null;
   };
 
-  container.getRecentCommands = () => {
+  container.getRecentCommands = (): CommandItem[] => {
     return state.recentCommandIds
       .map((id) => commands.find((c) => c.id === id))
       .filter((c): c is CommandItem => c !== undefined);
   };
 
-  container.registerCommand = (command: CommandItem) => {
+  container.registerCommand = (command: CommandItem): void => {
     if (!commands.find((c) => c.id === command.id)) {
       commands.push(command);
       if (state.isOpen) {
@@ -716,7 +720,7 @@ export function createCommandPalette(props: CommandPaletteProps): CommandPalette
     }
   };
 
-  container.unregisterCommand = (commandId: string) => {
+  container.unregisterCommand = (commandId: string): void => {
     commands = commands.filter((c) => c.id !== commandId);
     state.recentCommandIds = state.recentCommandIds.filter((id) => id !== commandId);
     if (state.isOpen) {
@@ -725,7 +729,7 @@ export function createCommandPalette(props: CommandPaletteProps): CommandPalette
     }
   };
 
-  container.setCommands = (newCommands: CommandItem[]) => {
+  container.setCommands = (newCommands: CommandItem[]): void => {
     commands = [...newCommands];
     if (state.isOpen) {
       state.filteredCommands = filterCommands(state.query);
@@ -734,13 +738,13 @@ export function createCommandPalette(props: CommandPaletteProps): CommandPalette
     }
   };
 
-  container.focus = () => {
+  container.focus = (): void => {
     if (state.isOpen) {
       input.focus();
     }
   };
 
-  container.destroy = () => {
+  container.destroy = (): void => {
     input.removeEventListener('input', handleInput);
     input.removeEventListener('keydown', handleKeyDown);
     overlay.removeEventListener('click', handleOverlayClick);

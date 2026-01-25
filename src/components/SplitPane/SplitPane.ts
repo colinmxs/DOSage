@@ -64,14 +64,14 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
     firstPaneSize: 0,
     secondPaneSize: 0,
     isDragging: false,
-    firstPaneCollapsed: firstPane.collapsed || false,
-    secondPaneCollapsed: secondPane.collapsed || false,
+    firstPaneCollapsed: firstPane.collapsed ?? false,
+    secondPaneCollapsed: secondPane.collapsed ?? false,
     sizeBeforeCollapse: null,
   };
 
   // Store initial sizes for reset
-  const initialFirstSize: SplitPaneSize = firstPane.initialSize || '50%';
-  const initialSecondSize: SplitPaneSize = secondPane.initialSize || 'auto';
+  const initialFirstSize: SplitPaneSize = firstPane.initialSize ?? '50%';
+  const initialSecondSize: SplitPaneSize = secondPane.initialSize ?? 'auto';
 
   // Create main container
   const container = document.createElement('div') as SplitPaneElement;
@@ -226,10 +226,10 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
    */
   function applySizeConstraints(): void {
     const available = getAvailableSpace();
-    const minFirst = firstPane.minSize || 0;
-    const maxFirst = firstPane.maxSize || available;
-    const minSecond = secondPane.minSize || 0;
-    const maxSecond = secondPane.maxSize || available;
+    const minFirst = firstPane.minSize ?? 0;
+    const maxFirst = firstPane.maxSize ?? available;
+    const minSecond = secondPane.minSize ?? 0;
+    const maxSecond = secondPane.maxSize ?? available;
 
     // Apply first pane constraints
     state.firstPaneSize = Math.max(minFirst, Math.min(maxFirst, state.firstPaneSize));
@@ -370,10 +370,10 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
     let newSecondSize = startSecondSize - delta;
 
     // Apply constraints
-    const minFirst = firstPane.minSize || 0;
-    const maxFirst = firstPane.maxSize || available;
-    const minSecond = secondPane.minSize || 0;
-    const maxSecond = secondPane.maxSize || available;
+    const minFirst = firstPane.minSize ?? 0;
+    const maxFirst = firstPane.maxSize ?? available;
+    const minSecond = secondPane.minSize ?? 0;
+    const maxSecond = secondPane.maxSize ?? available;
 
     // Clamp to constraints
     if (newFirstSize < minFirst) {
@@ -461,7 +461,7 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
       case 'Home':
         event.preventDefault();
         // Collapse first pane to minimum
-        state.firstPaneSize = firstPane.minSize || 0;
+        state.firstPaneSize = firstPane.minSize ?? 0;
         state.secondPaneSize = available - state.firstPaneSize;
         updatePaneSizes();
         dispatchResizeEvent(true);
@@ -470,7 +470,7 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
       case 'End': {
         event.preventDefault();
         // Expand first pane to maximum
-        const maxFirst = firstPane.maxSize || available - (secondPane.minSize || 0);
+        const maxFirst = firstPane.maxSize ?? available - (secondPane.minSize ?? 0);
         state.firstPaneSize = Math.min(maxFirst, available);
         state.secondPaneSize = available - state.firstPaneSize;
         updatePaneSizes();
@@ -487,9 +487,9 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
       let newSecondSize = state.secondPaneSize - delta;
 
       // Apply constraints
-      const minFirst = firstPane.minSize || 0;
-      const maxFirst = firstPane.maxSize || available;
-      const minSecond = secondPane.minSize || 0;
+      const minFirst = firstPane.minSize ?? 0;
+      const maxFirst = firstPane.maxSize ?? available;
+      const minSecond = secondPane.minSize ?? 0;
 
       newFirstSize = Math.max(minFirst, Math.min(maxFirst, newFirstSize));
       newSecondSize = available - newFirstSize;
@@ -583,10 +583,10 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
   });
 
   // Public API methods
-  container.getFirstPaneSize = () => state.firstPaneSize;
-  container.getSecondPaneSize = () => state.secondPaneSize;
+  container.getFirstPaneSize = (): number => state.firstPaneSize;
+  container.getSecondPaneSize = (): number => state.secondPaneSize;
 
-  container.setFirstPaneSize = (size: SplitPaneSize) => {
+  container.setFirstPaneSize = (size: SplitPaneSize): void => {
     const available = getAvailableSpace();
     state.firstPaneSize = parseSizeToPixels(size, available);
     state.secondPaneSize = available - state.firstPaneSize;
@@ -595,7 +595,7 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
     dispatchResizeEvent(true);
   };
 
-  container.setSecondPaneSize = (size: SplitPaneSize) => {
+  container.setSecondPaneSize = (size: SplitPaneSize): void => {
     const available = getAvailableSpace();
     state.secondPaneSize = parseSizeToPixels(size, available);
     state.firstPaneSize = available - state.secondPaneSize;
@@ -604,11 +604,11 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
     dispatchResizeEvent(true);
   };
 
-  container.reset = () => {
+  container.reset = (): void => {
     resetSizes();
   };
 
-  container.collapse = (paneId: 'first' | 'second') => {
+  container.collapse = (paneId: 'first' | 'second'): void => {
     const available = getAvailableSpace();
 
     if (paneId === 'first' && !state.firstPaneCollapsed && firstPane.collapsible) {
@@ -630,12 +630,12 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
     }
   };
 
-  container.expand = (paneId: 'first' | 'second') => {
+  container.expand = (paneId: 'first' | 'second'): void => {
     const available = getAvailableSpace();
 
     if (paneId === 'first' && state.firstPaneCollapsed) {
       state.firstPaneCollapsed = false;
-      state.firstPaneSize = state.sizeBeforeCollapse || Math.round(available / 2);
+      state.firstPaneSize = state.sizeBeforeCollapse ?? Math.round(available / 2);
       state.secondPaneSize = available - state.firstPaneSize;
       state.sizeBeforeCollapse = null;
       applySizeConstraints();
@@ -644,7 +644,7 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
       if (onExpand) onExpand('first');
     } else if (paneId === 'second' && state.secondPaneCollapsed) {
       state.secondPaneCollapsed = false;
-      state.secondPaneSize = state.sizeBeforeCollapse || Math.round(available / 2);
+      state.secondPaneSize = state.sizeBeforeCollapse ?? Math.round(available / 2);
       state.firstPaneSize = available - state.secondPaneSize;
       state.sizeBeforeCollapse = null;
       applySizeConstraints();
@@ -654,7 +654,7 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
     }
   };
 
-  container.toggleCollapse = (paneId: 'first' | 'second') => {
+  container.toggleCollapse = (paneId: 'first' | 'second'): void => {
     if (paneId === 'first') {
       if (state.firstPaneCollapsed) {
         container.expand('first');
@@ -670,13 +670,13 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
     }
   };
 
-  container.isCollapsed = (paneId: 'first' | 'second') => {
+  container.isCollapsed = (paneId: 'first' | 'second'): boolean => {
     return paneId === 'first' ? state.firstPaneCollapsed : state.secondPaneCollapsed;
   };
 
-  container.getRatio = () => getRatioInternal();
+  container.getRatio = (): number => getRatioInternal();
 
-  container.setRatio = (ratio: number) => {
+  container.setRatio = (ratio: number): void => {
     const available = getAvailableSpace();
     const clamped = Math.max(0, Math.min(1, ratio));
     state.firstPaneSize = Math.round(clamped * available);
@@ -686,21 +686,21 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
     dispatchResizeEvent(true);
   };
 
-  container.focusDivider = () => {
+  container.focusDivider = (): void => {
     divider.focus();
   };
 
   container.setContent = (
     paneId: 'first' | 'second',
     content: string | HTMLElement | (() => HTMLElement)
-  ) => {
+  ): void => {
     const paneEl = paneId === 'first' ? firstPaneEl : secondPaneEl;
     const paneProps = paneId === 'first' ? firstPane : secondPane;
     (paneProps as { content: string | HTMLElement | (() => HTMLElement) }).content = content;
     renderPaneContent(paneEl, paneProps);
   };
 
-  container.destroy = () => {
+  container.destroy = (): void => {
     divider.removeEventListener('mousedown', handleDividerMouseDown);
     divider.removeEventListener('touchstart', handleDividerTouchStart);
     divider.removeEventListener('dblclick', handleDividerDoubleClick);

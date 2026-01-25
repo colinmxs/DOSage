@@ -266,7 +266,7 @@ export function createWindow(props: WindowProps): WindowInstance {
 
     e.preventDefault();
     isResizing = true;
-    resizeDirection = target.dataset.direction || '';
+    resizeDirection = target.dataset.direction ?? '';
     resizeStartX = e.clientX;
     resizeStartY = e.clientY;
     resizeStartWidth = currentWidth;

@@ -116,7 +116,7 @@ export function createFormGroup(props: FormGroupProps): FormGroupElement {
   }
 
   // Attach methods to the fieldset element
-  fieldset.setError = (newError: string | undefined) => {
+  fieldset.setError = (newError: string | undefined): void => {
     // Remove existing error element
     const existingError = content.querySelector('.dos-form-group__error');
     if (existingError) {
@@ -132,7 +132,7 @@ export function createFormGroup(props: FormGroupProps): FormGroupElement {
       content.appendChild(newErrorElement);
 
       // Update aria-describedby
-      const currentDescribedBy = fieldset.getAttribute('aria-describedby') || '';
+      const currentDescribedBy = fieldset.getAttribute('aria-describedby') ?? '';
       if (!currentDescribedBy.includes(errorId)) {
         fieldset.setAttribute(
           'aria-describedby',
@@ -141,7 +141,7 @@ export function createFormGroup(props: FormGroupProps): FormGroupElement {
       }
     } else {
       // Remove error from aria-describedby
-      const currentDescribedBy = fieldset.getAttribute('aria-describedby') || '';
+      const currentDescribedBy = fieldset.getAttribute('aria-describedby') ?? '';
       const newDescribedBy = currentDescribedBy
         .split(' ')
         .filter((id) => id !== errorId)
@@ -155,15 +155,15 @@ export function createFormGroup(props: FormGroupProps): FormGroupElement {
     }
   };
 
-  fieldset.setDisabled = (newDisabled: boolean) => {
+  fieldset.setDisabled = (newDisabled: boolean): void => {
     isDisabledState = newDisabled;
     fieldset.disabled = newDisabled;
     fieldset.classList.toggle('dos-form-group--disabled', newDisabled);
   };
 
-  fieldset.isDisabled = () => isDisabledState;
+  fieldset.isDisabled = (): boolean => isDisabledState;
 
-  fieldset.appendContent = (element: HTMLElement) => {
+  fieldset.appendContent = (element: HTMLElement): void => {
     // Insert before error element if it exists
     const errorElement = content.querySelector('.dos-form-group__error');
     if (errorElement) {
@@ -173,7 +173,7 @@ export function createFormGroup(props: FormGroupProps): FormGroupElement {
     }
   };
 
-  fieldset.clearContent = () => {
+  fieldset.clearContent = (): void => {
     // Keep description and error, remove everything else
     const description = content.querySelector('.dos-form-group__description');
     const error = content.querySelector('.dos-form-group__error');
@@ -188,7 +188,7 @@ export function createFormGroup(props: FormGroupProps): FormGroupElement {
     }
   };
 
-  fieldset.getContent = () => content;
+  fieldset.getContent = (): HTMLDivElement => content;
 
   return fieldset;
 }

@@ -64,13 +64,12 @@ export function createTreeView(props: TreeViewProps): TreeViewInstance {
   let nodes = [...initialNodes];
   let selectedIds = new Set<string>(initialSelectedNodes);
   let expandedIds = new Set<string>(
-    initialExpandedNodes
-      ? initialExpandedNodes
-      : defaultExpanded === true
+    initialExpandedNodes ??
+      (defaultExpanded === true
         ? getAllNodeIds(initialNodes)
         : Array.isArray(defaultExpanded)
           ? defaultExpanded
-          : []
+          : [])
   );
   let focusedNodeId: string | null = null;
 
@@ -343,7 +342,7 @@ export function createTreeView(props: TreeViewProps): TreeViewInstance {
   // Toggle node expand/collapse
   function toggleExpand(nodeId: string): void {
     const node = nodeMap.get(nodeId);
-    if (!node || !node.children || node.children.length === 0) return;
+    if (!node?.children || node.children.length === 0) return;
 
     if (expandedIds.has(nodeId)) {
       expandedIds.delete(nodeId);
@@ -418,7 +417,7 @@ export function createTreeView(props: TreeViewProps): TreeViewInstance {
         event.preventDefault();
         if (currentIndex >= 0) {
           const flatNode = visibleNodes[currentIndex];
-          if (flatNode && flatNode.hasChildren) {
+          if (flatNode?.hasChildren) {
             if (!expandedIds.has(flatNode.node.id)) {
               // Expand the node
               toggleExpand(flatNode.node.id);
@@ -441,7 +440,7 @@ export function createTreeView(props: TreeViewProps): TreeViewInstance {
           if (flatNode && flatNode.hasChildren && expandedIds.has(flatNode.node.id)) {
             // Collapse the node
             toggleExpand(flatNode.node.id);
-          } else if (flatNode && flatNode.parentId) {
+          } else if (flatNode?.parentId) {
             // Move to parent
             setFocusedNode(flatNode.parentId);
           }
@@ -581,7 +580,7 @@ export function createTreeView(props: TreeViewProps): TreeViewInstance {
       return nodes;
     }
     const parent = nodeMap.get(flatNode.parentId);
-    return parent?.children || [];
+    return parent?.children ?? [];
   }
 
   // Get selected nodes
@@ -653,7 +652,7 @@ export function createTreeView(props: TreeViewProps): TreeViewInstance {
 
     expandNode(nodeId: string): void {
       const node = nodeMap.get(nodeId);
-      if (node && node.children && node.children.length > 0) {
+      if (node?.children && node.children.length > 0) {
         expandedIds.add(nodeId);
         renderTree();
         if (onExpand) onExpand(node, true);

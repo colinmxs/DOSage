@@ -289,7 +289,8 @@ export function createDOSCursor(options: DOSCursorOptions): DOSCursorInstance {
       updateMeasurementContext();
     }
 
-    const ctx = measurementContext!;
+    if (!measurementContext) return;
+    const ctx = measurementContext;
     
     // Calculate position based on input type
     if (input instanceof HTMLTextAreaElement) {

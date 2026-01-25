@@ -127,7 +127,7 @@ export function createVisuallyHidden(props: VisuallyHiddenProps = {}): VisuallyH
   }
 
   return {
-    get element() {
+    get element(): HTMLElement {
       return element;
     },
     setContent,
