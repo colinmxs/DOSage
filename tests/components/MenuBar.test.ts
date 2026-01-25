@@ -714,6 +714,31 @@ describe('MenuBar', () => {
       expect(dropdownItems[0].getAttribute('aria-disabled')).toBe('true');
     });
 
+    it('openMenu keeps menu open when triggered by external button click', () => {
+      const menuBar = createMenuBar({ items: basicItems });
+      container.appendChild(menuBar);
+
+      // Create a button outside the menu bar
+      const button = document.createElement('button');
+      button.textContent = 'Open File Menu';
+      button.addEventListener('click', () => menuBar.openMenu('File'));
+      container.appendChild(button);
+
+      // Click the external button
+      button.click();
+
+      // Menu should be open
+      expect(menuBar.getOpenMenu()).toBe('File');
+      
+      // Dropdown should be visible
+      const dropdown = menuBar.querySelector('.dos-menu-bar__dropdown--open');
+      expect(dropdown).toBeTruthy();
+      
+      // ARIA attributes should be correct
+      const trigger = menuBar.querySelector('.dos-menu-bar__trigger');
+      expect(trigger?.getAttribute('aria-expanded')).toBe('true');
+    });
+
     it('destroy cleans up event listeners', () => {
       const menuBar = createMenuBar({ items: basicItems });
       container.appendChild(menuBar);
