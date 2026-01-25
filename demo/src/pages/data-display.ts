@@ -711,9 +711,9 @@ document.body.appendChild(grid.element);`,
       btnContainer.style.marginTop = '8px';
 
       const selectAllBtn = createButton({
-        label: 'Select All',
+        label: `Select All (${gridData.length} total)`,
         size: 'small',
-        onClick: () => grid.selectAll(),
+        onClick: () => grid.selectAll({ allPages: true }),
       });
 
       const clearBtn = createButton({
