@@ -5,7 +5,7 @@
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { createResizable } from '../../src/components/Resizable';
-import type { ResizableProps, ResizeHandle } from '../../src/components/Resizable';
+import type { ResizableProps as _ResizableProps, ResizeHandle } from '../../src/components/Resizable';
 
 describe('Resizable', () => {
   let container: HTMLElement;

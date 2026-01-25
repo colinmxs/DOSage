@@ -4,7 +4,7 @@
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { createHeading } from '../../src/components/Heading/Heading';
-import type { HeadingProps } from '../../src/components/Heading/Heading.types';
+import type { HeadingProps as _HeadingProps } from '../../src/components/Heading/Heading.types';
 
 describe('Heading', () => {
   let container: HTMLDivElement;

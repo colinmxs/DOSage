@@ -4,7 +4,7 @@
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { createText } from '../../src/components/Text/Text';
-import type { TextProps } from '../../src/components/Text/Text.types';
+import type { TextProps as _TextProps } from '../../src/components/Text/Text.types';
 
 describe('Text', () => {
   let container: HTMLDivElement;

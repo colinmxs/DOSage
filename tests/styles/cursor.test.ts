@@ -141,7 +141,7 @@ describe('DOS Block Cursor', () => {
       testElement.setAttribute('data-dos-theme', '');
       document.body.appendChild(testElement);
 
-      const styles = getComputedStyle(testElement);
+      const _styles = getComputedStyle(testElement);
       // Note: Custom properties may not be directly readable via getComputedStyle
       // This test verifies the element can be styled
       expect(testElement.getAttribute('data-dos-theme')).toBe('');

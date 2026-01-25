@@ -2,7 +2,7 @@
  * Container Component Tests
  */
 
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach as _beforeEach, afterEach } from 'vitest';
 import { createContainer } from '../../src/components/Container';
 
 describe('Container', () => {

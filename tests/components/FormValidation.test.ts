@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi as _vi } from 'vitest';
 import { createFormValidation } from '../../src/components/FormValidation';
 import type { ValidationType } from '../../src/components/FormValidation';
 

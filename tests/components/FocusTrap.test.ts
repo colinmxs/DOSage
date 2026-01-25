@@ -56,7 +56,7 @@ describe('FocusTrap', () => {
     it('calls onActivate callback when activated', () => {
       const onActivate = vi.fn();
 
-      const trap = createFocusTrap({
+      const _trap = createFocusTrap({
         container,
         onActivate,
       });
@@ -68,21 +68,21 @@ describe('FocusTrap', () => {
       const handler = vi.fn();
       container.addEventListener('dos:focustrap:activate', handler);
 
-      const trap = createFocusTrap({ container });
+      const _trap = createFocusTrap({ container });
 
       expect(handler).toHaveBeenCalled();
       container.removeEventListener('dos:focustrap:activate', handler);
     });
 
     it('focuses first focusable element by default', () => {
-      const trap = createFocusTrap({ container });
+      const _trap = createFocusTrap({ container });
 
       const btn1 = container.querySelector('#btn1');
       expect(document.activeElement).toBe(btn1);
     });
 
     it('focuses specified initialFocus element', () => {
-      const trap = createFocusTrap({
+      const _trap = createFocusTrap({
         container,
         initialFocus: '#input1',
       });
@@ -92,7 +92,7 @@ describe('FocusTrap', () => {
     });
 
     it('focuses container when initialFocus is "container"', () => {
-      const trap = createFocusTrap({
+      const _trap = createFocusTrap({
         container,
         initialFocus: 'container',
       });
@@ -103,7 +103,7 @@ describe('FocusTrap', () => {
     it('accepts HTMLElement as initialFocus', () => {
       const link = container.querySelector('#link1') as HTMLElement;
 
-      const trap = createFocusTrap({
+      const _trap = createFocusTrap({
         container,
         initialFocus: link,
       });
@@ -313,7 +313,7 @@ describe('FocusTrap', () => {
     it('calls onEscape callback', () => {
       const onEscape = vi.fn();
 
-      const trap = createFocusTrap({
+      const _trap = createFocusTrap({
         container,
         onEscape,
       });
@@ -514,7 +514,7 @@ describe('FocusTrap', () => {
 
   describe('sentinel elements', () => {
     it('adds sentinel elements when activated', () => {
-      const trap = createFocusTrap({ container });
+      const _trap = createFocusTrap({ container });
 
       expect(container.querySelector('[data-dos-focus-trap="start"]')).toBeTruthy();
       expect(container.querySelector('[data-dos-focus-trap="end"]')).toBeTruthy();
@@ -529,7 +529,7 @@ describe('FocusTrap', () => {
     });
 
     it('sentinels are aria-hidden', () => {
-      const trap = createFocusTrap({ container });
+      const _trap = createFocusTrap({ container });
 
       const start = container.querySelector('[data-dos-focus-trap="start"]');
       const end = container.querySelector('[data-dos-focus-trap="end"]');

@@ -5,7 +5,7 @@
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { createScrollArea } from '../../src/components/ScrollArea';
-import type { ScrollAreaProps } from '../../src/components/ScrollArea';
+import type { ScrollAreaProps as _ScrollAreaProps } from '../../src/components/ScrollArea';
 
 describe('ScrollArea', () => {
   let container: HTMLElement;

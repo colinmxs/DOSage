@@ -2,9 +2,9 @@
  * ListBox Component Tests
  */
 
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach as _beforeEach } from 'vitest';
 import { createListBox } from '../../src/components/ListBox';
-import type { ListBoxItem, ListBoxProps } from '../../src/components/ListBox';
+import type { ListBoxItem, ListBoxProps as _ListBoxProps } from '../../src/components/ListBox';
 
 // Helper to create test items
 function createTestItems(count: number = 5): ListBoxItem[] {

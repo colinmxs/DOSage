@@ -21,7 +21,7 @@ describe('SplitPane', () => {
     document.body.appendChild(container);
 
     // Mock ResizeObserver
-    global.ResizeObserver = vi.fn().mockImplementation((callback) => ({
+    global.ResizeObserver = vi.fn().mockImplementation((_callback) => ({
       observe: mockResizeObserver,
       disconnect: mockDisconnect,
       unobserve: vi.fn(),
@@ -358,7 +358,7 @@ describe('SplitPane', () => {
       const divider = splitPane.querySelector('.dos-splitpane__divider') as HTMLElement;
 
       // Store initial ratio
-      const initialRatio = splitPane.getRatio();
+      const _initialRatio = splitPane.getRatio();
 
       // Change the ratio first
       splitPane.setRatio(0.3);

@@ -4,7 +4,7 @@
 
 import { describe, it, expect, vi } from 'vitest';
 import { createTreeView } from '../../src/components/TreeView';
-import type { TreeNode, TreeViewProps } from '../../src/components/TreeView';
+import type { TreeNode, TreeViewProps as _TreeViewProps } from '../../src/components/TreeView';
 
 // Sample tree data
 function createSampleTree(): TreeNode[] {

@@ -733,7 +733,7 @@ describe('RadioButton', () => {
       it('does not navigate when group is disabled', () => {
         group.setDisabled(true);
 
-        const radios = group.getRadioButtons();
+        const _radios = group.getRadioButtons();
         const initialActive = document.activeElement;
 
         group.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));

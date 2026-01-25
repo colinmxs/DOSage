@@ -46,7 +46,7 @@ describe('Portal', () => {
     });
 
     it('renders content to a specified target element', () => {
-      const portal = createPortal({
+      const _portal = createPortal({
         content: '<div class="portal-content">Hello</div>',
         target: container,
       });
@@ -58,7 +58,7 @@ describe('Portal', () => {
     });
 
     it('renders content to a specified target selector', () => {
-      const portal = createPortal({
+      const _portal = createPortal({
         content: '<div class="portal-content">Hello</div>',
         target: '#test-container',
       });
@@ -71,7 +71,7 @@ describe('Portal', () => {
       contentEl.className = 'custom-element';
       contentEl.textContent = 'Custom Content';
 
-      const portal = createPortal({
+      const _portal = createPortal({
         content: contentEl,
       });
 
@@ -81,7 +81,7 @@ describe('Portal', () => {
     });
 
     it('applies custom class names', () => {
-      const portal = createPortal({
+      const _portal = createPortal({
         content: 'Test',
         className: 'my-portal',
         containerClass: 'my-container',
@@ -93,7 +93,7 @@ describe('Portal', () => {
     });
 
     it('uses custom ID when provided', () => {
-      const portal = createPortal({
+      const _portal = createPortal({
         content: 'Test',
         id: 'my-custom-portal',
       });
@@ -129,7 +129,7 @@ describe('Portal', () => {
     it('calls onMount callback when mounted', () => {
       const onMount = vi.fn();
 
-      const portal = createPortal({
+      const _portal = createPortal({
         content: 'Test',
         onMount,
       });
@@ -153,7 +153,7 @@ describe('Portal', () => {
       const handler = vi.fn();
       document.body.addEventListener('dos:portal:mount', handler);
 
-      const portal = createPortal({
+      const _portal = createPortal({
         content: 'Test',
       });
 
@@ -297,8 +297,8 @@ describe('Portal', () => {
 
   describe('portal tracking', () => {
     it('tracks active portals', () => {
-      const portal1 = createPortal({ content: 'One' });
-      const portal2 = createPortal({ content: 'Two' });
+      const _portal1 = createPortal({ content: 'One' });
+      const _portal2 = createPortal({ content: 'Two' });
 
       const active = getActivePortals();
       expect(active.length).toBe(2);
@@ -356,7 +356,7 @@ describe('Portal', () => {
       // Remove child from parent and put in portal
       parent.removeChild(child);
 
-      const portal = createPortal({
+      const _portal = createPortal({
         content: child,
         preserveEventBubbling: true,
       });
@@ -394,7 +394,7 @@ describe('Portal', () => {
     });
 
     it('handles null target gracefully', () => {
-      const portal = createPortal({
+      const _portal = createPortal({
         content: 'Test',
         target: null,
       });

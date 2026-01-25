@@ -163,7 +163,7 @@ describe('DOSCursor', () => {
       const cursor = createDOSCursor({ input, wrapper });
       
       cursor.show();
-      const initialPosition = cursor.getPosition();
+      const _initialPosition = cursor.getPosition();
       
       // Change input value
       input.value = 'Hello';

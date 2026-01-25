@@ -612,7 +612,7 @@ describe('Stepper', () => {
       const stepper = createStepper({
         steps: defaultSteps,
         'data-testid': 'my-stepper',
-      } as any);
+      } as Record<string, unknown>);
       container.appendChild(stepper);
 
       expect(stepper.getAttribute('data-testid')).toBe('my-stepper');

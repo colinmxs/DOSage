@@ -4,7 +4,7 @@
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { createAlert } from '../../src/components/Alert';
-import type { AlertType } from '../../src/components/Alert';
+import type { AlertType as _AlertType } from '../../src/components/Alert';
 
 describe('Alert', () => {
   let container: HTMLDivElement;

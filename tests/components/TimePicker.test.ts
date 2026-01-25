@@ -1,7 +1,7 @@
 /**
  * TimePicker component tests
  */
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach as _beforeEach, afterEach } from 'vitest';
 import { createTimePicker } from '../../src/components/TimePicker';
 import type { TimePickerElement } from '../../src/components/TimePicker';
 

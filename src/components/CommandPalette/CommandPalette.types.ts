@@ -30,7 +30,7 @@ export interface CommandItem {
    * Action to execute when command is selected
    * Return false to prevent closing the palette
    */
-  action: () => void | boolean;
+  action: () => boolean | undefined;
 
   /** Whether the command is disabled */
   disabled?: boolean;

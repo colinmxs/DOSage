@@ -204,7 +204,7 @@ describe('Link', () => {
         cancelable: true,
       });
 
-      const prevented = !link.dispatchEvent(event);
+      const _prevented = !link.dispatchEvent(event);
       // The event should be prevented
       expect(event.defaultPrevented).toBe(true);
     });

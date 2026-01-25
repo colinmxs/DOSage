@@ -4,7 +4,7 @@
  * Unit tests for the keyboard shortcut management utility.
  */
 
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach as _beforeEach, afterEach, vi } from 'vitest';
 import {
   createKeyboardShortcutHandler,
   createShortcutHint,

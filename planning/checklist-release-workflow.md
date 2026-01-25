@@ -44,14 +44,14 @@ This checklist guides implementation of automated CI/CD pipelines for GitHub rel
   - `release/*` - release preparation
 
 ### R2.2 GitHub Branch Protection Rules (Manual - GitHub UI)
-- [ ] ⛔ HUMAN ONLY: Enable branch protection for `main`:
-  - [ ] Require pull request before merging
-  - [ ] Require at least 1 approval
-  - [ ] Require status checks to pass (CI workflow)
-  - [ ] Require branches to be up to date before merging
-  - [ ] Require conversation resolution before merging
-  - [ ] Do not allow bypassing the above settings
-  - [ ] Restrict who can push (maintainers only)
+- [x] ⛔ HUMAN ONLY: Enable branch protection for `main`:
+  - [x] Require pull request before merging
+  - [x] Require at least 1 approval
+  - [x] Require status checks to pass (CI workflow)
+  - [x] Require branches to be up to date before merging
+  - [x] Require conversation resolution before merging
+  - [x] Do not allow bypassing the above settings
+  - [x] Restrict who can push (maintainers only)
 
 ---
 
@@ -121,8 +121,8 @@ This checklist guides implementation of automated CI/CD pipelines for GitHub rel
 ## Phase R5: GitHub Actions - npm Publish Workflow
 
 ### R5.1 npm Authentication (Manual - GitHub UI)
-- [ ] ⛔ HUMAN ONLY: Create npm access token (Automation type)
-- [ ] ⛔ HUMAN ONLY: Add `NPM_TOKEN` to GitHub repository secrets
+- [x] ⛔ HUMAN ONLY: Create npm access token (Automation type)
+- [x] ⛔ HUMAN ONLY: Add `NPM_TOKEN` to GitHub repository secrets
 
 ### R5.2 Create npm Publish Workflow
 - [x] Create `.github/workflows/npm-publish.yml` OR extend release.yml
@@ -164,8 +164,8 @@ This checklist guides implementation of automated CI/CD pipelines for GitHub rel
 ## Phase R7: Pre-Release Verification
 
 ### R7.1 Local Verification
-- [ ] Run full build: `npm run build`
-- [ ] Run all tests: `npm test`
+- [x] Run full build: `npm run build`
+- [x] Run all tests: `npm test`
 - [ ] Run linting: `npm run lint`
 - [ ] Run typecheck: `npm run typecheck`
 - [ ] Test pack output: `npm pack`

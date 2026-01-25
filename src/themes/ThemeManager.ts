@@ -30,6 +30,7 @@ const customThemes = new Map<string, ThemeConfig>();
  * ThemeManager.registerTheme('my-theme', { ... });
  * ```
  */
+// eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class ThemeManager {
   /**
    * Set the active theme

@@ -4,7 +4,7 @@
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { createSidebar } from '../../src/components/Sidebar';
-import type { SidebarProps, SidebarItem } from '../../src/components/Sidebar';
+import type { SidebarProps as _SidebarProps, SidebarItem } from '../../src/components/Sidebar';
 
 describe('Sidebar', () => {
   let container: HTMLElement;

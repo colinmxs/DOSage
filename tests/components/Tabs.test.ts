@@ -2,7 +2,7 @@
  * Tabs Component Tests
  */
 
-import { describe, it, expect, afterEach, vi, beforeEach } from 'vitest';
+import { describe, it, expect, afterEach, vi, beforeEach as _beforeEach } from 'vitest';
 import { createTabs, TabsElement } from '../../src/components/Tabs';
 
 describe('Tabs', () => {

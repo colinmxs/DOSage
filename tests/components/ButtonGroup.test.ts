@@ -2,7 +2,7 @@
  * ButtonGroup Component Tests
  */
 
-import { describe, it, expect, afterEach, vi } from 'vitest';
+import { describe, it, expect, afterEach, vi as _vi } from 'vitest';
 import {
   createButtonGroup,
   addButtonsToGroup,

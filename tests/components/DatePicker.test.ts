@@ -978,7 +978,7 @@ describe('DatePicker', () => {
       container.open();
       
       const days = container.querySelectorAll('.dos-date-picker___day:not(.dos-date-picker___day--other-month)');
-      const daysInMonth = Array.from(days).filter(d => 
+      const _daysInMonth = Array.from(days).filter(d => 
         !d.classList.contains('dos-date-picker___day--other-month')
       );
       

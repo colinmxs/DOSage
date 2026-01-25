@@ -180,7 +180,7 @@ describe('Validators', () => {
 
   describe('matches', () => {
     it('returns invalid when values do not match', () => {
-      let password = 'secret123';
+      const password = 'secret123';
       const validate = validators.matches(() => password, 'password');
       const result = validate('different');
 
@@ -189,7 +189,7 @@ describe('Validators', () => {
     });
 
     it('returns valid when values match', () => {
-      let password = 'secret123';
+      const password = 'secret123';
       const validate = validators.matches(() => password, 'password');
       const result = validate('secret123');
 
