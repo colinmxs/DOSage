@@ -9,22 +9,22 @@
 [data-dos-theme] {
   /* ===== COLORS ===== */
   /* Primary background - the main screen color */
-  --dos-color-bg: #0000AA;
+  --dos-color-bg: #0000aa;
 
   /* Primary foreground - main text color */
-  --dos-color-fg: #FFFFFF;
+  --dos-color-fg: #ffffff;
 
   /* Primary accent - highlights, links, important elements */
-  --dos-color-primary: #FFFF55;
+  --dos-color-primary: #ffff55;
 
   /* Secondary accent - alternate highlights */
-  --dos-color-secondary: #55FFFF;
+  --dos-color-secondary: #55ffff;
 
   /* Border color - panels, inputs, dividers */
-  --dos-color-border: #AAAAAA;
+  --dos-color-border: #aaaaaa;
 
   /* Highlight/selection color */
-  --dos-color-highlight: #FFFFFF;
+  --dos-color-highlight: #ffffff;
 
   /* Shadow color */
   --dos-color-shadow: #000000;
@@ -33,21 +33,30 @@
   --dos-color-disabled: #888888;
 
   /* Warning color - DOS yellow for caution */
-  --dos-color-warning: #FFFF55;
+  --dos-color-warning: #ffff55;
 
   /* Error/danger color - WCAG AA compliant on DOS blue background */
-  --dos-color-error: #FF6666;
+  --dos-color-error: #ff6666;
 
   /* Success color */
-  --dos-color-success: #55FF55;
+  --dos-color-success: #55ff55;
 
   /* Component backgrounds - solid colors for visibility */
-  --dos-color-bg-primary: #0000AA;
+  --dos-color-bg-primary: #0000aa;
   --dos-color-bg-secondary: #000055;
 
   /* Component text colors */
-  --dos-color-text-primary: #FFFFFF;
-  --dos-color-text-secondary: #AAAAAA;
+  --dos-color-text-primary: #ffffff;
+  --dos-color-text-secondary: #aaaaaa;
+
+  /* Interactive state colors */
+  --dos-color-selection: #0000cc;
+  --dos-color-selection-hover: #0000dd;
+  --dos-color-bg-hover: #000099;
+  --dos-color-bg-focus: #0000bb;
+  --dos-color-focus: #ffff55;
+  --dos-color-fg-secondary: #cccccc;
+  --dos-color-border-subtle: #000066;
 
   /* ===== TYPOGRAPHY ===== */
   /* Primary font family - DOS-style monospace */

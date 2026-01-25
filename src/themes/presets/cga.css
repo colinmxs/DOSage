@@ -7,16 +7,25 @@
  * Foreground: White (#FFFFFF)
  */
 
-[data-dos-theme="cga"] {
+[data-dos-theme='cga'] {
   /* Colors - CGA 16-color palette inspired */
   --dos-color-bg: #000000;
-  --dos-color-fg: #FFFFFF;
-  --dos-color-primary: #FF55FF;
-  --dos-color-secondary: #55FFFF;
-  --dos-color-border: #AAAAAA;
-  --dos-color-highlight: #FFFF55;
+  --dos-color-fg: #ffffff;
+  --dos-color-primary: #ff55ff;
+  --dos-color-secondary: #55ffff;
+  --dos-color-border: #aaaaaa;
+  --dos-color-highlight: #ffff55;
   --dos-color-shadow: #555555;
   --dos-color-disabled: #555555;
-  --dos-color-error: #FF5555;
-  --dos-color-success: #55FF55;
+  --dos-color-error: #ff5555;
+  --dos-color-success: #55ff55;
+
+  /* Interactive states */
+  --dos-color-selection: #550055;
+  --dos-color-selection-hover: #aa00aa;
+  --dos-color-bg-hover: #000055;
+  --dos-color-bg-focus: #0000aa;
+  --dos-color-focus: #ffff55;
+  --dos-color-fg-secondary: #aaaaaa;
+  --dos-color-border-subtle: #555555;
 }
