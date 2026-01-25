@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- TreeView: Fixed ghost/duplicate brackets appearing behind expand/collapse icons due to CSS ::before pseudo-elements duplicating JavaScript textContent
+
 ### Added
 - Initial release preparation
 
