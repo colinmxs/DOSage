@@ -97,7 +97,12 @@
   }
 
   /* Show static character when motion is reduced */
+  .dos-loading-spinner .dos-loading-spinner__character {
+    font-size: 0;
+  }
+
   .dos-loading-spinner .dos-loading-spinner__character::before {
     content: '○';
+    font-size: 1rem;
   }
 }
