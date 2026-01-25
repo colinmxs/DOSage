@@ -83,22 +83,22 @@ This checklist guides implementation of automated CI/CD pipelines for GitHub rel
 ## Phase R4: GitHub Actions - Release Workflow
 
 ### R4.1 Create Release Workflow
-- [ ] Create `.github/workflows/release.yml`
-- [ ] Trigger on: `push` to `main` branch only
-- [ ] Condition: Only run if commit message contains version bump OR tag is pushed
-- [ ] Steps:
-  - [ ] Checkout code with full history
-  - [ ] Setup Node.js
-  - [ ] Install dependencies
-  - [ ] Run full test suite
-  - [ ] Build library
-  - [ ] Create distributable package (tarball)
-  - [ ] Extract version from package.json
-  - [ ] Create GitHub Release with auto-generated notes
-  - [ ] Upload tarball as release asset
+- [x] Create `.github/workflows/release.yml`
+- [x] Trigger on: `push` to `main` branch only
+- [x] Condition: Only run if commit message contains version bump OR tag is pushed
+- [x] Steps:
+  - [x] Checkout code with full history
+  - [x] Setup Node.js
+  - [x] Install dependencies
+  - [x] Run full test suite
+  - [x] Build library
+  - [x] Create distributable package (tarball)
+  - [x] Extract version from package.json
+  - [x] Create GitHub Release with auto-generated notes
+  - [x] Upload tarball as release asset
 
 ### R4.2 Release Asset Structure
-- [ ] Create tarball: `dosage-{version}.tgz` containing:
+- [x] Create tarball: `dosage-{version}.tgz` containing:
   - `dist/esm/` - ES modules
   - `dist/cjs/` - CommonJS
   - `dist/types/` - TypeScript declarations
@@ -107,14 +107,14 @@ This checklist guides implementation of automated CI/CD pipelines for GitHub rel
   - `README.md`
   - `LICENSE`
   - `CHANGELOG.md`
-- [ ] Optionally create ZIP for non-npm users
+- [x] Optionally create ZIP for non-npm users
 
 ### R4.3 Version Management
-- [ ] Add `npm version` scripts or use semantic-release (choose one):
+- [x] Add `npm version` scripts or use semantic-release (choose one):
   - **Option A (Manual):** Use `npm version patch|minor|major`
   - **Option B (Automated):** Configure semantic-release with conventional commits
-- [ ] Ensure version bump commits follow pattern: `chore(release): vX.Y.Z`
-- [ ] Configure git tag format: `vX.Y.Z`
+- [x] Ensure version bump commits follow pattern: `chore(release): vX.Y.Z`
+- [x] Configure git tag format: `vX.Y.Z`
 
 ---
 
@@ -125,39 +125,39 @@ This checklist guides implementation of automated CI/CD pipelines for GitHub rel
 - [ ] ⛔ HUMAN ONLY: Add `NPM_TOKEN` to GitHub repository secrets
 
 ### R5.2 Create npm Publish Workflow
-- [ ] Create `.github/workflows/npm-publish.yml` OR extend release.yml
-- [ ] Trigger on: GitHub Release published
-- [ ] Steps:
-  - [ ] Checkout code at release tag
-  - [ ] Setup Node.js with npm registry
-  - [ ] Install dependencies
-  - [ ] Build library
-  - [ ] Publish to npm (`npm publish --access public`)
-- [ ] Add dry-run step for PRs (optional)
+- [x] Create `.github/workflows/npm-publish.yml` OR extend release.yml
+- [x] Trigger on: GitHub Release published
+- [x] Steps:
+  - [x] Checkout code at release tag
+  - [x] Setup Node.js with npm registry
+  - [x] Install dependencies
+  - [x] Build library
+  - [x] Publish to npm (`npm publish --access public`)
+- [x] Add dry-run step for PRs (optional)
 
 ### R5.3 npm Package Verification
-- [ ] Test local pack: `npm pack --dry-run` lists only intended files
-- [ ] Verify package size is reasonable (<500KB unpacked)
-- [ ] Test install from tarball locally before first publish
+- [x] Test local pack: `npm pack --dry-run` lists only intended files
+- [x] Verify package size is reasonable (<500KB unpacked)
+- [x] Test install from tarball locally before first publish
 
 ---
 
 ## Phase R6: Workflow Configuration Files
 
 ### R6.1 Dependabot Configuration
-- [ ] Create `.github/dependabot.yml`
-- [ ] Configure npm dependency updates (weekly)
-- [ ] Configure GitHub Actions updates (weekly)
-- [ ] Set appropriate reviewers/assignees
+- [x] Create `.github/dependabot.yml`
+- [x] Configure npm dependency updates (weekly)
+- [x] Configure GitHub Actions updates (weekly)
+- [x] Set appropriate reviewers/assignees
 
 ### R6.2 Issue & PR Templates
-- [ ] Create `.github/ISSUE_TEMPLATE/bug_report.md`
-- [ ] Create `.github/ISSUE_TEMPLATE/feature_request.md`
-- [ ] Create `.github/PULL_REQUEST_TEMPLATE.md`
+- [x] Create `.github/ISSUE_TEMPLATE/bug_report.md`
+- [x] Create `.github/ISSUE_TEMPLATE/feature_request.md`
+- [x] Create `.github/PULL_REQUEST_TEMPLATE.md`
 
 ### R6.3 GitHub Actions Permissions
-- [ ] Review default GITHUB_TOKEN permissions
-- [ ] Set minimal required permissions in workflow files
+- [x] Review default GITHUB_TOKEN permissions
+- [x] Set minimal required permissions in workflow files
 
 ---
 

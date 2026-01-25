@@ -498,6 +498,116 @@ Add a demo section in the appropriate page file (e.g., `demo/src/pages/buttons.t
 
 ---
 
+## Release Process
+
+DOSage uses automated releases through GitHub Actions. Here's how to create a new release:
+
+### Version Numbering
+
+We follow [Semantic Versioning](https://semver.org/):
+
+- **PATCH** (0.1.0 → 0.1.1): Bug fixes, no API changes
+- **MINOR** (0.1.0 → 0.2.0): New features, backward compatible
+- **MAJOR** (0.1.0 → 1.0.0): Breaking changes
+
+**Note:** During 0.x development, MINOR = breaking changes, PATCH = features/fixes
+
+### Creating a Release
+
+1. **Ensure main is clean and CI is passing**
+
+   ```bash
+   git checkout main
+   git pull origin main
+   ```
+
+2. **Update CHANGELOG.md**
+
+   Add release date and final notes to the `[Unreleased]` section:
+
+   ```markdown
+   ## [0.2.0] - 2026-01-24
+   
+   ### Added
+   - New CommandPalette component
+   
+   ### Fixed
+   - Button focus state in Safari
+   ```
+
+3. **Commit changelog**
+
+   ```bash
+   git add CHANGELOG.md
+   git commit -m "chore: prepare v0.2.0 release"
+   git push origin main
+   ```
+
+4. **Create version tag**
+
+   Use npm version to bump version and create tag:
+
+   ```bash
+   # For patch release (0.1.0 → 0.1.1)
+   npm version patch -m "chore(release): %s"
+   
+   # For minor release (0.1.0 → 0.2.0)
+   npm version minor -m "chore(release): %s"
+   
+   # For major release (0.1.0 → 1.0.0)
+   npm version major -m "chore(release): %s"
+   ```
+
+   This will:
+   - Update version in `package.json`
+   - Run `prepublishOnly` script (build + test)
+   - Create a git commit
+   - Create a git tag (e.g., `v0.2.0`)
+   - Push to GitHub (via `postversion` script)
+
+5. **GitHub Actions takes over**
+
+   The Release workflow automatically:
+   - ✅ Runs full test suite
+   - ✅ Builds the library
+   - ✅ Creates a `.tgz` package
+   - ✅ Creates a GitHub Release with auto-generated notes
+   - ✅ Uploads the package as a release asset
+
+6. **Verify the release**
+
+   Check: https://github.com/colinmxs/DOSage/releases
+
+### Manual Tag Push (Alternative)
+
+If you prefer manual control:
+
+```bash
+# Update version in package.json manually
+# Commit the change
+git add package.json CHANGELOG.md
+git commit -m "chore(release): v0.2.0"
+
+# Create and push tag
+git tag v0.2.0
+git push origin main
+git push origin v0.2.0
+```
+
+### Pre-releases
+
+For alpha/beta/rc versions:
+
+```bash
+npm version prerelease --preid=alpha  # 0.1.0 → 0.1.1-alpha.0
+npm version prerelease --preid=beta   # 0.1.0 → 0.1.1-beta.0
+npm version prerelease --preid=rc     # 0.1.0 → 0.1.1-rc.0
+```
+
+Pre-release versions are automatically marked as "pre-release" on GitHub.
+
+---
+
 ## Commit Message Format
 
 We use [Conventional Commits](https://www.conventionalcommits.org/) for commit messages.
