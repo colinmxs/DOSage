@@ -58,7 +58,7 @@ export function createDataGrid(props: DataGridProps): DataGridInstance {
   let currentPage = pagination?.currentPage || 1;
   let pageSize = pagination?.pageSize || 10;
   let editingCell: { rowId: string; column: string; element: HTMLElement } | null = null;
-  let columnWidths: Record<string, number> = {};
+  const columnWidths: Record<string, number> = {};
   let columnOrder: string[] = columns.map(col => col.key);
   let focusedRowIndex = -1;
 

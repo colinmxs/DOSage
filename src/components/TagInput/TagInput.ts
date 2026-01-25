@@ -606,7 +606,7 @@ export function createTagInput(props: TagInputProps): TagInputElement {
       }
 
       renderSuggestions();
-    } catch (error) {
+    } catch {
       state.isLoading = false;
       state.suggestions = [];
       closeSuggestions();
@@ -902,7 +902,7 @@ export function createTagInput(props: TagInputProps): TagInputElement {
           break;
 
         case 'Backspace':
-        case 'Delete':
+        case 'Delete': {
           event.preventDefault();
           const tag = state.tags[state.focusedTagIndex];
           if (tag && tag.removable !== false) {
@@ -918,6 +918,7 @@ export function createTagInput(props: TagInputProps): TagInputElement {
             renderTags();
           }
           break;
+        }
 
         case 'Escape':
           event.preventDefault();

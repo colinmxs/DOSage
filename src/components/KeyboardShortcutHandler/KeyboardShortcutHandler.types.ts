@@ -88,7 +88,7 @@ export interface ShortcutDefinition {
 /**
  * Shortcut callback function type
  */
-export type ShortcutCallback = (event: KeyboardEvent, shortcut: ShortcutDefinition) => void | boolean;
+export type ShortcutCallback = (event: KeyboardEvent, shortcut: ShortcutDefinition) => boolean | undefined | void;
 
 /**
  * Parsed shortcut key combination

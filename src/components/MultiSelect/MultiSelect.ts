@@ -45,8 +45,10 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
     value: initialValue = [],
     placeholder = 'Select...',
     disabled: initialDisabled = false,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     required: _required = false,
-    name: _name,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    name: _name = '',
     searchable = false,
     searchPlaceholder = 'Search...',
     maxSelections,

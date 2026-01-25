@@ -64,7 +64,7 @@ export interface FocusTrapOptions {
    * Callback fired when Escape is pressed (if escapeDeactivates is true).
    * Return false to prevent deactivation.
    */
-  onEscape?: () => boolean | void;
+  onEscape?: () => boolean | undefined;
 
   /**
    * Whether to prevent scrolling to the focused element.

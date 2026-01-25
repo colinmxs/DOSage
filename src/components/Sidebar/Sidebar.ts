@@ -52,7 +52,7 @@ export function createSidebar(props: SidebarProps): SidebarElement {
   let currentItems = [...items];
   let currentActiveItem: string | null = activeItem;
   let isCollapsed = collapsed;
-  let sectionStates: Map<string, boolean> = new Map();
+  const sectionStates: Map<string, boolean> = new Map();
 
   // Initialize section states from items
   function initSectionStates(itemList: SidebarItem[]): void {

@@ -75,7 +75,7 @@ export function createTreeView(props: TreeViewProps): TreeViewInstance {
   let focusedNodeId: string | null = null;
 
   // Node lookup map for quick access
-  let nodeMap = new Map<string, TreeNode>();
+  const nodeMap = new Map<string, TreeNode>();
   buildNodeMap(initialNodes);
 
   // Create container element

@@ -116,10 +116,6 @@ export function createDropdownMenu(props: DropdownMenuProps): DropdownMenuElemen
   let items = deepCloneItems(initialItems);
   let isOpen = initialOpen;
   let position = initialPosition;
-  // Track highlighted index for potential future use (e.g., custom highlight styles)
-  // Currently DOM focus state handles highlighting, but we maintain this for state tracking
-  // @ts-expect-error - Variable is maintained for state tracking but not read yet
-  let highlightedIndex = -1;
   let activeSubmenuStack: HTMLElement[] = [];
   let triggerElement: HTMLElement | null = null;
 
@@ -158,7 +154,6 @@ export function createDropdownMenu(props: DropdownMenuProps): DropdownMenuElemen
    */
   function render(): void {
     dropdown.innerHTML = '';
-    highlightedIndex = -1;
 
     items.forEach((item, index) => {
       if (item.divider) {
@@ -445,9 +440,6 @@ export function createDropdownMenu(props: DropdownMenuProps): DropdownMenuElemen
     
     // Close all submenus
     closeAllSubmenus();
-    
-    // Reset highlighted index
-    highlightedIndex = -1;
     
     onClose?.();
   }

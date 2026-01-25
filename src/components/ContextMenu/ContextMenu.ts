@@ -104,9 +104,6 @@ export function createContextMenu(props: ContextMenuProps): ContextMenuElement {
   let items = deepCloneItems(initialItems);
   let isOpen = false;
   let currentPosition: ContextMenuPosition = { x: 0, y: 0 };
-  // Track highlighted index for potential future use
-  // @ts-expect-error - Variable is maintained for state tracking but not read yet
-  let highlightedIndex = -1;
   let activeSubmenuStack: HTMLElement[] = [];
   let targetElements: HTMLElement[] = [];
 
@@ -127,7 +124,6 @@ export function createContextMenu(props: ContextMenuProps): ContextMenuElement {
    */
   function render(): void {
     contextMenu.innerHTML = '';
-    highlightedIndex = -1;
 
     items.forEach((item, index) => {
       if (item.divider) {
@@ -388,7 +384,7 @@ export function createContextMenu(props: ContextMenuProps): ContextMenuElement {
           }
         }
         break;
-      case 'ArrowLeft':
+      case 'ArrowLeft': {
         e.preventDefault();
         // If in submenu, close and focus parent
         const parentSubmenu = menuItem.closest('.dos-context-menu__submenu');
@@ -400,6 +396,7 @@ export function createContextMenu(props: ContextMenuProps): ContextMenuElement {
           }
         }
         break;
+      }
       case 'Enter':
       case ' ':
         e.preventDefault();

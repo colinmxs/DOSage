@@ -687,7 +687,7 @@ export function createSelect(props: SelectProps): SelectElement {
         scrollToHighlighted();
         break;
 
-      case 'Enter':
+      case 'Enter': {
         e.preventDefault();
         const selectedOption = filteredOptions[highlightedIndex];
         if (highlightedIndex >= 0 && selectedOption) {
@@ -697,6 +697,7 @@ export function createSelect(props: SelectProps): SelectElement {
           }
         }
         break;
+      }
 
       case 'Escape':
         e.preventDefault();

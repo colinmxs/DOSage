@@ -566,7 +566,7 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
         }
         break;
 
-      case 'ArrowLeft':
+      case 'ArrowLeft': {
         e.preventDefault();
         // If in submenu, close it
         const isInSubmenu = li.closest('.dos-menu-bar__submenu');
@@ -586,6 +586,7 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
           openMenu(prevIndex);
         }
         break;
+      }
 
       case 'Enter':
       case ' ':
@@ -603,7 +604,7 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
         }
         break;
 
-      case 'Escape':
+      case 'Escape': {
         e.preventDefault();
         closeMenu();
         // Focus the menu bar trigger
@@ -612,6 +613,7 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
           (triggers[openMenuIndex] as HTMLElement).focus();
         }
         break;
+      }
 
       case 'Home':
         e.preventDefault();

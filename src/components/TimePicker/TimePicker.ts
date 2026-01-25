@@ -116,8 +116,10 @@ export function createTimePicker(props: TimePickerProps): TimePickerElement {
     label,
     format = '12h',
     step = 1,
-    min: _min,
-    max: _max,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    min: _min = undefined,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    max: _max = undefined,
     disabled = false,
     error: initialError,
     name,

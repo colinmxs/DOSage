@@ -70,8 +70,8 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
   };
 
   // Store initial sizes for reset
-  let initialFirstSize: SplitPaneSize = firstPane.initialSize || '50%';
-  let initialSecondSize: SplitPaneSize = secondPane.initialSize || 'auto';
+  const initialFirstSize: SplitPaneSize = firstPane.initialSize || '50%';
+  const initialSecondSize: SplitPaneSize = secondPane.initialSize || 'auto';
 
   // Create main container
   const container = document.createElement('div') as SplitPaneElement;
@@ -250,21 +250,19 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
    * Update DOM to reflect current sizes
    */
   function updatePaneSizes(): void {
-    const flexBasis = orientation === 'horizontal' ? 'flex-basis' : 'flex-basis';
-
     if (state.firstPaneCollapsed) {
-      firstPaneEl.style[flexBasis as any] = '0px';
+      firstPaneEl.style.flexBasis = '0px';
       firstPaneEl.classList.add('dos-splitpane__pane--collapsed');
     } else {
-      firstPaneEl.style[flexBasis as any] = `${state.firstPaneSize}px`;
+      firstPaneEl.style.flexBasis = `${state.firstPaneSize}px`;
       firstPaneEl.classList.remove('dos-splitpane__pane--collapsed');
     }
 
     if (state.secondPaneCollapsed) {
-      secondPaneEl.style[flexBasis as any] = '0px';
+      secondPaneEl.style.flexBasis = '0px';
       secondPaneEl.classList.add('dos-splitpane__pane--collapsed');
     } else {
-      secondPaneEl.style[flexBasis as any] = `${state.secondPaneSize}px`;
+      secondPaneEl.style.flexBasis = `${state.secondPaneSize}px`;
       secondPaneEl.classList.remove('dos-splitpane__pane--collapsed');
     }
 
@@ -469,7 +467,7 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
         dispatchResizeEvent(true);
         return;
 
-      case 'End':
+      case 'End': {
         event.preventDefault();
         // Expand first pane to maximum
         const maxFirst = firstPane.maxSize || available - (secondPane.minSize || 0);
@@ -478,6 +476,7 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
         updatePaneSizes();
         dispatchResizeEvent(true);
         return;
+      }
 
       default:
         return;
@@ -697,7 +696,7 @@ export function createSplitPane(props: SplitPaneProps): SplitPaneElement {
   ) => {
     const paneEl = paneId === 'first' ? firstPaneEl : secondPaneEl;
     const paneProps = paneId === 'first' ? firstPane : secondPane;
-    (paneProps as any).content = content;
+    (paneProps as { content: string | HTMLElement | (() => HTMLElement) }).content = content;
     renderPaneContent(paneEl, paneProps);
   };
 

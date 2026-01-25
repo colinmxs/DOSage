@@ -164,14 +164,13 @@ export function createSlider(props: SliderProps = {}): SliderElement {
 
   // Create thumb(s)
   let thumbMin: HTMLDivElement | null = null;
-  let thumbMax: HTMLDivElement;
 
   if (range) {
     thumbMin = createThumb('min');
     trackLine.appendChild(thumbMin);
   }
 
-  thumbMax = createThumb(range ? 'max' : 'single');
+  const thumbMax = createThumb(range ? 'max' : 'single');
   trackLine.appendChild(thumbMax);
 
   track.appendChild(trackLine);

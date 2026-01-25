@@ -29,11 +29,11 @@
   /* Shadow color */
   --dos-color-shadow: #000000;
 
-  /* Disabled state color */
-  --dos-color-disabled: #555555;
+  /* Disabled state color - intentionally lower contrast to indicate unavailable state */
+  --dos-color-disabled: #888888;
 
-  /* Error/danger color */
-  --dos-color-error: #FF5555;
+  /* Error/danger color - WCAG AA compliant on DOS blue background */
+  --dos-color-error: #FF6666;
 
   /* Success color */
   --dos-color-success: #55FF55;
