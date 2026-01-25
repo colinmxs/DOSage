@@ -853,7 +853,10 @@ dropdown.destroy();`,
       btn.style.fontFamily = 'var(--dos-font-family)';
       btn.style.padding = 'var(--dos-space-xs) var(--dos-space-sm)';
       btn.style.cursor = 'pointer';
-      btn.addEventListener('click', onClick);
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent event from bubbling to document
+        onClick();
+      });
       return btn;
     };
 
