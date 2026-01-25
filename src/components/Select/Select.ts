@@ -310,9 +310,9 @@ export function createSelect(props: SelectProps): SelectElement {
     let hasGroups = false;
 
     opts.forEach((option) => {
-      const groupName = option.group || '__ungrouped__';
+      const groupName = option.group ?? '__ungrouped__';
       if (option.group) hasGroups = true;
-      if (!groups[groupName]) groups[groupName] = [];
+      groups[groupName] ??= [];
       groups[groupName].push(option);
     });
 
@@ -504,7 +504,7 @@ export function createSelect(props: SelectProps): SelectElement {
     updateHiddenInputs();
     renderOptions();
 
-    const returnValue = multiple ? [...selectedValues] : selectedValues[0] || '';
+    const returnValue = multiple ? [...selectedValues] : selectedValues[0] ?? '';
     onChange?.(returnValue);
   }
 
@@ -516,7 +516,7 @@ export function createSelect(props: SelectProps): SelectElement {
       updateHiddenInputs();
       renderOptions();
 
-      const returnValue = multiple ? [...selectedValues] : selectedValues[0] || '';
+      const returnValue = multiple ? [...selectedValues] : selectedValues[0] ?? '';
       onChange?.(returnValue);
     }
   }
@@ -735,7 +735,7 @@ export function createSelect(props: SelectProps): SelectElement {
   // Public methods
 
   wrapper.getValue = function (): string | string[] {
-    return multiple ? [...selectedValues] : selectedValues[0] || '';
+    return multiple ? [...selectedValues] : selectedValues[0] ?? '';
   };
 
   wrapper.setValue = function (value: string | string[]): void {

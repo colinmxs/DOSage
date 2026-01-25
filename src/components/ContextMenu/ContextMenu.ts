@@ -518,7 +518,7 @@ export function createContextMenu(props: ContextMenuProps): ContextMenuElement {
       const item = items[index];
       if (item) {
         const label = item.querySelector('.dos-context-menu__label');
-        if (label && label.textContent?.toLowerCase().startsWith(lowerChar)) {
+        if (label?.textContent?.toLowerCase().startsWith(lowerChar)) {
           item.focus();
           return;
         }
@@ -766,7 +766,7 @@ export function createContextMenu(props: ContextMenuProps): ContextMenuElement {
   // Attach API methods
   contextMenu.open = open;
   contextMenu.close = close;
-  contextMenu.isOpen = () => isOpen;
+  contextMenu.isOpen = (): boolean => isOpen;
   contextMenu.setItems = setItems;
   contextMenu.attach = attach;
   contextMenu.detach = detach;

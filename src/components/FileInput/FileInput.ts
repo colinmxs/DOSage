@@ -467,20 +467,20 @@ export function createFileInput(props: FileInputProps = {}): FileInputElement {
   }
 
   // Public API methods
-  wrapper.getFiles = () => [...selectedFiles];
+  wrapper.getFiles = (): File[] => [...selectedFiles];
 
-  wrapper.clear = () => {
+  wrapper.clear = (): void => {
     selectedFiles = [];
     updateFilenameDisplay();
     updateFileList();
     onChange?.([]);
   };
 
-  wrapper.browse = () => {
+  wrapper.browse = (): void => {
     handleBrowseClick();
   };
 
-  wrapper.setDisabled = (newDisabled: boolean) => {
+  wrapper.setDisabled = (newDisabled: boolean): void => {
     isDisabled = newDisabled;
     input.disabled = isDisabled;
 
@@ -501,7 +501,7 @@ export function createFileInput(props: FileInputProps = {}): FileInputElement {
     updateClasses();
   };
 
-  wrapper.setError = (newError: string | undefined) => {
+  wrapper.setError = (newError: string | undefined): void => {
     currentError = newError;
 
     // Remove existing error
@@ -517,7 +517,7 @@ export function createFileInput(props: FileInputProps = {}): FileInputElement {
     updateClasses();
   };
 
-  wrapper.destroy = () => {
+  wrapper.destroy = (): void => {
     input.removeEventListener('change', handleFileChange);
     if (dropzone) {
       dropzone.removeEventListener('click', handleBrowseClick);

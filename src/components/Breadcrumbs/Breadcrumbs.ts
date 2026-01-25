@@ -73,8 +73,8 @@ export function createBreadcrumbs(props: BreadcrumbsProps): BreadcrumbsElement {
 
     element.className = `dos-breadcrumbs__item${isCurrent ? ' dos-breadcrumbs__item--current' : ''}`;
 
-    if (hasHref) {
-      (element as HTMLAnchorElement).href = item.href!;
+    if (hasHref && item.href) {
+      (element as HTMLAnchorElement).href = item.href;
       element.addEventListener('click', (e) => {
         if (onSelect) {
           e.preventDefault();

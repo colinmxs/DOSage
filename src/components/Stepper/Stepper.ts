@@ -238,11 +238,11 @@ export function createStepper(props: StepperProps): StepperElement {
 
         // Event listeners for clickable indicator
         if (!step.disabled) {
-          const clickHandler = () => handleStepActivate(index);
+          const clickHandler = (): void => handleStepActivate(index);
           indicator.addEventListener('click', clickHandler);
           eventListeners.push({ element: indicator, event: 'click', handler: clickHandler });
 
-          const keydownHandler = (e: Event) => handleKeyDown(e as KeyboardEvent, index);
+          const keydownHandler = (e: Event): void => handleKeyDown(e as KeyboardEvent, index);
           indicator.addEventListener('keydown', keydownHandler);
           eventListeners.push({ element: indicator, event: 'keydown', handler: keydownHandler });
         }

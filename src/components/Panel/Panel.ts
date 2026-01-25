@@ -91,7 +91,7 @@ export function createPanel(props: PanelProps = {}): HTMLElement {
   }
 
   // Generate unique ID for accessibility
-  const panelId = id || `dos-panel-${++panelIdCounter}`;
+  const panelId = id ?? `dos-panel-${++panelIdCounter}`;
   let titleId: string | undefined;
 
   // Add title if provided

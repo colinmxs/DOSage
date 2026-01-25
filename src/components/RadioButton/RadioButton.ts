@@ -130,26 +130,26 @@ export function createRadioButton(props: RadioButtonProps): RadioButtonElement {
   }
 
   // Attach methods to the wrapper element
-  wrapper.isChecked = () => isCheckedState;
+  wrapper.isChecked = (): boolean => isCheckedState;
 
-  wrapper.setChecked = (newChecked: boolean) => {
+  wrapper.setChecked = (newChecked: boolean): void => {
     isCheckedState = newChecked;
     input.checked = newChecked;
     updateRadioVisualState(wrapper, isCheckedState);
   };
 
-  wrapper.getValue = () => value;
+  wrapper.getValue = (): string => value;
 
-  wrapper.setDisabled = (newDisabled: boolean) => {
+  wrapper.setDisabled = (newDisabled: boolean): void => {
     input.disabled = newDisabled;
     wrapper.classList.toggle('dos-radio--disabled', newDisabled);
   };
 
-  wrapper.focus = () => {
+  wrapper.focus = (): void => {
     input.focus();
   };
 
-  wrapper.getInput = () => input;
+  wrapper.getInput = (): HTMLInputElement => input;
 
   return wrapper;
 }
@@ -222,7 +222,7 @@ export function createRadioGroup(props: RadioGroupProps): RadioGroupElement {
   } = props;
 
   // Generate unique IDs
-  const groupId = id || `dos-radio-group-${++radioIdCounter}`;
+  const groupId = id ?? `dos-radio-group-${++radioIdCounter}`;
   const errorId = `${groupId}-error`;
 
   // Track current value
@@ -281,7 +281,7 @@ export function createRadioGroup(props: RadioGroupProps): RadioGroupElement {
       value: option.value,
       label: option.label,
       checked: currentValue === option.value,
-      disabled: disabled || option.disabled || false,
+      disabled: disabled || (option.disabled ?? false),
       onChange: (selectedValue, event) => {
         currentValue = selectedValue;
 
@@ -345,16 +345,16 @@ export function createRadioGroup(props: RadioGroupProps): RadioGroupElement {
   });
 
   // Attach methods to the fieldset element
-  fieldset.getValue = () => currentValue;
+  fieldset.getValue = (): string | undefined => currentValue;
 
-  fieldset.setValue = (newValue: string) => {
+  fieldset.setValue = (newValue: string): void => {
     currentValue = newValue;
     radioButtons.forEach((rb) => {
       rb.setChecked(rb.getValue() === newValue);
     });
   };
 
-  fieldset.setError = (newError: string | boolean | undefined) => {
+  fieldset.setError = (newError: string | boolean | undefined): void => {
     // Remove existing error element
     const existingError = fieldset.querySelector('.dos-radio-group__error');
     if (existingError) {
@@ -374,21 +374,21 @@ export function createRadioGroup(props: RadioGroupProps): RadioGroupElement {
     }
   };
 
-  fieldset.setDisabled = (newDisabled: boolean) => {
+  fieldset.setDisabled = (newDisabled: boolean): void => {
     fieldset.classList.toggle('dos-radio-group--disabled', newDisabled);
     radioButtons.forEach((rb) => rb.setDisabled(newDisabled));
   };
 
-  fieldset.focus = () => {
+  fieldset.focus = (): void => {
     // Focus the currently selected radio, or the first one
     const selectedRadio = radioButtons.find((rb) => rb.isChecked());
-    const targetRadio = selectedRadio || radioButtons[0];
+    const targetRadio = selectedRadio ?? radioButtons[0];
     if (targetRadio) {
       targetRadio.focus();
     }
   };
 
-  fieldset.getRadioButtons = () => [...radioButtons];
+  fieldset.getRadioButtons = (): RadioButtonElement[] => [...radioButtons];
 
   return fieldset;
 }

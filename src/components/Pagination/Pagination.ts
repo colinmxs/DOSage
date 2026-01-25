@@ -49,7 +49,7 @@ export function createPagination(props: PaginationProps): PaginationElement {
     previous: '<',
     next: '>',
     last: '>|',
-    page: (p: number) => String(p),
+    page: (p: number): string => String(p),
     ...labels,
   };
 

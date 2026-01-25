@@ -98,7 +98,7 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
   trigger.setAttribute('aria-haspopup', 'listbox');
   trigger.setAttribute('aria-expanded', 'false');
 
-  const listboxId = `${id || 'multiselect'}-listbox`;
+  const listboxId = `${id ?? 'multiselect'}-listbox`;
   trigger.setAttribute('aria-controls', listboxId);
 
   // Create tags container
@@ -264,7 +264,7 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
       return [...options];
     }
 
-    const filter = filterFunction || defaultFilter;
+    const filter = filterFunction ?? defaultFilter;
     return options.filter((option) => filter(option, query));
   }
 
@@ -410,11 +410,14 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
     const groupedOptions = new Map<string, MultiSelectOption[]>();
 
     state.filteredOptions.forEach((option) => {
-      const groupId = option.group || 'ungrouped';
+      const groupId = option.group ?? 'ungrouped';
       if (!groupedOptions.has(groupId)) {
         groupedOptions.set(groupId, []);
       }
-      groupedOptions.get(groupId)!.push(option);
+      const groupOptions = groupedOptions.get(groupId);
+      if (groupOptions) {
+        groupOptions.push(option);
+      }
     });
 
     let globalIndex = 0;
@@ -465,7 +468,7 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
    */
   function createOptionElement(option: MultiSelectOption, index: number, maxReached: boolean): HTMLElement {
     const item = document.createElement('div');
-    item.id = `${id || 'multiselect'}-option-${index}`;
+    item.id = `${id ?? 'multiselect'}-option-${index}`;
     item.className = 'dos-multiselect__option';
     item.setAttribute('role', 'option');
     item.setAttribute('data-value', option.value);
@@ -473,7 +476,7 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
 
     const isSelected = state.selectedValues.includes(option.value);
     const isHighlighted = index === state.highlightedIndex;
-    const isOptionDisabled = option.disabled || (maxReached && !isSelected);
+    const isOptionDisabled = option.disabled ?? (maxReached && !isSelected);
 
     if (isOptionDisabled) {
       item.classList.add('dos-multiselect__option--disabled');
@@ -569,7 +572,7 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
 
     // Update aria-activedescendant
     if (state.highlightedIndex >= 0) {
-      const activeId = `${id || 'multiselect'}-option-${state.highlightedIndex}`;
+      const activeId = `${id ?? 'multiselect'}-option-${state.highlightedIndex}`;
       trigger.setAttribute('aria-activedescendant', activeId);
     } else {
       trigger.setAttribute('aria-activedescendant', '');
@@ -613,7 +616,7 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
       renderOptions();
     }
 
-    dispatchChangeEvent(option || null, 'remove');
+    dispatchChangeEvent(option ?? null, 'remove');
   }
 
   /**
@@ -788,7 +791,7 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
         break;
 
       case 'Backspace':
-        if (searchInput && searchInput.value === '' && state.selectedValues.length > 0) {
+        if (searchInput?.value === '' && state.selectedValues.length > 0) {
           // Remove last tag
           const lastValue = state.selectedValues[state.selectedValues.length - 1];
           if (lastValue !== undefined) {
@@ -862,9 +865,9 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
   document.addEventListener('click', handleDocumentClick);
 
   // Public API
-  container.getValue = () => [...state.selectedValues];
+  container.getValue = (): string[] => [...state.selectedValues];
 
-  container.setValue = (values: string[]) => {
+  container.setValue = (values: string[]): void => {
     state.selectedValues = values.filter((v) => options.some((o) => o.value === v));
     if (maxSelections !== undefined && state.selectedValues.length > maxSelections) {
       state.selectedValues = state.selectedValues.slice(0, maxSelections);
@@ -876,19 +879,19 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
     }
   };
 
-  container.getSelectedOptions = () => {
+  container.getSelectedOptions = (): MultiSelectOption[] => {
     return options.filter((o) => state.selectedValues.includes(o.value));
   };
 
-  container.select = (value: string) => selectOption(value);
-  container.deselect = (value: string) => deselectOption(value);
-  container.toggle = (value: string) => toggleOption(value);
-  container.selectAll = () => handleSelectAll();
-  container.clearAll = () => handleClearAll();
+  container.select = (value: string): void => selectOption(value);
+  container.deselect = (value: string): void => deselectOption(value);
+  container.toggle = (value: string): void => toggleOption(value);
+  container.selectAll = (): void => handleSelectAll();
+  container.clearAll = (): void => handleClearAll();
 
-  container.open = () => openDropdown();
-  container.close = () => closeDropdown();
-  container.isOpen = () => state.isOpen;
+  container.open = (): void => openDropdown();
+  container.close = (): void => closeDropdown();
+  container.isOpen = (): boolean => state.isOpen;
 
   container.getHighlightedOption = (): MultiSelectOption | null => {
     if (state.highlightedIndex >= 0 && state.highlightedIndex < state.filteredOptions.length) {
@@ -897,7 +900,7 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
     return null;
   };
 
-  container.setOptions = (newOptions: MultiSelectOption[]) => {
+  container.setOptions = (newOptions: MultiSelectOption[]): void => {
     options = [...newOptions];
     // Remove any selected values that are no longer in options
     state.selectedValues = state.selectedValues.filter((v) => options.some((o) => o.value === v));
@@ -908,9 +911,9 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
     }
   };
 
-  container.getOptions = () => [...options];
+  container.getOptions = (): MultiSelectOption[] => [...options];
 
-  container.setSearchQuery = (query: string) => {
+  container.setSearchQuery = (query: string): void => {
     state.searchQuery = query;
     if (searchInput) {
       searchInput.value = query;
@@ -921,14 +924,14 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
     }
   };
 
-  container.getSearchQuery = () => state.searchQuery;
+  container.getSearchQuery = (): string => state.searchQuery;
 
-  container.focus = () => trigger.focus();
-  container.blur = () => trigger.blur();
+  container.focus = (): void => trigger.focus();
+  container.blur = (): void => trigger.blur();
 
-  container.isDisabled = () => isDisabled;
+  container.isDisabled = (): boolean => isDisabled;
 
-  container.setDisabled = (disabled: boolean) => {
+  container.setDisabled = (disabled: boolean): void => {
     isDisabled = disabled;
     trigger.setAttribute('tabindex', disabled ? '-1' : '0');
     updateContainerClasses();
@@ -940,11 +943,11 @@ export function createMultiSelect(props: MultiSelectProps): MultiSelectElement {
     }
   };
 
-  container.isMaxSelectionsReached = () => {
+  container.isMaxSelectionsReached = (): boolean => {
     return maxSelections !== undefined && state.selectedValues.length >= maxSelections;
   };
 
-  container.destroy = () => {
+  container.destroy = (): void => {
     trigger.removeEventListener('click', toggleDropdown);
     trigger.removeEventListener('keydown', handleKeyDown);
     trigger.removeEventListener('focus', handleFocus);

@@ -416,7 +416,7 @@ export function createPopover(props: PopoverProps): PopoverInstance {
    * Update popover title
    */
   function setTitle(newTitle: string | null): void {
-    currentTitle = newTitle || undefined;
+    currentTitle = newTitle ?? undefined;
     updateHeader();
     if (isOpenState) {
       updatePosition();

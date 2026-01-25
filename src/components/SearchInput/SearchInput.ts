@@ -112,7 +112,7 @@ export function createSearchInput(props: SearchInputProps): SearchInputElement {
   }
 
   // Combobox ARIA
-  const suggestionsId = `${id || 'searchinput'}-suggestions`;
+  const suggestionsId = `${id ?? 'searchinput'}-suggestions`;
   input.setAttribute('role', 'combobox');
   input.setAttribute('aria-autocomplete', 'list');
   input.setAttribute('aria-expanded', 'false');
@@ -298,7 +298,7 @@ export function createSearchInput(props: SearchInputProps): SearchInputElement {
 
     // Set initial active descendant
     if (state.highlightedIndex >= 0) {
-      const activeId = `${id || 'searchinput'}-suggestion-${state.highlightedIndex}`;
+      const activeId = `${id ?? 'searchinput'}-suggestion-${state.highlightedIndex}`;
       input.setAttribute('aria-activedescendant', activeId);
     }
   }
@@ -308,7 +308,7 @@ export function createSearchInput(props: SearchInputProps): SearchInputElement {
    */
   function createSuggestionItem(suggestion: SearchSuggestion, index: number): HTMLElement {
     const item = document.createElement('div');
-    item.id = `${id || 'searchinput'}-suggestion-${index}`;
+    item.id = `${id ?? 'searchinput'}-suggestion-${index}`;
     item.className = 'dos-searchinput__suggestion';
     item.setAttribute('role', 'option');
     item.setAttribute('data-suggestion-id', suggestion.id);
@@ -421,7 +421,7 @@ export function createSearchInput(props: SearchInputProps): SearchInputElement {
 
     // Update aria-activedescendant
     if (state.highlightedIndex >= 0) {
-      const activeId = `${id || 'searchinput'}-suggestion-${state.highlightedIndex}`;
+      const activeId = `${id ?? 'searchinput'}-suggestion-${state.highlightedIndex}`;
       input.setAttribute('aria-activedescendant', activeId);
     } else {
       input.setAttribute('aria-activedescendant', '');
@@ -466,7 +466,7 @@ export function createSearchInput(props: SearchInputProps): SearchInputElement {
    * Select a suggestion
    */
   function selectSuggestion(suggestion: SearchSuggestion): void {
-    const value = suggestion.value || suggestion.label;
+    const value = suggestion.value ?? suggestion.label;
 
     // Dispatch event
     const event = new CustomEvent<SearchSelectEventDetail>('dos:search:select', {
@@ -699,9 +699,9 @@ export function createSearchInput(props: SearchInputProps): SearchInputElement {
   document.addEventListener('click', handleDocumentClick);
 
   // Public API
-  container.getValue = () => state.value;
+  container.getValue = (): string => state.value;
 
-  container.setValue = (value: string) => {
+  container.setValue = (value: string): void => {
     state.value = value;
     input.value = value;
     updateClearButton();
@@ -713,19 +713,19 @@ export function createSearchInput(props: SearchInputProps): SearchInputElement {
     }
   };
 
-  container.clear = () => {
+  container.clear = (): void => {
     clearInput();
   };
 
-  container.openSuggestions = () => {
+  container.openSuggestions = (): void => {
     loadSuggestions(state.value);
   };
 
-  container.closeSuggestions = () => {
+  container.closeSuggestions = (): void => {
     closeSuggestionsDropdown();
   };
 
-  container.toggleSuggestions = () => {
+  container.toggleSuggestions = (): void => {
     if (state.suggestionsOpen) {
       closeSuggestionsDropdown();
     } else {
@@ -733,9 +733,9 @@ export function createSearchInput(props: SearchInputProps): SearchInputElement {
     }
   };
 
-  container.isSuggestionsOpen = () => state.suggestionsOpen;
+  container.isSuggestionsOpen = (): boolean => state.suggestionsOpen;
 
-  container.setSuggestions = (suggestions: SearchSuggestion[]) => {
+  container.setSuggestions = (suggestions: SearchSuggestion[]): void => {
     state.suggestions = suggestions.slice(0, maxSuggestions);
     state.highlightedIndex = state.suggestions.length > 0 ? 0 : -1;
     if (state.suggestions.length > 0) {
@@ -751,17 +751,17 @@ export function createSearchInput(props: SearchInputProps): SearchInputElement {
     return null;
   };
 
-  container.focus = () => {
+  container.focus = (): void => {
     input.focus();
   };
 
-  container.blur = () => {
+  container.blur = (): void => {
     input.blur();
   };
 
-  container.isDisabled = () => isDisabled;
+  container.isDisabled = (): boolean => isDisabled;
 
-  container.setDisabled = (disabled: boolean) => {
+  container.setDisabled = (disabled: boolean): void => {
     isDisabled = disabled;
     input.disabled = disabled;
     updateContainerClasses();
@@ -772,9 +772,9 @@ export function createSearchInput(props: SearchInputProps): SearchInputElement {
     }
   };
 
-  container.isLoading = () => state.isLoading;
+  container.isLoading = (): boolean => state.isLoading;
 
-  container.destroy = () => {
+  container.destroy = (): void => {
     input.removeEventListener('input', handleInput);
     input.removeEventListener('keydown', handleKeyDown);
     input.removeEventListener('focus', handleFocus);

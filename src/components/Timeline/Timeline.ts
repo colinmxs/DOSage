@@ -114,7 +114,7 @@ export function createTimeline(props: TimelineProps): TimelineInstance {
     total: number
   ): HTMLElement {
     const eventEl = document.createElement('div');
-    eventEl.className = `dos-timeline__event dos-timeline__event--${event.status || 'upcoming'}`;
+    eventEl.className = `dos-timeline__event dos-timeline__event--${event.status ?? 'upcoming'}`;
     eventEl.setAttribute('role', 'listitem');
     eventEl.dataset.eventId = event.id;
 

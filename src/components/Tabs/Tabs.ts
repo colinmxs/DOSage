@@ -56,7 +56,7 @@ export function createTabs(props: TabsProps): TabsElement {
     if (defaultActiveTab) return defaultActiveTab;
     // Find first non-disabled tab
     const firstEnabled = tabs.find((tab) => !tab.disabled);
-    return firstEnabled?.id || tabs[0]?.id || '';
+    return firstEnabled?.id ?? tabs[0]?.id ?? '';
   };
 
   // Component state
@@ -110,10 +110,10 @@ export function createTabs(props: TabsProps): TabsElement {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = buildTabClasses(tab);
-    button.id = `${id || 'tabs'}-tab-${tab.id}`;
+    button.id = `${id ?? 'tabs'}-tab-${tab.id}`;
     button.setAttribute('role', 'tab');
     button.setAttribute('aria-selected', String(state.activeTab === tab.id));
-    button.setAttribute('aria-controls', `${id || 'tabs'}-panel-${tab.id}`);
+    button.setAttribute('aria-controls', `${id ?? 'tabs'}-panel-${tab.id}`);
     button.setAttribute('tabindex', state.activeTab === tab.id ? '0' : '-1');
 
     if (tab.disabled) {
@@ -163,9 +163,9 @@ export function createTabs(props: TabsProps): TabsElement {
   function createTabPanel(tab: TabProps): HTMLDivElement {
     const panel = document.createElement('div');
     panel.className = 'dos-tabs__panel';
-    panel.id = `${id || 'tabs'}-panel-${tab.id}`;
+    panel.id = `${id ?? 'tabs'}-panel-${tab.id}`;
     panel.setAttribute('role', 'tabpanel');
-    panel.setAttribute('aria-labelledby', `${id || 'tabs'}-tab-${tab.id}`);
+    panel.setAttribute('aria-labelledby', `${id ?? 'tabs'}-tab-${tab.id}`);
     panel.setAttribute('tabindex', '0');
 
     // Set visibility
@@ -260,12 +260,12 @@ export function createTabs(props: TabsProps): TabsElement {
 
       case 'Home':
         event.preventDefault();
-        nextTabId = enabledTabs[0]?.id || null;
+        nextTabId = enabledTabs[0]?.id ?? null;
         break;
 
       case 'End':
         event.preventDefault();
-        nextTabId = enabledTabs[enabledTabs.length - 1]?.id || null;
+        nextTabId = enabledTabs[enabledTabs.length - 1]?.id ?? null;
         break;
 
       case 'Enter':
@@ -301,7 +301,7 @@ export function createTabs(props: TabsProps): TabsElement {
       nextIndex = 0;
     }
 
-    return enabledTabs[nextIndex]?.id || null;
+    return enabledTabs[nextIndex]?.id ?? null;
   }
 
   /**
@@ -388,14 +388,14 @@ export function createTabs(props: TabsProps): TabsElement {
   container.appendChild(panelsContainer);
 
   // Public API methods
-  container.getActiveTab = () => state.activeTab;
+  container.getActiveTab = (): string => state.activeTab;
 
-  container.setActiveTab = (tabId: string) => {
+  container.setActiveTab = (tabId: string): void => {
     activateTab(tabId);
     focusTab(tabId);
   };
 
-  container.enableTab = (tabId: string) => {
+  container.enableTab = (tabId: string): void => {
     const tabElement = tabElements.get(tabId);
     const tabIndex = tabs.findIndex((t) => t.id === tabId);
     const tab = tabs[tabIndex];
@@ -408,7 +408,7 @@ export function createTabs(props: TabsProps): TabsElement {
     }
   };
 
-  container.disableTab = (tabId: string) => {
+  container.disableTab = (tabId: string): void => {
     const tabElement = tabElements.get(tabId);
     const tabIndex = tabs.findIndex((t) => t.id === tabId);
     const tab = tabs[tabIndex];
@@ -429,29 +429,29 @@ export function createTabs(props: TabsProps): TabsElement {
     }
   };
 
-  container.getTabs = () => [...tabs];
+  container.getTabs = (): TabProps[] => [...tabs];
 
-  container.setTabs = (newTabs: TabProps[]) => {
+  container.setTabs = (newTabs: TabProps[]): void => {
     tabs.length = 0;
     tabs.push(...newTabs);
 
     // Reset state if active tab no longer exists
     if (!newTabs.find((t) => t.id === state.activeTab)) {
       const firstEnabled = newTabs.find((t) => !t.disabled);
-      state.activeTab = firstEnabled?.id || newTabs[0]?.id || '';
+      state.activeTab = firstEnabled?.id ?? newTabs[0]?.id ?? '';
     }
 
     render();
   };
 
-  container.focus = () => {
+  container.focus = (): void => {
     const activeTabElement = tabElements.get(state.activeTab);
     if (activeTabElement) {
       activeTabElement.focus();
     }
   };
 
-  container.destroy = () => {
+  container.destroy = (): void => {
     // Remove all event listeners by replacing elements
     tabElements.forEach((element) => {
       const clone = element.cloneNode(true);

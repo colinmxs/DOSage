@@ -604,13 +604,13 @@ export function createSlider(props: SliderProps = {}): SliderElement {
   trackContainer.addEventListener('click', handleTrackClick);
 
   // Public API methods
-  wrapper.getValue = () => currentValue;
+  wrapper.getValue = (): number | [number, number] => currentValue;
 
-  wrapper.setValue = (newValue: number | [number, number]) => {
+  wrapper.setValue = (newValue: number | [number, number]): void => {
     setValue(newValue, false);
   };
 
-  wrapper.setDisabled = (newDisabled: boolean) => {
+  wrapper.setDisabled = (newDisabled: boolean): void => {
     isDisabled = newDisabled;
     wrapper.className = buildWrapperClasses();
 
@@ -631,7 +631,7 @@ export function createSlider(props: SliderProps = {}): SliderElement {
     });
   };
 
-  wrapper.setMin = (newMin: number) => {
+  wrapper.setMin = (newMin: number): void => {
     minValue = newMin;
     if (range && Array.isArray(currentValue)) {
       currentValue = [
@@ -650,7 +650,7 @@ export function createSlider(props: SliderProps = {}): SliderElement {
     });
   };
 
-  wrapper.setMax = (newMax: number) => {
+  wrapper.setMax = (newMax: number): void => {
     maxValue = newMax;
     if (range && Array.isArray(currentValue)) {
       currentValue = [
@@ -669,7 +669,7 @@ export function createSlider(props: SliderProps = {}): SliderElement {
     });
   };
 
-  wrapper.destroy = () => {
+  wrapper.destroy = (): void => {
     document.removeEventListener('mousemove', handleMouseMove);
     document.removeEventListener('mouseup', handleMouseUp);
     trackContainer.removeEventListener('click', handleTrackClick);

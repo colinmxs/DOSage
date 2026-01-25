@@ -221,7 +221,7 @@ export function createFocusTrap(props: FocusTrapProps): FocusTrapInstance {
 
     if (initialFocus === 'first') {
       const focusables = getFocusables();
-      return focusables[0] || null;
+      return focusables[0] ?? null;
     }
 
     if (initialFocus === 'container') {
@@ -364,7 +364,7 @@ export function createFocusTrap(props: FocusTrapProps): FocusTrapInstance {
     if (!container.contains(target) && target !== startSentinel && target !== endSentinel) {
       // Check if focus is in another focus trap (nested scenario)
       const targetEl = target as HTMLElement;
-      if (targetEl.closest && targetEl.closest('[data-dos-focus-trap]')) {
+      if (targetEl.closest?.('[data-dos-focus-trap]')) {
         // Focus is in another trap, don't interfere
         return;
       }

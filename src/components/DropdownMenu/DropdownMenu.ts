@@ -241,8 +241,8 @@ export function createDropdownMenu(props: DropdownMenuProps): DropdownMenuElemen
       e.stopPropagation();
       if (item.disabled) return;
 
-      if (hasSubmenu) {
-        toggleSubmenu(li, item.items!, [...path, item.label]);
+      if (hasSubmenu && item.items) {
+        toggleSubmenu(li, item.items, [...path, item.label]);
       } else {
         selectItem(item, [...path, item.label]);
       }
@@ -253,8 +253,8 @@ export function createDropdownMenu(props: DropdownMenuProps): DropdownMenuElemen
       highlightItem(li);
 
       // Auto-open submenu on hover
-      if (hasSubmenu && !item.disabled) {
-        openSubmenu(li, item.items!, [...path, item.label]);
+      if (hasSubmenu && !item.disabled && item.items) {
+        openSubmenu(li, item.items, [...path, item.label]);
       } else {
         // Close any open submenus at this level
         closeSubmenusAt(li);
@@ -342,8 +342,8 @@ export function createDropdownMenu(props: DropdownMenuProps): DropdownMenuElemen
         e.preventDefault();
         if (item.disabled) return;
         
-        if (hasSubmenu) {
-          openSubmenu(li, item.items!, [...path, item.label]);
+        if (hasSubmenu && item.items) {
+          openSubmenu(li, item.items, [...path, item.label]);
           focusFirstSubmenuItem(li);
         } else {
           selectItem(item, [...path, item.label]);
@@ -362,8 +362,8 @@ export function createDropdownMenu(props: DropdownMenuProps): DropdownMenuElemen
 
       case 'ArrowRight':
         e.preventDefault();
-        if (hasSubmenu && !item.disabled) {
-          openSubmenu(li, item.items!, [...path, item.label]);
+        if (hasSubmenu && !item.disabled && item.items) {
+          openSubmenu(li, item.items, [...path, item.label]);
           focusFirstSubmenuItem(li);
         }
         break;
@@ -394,7 +394,10 @@ export function createDropdownMenu(props: DropdownMenuProps): DropdownMenuElemen
         // Type-ahead: jump to item starting with typed character
         if (e.key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
           const char = e.key.toLowerCase();
-          focusItemStartingWith(char, li.parentElement!);
+          const parent = li.parentElement;
+          if (parent) {
+            focusItemStartingWith(char, parent);
+          }
         }
         break;
     }
@@ -463,8 +466,8 @@ export function createDropdownMenu(props: DropdownMenuProps): DropdownMenuElemen
     dropdown.style.removeProperty('transform');
 
     // Calculate position based on preference and available space
-    let top: number;
-    let left: number;
+    let top: number | undefined;
+    let left: number | undefined;
 
     switch (position) {
       case 'bottom':
@@ -495,9 +498,9 @@ export function createDropdownMenu(props: DropdownMenuProps): DropdownMenuElemen
     }
 
     // Apply position
-    if (position.startsWith('bottom')) {
+    if (position.startsWith('bottom') && top !== undefined) {
       dropdown.style.position = 'fixed';
-      dropdown.style.top = `${top!}px`;
+      dropdown.style.top = `${top}px`;
       
       if (position === 'bottom-start') {
         dropdown.style.left = `${triggerRect.left}px`;
@@ -506,9 +509,9 @@ export function createDropdownMenu(props: DropdownMenuProps): DropdownMenuElemen
       } else {
         dropdown.style.left = `${triggerRect.left + (triggerRect.width - dropdownRect.width) / 2}px`;
       }
-    } else if (position.startsWith('right')) {
+    } else if (position.startsWith('right') && left !== undefined) {
       dropdown.style.position = 'fixed';
-      dropdown.style.left = `${left!}px`;
+      dropdown.style.left = `${left}px`;
       
       if (position === 'right-start') {
         dropdown.style.top = `${triggerRect.top}px`;
@@ -562,7 +565,8 @@ export function createDropdownMenu(props: DropdownMenuProps): DropdownMenuElemen
    * Focus the next item
    */
   function focusNextItem(currentLi: HTMLElement): void {
-    const parent = currentLi.parentElement!;
+    const parent = currentLi.parentElement;
+    if (!parent) return;
     const items = Array.from(parent.querySelectorAll(
       '.dos-dropdown-menu__item:not([role="separator"]) .dos-dropdown-menu__trigger:not(.dos-dropdown-menu__trigger--disabled)'
     )) as HTMLElement[];
@@ -583,7 +587,8 @@ export function createDropdownMenu(props: DropdownMenuProps): DropdownMenuElemen
    * Focus the previous item
    */
   function focusPreviousItem(currentLi: HTMLElement): void {
-    const parent = currentLi.parentElement!;
+    const parent = currentLi.parentElement;
+    if (!parent) return;
     const items = Array.from(parent.querySelectorAll(
       '.dos-dropdown-menu__item:not([role="separator"]) .dos-dropdown-menu__trigger:not(.dos-dropdown-menu__trigger--disabled)'
     )) as HTMLElement[];
@@ -618,7 +623,7 @@ export function createDropdownMenu(props: DropdownMenuProps): DropdownMenuElemen
       const index = (startIndex + i) % items.length;
       const item = items[index];
       if (item) {
-        const label = item.querySelector('.dos-dropdown-menu__label')?.textContent || '';
+        const label = item.querySelector('.dos-dropdown-menu__label')?.textContent ?? '';
         
         if (label.toLowerCase().startsWith(char)) {
           item.focus();
@@ -820,7 +825,7 @@ export function createDropdownMenu(props: DropdownMenuProps): DropdownMenuElemen
   dropdown.open = openDropdown;
   dropdown.close = closeDropdown;
   dropdown.toggle = toggleDropdown;
-  dropdown.isOpen = () => isOpen;
+  dropdown.isOpen = (): boolean => isOpen;
   dropdown.setItems = setItems;
   dropdown.setPosition = setPosition;
   dropdown.setItemDisabled = setItemDisabled;
