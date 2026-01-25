@@ -367,6 +367,15 @@ describe('Textarea', () => {
       expect(document.activeElement).toBe(textarea.getTextarea());
     });
 
+    it('focus focuses the textarea element', () => {
+      textarea = createTextarea({});
+      document.body.appendChild(textarea);
+
+      textarea.focus();
+
+      expect(document.activeElement).toBe(textarea.getTextarea());
+    });
+
     it('getTextarea returns the underlying textarea element', () => {
       textarea = createTextarea({});
 

@@ -236,6 +236,10 @@ export function createTextarea(props: TextareaProps): TextareaElement {
     textarea.focus();
   };
 
+  wrapper.focus = (): void => {
+    textarea.focus();
+  };
+
   wrapper.setDisabled = (newDisabled: boolean): void => {
     textarea.disabled = newDisabled;
     wrapper.classList.toggle('dos-textarea--disabled', newDisabled);
