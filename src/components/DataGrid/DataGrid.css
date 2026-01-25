@@ -250,7 +250,10 @@
 
 .dos-data-grid___checkbox-cell {
   width: 32px;
+  min-width: 32px;
   text-align: center;
+  white-space: nowrap;
+  text-overflow: clip; /* Never truncate selection indicators */
 }
 
 .dos-data-grid___checkbox {

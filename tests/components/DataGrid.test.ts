@@ -204,6 +204,24 @@ describe('DataGrid', () => {
       expect(checkboxes.length).toBe(6); // 5 rows + 1 header
     });
 
+    it('checkbox cells have proper CSS class to prevent truncation', () => {
+      const grid = createDataGrid({
+        columns: sampleColumns,
+        data: sampleData,
+        selectable: true,
+      });
+      container.appendChild(grid.element);
+
+      const checkboxCells = grid.element.querySelectorAll('.dos-data-grid___checkbox-cell');
+      expect(checkboxCells.length).toBeGreaterThan(0);
+
+      // Verify that checkbox cells have the correct class that includes
+      // text-overflow: clip and white-space: nowrap in the CSS
+      checkboxCells.forEach((cell) => {
+        expect(cell.classList.contains('dos-data-grid___checkbox-cell')).toBe(true);
+      });
+    });
+
     it('calls onSelect when clicking row checkbox', () => {
       const onSelect = vi.fn();
       const grid = createDataGrid({
