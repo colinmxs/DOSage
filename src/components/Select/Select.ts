@@ -68,7 +68,7 @@ export function createSelect(props: SelectProps): SelectElement {
   void _maxVisibleOptions;
 
   // Generate unique ID
-  const selectId = id || generateSelectId();
+  const selectId = id ?? generateSelectId();
   const labelId = `${selectId}-label`;
   const listboxId = `${selectId}-listbox`;
   const errorId = `${selectId}-error`;

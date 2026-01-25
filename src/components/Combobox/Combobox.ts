@@ -106,7 +106,7 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
   }
 
   // Combobox ARIA
-  const listboxId = `${id || 'combobox'}-listbox`;
+  const listboxId = `${id ?? 'combobox'}-listbox`;
   input.setAttribute('role', 'combobox');
   input.setAttribute('aria-autocomplete', filterOnType ? 'list' : 'none');
   input.setAttribute('aria-expanded', 'false');

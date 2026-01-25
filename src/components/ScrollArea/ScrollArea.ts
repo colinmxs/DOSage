@@ -47,7 +47,7 @@ export function createScrollArea(props: ScrollAreaProps = {}): ScrollAreaInstanc
     className,
   } = props;
 
-  const scrollAreaId = id || `dos-scroll-area-${++scrollAreaIdCounter}`;
+  const scrollAreaId = id ?? `dos-scroll-area-${++scrollAreaIdCounter}`;
 
   // State
   let isDraggingVertical = false;

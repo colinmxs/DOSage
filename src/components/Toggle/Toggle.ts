@@ -56,7 +56,7 @@ export function createToggle(props: ToggleProps = {}): ToggleElement {
   let isDisabled = disabled;
 
   // Generate unique ID
-  const toggleId = id || generateToggleId();
+  const toggleId = id ?? generateToggleId();
   const labelId = `${toggleId}-label`;
 
   // Create wrapper element

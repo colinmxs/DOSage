@@ -20,13 +20,13 @@ export function createASCIIArt(props: ASCIIArtProps): HTMLPreElement {
 
   pre.setAttribute('role', 'img');
   
-  let content = art || '';
+  let content = art ?? '';
   
   if (text && !art) {
     content = convertTextToASCII(text, font);
   }
 
-  pre.setAttribute('aria-label', text || 'ASCII art');
+  pre.setAttribute('aria-label', text ?? 'ASCII art');
   
   if (animate) {
     // Start with empty content and animate

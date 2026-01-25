@@ -101,7 +101,7 @@ export function createSlider(props: SliderProps = {}): SliderElement {
   }
 
   // Generate unique ID
-  const sliderId = id || generateSliderId();
+  const sliderId = id ?? generateSliderId();
   const labelId = `${sliderId}-label`;
 
   // Create wrapper element

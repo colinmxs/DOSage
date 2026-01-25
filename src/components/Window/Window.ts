@@ -65,7 +65,7 @@ export function createWindow(props: WindowProps): WindowInstance {
   } = props;
 
   // Generate unique ID
-  const windowId = id || `dos-window-${++windowIdCounter}`;
+  const windowId = id ?? `dos-window-${++windowIdCounter}`;
   const titleId = `${windowId}-title`;
 
   // State - always start as 'normal', initial state applied after creation

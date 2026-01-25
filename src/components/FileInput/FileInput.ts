@@ -74,7 +74,7 @@ export function createFileInput(props: FileInputProps = {}): FileInputElement {
   let currentError: string | boolean | undefined = error;
 
   // Generate unique ID
-  const fileInputId = id || generateFileInputId();
+  const fileInputId = id ?? generateFileInputId();
   const inputId = `${fileInputId}-input`;
   const labelId = `${fileInputId}-label`;
   const errorId = `${fileInputId}-error`;

@@ -49,7 +49,7 @@ function applyBorder(element: HTMLElement, border: boolean | BorderConfig): void
     element.classList.add('dos-box--bordered');
   } else if (typeof border === 'object') {
     const { width = 1, style = 'solid', color, sides = 'all' } = border;
-    const borderValue = `${width}px ${style} ${color || 'var(--dos-color-border)'}`;
+    const borderValue = `${width}px ${style} ${color ?? 'var(--dos-color-border)'}`;
 
     if (sides === 'all') {
       element.style.border = borderValue;

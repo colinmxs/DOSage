@@ -121,9 +121,9 @@ export function createAccordion(props: AccordionProps): AccordionElement {
     const header = document.createElement('button');
     header.type = 'button';
     header.className = 'dos-accordion__header';
-    header.id = `${id || 'accordion'}-header-${item.id}`;
+    header.id = `${id ?? 'accordion'}-header-${item.id}`;
     header.setAttribute('aria-expanded', String(isExpanded));
-    header.setAttribute('aria-controls', `${id || 'accordion'}-content-${item.id}`);
+    header.setAttribute('aria-controls', `${id ?? 'accordion'}-content-${item.id}`);
 
     if (item.disabled) {
       header.setAttribute('aria-disabled', 'true');
@@ -155,9 +155,9 @@ export function createAccordion(props: AccordionProps): AccordionElement {
     // Content region
     const content = document.createElement('div');
     content.className = 'dos-accordion__content';
-    content.id = `${id || 'accordion'}-content-${item.id}`;
+    content.id = `${id ?? 'accordion'}-content-${item.id}`;
     content.setAttribute('role', 'region');
-    content.setAttribute('aria-labelledby', `${id || 'accordion'}-header-${item.id}`);
+    content.setAttribute('aria-labelledby', `${id ?? 'accordion'}-header-${item.id}`);
 
     if (!isExpanded) {
       content.hidden = true;

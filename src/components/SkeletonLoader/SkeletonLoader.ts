@@ -112,7 +112,7 @@ export function createSkeletonLoader(props: SkeletonLoaderProps = {}): SkeletonL
 
   // Create main element
   const element = document.createElement('div');
-  const skeletonId = id || `dos-skeleton-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+  const skeletonId = id ?? `dos-skeleton-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
   element.id = skeletonId;
   element.className = buildClassName(variant, animate, !visible, className);
 

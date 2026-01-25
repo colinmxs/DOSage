@@ -66,7 +66,7 @@ export function createPasswordInput(props: PasswordInputProps): PasswordInputEle
   let isPasswordVisible = false;
 
   // Generate unique IDs
-  const inputId = id || generatePasswordId();
+  const inputId = id ?? generatePasswordId();
   const errorId = `${inputId}-error`;
 
   // Create wrapper element

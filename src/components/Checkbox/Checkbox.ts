@@ -63,7 +63,7 @@ export function createCheckbox(props: CheckboxProps): CheckboxElement {
   } = props;
 
   // Generate unique ID
-  const checkboxId = id || generateCheckboxId();
+  const checkboxId = id ?? generateCheckboxId();
 
   // Track internal state
   let isCheckedState = checked;

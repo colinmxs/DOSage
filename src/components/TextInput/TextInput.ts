@@ -64,7 +64,7 @@ export function createTextInput(props: TextInputProps): TextInputElement {
   } = props;
 
   // Generate unique IDs
-  const inputId = id || generateInputId();
+  const inputId = id ?? generateInputId();
   const errorId = `${inputId}-error`;
 
   // Create wrapper element

@@ -55,7 +55,7 @@ export function createFormGroup(props: FormGroupProps): FormGroupElement {
   } = props;
 
   // Generate unique IDs
-  const groupId = id || generateFormGroupId();
+  const groupId = id ?? generateFormGroupId();
   const descriptionId = `${groupId}-description`;
   const errorId = `${groupId}-error`;
 

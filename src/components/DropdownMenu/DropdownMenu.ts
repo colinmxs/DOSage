@@ -110,7 +110,7 @@ export function createDropdownMenu(props: DropdownMenuProps): DropdownMenuElemen
   } = props;
 
   // Generate unique ID
-  const dropdownId = id || generateDropdownId();
+  const dropdownId = id ?? generateDropdownId();
 
   // Internal state
   let items = deepCloneItems(initialItems);

@@ -63,7 +63,7 @@ export function createResizable(props: ResizableProps = {}): ResizableInstance {
     disabled = false,
   } = props;
 
-  const resizableId = id || `dos-resizable-${++resizableIdCounter}`;
+  const resizableId = id ?? `dos-resizable-${++resizableIdCounter}`;
 
   // Normalize constraints
   const minWidth = constraints.minWidth ?? 50;

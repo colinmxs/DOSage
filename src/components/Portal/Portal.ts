@@ -99,7 +99,7 @@ export function createPortal(props: PortalProps): PortalInstance {
   } = props;
 
   // Generate unique ID
-  const portalId = id || `dos-portal-${++portalIdCounter}`;
+  const portalId = id ?? `dos-portal-${++portalIdCounter}`;
 
   // State
   let isMounted = false;

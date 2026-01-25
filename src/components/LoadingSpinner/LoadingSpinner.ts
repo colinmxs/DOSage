@@ -59,7 +59,7 @@ export function createLoadingSpinner(props: LoadingSpinnerProps = {}): LoadingSp
 
   // Create DOM elements
   const element = document.createElement('span');
-  const spinnerId = id || `dos-loading-spinner-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+  const spinnerId = id ?? `dos-loading-spinner-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
   element.id = spinnerId;
   element.className = buildClassName(size, style, false, className);
 
@@ -72,7 +72,7 @@ export function createLoadingSpinner(props: LoadingSpinnerProps = {}): LoadingSp
   const character = document.createElement('span');
   character.className = 'dos-loading-spinner__character';
   character.setAttribute('aria-hidden', 'true');
-  character.textContent = frames[0] || '|';
+  character.textContent = frames[0] ?? '|';
   element.appendChild(character);
 
   // Visually hidden label for screen readers
@@ -112,7 +112,7 @@ export function createLoadingSpinner(props: LoadingSpinnerProps = {}): LoadingSp
    */
   function updateFrame(): void {
     currentFrame = (currentFrame + 1) % frames.length;
-    character.textContent = frames[currentFrame] || '|';
+    character.textContent = frames[currentFrame] ?? '|';
   }
 
   /**

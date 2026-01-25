@@ -66,7 +66,7 @@ export function createTextarea(props: TextareaProps): TextareaElement {
   } = props;
 
   // Generate unique IDs
-  const textareaId = id || generateTextareaId();
+  const textareaId = id ?? generateTextareaId();
   const errorId = `${textareaId}-error`;
   const countId = `${textareaId}-count`;
 

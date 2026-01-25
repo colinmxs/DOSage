@@ -62,7 +62,7 @@ export function createListBox(props: ListBoxProps): ListBoxInstance {
   // Set ARIA attributes
   container.setAttribute('role', 'listbox');
   container.setAttribute('tabindex', '0');
-  container.setAttribute('aria-label', props.ariaLabel || props['aria-label'] || 'List');
+  container.setAttribute('aria-label', props.ariaLabel ?? props['aria-label'] ?? 'List');
   if (multiSelect) {
     container.setAttribute('aria-multiselectable', 'true');
   }

@@ -52,11 +52,11 @@ export function createToast(props: ToastProps): ToastInstance {
   } = props;
 
   // Generate unique ID
-  const toastId = id || `dos-toast-${++toastIdCounter}`;
+  const toastId = id ?? `dos-toast-${++toastIdCounter}`;
 
   // Track state
   let timeoutId: ReturnType<typeof setTimeout> | null = null;
-  let remainingTime = duration || 0;
+  let remainingTime = duration ?? 0;
   let startTime = 0;
   let isPaused = false;
   let isDismissed = false;

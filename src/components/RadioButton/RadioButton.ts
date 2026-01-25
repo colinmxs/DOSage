@@ -58,7 +58,7 @@ export function createRadioButton(props: RadioButtonProps): RadioButtonElement {
   } = props;
 
   // Generate unique ID
-  const radioId = id || generateRadioId();
+  const radioId = id ?? generateRadioId();
 
   // Track internal state
   let isCheckedState = checked;

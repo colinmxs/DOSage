@@ -52,7 +52,7 @@ export function createFormValidation(props: FormValidationProps): FormValidation
   } = props;
 
   // Generate unique ID
-  const validationId = id || generateValidationId();
+  const validationId = id ?? generateValidationId();
 
   // Track internal state
   let currentMessage = message;

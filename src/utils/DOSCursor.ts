@@ -186,7 +186,7 @@ function calculateTextareaCursorPosition(
   // Split by lines to find current line
   const lines = textBeforeCursor.split('\n');
   const currentLineIndex = lines.length - 1;
-  const currentLineText = lines[currentLineIndex] || '';
+  const currentLineText = lines[currentLineIndex] ?? '';
   
   const textWidth = measureTextWidth(currentLineText, ctx.font);
   const scrollOffset = getScrollOffset(textarea);

@@ -51,7 +51,7 @@ export function createDraggable(props: DraggableProps = {}): DraggableInstance {
     disabled = false,
   } = props;
 
-  const draggableId = id || `dos-draggable-${++draggableIdCounter}`;
+  const draggableId = id ?? `dos-draggable-${++draggableIdCounter}`;
 
   // State
   let currentX = initialX;

@@ -62,7 +62,7 @@ export function createProgressBar(props: ProgressBarProps = {}): ProgressBarInst
 
   // Create DOM elements
   const element = document.createElement('div');
-  const progressId = id || `dos-progress-bar-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+  const progressId = id ?? `dos-progress-bar-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
   element.id = progressId;
   element.className = buildClassName(size, style, isIndeterminate, !!color, className);
 

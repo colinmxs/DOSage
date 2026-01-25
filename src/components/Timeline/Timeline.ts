@@ -61,7 +61,7 @@ export function createTimeline(props: TimelineProps): TimelineInstance {
   const element = document.createElement('div');
   element.className = buildClassName();
   element.setAttribute('role', 'list');
-  element.setAttribute('aria-label', ariaLabel || 'Timeline');
+  element.setAttribute('aria-label', ariaLabel ?? 'Timeline');
   
   if (id) {
     element.id = id;

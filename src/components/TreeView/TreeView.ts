@@ -87,7 +87,7 @@ export function createTreeView(props: TreeViewProps): TreeViewInstance {
   // Set ARIA attributes
   container.setAttribute('role', 'tree');
   container.setAttribute('tabindex', '0');
-  container.setAttribute('aria-label', props['aria-label'] || 'Tree');
+  container.setAttribute('aria-label', props['aria-label'] ?? 'Tree');
   if (multiSelect) {
     container.setAttribute('aria-multiselectable', 'true');
   }

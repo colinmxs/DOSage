@@ -71,7 +71,7 @@ export function createModal(props: ModalProps = {}): ModalInstance {
   } = props;
 
   // Generate unique ID
-  const modalId = id || `dos-modal-${++modalIdCounter}`;
+  const modalId = id ?? `dos-modal-${++modalIdCounter}`;
   const titleId = `${modalId}-title`;
   const contentId = `${modalId}-content`;
 
@@ -106,7 +106,7 @@ export function createModal(props: ModalProps = {}): ModalInstance {
   const titleEl = document.createElement('h2');
   titleEl.className = 'dos-modal__title';
   titleEl.id = titleId;
-  titleEl.textContent = title || '';
+  titleEl.textContent = title ?? '';
 
   header.appendChild(titleEl);
 

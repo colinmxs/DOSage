@@ -67,7 +67,7 @@ export function createAvatar(props: AvatarProps): AvatarInstance {
 
   // State
   let name = initialName;
-  let initials = customInitials || extractInitials(initialName);
+  let initials = customInitials ?? extractInitials(initialName);
   let status = initialStatus;
   let image = initialImage;
 
