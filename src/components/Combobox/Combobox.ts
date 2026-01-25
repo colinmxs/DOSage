@@ -244,6 +244,18 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
   }
 
   /**
+   * Find last non-disabled option index
+   */
+  function findLastEnabledIndex(): number {
+    for (let i = state.filteredOptions.length - 1; i >= 0; i--) {
+      if (!state.filteredOptions[i]?.disabled) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  /**
    * Open dropdown
    */
   function openDropdown(): void {
@@ -653,12 +665,7 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
           // Find previous enabled option
           if (state.highlightedIndex === -1) {
             // Start from end
-            for (let i = state.filteredOptions.length - 1; i >= 0; i--) {
-              if (!state.filteredOptions[i]?.disabled) {
-                state.highlightedIndex = i;
-                break;
-              }
-            }
+            state.highlightedIndex = findLastEnabledIndex();
           } else {
             const prevIndex = findNextEnabledIndex(state.highlightedIndex, -1);
             if (prevIndex >= 0) {
@@ -707,15 +714,36 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
             setFreeformValue(input.value);
           }
           closeDropdown();
-          // Manually move focus to next element after selection is complete
+          // Manually move focus to next/previous element after selection is complete
           setTimeout(() => {
-            const focusable = Array.from(
-              document.querySelectorAll<HTMLElement>(
-                'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
-              )
+            // Create a TreeWalker to find next focusable element
+            const walker = document.createTreeWalker(
+              document.body,
+              NodeFilter.SHOW_ELEMENT,
+              {
+                acceptNode: (node) => {
+                  const element = node as HTMLElement;
+                  // Check if element is focusable
+                  if (
+                    element.tabIndex >= 0 &&
+                    !element.hasAttribute('disabled') &&
+                    element.offsetParent !== null // Check if visible
+                  ) {
+                    return NodeFilter.FILTER_ACCEPT;
+                  }
+                  return NodeFilter.FILTER_SKIP;
+                }
+              }
             );
-            const currentIndex = focusable.indexOf(input);
-            const nextElement = event.shiftKey ? focusable[currentIndex - 1] : focusable[currentIndex + 1];
+            
+            // Find current input in tree
+            walker.currentNode = input;
+            
+            // Move to next or previous focusable element
+            const nextElement = event.shiftKey 
+              ? walker.previousNode() as HTMLElement | null
+              : walker.nextNode() as HTMLElement | null;
+            
             if (nextElement) {
               nextElement.focus();
             }
@@ -734,13 +762,7 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
       case 'End':
         if (state.isOpen && state.filteredOptions.length > 0) {
           event.preventDefault();
-          // Find last enabled option
-          for (let i = state.filteredOptions.length - 1; i >= 0; i--) {
-            if (!state.filteredOptions[i]?.disabled) {
-              state.highlightedIndex = i;
-              break;
-            }
-          }
+          state.highlightedIndex = findLastEnabledIndex();
           updateHighlight();
         }
         break;
