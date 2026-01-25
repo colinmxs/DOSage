@@ -167,9 +167,9 @@ This checklist guides implementation of automated CI/CD pipelines for GitHub rel
 - [x] Run full build: `npm run build`
 - [x] Run all tests: `npm test`
 - [ ] Run linting: `npm run lint`
-- [ ] Run typecheck: `npm run typecheck`
-- [ ] Test pack output: `npm pack`
-- [ ] Verify tarball contents are correct
+- [x] Run typecheck: `npm run typecheck`
+- [x] Test pack output: `npm pack`
+- [x] Verify tarball contents are correct
 
 ### R7.2 Integration Test
 - [ ] Create test project that imports from local tarball
