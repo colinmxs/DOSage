@@ -96,7 +96,6 @@
   flex-direction: column;
   overflow-y: auto;
   max-height: var(--dos-sidebar-section-max-height, 300px);
-  
   /* Firefox scrollbar styling */
   scrollbar-width: thin;
   scrollbar-color: var(--dos-color-border, #ffffff) var(--dos-color-bg-secondary, #000080);
