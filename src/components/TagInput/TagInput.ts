@@ -759,12 +759,16 @@ export function createTagInput(props: TagInputProps): TagInputElement {
           state.highlightedSuggestionIndex =
             (state.highlightedSuggestionIndex + 1) % state.suggestions.length;
           updateSuggestionHighlight();
-        } else if (
-          (initialSuggestions.length > 0 || loadSuggestions) &&
-          showSuggestionsOnFocus
-        ) {
+        } else if (initialSuggestions.length > 0 || loadSuggestions) {
+          // Open suggestions when ArrowDown is pressed, even if showSuggestionsOnFocus is false
+          event.preventDefault();
           if (initialSuggestions.length > 0) {
             filterStaticSuggestions(value);
+            // Highlight first suggestion if suggestions opened successfully
+            if (state.suggestions.length > 0) {
+              state.highlightedSuggestionIndex = 0;
+              updateSuggestionHighlight();
+            }
           } else if (loadSuggestions) {
             loadSuggestionsAsync(value);
           }
@@ -778,6 +782,19 @@ export function createTagInput(props: TagInputProps): TagInputElement {
             (state.highlightedSuggestionIndex - 1 + state.suggestions.length) %
             state.suggestions.length;
           updateSuggestionHighlight();
+        } else if (initialSuggestions.length > 0 || loadSuggestions) {
+          // Open suggestions when ArrowUp is pressed, even if showSuggestionsOnFocus is false
+          event.preventDefault();
+          if (initialSuggestions.length > 0) {
+            filterStaticSuggestions(value);
+            // Highlight last suggestion if suggestions opened successfully
+            if (state.suggestions.length > 0) {
+              state.highlightedSuggestionIndex = state.suggestions.length - 1;
+              updateSuggestionHighlight();
+            }
+          } else if (loadSuggestions) {
+            loadSuggestionsAsync(value);
+          }
         }
         break;
 
