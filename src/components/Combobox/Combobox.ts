@@ -203,7 +203,7 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
       return [...options];
     }
 
-    const filter = filterFunction || defaultFilter;
+    const filter = filterFunction ?? defaultFilter;
     return options.filter((option) => {
       return filter(option, query);
     });
@@ -295,11 +295,14 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
     groups.forEach((g) => groupMap.set(g.id, g));
 
     state.filteredOptions.forEach((option) => {
-      const groupId = option.group || 'ungrouped';
+      const groupId = option.group ?? 'ungrouped';
       if (!groupedOptions.has(groupId)) {
         groupedOptions.set(groupId, []);
       }
-      groupedOptions.get(groupId)!.push(option);
+      const groupOptions = groupedOptions.get(groupId);
+      if (groupOptions) {
+        groupOptions.push(option);
+      }
     });
 
     let globalIndex = 0;
@@ -717,9 +720,9 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
   document.addEventListener('click', handleDocumentClick);
 
   // Public API
-  container.getValue = () => state.selectedValue;
+  container.getValue = (): string => state.selectedValue;
 
-  container.setValue = (value: string) => {
+  container.setValue = (value: string): void => {
     const option = options.find((o) => o.value === value);
     if (option) {
       state.selectedValue = value;
@@ -734,14 +737,14 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
     cursor?.updatePosition();
   };
 
-  container.getSelectedOption = () => {
+  container.getSelectedOption = (): ComboboxOption | null => {
     return options.find((o) => o.value === state.selectedValue) ?? null;
   };
 
-  container.open = () => openDropdown();
-  container.close = () => closeDropdown();
-  container.toggle = () => (state.isOpen ? closeDropdown() : openDropdown());
-  container.isOpen = () => state.isOpen;
+  container.open = (): void => openDropdown();
+  container.close = (): void => closeDropdown();
+  container.toggle = (): void => (state.isOpen ? closeDropdown() : openDropdown());
+  container.isOpen = (): boolean => state.isOpen;
 
   container.getHighlightedOption = (): ComboboxOption | null => {
     if (state.highlightedIndex >= 0 && state.highlightedIndex < state.filteredOptions.length) {
@@ -750,7 +753,7 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
     return null;
   };
 
-  container.setOptions = (newOptions: ComboboxOption[]) => {
+  container.setOptions = (newOptions: ComboboxOption[]): void => {
     options = [...newOptions];
     if (state.isOpen) {
       state.filteredOptions = filterOptions(state.inputValue);
@@ -758,14 +761,14 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
     }
   };
 
-  container.getOptions = () => [...options];
+  container.getOptions = (): ComboboxOption[] => [...options];
 
-  container.focus = () => input.focus();
-  container.blur = () => input.blur();
+  container.focus = (): void => input.focus();
+  container.blur = (): void => input.blur();
 
-  container.isDisabled = () => isDisabled;
+  container.isDisabled = (): boolean => isDisabled;
 
-  container.setDisabled = (disabled: boolean) => {
+  container.setDisabled = (disabled: boolean): void => {
     isDisabled = disabled;
     input.disabled = disabled;
     toggleButton.disabled = disabled;
@@ -777,7 +780,7 @@ export function createCombobox(props: ComboboxProps): ComboboxElement {
     }
   };
 
-  container.destroy = () => {
+  container.destroy = (): void => {
     input.removeEventListener('input', handleInput);
     input.removeEventListener('keydown', handleKeyDown);
     input.removeEventListener('focus', handleFocus);

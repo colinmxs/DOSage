@@ -84,14 +84,14 @@ export function createFormValidation(props: FormValidationProps): FormValidation
   wrapper.appendChild(messageElement);
 
   // Attach methods to the wrapper element
-  wrapper.setMessage = (newMessage: string) => {
+  wrapper.setMessage = (newMessage: string): void => {
     currentMessage = newMessage;
     messageElement.textContent = newMessage;
   };
 
-  wrapper.getMessage = () => currentMessage;
+  wrapper.getMessage = (): string => currentMessage;
 
-  wrapper.setType = (newType: ValidationType) => {
+  wrapper.setType = (newType: ValidationType): void => {
     // Remove old type class
     wrapper.classList.remove(`dos-form-validation--${currentType}`);
 
@@ -109,16 +109,16 @@ export function createFormValidation(props: FormValidationProps): FormValidation
     }
   };
 
-  wrapper.getType = () => currentType;
+  wrapper.getType = (): ValidationType => currentType;
 
-  wrapper.setVisible = (newVisible: boolean) => {
+  wrapper.setVisible = (newVisible: boolean): void => {
     currentVisible = newVisible;
     wrapper.classList.toggle('dos-form-validation--hidden', !newVisible);
   };
 
-  wrapper.isVisible = () => currentVisible;
+  wrapper.isVisible = (): boolean => currentVisible;
 
-  wrapper.setIcon = (newIcon: boolean | string) => {
+  wrapper.setIcon = (newIcon: boolean | string): void => {
     currentIcon = newIcon;
     updateIcon(iconElement, newIcon, currentType);
   };

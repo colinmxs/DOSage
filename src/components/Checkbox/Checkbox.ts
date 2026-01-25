@@ -180,9 +180,9 @@ export function createCheckbox(props: CheckboxProps): CheckboxElement {
   }
 
   // Attach methods to the wrapper element
-  wrapper.isChecked = () => isCheckedState;
+  wrapper.isChecked = (): boolean => isCheckedState;
 
-  wrapper.setChecked = (newChecked: boolean) => {
+  wrapper.setChecked = (newChecked: boolean): void => {
     isCheckedState = newChecked;
     isIndeterminateState = false;
     input.checked = newChecked;
@@ -191,14 +191,14 @@ export function createCheckbox(props: CheckboxProps): CheckboxElement {
     updateVisualState(wrapper, mark, isCheckedState, isIndeterminateState, checkChar);
   };
 
-  wrapper.toggle = () => {
+  wrapper.toggle = (): void => {
     wrapper.setChecked(!isCheckedState);
     onChange?.(isCheckedState, new Event('change'));
   };
 
-  wrapper.isIndeterminate = () => isIndeterminateState;
+  wrapper.isIndeterminate = (): boolean => isIndeterminateState;
 
-  wrapper.setIndeterminate = (newIndeterminate: boolean) => {
+  wrapper.setIndeterminate = (newIndeterminate: boolean): void => {
     isIndeterminateState = newIndeterminate;
     input.indeterminate = newIndeterminate;
 
@@ -211,16 +211,16 @@ export function createCheckbox(props: CheckboxProps): CheckboxElement {
     updateVisualState(wrapper, mark, isCheckedState, isIndeterminateState, checkChar);
   };
 
-  wrapper.setDisabled = (newDisabled: boolean) => {
+  wrapper.setDisabled = (newDisabled: boolean): void => {
     input.disabled = newDisabled;
     wrapper.classList.toggle('dos-checkbox--disabled', newDisabled);
   };
 
-  wrapper.focus = () => {
+  wrapper.focus = (): void => {
     input.focus();
   };
 
-  wrapper.getInput = () => input;
+  wrapper.getInput = (): HTMLInputElement => input;
 
   return wrapper;
 }

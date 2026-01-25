@@ -120,7 +120,7 @@ export function createButton(props: ButtonProps): HTMLButtonElement {
     let frameIndex = 0;
     spinnerInterval = setInterval(() => {
       frameIndex = (frameIndex + 1) % SPINNER_FRAMES.length;
-      spinner.textContent = SPINNER_FRAMES[frameIndex] ?? SPINNER_FRAMES[0]!;
+      spinner.textContent = SPINNER_FRAMES[frameIndex] ?? SPINNER_FRAMES[0] ?? '';
     }, 125);
   }
 
@@ -164,7 +164,7 @@ export function setButtonLoading(button: HTMLButtonElement, loading: boolean): v
     let frameIndex = 0;
     spinnerInterval = setInterval(() => {
       frameIndex = (frameIndex + 1) % SPINNER_FRAMES.length;
-      spinner.textContent = SPINNER_FRAMES[frameIndex] ?? SPINNER_FRAMES[0]!;
+      spinner.textContent = SPINNER_FRAMES[frameIndex] ?? SPINNER_FRAMES[0] ?? '';
     }, 125);
   } else if (!loading && existingSpinner) {
     button.classList.remove('dos-button--loading');

@@ -62,8 +62,8 @@ export function createTable(props: TableProps): TableInstance {
   // State
   let columns = [...initialColumns];
   let data = [...initialData];
-  let sortColumnKey: string | null = initialSortColumn || null;
-  let currentSortDirection: SortDirection | null = initialSortDirection || null;
+  let sortColumnKey: string | null = initialSortColumn ?? null;
+  let currentSortDirection: SortDirection | null = initialSortDirection ?? null;
   let selectedRowIds = new Set<string>(initialSelectedRows);
   let focusedRowIndex = -1;
 
@@ -452,7 +452,7 @@ export function createTable(props: TableProps): TableInstance {
 
   function sort(columnKey: string, direction?: SortDirection): void {
     sortColumnKey = columnKey;
-    currentSortDirection = direction || 'asc';
+    currentSortDirection = direction ?? 'asc';
     renderHeader();
     onSort?.(columnKey, currentSortDirection);
   }

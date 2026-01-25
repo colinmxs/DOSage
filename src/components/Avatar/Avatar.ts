@@ -81,7 +81,7 @@ export function createAvatar(props: AvatarProps): AvatarInstance {
 
   // Set ARIA attributes
   avatar.setAttribute('role', 'img');
-  avatar.setAttribute('aria-label', ariaLabel || name);
+  avatar.setAttribute('aria-label', ariaLabel ?? name);
 
   // Create box container
   const box = document.createElement('div');
@@ -139,7 +139,7 @@ export function createAvatar(props: AvatarProps): AvatarInstance {
       busy: 'Busy',
       away: 'Away',
     };
-    avatar.setAttribute('aria-label', `${ariaLabel || name}, ${statusLabels[statusValue]}`);
+    avatar.setAttribute('aria-label', `${ariaLabel ?? name}, ${statusLabels[statusValue]}`);
 
     return el;
   }
@@ -164,9 +164,9 @@ export function createAvatar(props: AvatarProps): AvatarInstance {
         busy: 'Busy',
         away: 'Away',
       };
-      avatar.setAttribute('aria-label', `${ariaLabel || name}, ${statusLabels[status]}`);
+      avatar.setAttribute('aria-label', `${ariaLabel ?? name}, ${statusLabels[status]}`);
     } else {
-      avatar.setAttribute('aria-label', ariaLabel || name);
+      avatar.setAttribute('aria-label', ariaLabel ?? name);
     }
   }
 

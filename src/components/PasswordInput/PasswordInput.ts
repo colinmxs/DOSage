@@ -159,7 +159,9 @@ export function createPasswordInput(props: PasswordInputProps): PasswordInputEle
 
     toggleButton.addEventListener('click', () => {
       isPasswordVisible = !isPasswordVisible;
-      updateVisibilityState(wrapper, input, toggleButton!, isPasswordVisible);
+      if (toggleButton) {
+        updateVisibilityState(wrapper, input, toggleButton, isPasswordVisible);
+      }
       onToggleVisibility?.(isPasswordVisible);
     });
 
@@ -168,7 +170,9 @@ export function createPasswordInput(props: PasswordInputProps): PasswordInputEle
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
         isPasswordVisible = !isPasswordVisible;
-        updateVisibilityState(wrapper, input, toggleButton!, isPasswordVisible);
+        if (toggleButton) {
+          updateVisibilityState(wrapper, input, toggleButton, isPasswordVisible);
+        }
         onToggleVisibility?.(isPasswordVisible);
       }
     });
@@ -197,15 +201,15 @@ export function createPasswordInput(props: PasswordInputProps): PasswordInputEle
   }
 
   // Attach methods to the wrapper element
-  wrapper.getValue = () => input.value;
+  wrapper.getValue = (): string => input.value;
 
-  wrapper.setValue = (newValue: string) => {
+  wrapper.setValue = (newValue: string): void => {
     input.value = newValue;
     // Update cursor position when value changes programmatically
     cursor?.updatePosition();
   };
 
-  wrapper.setError = (newError: string | boolean | undefined) => {
+  wrapper.setError = (newError: string | boolean | undefined): void => {
     // Remove existing error element
     const existingError = wrapper.querySelector('.dos-password-input__error');
     if (existingError) {
@@ -231,11 +235,11 @@ export function createPasswordInput(props: PasswordInputProps): PasswordInputEle
     }
   };
 
-  wrapper.focusInput = () => {
+  wrapper.focusInput = (): void => {
     input.focus();
   };
 
-  wrapper.setDisabled = (newDisabled: boolean) => {
+  wrapper.setDisabled = (newDisabled: boolean): void => {
     input.disabled = newDisabled;
     wrapper.classList.toggle('dos-password-input--disabled', newDisabled);
     if (labelElement) {
@@ -248,9 +252,9 @@ export function createPasswordInput(props: PasswordInputProps): PasswordInputEle
     cursor?.setDisabled(newDisabled);
   };
 
-  wrapper.getInput = () => input;
+  wrapper.getInput = (): HTMLInputElement => input;
 
-  wrapper.toggleVisibility = () => {
+  wrapper.toggleVisibility = (): void => {
     if (toggleButton) {
       isPasswordVisible = !isPasswordVisible;
       updateVisibilityState(wrapper, input, toggleButton, isPasswordVisible);
@@ -258,10 +262,10 @@ export function createPasswordInput(props: PasswordInputProps): PasswordInputEle
     }
   };
 
-  wrapper.isVisible = () => isPasswordVisible;
+  wrapper.isVisible = (): boolean => isPasswordVisible;
 
   // Add destroy method for cleanup
-  (wrapper as PasswordInputElement & { destroy: () => void }).destroy = () => {
+  (wrapper as PasswordInputElement & { destroy: () => void }).destroy = (): void => {
     cursor?.destroy();
     cursor = null;
   };

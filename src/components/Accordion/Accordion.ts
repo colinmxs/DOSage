@@ -65,7 +65,10 @@ export function createAccordion(props: AccordionProps): AccordionElement {
 
     // In single mode, only keep the first
     if (mode === 'single' && defaultExpanded.length > 0) {
-      return new Set([defaultExpanded[0]!]);
+      const firstItem = defaultExpanded[0];
+      if (firstItem !== undefined) {
+        return new Set([firstItem]);
+      }
     }
 
     return new Set(defaultExpanded);
@@ -244,12 +247,12 @@ export function createAccordion(props: AccordionProps): AccordionElement {
 
       case 'Home':
         event.preventDefault();
-        nextItemId = enabledItems[0]?.id || null;
+        nextItemId = enabledItems[0]?.id ?? null;
         break;
 
       case 'End':
         event.preventDefault();
-        nextItemId = enabledItems[enabledItems.length - 1]?.id || null;
+        nextItemId = enabledItems[enabledItems.length - 1]?.id ?? null;
         break;
 
       case 'Enter':
@@ -283,7 +286,7 @@ export function createAccordion(props: AccordionProps): AccordionElement {
       nextIndex = 0;
     }
 
-    return enabledItems[nextIndex]?.id || null;
+    return enabledItems[nextIndex]?.id ?? null;
   }
 
   /**
@@ -401,27 +404,27 @@ export function createAccordion(props: AccordionProps): AccordionElement {
   render();
 
   // Public API methods
-  container.getExpandedItems = () => Array.from(state.expandedItems);
+  container.getExpandedItems = (): string[] => Array.from(state.expandedItems);
 
-  container.isExpanded = (itemId: string) => state.expandedItems.has(itemId);
+  container.isExpanded = (itemId: string): boolean => state.expandedItems.has(itemId);
 
-  container.expand = (itemId: string) => {
+  container.expand = (itemId: string): void => {
     if (!state.expandedItems.has(itemId)) {
       toggleItem(itemId);
     }
   };
 
-  container.collapse = (itemId: string) => {
+  container.collapse = (itemId: string): void => {
     if (state.expandedItems.has(itemId)) {
       toggleItem(itemId);
     }
   };
 
-  container.toggle = (itemId: string) => {
+  container.toggle = (itemId: string): void => {
     toggleItem(itemId);
   };
 
-  container.expandAll = () => {
+  container.expandAll = (): void => {
     if (mode === 'single') {
       // In single mode, only expand first enabled
       const firstEnabled = items.find((i) => !i.disabled);
@@ -441,7 +444,7 @@ export function createAccordion(props: AccordionProps): AccordionElement {
     }
   };
 
-  container.collapseAll = () => {
+  container.collapseAll = (): void => {
     if (!allowAllCollapsed && state.expandedItems.size > 0) {
       // Keep one item expanded
       const firstExpanded = Array.from(state.expandedItems)[0];
@@ -462,7 +465,7 @@ export function createAccordion(props: AccordionProps): AccordionElement {
     }
   };
 
-  container.enableItem = (itemId: string) => {
+  container.enableItem = (itemId: string): void => {
     const itemIndex = items.findIndex((i) => i.id === itemId);
     const itemEl = itemElements.get(itemId);
     const item = items[itemIndex];
@@ -475,7 +478,7 @@ export function createAccordion(props: AccordionProps): AccordionElement {
     }
   };
 
-  container.disableItem = (itemId: string) => {
+  container.disableItem = (itemId: string): void => {
     const itemIndex = items.findIndex((i) => i.id === itemId);
     const itemEl = itemElements.get(itemId);
     const item = items[itemIndex];
@@ -488,9 +491,9 @@ export function createAccordion(props: AccordionProps): AccordionElement {
     }
   };
 
-  container.getItems = () => [...items];
+  container.getItems = (): AccordionItemProps[] => [...items];
 
-  container.setItems = (newItems: AccordionItemProps[]) => {
+  container.setItems = (newItems: AccordionItemProps[]): void => {
     items.length = 0;
     items.push(...newItems);
 
@@ -515,14 +518,14 @@ export function createAccordion(props: AccordionProps): AccordionElement {
     render();
   };
 
-  container.focus = () => {
+  container.focus = (): void => {
     const firstEnabled = items.find((i) => !i.disabled);
     if (firstEnabled) {
       focusItem(firstEnabled.id);
     }
   };
 
-  container.destroy = () => {
+  container.destroy = (): void => {
     itemElements.forEach(({ header }) => {
       const clone = header.cloneNode(true);
       header.parentNode?.replaceChild(clone, header);

@@ -47,7 +47,7 @@ function parseTime(value: string | Date | undefined | null, format: TimeFormat):
     // Parse string in various formats
     // Supported: "HH:MM", "H:MM", "HH:MM AM", "HH:MM PM", "H:MM AM/PM"
     const timeMatch = value.match(/^(\d{1,2}):(\d{2})(?:\s*(AM|PM))?$/i);
-    if (!timeMatch || !timeMatch[1] || !timeMatch[2]) return null;
+    if (!timeMatch?.[1] || !timeMatch[2]) return null;
 
     hours = parseInt(timeMatch[1], 10);
     minutes = parseInt(timeMatch[2], 10);
@@ -96,7 +96,7 @@ function formatTime(parsed: ParsedTime | null, format: TimeFormat): string {
     return `${paddedHours}:${paddedMinutes}`;
   } else {
     // 12-hour format
-    return `${hours}:${paddedMinutes} ${period || 'AM'}`;
+    return `${hours}:${paddedMinutes} ${period ?? 'AM'}`;
   }
 }
 
@@ -571,16 +571,16 @@ export function createTimePicker(props: TimePickerProps): TimePickerElement {
   minutesInput.addEventListener('focus', () => minutesInput.select());
 
   // Public API
-  container.getValue = () => formatTime(currentTime, format);
+  container.getValue = (): string => formatTime(currentTime, format);
 
-  container.getParsedValue = () => currentTime;
+  container.getParsedValue = (): ParsedTime | null => currentTime;
 
-  container.setValue = (value: string | Date | null) => {
+  container.setValue = (value: string | Date | null): void => {
     currentTime = parseTime(value, format);
     updateDisplay();
   };
 
-  container.setHours = (hours: number) => {
+  container.setHours = (hours: number): void => {
     const maxHours = format === '12h' ? 12 : 23;
     const minHours = format === '12h' ? 1 : 0;
 
@@ -595,7 +595,7 @@ export function createTimePicker(props: TimePickerProps): TimePickerElement {
     }
   };
 
-  container.setMinutes = (minutes: number) => {
+  container.setMinutes = (minutes: number): void => {
     if (minutes >= 0 && minutes <= 59) {
       if (!currentTime) {
         currentTime = createDefaultTime(format, undefined, minutes);
@@ -607,19 +607,19 @@ export function createTimePicker(props: TimePickerProps): TimePickerElement {
     }
   };
 
-  container.setPeriod = (period: TimePeriod) => {
+  container.setPeriod = (period: TimePeriod): void => {
     if (format === '12h') {
       setPeriod(period);
     }
   };
 
-  container.togglePeriod = () => {
+  container.togglePeriod = (): void => {
     if (format === '12h' && currentTime?.period) {
       setPeriod(currentTime.period === 'AM' ? 'PM' : 'AM');
     }
   };
 
-  container.setDisabled = (disabled: boolean) => {
+  container.setDisabled = (disabled: boolean): void => {
     currentDisabled = disabled;
     container.classList.toggle('dos-time-picker--disabled', disabled);
     hoursInput.disabled = disabled;
@@ -632,7 +632,7 @@ export function createTimePicker(props: TimePickerProps): TimePickerElement {
     if (pmButton) pmButton.disabled = disabled;
   };
 
-  container.setError = (error: boolean | string) => {
+  container.setError = (error: boolean | string): void => {
     currentError = error;
     container.classList.toggle('dos-time-picker--error', !!error);
 
@@ -643,17 +643,17 @@ export function createTimePicker(props: TimePickerProps): TimePickerElement {
     }
   };
 
-  container.clear = () => {
+  container.clear = (): void => {
     currentTime = null;
     updateDisplay();
     fireChange();
   };
 
-  container.focus = () => {
+  container.focus = (): void => {
     hoursInput.focus();
   };
 
-  container.destroy = () => {
+  container.destroy = (): void => {
     hoursUp.removeEventListener('click', incrementHours);
     hoursDown.removeEventListener('click', decrementHours);
     hoursInput.removeEventListener('change', handleHoursInput);

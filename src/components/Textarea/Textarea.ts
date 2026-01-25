@@ -197,9 +197,9 @@ export function createTextarea(props: TextareaProps): TextareaElement {
   }
 
   // Attach methods to the wrapper element
-  wrapper.getValue = () => textarea.value;
+  wrapper.getValue = (): string => textarea.value;
 
-  wrapper.setValue = (newValue: string) => {
+  wrapper.setValue = (newValue: string): void => {
     textarea.value = newValue;
     if (showCount && countElement) {
       updateCountElement(countElement, newValue.length, maxLength);
@@ -208,7 +208,7 @@ export function createTextarea(props: TextareaProps): TextareaElement {
     cursor?.updatePosition();
   };
 
-  wrapper.setError = (newError: string | boolean | undefined) => {
+  wrapper.setError = (newError: string | boolean | undefined): void => {
     // Remove existing error element
     const existingError = wrapper.querySelector('.dos-textarea__error');
     if (existingError) {
@@ -232,11 +232,11 @@ export function createTextarea(props: TextareaProps): TextareaElement {
     }
   };
 
-  wrapper.focusTextarea = () => {
+  wrapper.focusTextarea = (): void => {
     textarea.focus();
   };
 
-  wrapper.setDisabled = (newDisabled: boolean) => {
+  wrapper.setDisabled = (newDisabled: boolean): void => {
     textarea.disabled = newDisabled;
     wrapper.classList.toggle('dos-textarea--disabled', newDisabled);
     if (labelElement) {
@@ -246,10 +246,10 @@ export function createTextarea(props: TextareaProps): TextareaElement {
     cursor?.setDisabled(newDisabled);
   };
 
-  wrapper.getTextarea = () => textarea;
+  wrapper.getTextarea = (): HTMLTextAreaElement => textarea;
 
   // Add destroy method for cleanup
-  (wrapper as TextareaElement & { destroy: () => void }).destroy = () => {
+  (wrapper as TextareaElement & { destroy: () => void }).destroy = (): void => {
     cursor?.destroy();
     cursor = null;
   };

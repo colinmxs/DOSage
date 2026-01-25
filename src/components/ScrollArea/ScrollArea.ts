@@ -266,10 +266,10 @@ export function createScrollArea(props: ScrollAreaProps = {}): ScrollAreaInstanc
    * Handles clicks on the vertical track.
    */
   function handleVerticalTrackClick(e: MouseEvent): void {
-    if (e.target === verticalThumb) return;
+    if (e.target === verticalThumb || !verticalTrack || !verticalThumb) return;
 
-    const trackRect = verticalTrack!.getBoundingClientRect();
-    const thumbRect = verticalThumb!.getBoundingClientRect();
+    const trackRect = verticalTrack.getBoundingClientRect();
+    const thumbRect = verticalThumb.getBoundingClientRect();
     const clickY = e.clientY - trackRect.top;
     const thumbCenter = thumbRect.top - trackRect.top + thumbRect.height / 2;
 
@@ -287,10 +287,10 @@ export function createScrollArea(props: ScrollAreaProps = {}): ScrollAreaInstanc
    * Handles clicks on the horizontal track.
    */
   function handleHorizontalTrackClick(e: MouseEvent): void {
-    if (e.target === horizontalThumb) return;
+    if (e.target === horizontalThumb || !horizontalTrack || !horizontalThumb) return;
 
-    const trackRect = horizontalTrack!.getBoundingClientRect();
-    const thumbRect = horizontalThumb!.getBoundingClientRect();
+    const trackRect = horizontalTrack.getBoundingClientRect();
+    const thumbRect = horizontalThumb.getBoundingClientRect();
     const clickX = e.clientX - trackRect.left;
     const thumbCenter = thumbRect.left - trackRect.left + thumbRect.width / 2;
 
@@ -308,20 +308,21 @@ export function createScrollArea(props: ScrollAreaProps = {}): ScrollAreaInstanc
    * Starts vertical thumb dragging.
    */
   function startVerticalDrag(e: MouseEvent): void {
+    if (!verticalThumb) return;
     e.preventDefault();
     isDraggingVertical = true;
     dragStartY = e.clientY;
     dragStartScrollTop = viewport.scrollTop;
-    verticalThumb!.classList.add('dos-scroll-area___thumb--dragging');
+    verticalThumb.classList.add('dos-scroll-area___thumb--dragging');
 
     document.addEventListener('mousemove', handleVerticalDrag);
     document.addEventListener('mouseup', stopVerticalDrag);
   }
 
   function handleVerticalDrag(e: MouseEvent): void {
-    if (!isDraggingVertical) return;
+    if (!isDraggingVertical || !verticalTrack || !verticalThumb) return;
 
-    const trackHeight = verticalTrack!.clientHeight - verticalThumb!.offsetHeight;
+    const trackHeight = verticalTrack.clientHeight - verticalThumb.offsetHeight;
     const deltaY = e.clientY - dragStartY;
     const scrollRatio = deltaY / trackHeight;
     const maxScroll = viewport.scrollHeight - viewport.clientHeight;
@@ -330,8 +331,9 @@ export function createScrollArea(props: ScrollAreaProps = {}): ScrollAreaInstanc
   }
 
   function stopVerticalDrag(): void {
+    if (!verticalThumb) return;
     isDraggingVertical = false;
-    verticalThumb!.classList.remove('dos-scroll-area___thumb--dragging');
+    verticalThumb.classList.remove('dos-scroll-area___thumb--dragging');
     document.removeEventListener('mousemove', handleVerticalDrag);
     document.removeEventListener('mouseup', stopVerticalDrag);
   }
@@ -340,20 +342,21 @@ export function createScrollArea(props: ScrollAreaProps = {}): ScrollAreaInstanc
    * Starts horizontal thumb dragging.
    */
   function startHorizontalDrag(e: MouseEvent): void {
+    if (!horizontalThumb) return;
     e.preventDefault();
     isDraggingHorizontal = true;
     dragStartX = e.clientX;
     dragStartScrollLeft = viewport.scrollLeft;
-    horizontalThumb!.classList.add('dos-scroll-area___thumb--dragging');
+    horizontalThumb.classList.add('dos-scroll-area___thumb--dragging');
 
     document.addEventListener('mousemove', handleHorizontalDrag);
     document.addEventListener('mouseup', stopHorizontalDrag);
   }
 
   function handleHorizontalDrag(e: MouseEvent): void {
-    if (!isDraggingHorizontal) return;
+    if (!isDraggingHorizontal || !horizontalTrack || !horizontalThumb) return;
 
-    const trackWidth = horizontalTrack!.clientWidth - horizontalThumb!.offsetWidth;
+    const trackWidth = horizontalTrack.clientWidth - horizontalThumb.offsetWidth;
     const deltaX = e.clientX - dragStartX;
     const scrollRatio = deltaX / trackWidth;
     const maxScroll = viewport.scrollWidth - viewport.clientWidth;
@@ -362,8 +365,9 @@ export function createScrollArea(props: ScrollAreaProps = {}): ScrollAreaInstanc
   }
 
   function stopHorizontalDrag(): void {
+    if (!horizontalThumb) return;
     isDraggingHorizontal = false;
-    horizontalThumb!.classList.remove('dos-scroll-area___thumb--dragging');
+    horizontalThumb.classList.remove('dos-scroll-area___thumb--dragging');
     document.removeEventListener('mousemove', handleHorizontalDrag);
     document.removeEventListener('mouseup', stopHorizontalDrag);
   }
@@ -452,7 +456,9 @@ export function createScrollArea(props: ScrollAreaProps = {}): ScrollAreaInstanc
 
         // Update ARIA
         const percent = Math.round(scrollRatio * 100);
-        verticalScrollbar!.setAttribute('aria-valuenow', String(percent));
+        if (verticalScrollbar) {
+          verticalScrollbar.setAttribute('aria-valuenow', String(percent));
+        }
       }
     }
 
@@ -479,7 +485,9 @@ export function createScrollArea(props: ScrollAreaProps = {}): ScrollAreaInstanc
 
         // Update ARIA
         const percent = Math.round(scrollRatio * 100);
-        horizontalScrollbar!.setAttribute('aria-valuenow', String(percent));
+        if (horizontalScrollbar) {
+          horizontalScrollbar.setAttribute('aria-valuenow', String(percent));
+        }
       }
     }
 
@@ -679,13 +687,13 @@ export function createScrollArea(props: ScrollAreaProps = {}): ScrollAreaInstanc
     viewport,
     getScrollPosition,
     scrollTo,
-    scrollBy: (opts: { top?: number; left?: number; behavior?: 'smooth' | 'instant' }) => {
+    scrollBy: (opts: { top?: number; left?: number; behavior?: 'smooth' | 'instant' }): void => {
       const deltaY = opts.top ?? 0;
       const deltaX = opts.left ?? 0;
       if (typeof viewport.scrollBy === 'function') {
         viewport.scrollBy({
           ...opts,
-          behavior: (opts.behavior || (smoothScroll ? 'smooth' : 'instant')) as ScrollBehavior,
+          behavior: (opts.behavior ?? (smoothScroll ? 'smooth' : 'instant')) as ScrollBehavior,
         });
       } else {
         // Fallback for JSDOM

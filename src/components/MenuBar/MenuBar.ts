@@ -98,7 +98,7 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
   const { items: initialItems, onSelect, onMenuOpen, onMenuClose, className, id } = props;
 
   // Generate unique ID
-  const menuBarId = id || generateMenuBarId();
+  const menuBarId = id ?? generateMenuBarId();
 
   // Internal state - deep clone items to prevent mutation of original data
   let items = deepCloneItems(initialItems);
@@ -147,7 +147,7 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
     }
 
     // Create label with access key underlined
-    const accessKey = item.accessKey || item.label.charAt(0);
+    const accessKey = item.accessKey ?? item.label.charAt(0);
     const accessKeyIndex = item.label.toLowerCase().indexOf(accessKey.toLowerCase());
 
     if (accessKeyIndex !== -1) {
@@ -290,8 +290,8 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
       e.stopPropagation();
       if (menuItem.disabled) return;
 
-      if (hasSubmenu) {
-        toggleSubmenu(li, menuItem.items!, [...path, menuItem.label]);
+      if (hasSubmenu && menuItem.items) {
+        toggleSubmenu(li, menuItem.items, [...path, menuItem.label]);
       } else {
         selectItem(menuItem, [...path, menuItem.label]);
       }
@@ -304,8 +304,8 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
       button.classList.add('dos-menu-bar__dropdown-trigger--highlighted');
 
       // Auto-open submenu on hover
-      if (hasSubmenu && !menuItem.disabled) {
-        openSubmenu(li, menuItem.items!, [...path, menuItem.label]);
+      if (hasSubmenu && !menuItem.disabled && menuItem.items) {
+        openSubmenu(li, menuItem.items, [...path, menuItem.label]);
       } else {
         // Close any open submenus at this level
         closeSubmenusAt(li);
@@ -537,7 +537,8 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
     const allItems = Array.from(
       parent.querySelectorAll('.dos-menu-bar__dropdown-trigger:not([aria-disabled="true"])')
     ) as HTMLElement[];
-    const currentIndex = allItems.indexOf(li.querySelector('.dos-menu-bar__dropdown-trigger')!);
+    const currentButton = li.querySelector('.dos-menu-bar__dropdown-trigger');
+    const currentIndex = currentButton ? allItems.indexOf(currentButton as HTMLElement) : -1;
     const hasSubmenu = menuItem.items && menuItem.items.length > 0;
 
     switch (e.key) {
@@ -561,8 +562,8 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
 
       case 'ArrowRight':
         e.preventDefault();
-        if (hasSubmenu && !menuItem.disabled) {
-          openSubmenu(li, menuItem.items!, [...path, menuItem.label]);
+        if (hasSubmenu && !menuItem.disabled && menuItem.items) {
+          openSubmenu(li, menuItem.items, [...path, menuItem.label]);
           const firstSubItem = li.querySelector(
             '.dos-menu-bar__submenu .dos-menu-bar__dropdown-trigger:not([aria-disabled="true"])'
           ) as HTMLElement;
@@ -610,8 +611,8 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
         e.preventDefault();
         if (menuItem.disabled) return;
 
-        if (hasSubmenu) {
-          openSubmenu(li, menuItem.items!, [...path, menuItem.label]);
+        if (hasSubmenu && menuItem.items) {
+          openSubmenu(li, menuItem.items, [...path, menuItem.label]);
           const firstSubItem = li.querySelector(
             '.dos-menu-bar__submenu .dos-menu-bar__dropdown-trigger:not([aria-disabled="true"])'
           ) as HTMLElement;

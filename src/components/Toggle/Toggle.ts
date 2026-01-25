@@ -246,20 +246,20 @@ export function createToggle(props: ToggleProps = {}): ToggleElement {
   });
 
   // Public API methods
-  wrapper.getChecked = () => isChecked;
+  wrapper.getChecked = (): boolean => isChecked;
 
-  wrapper.setChecked = (newChecked: boolean) => {
+  wrapper.setChecked = (newChecked: boolean): void => {
     if (isChecked !== newChecked) {
       isChecked = newChecked;
       updateState();
     }
   };
 
-  wrapper.toggle = () => {
+  wrapper.toggle = (): void => {
     toggle();
   };
 
-  wrapper.setDisabled = (newDisabled: boolean) => {
+  wrapper.setDisabled = (newDisabled: boolean): void => {
     isDisabled = newDisabled;
     track.disabled = isDisabled;
     if (isDisabled) {
@@ -273,7 +273,7 @@ export function createToggle(props: ToggleProps = {}): ToggleElement {
     wrapper.className = buildWrapperClasses();
   };
 
-  wrapper.destroy = () => {
+  wrapper.destroy = (): void => {
     track.removeEventListener('click', handleClick);
     track.removeEventListener('keydown', handleKeydown);
     track.removeEventListener('focus', handleFocus);

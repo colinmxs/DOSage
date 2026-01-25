@@ -100,7 +100,7 @@ export function createToast(props: ToastProps): ToastInstance {
   }
 
   // Remove entering animation class after animation completes
-  const handleAnimationEnd = (e: AnimationEvent) => {
+  const handleAnimationEnd = (e: AnimationEvent): void => {
     // Check if animationName exists (may not in some test environments)
     if (e.animationName?.includes('enter') || !e.animationName) {
       toastEl.classList.remove('dos-toast--entering');
@@ -160,7 +160,7 @@ export function createToast(props: ToastProps): ToastInstance {
     toastEl.classList.add('dos-toast--exiting');
 
     // Remove after animation
-    const handleExitEnd = () => {
+    const handleExitEnd = (): void => {
       toastEl.removeEventListener('animationend', handleExitEnd);
       destroy();
       onDismiss?.();
@@ -193,7 +193,7 @@ export function createToast(props: ToastProps): ToastInstance {
    * Update the toast type
    */
   function setType(newType: ToastProps['type']): void {
-    const validType = newType || 'info';
+    const validType = newType ?? 'info';
     // Update class
     toastEl.className = toastEl.className.replace(
       /dos-toast--(?:info|success|warning|error)/,
