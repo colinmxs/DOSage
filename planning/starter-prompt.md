@@ -31,18 +31,7 @@ You are building **DOSage**, a TypeScript component library that faithfully recr
 
 ## Your Resources
 
-### 1. Agent Instructions — `planning/agent-instructions.md`
-📖 **Read this FIRST** — contains all rules, standards, and protocols you must follow.
-
-This document defines:
-- Workflow rules (mandatory)
-- Human Checkpoint protocol (critical)
-- Code quality standards
-- Component implementation patterns
-- Kitchen Sink requirements
-- Reporting format
-
-### 2. Implementation Checklists
+### 1. Implementation Checklists
 ✅ **Your task lists** — work through these sequentially.
 
 | Phases | File |
@@ -56,7 +45,7 @@ This document defines:
 - Human Checkpoints (`⛔ HUMAN ONLY`) mark phase boundaries
 - Never skip tasks or phases
 
-### 3. Kitchen Sink Demo — `demo/`
+### 2. Kitchen Sink Demo — `demo/`
 🎨 **Component showcase** — add every component here after implementation.
 
 For each component:
@@ -65,7 +54,7 @@ For each component:
 - Copy-paste code snippet
 - Accessibility notes
 
-### 4. Project Foundation — `planning/project-foundation.md`
+### 3. Project Foundation — `planning/project-foundation.md`
 📋 **Reference document** — architectural decisions and project context.
 
 ---
@@ -76,26 +65,23 @@ Follow this exact sequence:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  1. READ agent-instructions.md                              │
-│     └── Understand all rules and standards                  │
-│                         ↓                                   │
-│  2. READ the checklist files (phases 0-3, 4-9, 10-13)       │
+│  1. READ the checklist files (phases 0-3, 4-9, 10-13)       │
 │     └── Find your current position                          │
 │                         ↓                                   │
-│  3. FIND the next incomplete phase                          │
+│  2. FIND the next incomplete phase                          │
 │     └── Look for first unchecked ⛔ HUMAN ONLY              │
 │                         ↓                                   │
-│  4. COMPLETE all tasks in that phase                        │
+│  3. COMPLETE all tasks in that phase                        │
 │     └── Check boxes as you complete each task               │
 │                         ↓                                   │
-│  5. For EACH component:                                     │
+│  4. For EACH component:                                     │
 │     ├── Define TypeScript types first                       │
 │     ├── Implement the component                             │
 │     ├── Add all ARIA/accessibility                          │
 │     ├── Write comprehensive unit tests                      │
 │     └── Add to Kitchen Sink with example + code             │
 │                         ↓                                   │
-│  6. At Human Checkpoint: STOP and REPORT                    │
+│  5. At Human Checkpoint: STOP and REPORT                    │
 │     └── Use the reporting format from agent-instructions    │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -228,11 +214,10 @@ Ready for human verification. Awaiting checkpoint approval.
 
 Execute these steps in order:
 
-1. **Read** `planning/agent-instructions.md` completely
-2. **Read** the checklist files (`checklist-phase0-3.md`, then `checklist-phase4-9.md`, then `checklist-phase10-13.md`) to find current position
-3. **Identify** the first phase with an unchecked `⛔ HUMAN ONLY` checkpoint
-4. **Begin** working on that phase's tasks
-5. **Report** when you reach the Human Checkpoint
+1. **Read** the checklist files (`checklist-phase0-3.md`, then `checklist-phase4-9.md`, then `checklist-phase10-13.md`) to find current position
+2. **Identify** the first phase with an unchecked `⛔ HUMAN ONLY` checkpoint
+3. **Begin** working on that phase's tasks
+4. **Report** when you reach the Human Checkpoint
 
 ---
 
