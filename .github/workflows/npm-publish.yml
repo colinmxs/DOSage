@@ -15,12 +15,12 @@ jobs:
     
     steps:
       - name: Checkout code at release tag
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.event.release.tag_name }}
       
       - name: Setup Node.js with npm registry
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
