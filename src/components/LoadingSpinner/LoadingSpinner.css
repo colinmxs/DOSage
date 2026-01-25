@@ -74,6 +74,13 @@
   opacity: 0.5;
 }
 
+/* ===== CONTEXT ADAPTATIONS ===== */
+
+/* When spinner is inside a button, inherit button's text color for visibility */
+.dos-button .dos-loading-spinner {
+  color: currentColor;
+}
+
 /* ===== ACCESSIBILITY ===== */
 
 /* Visually hidden label for screen readers */

@@ -49,6 +49,7 @@ export function createLoadingSpinner(props: LoadingSpinnerProps = {}): LoadingSp
     speed = 100,
     id,
     className,
+    color,
   } = props;
 
   // State
@@ -67,6 +68,11 @@ export function createLoadingSpinner(props: LoadingSpinnerProps = {}): LoadingSp
   element.setAttribute('role', 'status');
   element.setAttribute('aria-live', 'polite');
   element.setAttribute('aria-label', currentLabel);
+
+  // Apply color if specified
+  if (color) {
+    element.style.color = color;
+  }
 
   // Character display element
   const character = document.createElement('span');
