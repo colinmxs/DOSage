@@ -74,6 +74,13 @@
   opacity: 0.5;
 }
 
+/* ===== CONTEXT ADAPTATIONS ===== */
+
+/* When spinner is inside a button, inherit button's text color for visibility */
+.dos-button .dos-loading-spinner {
+  color: currentColor;
+}
+
 /* ===== ACCESSIBILITY ===== */
 
 /* Visually hidden label for screen readers */
@@ -97,7 +104,12 @@
   }
 
   /* Show static character when motion is reduced */
+  .dos-loading-spinner .dos-loading-spinner__character {
+    font-size: 0;
+  }
+
   .dos-loading-spinner .dos-loading-spinner__character::before {
     content: '○';
+    font-size: 1rem;
   }
 }

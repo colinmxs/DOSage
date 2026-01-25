@@ -51,6 +51,20 @@ describe('LoadingSpinner', () => {
       expect(spinner.element.classList.contains('custom-spinner')).toBe(true);
     });
 
+    it('renders with custom color', () => {
+      const spinner = createLoadingSpinner({ color: '#ffffff' });
+      container.appendChild(spinner.element);
+
+      expect(spinner.element.style.color).toBe('rgb(255, 255, 255)');
+    });
+
+    it('renders with inherit color', () => {
+      const spinner = createLoadingSpinner({ color: 'inherit' });
+      container.appendChild(spinner.element);
+
+      expect(spinner.element.style.color).toBe('inherit');
+    });
+
     it('renders character element', () => {
       const spinner = createLoadingSpinner();
       container.appendChild(spinner.element);

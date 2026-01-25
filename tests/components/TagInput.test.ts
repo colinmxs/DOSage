@@ -657,6 +657,80 @@ describe('TagInput', () => {
       expect(getSuggestions(tagInput)).toBeTruthy();
       expect(getSuggestionItems(tagInput).length).toBe(2);
     });
+
+    it('opens suggestions on ArrowDown with static suggestions', () => {
+      const suggestions: TagSuggestion[] = [
+        { value: 'React' },
+        { value: 'Vue' },
+        { value: 'Angular' },
+      ];
+      const tagInput = createTagInput({ suggestions });
+      container.appendChild(tagInput);
+
+      const input = getInput(tagInput);
+      input.focus();
+      
+      // Suggestions should not be visible yet (showSuggestionsOnFocus is false by default)
+      expect(getSuggestions(tagInput)).toBeFalsy();
+      
+      // Press ArrowDown - should open suggestions
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+      
+      expect(getSuggestions(tagInput)).toBeTruthy();
+      expect(getSuggestionItems(tagInput).length).toBe(3);
+      expect(getSuggestionItems(tagInput)[0].classList.contains('dos-taginput__suggestion--highlighted')).toBe(true);
+    });
+
+    it('navigates suggestions with ArrowDown when starting with closed suggestions', () => {
+      const suggestions: TagSuggestion[] = [
+        { value: 'Option1' },
+        { value: 'Option2' },
+        { value: 'Option3' },
+      ];
+      const tagInput = createTagInput({ suggestions });
+      container.appendChild(tagInput);
+
+      const input = getInput(tagInput);
+      input.focus();
+      
+      // Press ArrowDown to open and highlight first suggestion
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+      expect(getSuggestionItems(tagInput)[0].classList.contains('dos-taginput__suggestion--highlighted')).toBe(true);
+      
+      // Press ArrowDown to move to second suggestion
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+      expect(getSuggestionItems(tagInput)[1].classList.contains('dos-taginput__suggestion--highlighted')).toBe(true);
+      
+      // Press ArrowDown to move to third suggestion
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+      expect(getSuggestionItems(tagInput)[2].classList.contains('dos-taginput__suggestion--highlighted')).toBe(true);
+      
+      // Press ArrowDown to wrap to first suggestion
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+      expect(getSuggestionItems(tagInput)[0].classList.contains('dos-taginput__suggestion--highlighted')).toBe(true);
+    });
+
+    it('navigates suggestions with ArrowUp when starting with closed suggestions', () => {
+      const suggestions: TagSuggestion[] = [
+        { value: 'Option1' },
+        { value: 'Option2' },
+        { value: 'Option3' },
+      ];
+      const tagInput = createTagInput({ suggestions });
+      container.appendChild(tagInput);
+
+      const input = getInput(tagInput);
+      input.focus();
+      
+      // Press ArrowUp to open and highlight last suggestion
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
+      expect(getSuggestions(tagInput)).toBeTruthy();
+      expect(getSuggestionItems(tagInput)[2].classList.contains('dos-taginput__suggestion--highlighted')).toBe(true);
+      
+      // Press ArrowUp to move to second suggestion
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
+      expect(getSuggestionItems(tagInput)[1].classList.contains('dos-taginput__suggestion--highlighted')).toBe(true);
+    });
   });
 
   describe('Public API', () => {

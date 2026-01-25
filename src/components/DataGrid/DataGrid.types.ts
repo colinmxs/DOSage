@@ -278,9 +278,11 @@ export interface DataGridInstance {
   clearSelection: () => void;
 
   /**
-   * Select all rows on current page
+   * Select all rows
+   * @param options - Optional configuration for selection
+   * @param options.allPages - If true, selects all rows across entire dataset. If false or undefined, selects only current page
    */
-  selectAll: () => void;
+  selectAll: (options?: { allPages?: boolean }) => void;
 
   /**
    * Get currently selected row IDs

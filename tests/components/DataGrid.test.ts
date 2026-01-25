@@ -204,6 +204,24 @@ describe('DataGrid', () => {
       expect(checkboxes.length).toBe(6); // 5 rows + 1 header
     });
 
+    it('checkbox cells have proper CSS class to prevent truncation', () => {
+      const grid = createDataGrid({
+        columns: sampleColumns,
+        data: sampleData,
+        selectable: true,
+      });
+      container.appendChild(grid.element);
+
+      const checkboxCells = grid.element.querySelectorAll('.dos-data-grid___checkbox-cell');
+      expect(checkboxCells.length).toBeGreaterThan(0);
+
+      // Verify that checkbox cells have the correct class that includes
+      // text-overflow: clip and white-space: nowrap in the CSS
+      checkboxCells.forEach((cell) => {
+        expect(cell.classList.contains('dos-data-grid___checkbox-cell')).toBe(true);
+      });
+    });
+
     it('calls onSelect when clicking row checkbox', () => {
       const onSelect = vi.fn();
       const grid = createDataGrid({
@@ -231,6 +249,69 @@ describe('DataGrid', () => {
       container.appendChild(grid.element);
 
       grid.selectAll();
+      expect(grid.getSelectedRows()).toEqual(['1', '2', '3', '4', '5']);
+    });
+
+    it('selectAll() without options selects only current page when paginated', () => {
+      const manyItems: TableRow[] = Array.from({ length: 15 }, (_, i) => ({
+        id: String(i + 1),
+        name: `Item ${i + 1}`,
+        value: (i + 1) * 100,
+        status: 'Active',
+      }));
+
+      const grid = createDataGrid({
+        columns: sampleColumns,
+        data: manyItems,
+        selectable: true,
+        pagination: { enabled: true, pageSize: 5 },
+      });
+      container.appendChild(grid.element);
+
+      grid.selectAll();
+      expect(grid.getSelectedRows()).toEqual(['1', '2', '3', '4', '5']);
+    });
+
+    it('selectAll({ allPages: true }) selects all rows across entire dataset', () => {
+      const manyItems: TableRow[] = Array.from({ length: 15 }, (_, i) => ({
+        id: String(i + 1),
+        name: `Item ${i + 1}`,
+        value: (i + 1) * 100,
+        status: 'Active',
+      }));
+
+      const grid = createDataGrid({
+        columns: sampleColumns,
+        data: manyItems,
+        selectable: true,
+        pagination: { enabled: true, pageSize: 5 },
+      });
+      container.appendChild(grid.element);
+
+      grid.selectAll({ allPages: true });
+      expect(grid.getSelectedRows().length).toBe(15);
+      expect(grid.getSelectedRows()).toEqual(
+        Array.from({ length: 15 }, (_, i) => String(i + 1))
+      );
+    });
+
+    it('selectAll({ allPages: false }) selects only current page', () => {
+      const manyItems: TableRow[] = Array.from({ length: 15 }, (_, i) => ({
+        id: String(i + 1),
+        name: `Item ${i + 1}`,
+        value: (i + 1) * 100,
+        status: 'Active',
+      }));
+
+      const grid = createDataGrid({
+        columns: sampleColumns,
+        data: manyItems,
+        selectable: true,
+        pagination: { enabled: true, pageSize: 5 },
+      });
+      container.appendChild(grid.element);
+
+      grid.selectAll({ allPages: false });
       expect(grid.getSelectedRows()).toEqual(['1', '2', '3', '4', '5']);
     });
 
