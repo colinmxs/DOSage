@@ -1,0 +1,39 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src/index.ts"],
+  "out": "docs/api",
+  "name": "DOSage API Documentation",
+  "readme": "README.md",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "includeVersion": true,
+  "navigationLinks": {
+    "Home": "/",
+    "Demo": "/demo",
+    "GitHub": "https://github.com/your-repo/dosage"
+  },
+  "categorizeByGroup": true,
+  "categoryOrder": [
+    "Components",
+    "Layout",
+    "Typography",
+    "Form Controls",
+    "Feedback",
+    "Navigation",
+    "Data Display",
+    "Advanced",
+    "Utilities",
+    "Themes",
+    "Types",
+    "*"
+  ],
+  "visibilityFilters": {
+    "protected": false,
+    "private": false,
+    "inherited": true,
+    "@internal": false
+  },
+  "searchInComments": true,
+  "cleanOutputDir": true
+}
