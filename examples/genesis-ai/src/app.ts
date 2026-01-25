@@ -92,6 +92,7 @@ export class App {
       onShowAbout: () => this.openAboutModal(),
       onExport: () => this.exportConversation(),
       onClearChat: () => this.clearCurrentChat(),
+      onDeleteConversation: () => this.deleteConversation(),
       onThemeChange: (theme) => this.changeTheme(theme as ThemePreset),
       onOpenCommandPalette: () => this.openCommandPalette(),
     });
@@ -184,6 +185,13 @@ export class App {
         shortcut: SHORTCUTS.newChat,
         category: 'Chat',
         action: (): undefined => { this.handleNewChat(); return undefined; },
+      },
+      {
+        id: 'delete-conversation',
+        label: 'Delete Conversation',
+        shortcut: SHORTCUTS.deleteConversation,
+        category: 'Chat',
+        action: (): undefined => { this.deleteConversation(); return undefined; },
       },
       {
         id: 'clear-chat',
@@ -417,6 +425,48 @@ export class App {
     this.handleNewChat();
 
     toast.info('Chat cleared');
+  }
+
+  private deleteConversation(): void {
+    if (!this.state.activeConversationId) {
+      toast.warning('No conversation to delete');
+      return;
+    }
+
+    const conversation = StorageService.getConversation(
+      this.state.activeConversationId
+    );
+    if (!conversation) return;
+
+    // Confirm deletion
+    const confirmed = window.confirm(
+      `Delete conversation "${conversation.title}"?\n\nThis action cannot be undone.`
+    );
+
+    if (confirmed) {
+      StorageService.deleteConversation(this.state.activeConversationId);
+
+      // Refresh state
+      this.state.conversations = StorageService.getConversations();
+      this.state.activeConversationId = StorageService.getActiveConversationId();
+
+      // Update conversation list
+      this.conversationList?.setConversations(this.state.conversations);
+
+      // If there are remaining conversations, switch to the active one
+      if (this.state.activeConversationId) {
+        const newConversation = StorageService.getConversation(
+          this.state.activeConversationId
+        );
+        this.chatWindow?.setConversation(newConversation ?? null);
+        this.conversationList?.setActiveConversation(this.state.activeConversationId);
+      } else {
+        // No conversations left, create a new one
+        this.handleNewChat();
+      }
+
+      toast.success('Conversation deleted');
+    }
   }
 
   private toggleSidebar(): void {

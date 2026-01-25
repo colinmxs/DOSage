@@ -19,6 +19,7 @@ export interface HeaderProps {
   onShowAbout: () => void;
   onExport: () => void;
   onClearChat: () => void;
+  onDeleteConversation: () => void;
   onThemeChange: (theme: string) => void;
   onOpenCommandPalette: () => void;
 }
@@ -38,6 +39,7 @@ export function createHeader(props: HeaderProps): HeaderInstance {
     onShowAbout,
     onExport,
     onClearChat,
+    onDeleteConversation,
     onThemeChange,
     onOpenCommandPalette,
   } = props;
@@ -53,6 +55,11 @@ export function createHeader(props: HeaderProps): HeaderInstance {
             label: 'New Chat',
             shortcut: SHORTCUTS.newChat,
             action: onNewChat,
+          },
+          {
+            label: 'Delete Conversation',
+            shortcut: SHORTCUTS.deleteConversation,
+            action: onDeleteConversation,
           },
           { label: '', divider: true },
           {

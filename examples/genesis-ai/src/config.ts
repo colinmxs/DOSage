@@ -69,4 +69,5 @@ export const SHORTCUTS = {
   send: 'Ctrl+Enter',
   export: 'Ctrl+E',
   clearChat: 'Ctrl+L',
+  deleteConversation: 'Ctrl+D',
 } as const;
