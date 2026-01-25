@@ -2244,7 +2244,7 @@ createPopover({
   // Programmatic Control Section
   const controlSection = createDemoSection({
     title: 'Programmatic Control',
-    description: 'Control popovers programmatically with open(), close(), toggle(), and other methods.',
+    description: 'Control popovers programmatically with open(), close(), toggle(), and other methods. Visual indicator shows current state.',
     code: `const popover = createPopover({
   content: 'Initial content',
   target: element,
@@ -2276,6 +2276,15 @@ popover.destroy();`,
     controlExample.style.flexDirection = 'column';
     controlExample.style.gap = 'var(--dos-space-md)';
 
+    // State indicator
+    const stateIndicator = document.createElement('div');
+    stateIndicator.style.padding = 'var(--dos-space-xs) var(--dos-space-sm)';
+    stateIndicator.style.fontWeight = 'bold';
+    stateIndicator.style.border = '1px solid var(--dos-color-text-primary)';
+    stateIndicator.style.backgroundColor = 'var(--dos-color-bg-tertiary)';
+    stateIndicator.textContent = 'Popover State: CLOSED';
+    controlExample.appendChild(stateIndicator);
+
     // Create a target for controlled popover
     const targetBtn = createButton({
       label: 'Controlled Popover Target',
@@ -2284,13 +2293,22 @@ popover.destroy();`,
     controlExample.appendChild(targetBtn);
 
     const controlledPop = createPopover({
-      content: 'Controlled popover content',
+      content: 'Use the buttons below to control this popover programmatically.',
       target: targetBtn,
-      title: 'Controlled',
+      title: 'Programmatic Popover',
       trigger: 'click',
+      onOpen: () => {
+        stateIndicator.textContent = 'Popover State: OPEN';
+        stateIndicator.style.backgroundColor = 'var(--dos-color-success-bg)';
+      },
+      onClose: () => {
+        stateIndicator.textContent = 'Popover State: CLOSED';
+        stateIndicator.style.backgroundColor = 'var(--dos-color-bg-tertiary)';
+      },
     });
     pagePopovers.push(controlledPop);
 
+    // Button controls
     const buttonsRow = document.createElement('div');
     buttonsRow.style.display = 'flex';
     buttonsRow.style.flexWrap = 'wrap';
@@ -2317,33 +2335,146 @@ popover.destroy();`,
     });
     buttonsRow.appendChild(toggleBtn);
 
-    const contents = ['Content A', 'Content B', 'Different content here'];
+    controlExample.appendChild(buttonsRow);
+
+    // Position controls
+    const positionsRow = document.createElement('div');
+    positionsRow.style.display = 'flex';
+    positionsRow.style.flexWrap = 'wrap';
+    positionsRow.style.gap = 'var(--dos-space-sm)';
+    positionsRow.style.marginTop = 'var(--dos-space-xs)';
+
+    const positions = ['top', 'bottom', 'left', 'right'] as const;
+    positions.forEach((pos) => {
+      const posBtn = createButton({
+        label: `Position: ${pos}`,
+        variant: 'secondary',
+        onClick: () => {
+          controlledPop.setPosition(pos);
+          controlledPop.open();
+        },
+      });
+      positionsRow.appendChild(posBtn);
+    });
+
+    controlExample.appendChild(positionsRow);
+
+    // Content/title controls
+    const contentRow = document.createElement('div');
+    contentRow.style.display = 'flex';
+    contentRow.style.flexWrap = 'wrap';
+    contentRow.style.gap = 'var(--dos-space-sm)';
+    contentRow.style.marginTop = 'var(--dos-space-xs)';
+
+    const contents = [
+      'Use the buttons below to control this popover programmatically.',
+      'Updated content! Try changing the position.',
+      'This is different content with more text to demonstrate dynamic updates.',
+    ];
     let contentIndex = 0;
     const updateContentBtn = createButton({
-      label: 'Update Content',
+      label: 'Cycle Content',
       variant: 'secondary',
       onClick: () => {
         contentIndex = (contentIndex + 1) % contents.length;
         controlledPop.setContent(contents[contentIndex] as string);
       },
     });
-    buttonsRow.appendChild(updateContentBtn);
+    contentRow.appendChild(updateContentBtn);
 
-    const titles = ['Title A', 'Title B', 'Different Title'];
+    const titles = ['Programmatic Popover', 'Updated Title', 'Another Title'];
     let titleIndex = 0;
     const updateTitleBtn = createButton({
-      label: 'Update Title',
+      label: 'Cycle Title',
       variant: 'secondary',
       onClick: () => {
         titleIndex = (titleIndex + 1) % titles.length;
         controlledPop.setTitle(titles[titleIndex] as string);
       },
     });
-    buttonsRow.appendChild(updateTitleBtn);
+    contentRow.appendChild(updateTitleBtn);
 
-    controlExample.appendChild(buttonsRow);
+    controlExample.appendChild(contentRow);
   }
   content.appendChild(controlSection);
+
+  // Background Color Section
+  const backgroundSection = createDemoSection({
+    title: 'Background Color',
+    description: 'Customize popover background color for better visibility or theming.',
+    code: `createPopover({
+  content: 'Custom background',
+  target: button,
+  title: 'Styled Popover',
+  backgroundColor: '#1a1a1a'
+});`,
+  });
+
+  const backgroundExample = backgroundSection.querySelector('.dos-demo-section___examples');
+  if (backgroundExample) {
+    backgroundExample.style.display = 'flex';
+    backgroundExample.style.flexWrap = 'wrap';
+    backgroundExample.style.gap = 'var(--dos-space-md)';
+
+    // Default background
+    const defaultBtn = createButton({
+      label: 'Default Background',
+    });
+    const defaultPop = createPopover({
+      content: 'This uses the default background color from the theme.',
+      target: defaultBtn,
+      title: 'Default',
+      trigger: 'click',
+    });
+    pagePopovers.push(defaultPop);
+    backgroundExample.appendChild(defaultBtn);
+
+    // Dark background
+    const darkBtn = createButton({
+      label: 'Dark Background',
+      variant: 'secondary',
+    });
+    const darkPop = createPopover({
+      content: 'Custom dark background for contrast.',
+      target: darkBtn,
+      title: 'Dark Theme',
+      trigger: 'click',
+      backgroundColor: '#1a1a1a',
+    });
+    pagePopovers.push(darkPop);
+    backgroundExample.appendChild(darkBtn);
+
+    // Light background
+    const lightBtn = createButton({
+      label: 'Light Background',
+      variant: 'secondary',
+    });
+    const lightPop = createPopover({
+      content: 'Custom light background with better visibility.',
+      target: lightBtn,
+      title: 'Light Theme',
+      trigger: 'click',
+      backgroundColor: '#f0f0f0',
+    });
+    pagePopovers.push(lightPop);
+    backgroundExample.appendChild(lightBtn);
+
+    // Colored background
+    const colorBtn = createButton({
+      label: 'Colored Background',
+      variant: 'secondary',
+    });
+    const colorPop = createPopover({
+      content: 'You can use any CSS color value.',
+      target: colorBtn,
+      title: 'Colored',
+      trigger: 'click',
+      backgroundColor: '#003366',
+    });
+    pagePopovers.push(colorPop);
+    backgroundExample.appendChild(colorBtn);
+  }
+  content.appendChild(backgroundSection);
 
   // Accessibility Section
   const accessibilitySection = createDemoSection({
