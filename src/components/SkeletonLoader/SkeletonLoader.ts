@@ -23,6 +23,39 @@ const BLOCK_CHAR = '░';
  */
 const LINE_WIDTHS = [100, 95, 85, 90, 70];
 
+/** Flag to track if keyframes have been injected */
+let keyframesInjected = false;
+
+/**
+ * Injects skeleton animation keyframes into the document
+ * This ensures animations work even if CSS file isn't loaded
+ */
+function injectKeyframes(): void {
+  if (keyframesInjected || typeof document === 'undefined') return;
+  
+  const styleId = 'dos-skeleton-keyframes';
+  if (document.getElementById(styleId)) {
+    keyframesInjected = true;
+    return;
+  }
+  
+  const style = document.createElement('style');
+  style.id = styleId;
+  style.textContent = `
+    @keyframes dos-skeleton-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    @keyframes dos-skeleton-shimmer {
+      0%, 100% { color: var(--dos-color-text-disabled, #555555); }
+      33% { color: var(--dos-color-border, #AAAAAA); }
+      66% { color: var(--dos-color-text-secondary, #888888); }
+    }
+  `;
+  document.head.appendChild(style);
+  keyframesInjected = true;
+}
+
 /**
  * Creates a DOS-style skeleton loader element
  *
@@ -60,6 +93,9 @@ const LINE_WIDTHS = [100, 95, 85, 90, 70];
  * ```
  */
 export function createSkeletonLoader(props: SkeletonLoaderProps = {}): SkeletonLoaderInstance {
+  // Inject keyframes on first use
+  injectKeyframes();
+  
   const {
     variant = 'text',
     width,
@@ -130,6 +166,11 @@ export function createSkeletonLoader(props: SkeletonLoaderProps = {}): SkeletonL
       const line = document.createElement('span');
       line.className = 'dos-skeleton__line';
       line.setAttribute('aria-hidden', 'true');
+      
+      // Apply inline styles for animation (fallback if CSS not loaded)
+      if (animate) {
+        line.style.animation = 'dos-skeleton-pulse 1.2s ease-in-out infinite';
+      }
 
       // Calculate width for this line
       let lineWidth: string;
@@ -171,6 +212,11 @@ export function createSkeletonLoader(props: SkeletonLoaderProps = {}): SkeletonL
     const block = document.createElement('div');
     block.className = 'dos-skeleton__block';
     block.setAttribute('aria-hidden', 'true');
+    
+    // Apply inline styles for animation (fallback if CSS not loaded)
+    if (animate) {
+      block.style.animation = 'dos-skeleton-pulse 1.2s ease-in-out infinite';
+    }
 
     // Set dimensions
     if (v === 'circle') {
@@ -188,6 +234,11 @@ export function createSkeletonLoader(props: SkeletonLoaderProps = {}): SkeletonL
     // Fill with block characters
     const fill = document.createElement('span');
     fill.className = 'dos-skeleton__fill';
+    
+    // Apply shimmer animation to fill (fallback if CSS not loaded)
+    if (animate) {
+      fill.style.animation = 'dos-skeleton-shimmer 1.5s ease-in-out infinite';
+    }
 
     if (v === 'circle') {
       // Simple block representation for circle

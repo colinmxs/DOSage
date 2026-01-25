@@ -1190,13 +1190,13 @@
 ### Phase 14 Checkpoint
 
 - [x] DOS block cursor implemented and working
-- [ ] MenuBar highlight bug fixed
-- [ ] ContextMenu nested submenu bug fixed
-- [ ] Toast programmatic control demo working
-- [ ] Alert and Toast background colors added
-- [ ] SkeletonLoader animation working
-- [ ] Card, Timeline, EmptyState demos consistent with site standards
-- [ ] All regression tests passing
+- [x] MenuBar highlight bug fixed
+- [x] ContextMenu nested submenu bug fixed
+- [x] Toast programmatic control demo working
+- [x] Alert and Toast background colors added
+- [x] SkeletonLoader animation working
+- [x] Card, Timeline, EmptyState demos consistent with site standards
+- [x] All regression tests passing
 - [ ] Code review completed
 
 - [ ] ⛔ HUMAN ONLY: I have reviewed and verified Phase 14

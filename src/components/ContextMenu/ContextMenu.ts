@@ -371,6 +371,9 @@ export function createContextMenu(props: ContextMenuProps): ContextMenuElement {
     menuItem: HTMLElement,
     path: string[]
   ): void {
+    // Stop propagation to prevent parent menu items from handling the same event
+    e.stopPropagation();
+    
     switch (e.key) {
       case 'ArrowDown':
         e.preventDefault();
