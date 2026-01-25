@@ -135,6 +135,39 @@ describe('ProgressBar', () => {
 
       expect(progress.element.classList.contains('dos-progress-bar--boxed')).toBe(true);
     });
+
+    it('calculates boxed style width correctly for inner 20ch space', () => {
+      // Boxed style has a 22ch track (includes [ and ] brackets)
+      // Inner space is 20ch, so the fill should scale to 20ch, not 22ch
+      const testCases = [
+        { value: 0, expectedPercentage: 0 },
+        { value: 25, expectedPercentage: 25 },
+        { value: 50, expectedPercentage: 50 },
+        { value: 60, expectedPercentage: 60 }, // This was the reported bug case
+        { value: 75, expectedPercentage: 75 },
+        { value: 100, expectedPercentage: 100 },
+      ];
+
+      testCases.forEach(({ value, expectedPercentage }) => {
+        const progress = createProgressBar({ 
+          style: 'boxed', 
+          value,
+          max: 100
+        });
+        container.appendChild(progress.element);
+
+        const fill = progress.element.querySelector('.dos-progress-bar__fill') as HTMLElement;
+        
+        // Check that CSS custom property is set correctly
+        const customPropValue = fill.style.getPropertyValue('--progress-percentage');
+        expect(customPropValue).toBe(String(expectedPercentage));
+
+        // The width style should be set to the percentage
+        expect(fill.style.width).toBe(`${expectedPercentage}%`);
+
+        container.removeChild(progress.element);
+      });
+    });
   });
 
   describe('value display', () => {

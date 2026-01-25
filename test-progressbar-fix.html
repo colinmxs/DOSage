@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProgressBar Fix Test</title>
+  <style>
+    body {
+      background-color: #0000AA;
+      color: #FFFFFF;
+      font-family: 'Perfect DOS VGA 437', 'Courier New', monospace;
+      padding: 20px;
+    }
+    .test-section {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #AAAAAA;
+    }
+    .test-section h3 {
+      margin: 0 0 10px 0;
+      color: #55FF55;
+    }
+    .expected {
+      color: #FFFF55;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+  </style>
+  <link rel="stylesheet" href="dist/css/dosage.css">
+</head>
+<body>
+  <h1>ProgressBar Boxed Style Fix Test</h1>
+  <p>Testing that boxed progress bars correctly scale to the inner 20ch space.</p>
+
+  <div class="test-section">
+    <h3>Test 1: 0% Progress</h3>
+    <div id="test-0"></div>
+    <div class="expected">Expected: [                    ] (0 blocks)</div>
+  </div>
+
+  <div class="test-section">
+    <h3>Test 2: 50% Progress</h3>
+    <div id="test-50"></div>
+    <div class="expected">Expected: [██████████          ] (10 blocks, 50% of 20ch)</div>
+  </div>
+
+  <div class="test-section">
+    <h3>Test 3: 60% Progress</h3>
+    <div id="test-60"></div>
+    <div class="expected">Expected: [████████████        ] (12 blocks, 60% of 20ch)</div>
+  </div>
+
+  <div class="test-section">
+    <h3>Test 4: 100% Progress</h3>
+    <div id="test-100"></div>
+    <div class="expected">Expected: [████████████████████] (20 blocks, 100% of 20ch)</div>
+  </div>
+
+  <div class="test-section">
+    <h3>Test 5: 25% Progress</h3>
+    <div id="test-25"></div>
+    <div class="expected">Expected: [█████               ] (5 blocks, 25% of 20ch)</div>
+  </div>
+
+  <div class="test-section">
+    <h3>Test 6: 75% Progress</h3>
+    <div id="test-75"></div>
+    <div class="expected">Expected: [███████████████     ] (15 blocks, 75% of 20ch)</div>
+  </div>
+
+  <script type="module">
+    import { createProgressBar } from './dist/esm/index.js';
+
+    // Create test progress bars
+    const tests = [
+      { id: 'test-0', value: 0 },
+      { id: 'test-50', value: 50 },
+      { id: 'test-60', value: 60 },
+      { id: 'test-100', value: 100 },
+      { id: 'test-25', value: 25 },
+      { id: 'test-75', value: 75 }
+    ];
+
+    tests.forEach(test => {
+      const progress = createProgressBar({
+        value: test.value,
+        max: 100,
+        style: 'boxed',
+        showValue: true
+      });
+      document.getElementById(test.id).appendChild(progress.element);
+    });
+
+    // Log computed widths for debugging
+    setTimeout(() => {
+      tests.forEach(test => {
+        const element = document.getElementById(test.id);
+        const fill = element.querySelector('.dos-progress-bar__fill');
+        const computedWidth = window.getComputedStyle(fill).width;
+        const percentage = window.getComputedStyle(fill).getPropertyValue('--progress-percentage');
+        console.log(`${test.id} (${test.value}%):`, {
+          percentage: percentage,
+          computedWidth: computedWidth,
+          expectedBlocks: Math.round(test.value * 20 / 100)
+        });
+      });
+    }, 100);
+  </script>
+</body>
+</html>
