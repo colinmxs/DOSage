@@ -3,7 +3,7 @@
  * Main chat interface combining message list, typing indicator, and input
  */
 
-import { createPanel, getPanelContent } from 'dosage';
+import { createBox } from 'dosage';
 import type { Message, Conversation } from '../../types';
 import { createMessageList } from './MessageList';
 import { createTypingIndicator } from './TypingIndicator';
@@ -43,18 +43,9 @@ export function createChatWindow(props: ChatWindowProps): ChatWindowInstance {
 
   let currentConversation = initialConversation;
 
-  // Create the main panel
-  const panel = createPanel({
-    title: currentConversation?.title || 'New Chat',
-    borderStyle: 'double',
-    padding: 'none',
-  });
-
-  const content = getPanelContent(panel);
-  if (!content) {
-    throw new Error('Failed to get panel content');
-  }
-  content.style.cssText = `
+  // Create the main container using Box
+  const container = createBox({});
+  container.style.cssText = `
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -84,21 +75,12 @@ export function createChatWindow(props: ChatWindowProps): ChatWindowInstance {
   });
 
   // Assemble components
-  content.appendChild(messageList.element);
-  content.appendChild(typingIndicator.element);
-  content.appendChild(chatInput.element);
-
-  // Panel title helper
-  function updateTitle(title: string) {
-    // Find the title element and update it
-    const titleEl = panel.querySelector('.dos-panel__title');
-    if (titleEl) {
-      titleEl.textContent = title;
-    }
-  }
+  container.appendChild(messageList.element);
+  container.appendChild(typingIndicator.element);
+  container.appendChild(chatInput.element);
 
   return {
-    element: panel,
+    element: container,
 
     addMessage(message: Message) {
       messageList.addMessage(message);
@@ -106,7 +88,6 @@ export function createChatWindow(props: ChatWindowProps): ChatWindowInstance {
 
     setConversation(conversation: Conversation | null) {
       currentConversation = conversation;
-      updateTitle(conversation?.title || 'New Chat');
       messageList.setMessages(conversation?.messages || []);
     },
 
