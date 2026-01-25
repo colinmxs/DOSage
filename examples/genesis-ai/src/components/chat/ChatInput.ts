@@ -121,6 +121,9 @@ export function createChatInput(props: ChatInputProps): ChatInputInstance {
     if (value && !isDisabled) {
       onSend(value);
       setTextareaValue(textarea, '');
+      // Keep focus on textarea after sending - get the actual element
+      const textareaEl = textarea.getTextarea();
+      if (textareaEl) textareaEl.focus();
     }
   }
 

@@ -52,6 +52,12 @@ export function createChatWindow(props: ChatWindowProps): ChatWindowInstance {
     overflow: hidden;
   `;
 
+  // Create chat input FIRST so we can reference it in messageList
+  const chatInput = createChatInput({
+    onSend: onSendMessage,
+    placeholder: 'Type your message... (Ctrl+Enter to send)',
+  });
+
   // Create message list
   const messageList = createMessageList({
     messages: currentConversation?.messages || [],
@@ -59,7 +65,11 @@ export function createChatWindow(props: ChatWindowProps): ChatWindowInstance {
     autoScroll,
     onCopyMessage,
     onDeleteMessage,
-    onStartChat: onStartNewChat,
+    onStartChat: () => {
+      // Focus the actual textarea element directly
+      const textareaEl = chatInput.element.querySelector('textarea');
+      if (textareaEl) textareaEl.focus();
+    },
   });
 
   messageList.element.style.flex = '1';
@@ -67,12 +77,6 @@ export function createChatWindow(props: ChatWindowProps): ChatWindowInstance {
 
   // Create typing indicator
   const typingIndicator = createTypingIndicator();
-
-  // Create chat input
-  const chatInput = createChatInput({
-    onSend: onSendMessage,
-    placeholder: 'Type your message... (Ctrl+Enter to send)',
-  });
 
   // Assemble components
   container.appendChild(messageList.element);
@@ -104,7 +108,9 @@ export function createChatWindow(props: ChatWindowProps): ChatWindowInstance {
     },
 
     focusInput() {
-      chatInput.focus();
+      // Focus the actual textarea element directly
+      const textareaEl = chatInput.element.querySelector('textarea');
+      if (textareaEl) textareaEl.focus();
     },
 
     destroy() {
