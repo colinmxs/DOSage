@@ -115,6 +115,7 @@
   top: 0;
   color: var(--dos-color-border, #aaa);
   letter-spacing: 0;
+  white-space: pre;
 }
 
 .dos-progress-bar--boxed .dos-progress-bar__fill {
