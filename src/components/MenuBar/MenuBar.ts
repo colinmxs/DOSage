@@ -104,6 +104,7 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
   let items = deepCloneItems(initialItems);
   let openMenuIndex = -1;
   let activeSubmenuStack: HTMLElement[] = [];
+  let isProgrammaticOpen = false;
 
   // Create menu bar element
   const menuBar = document.createElement('nav') as MenuBarElement;
@@ -713,6 +714,11 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
 
   // Close menu when clicking outside
   function handleDocumentClick(e: MouseEvent): void {
+    // Don't close if this is a programmatic open in the same event cycle
+    if (isProgrammaticOpen) {
+      return;
+    }
+    
     if (!menuBar.contains(e.target as Node)) {
       closeMenu();
     }
@@ -739,7 +745,13 @@ export function createMenuBar(props: MenuBarProps): MenuBarElement {
   menuBar.openMenu = (label: string): void => {
     const index = items.findIndex((item) => item.label === label);
     if (index !== -1) {
+      // Set flag to prevent document click from immediately closing the menu
+      isProgrammaticOpen = true;
       openMenu(index);
+      // Clear flag after current event cycle completes
+      setTimeout(() => {
+        isProgrammaticOpen = false;
+      }, 0);
     }
   };
 
