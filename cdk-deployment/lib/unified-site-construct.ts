@@ -1,21 +1,22 @@
 /**
  * UnifiedSiteConstruct - CDK construct for unified multi-site deployment
  * 
- * This construct creates a single CloudFront distribution with multiple S3 origins
- * for path-based routing. All sites are served under a single domain with different
- * path patterns (e.g., /docs/*, /demo/*, /examples/*).
+ * This construct creates a single CloudFront distribution with a single S3 bucket
+ * containing all sites in separate directories. Much simpler than multiple buckets!
  * 
  * Benefits:
- * - Single domain for all related sites
- * - Lower cost (one CloudFront distribution vs multiple)
- * - Simpler DNS configuration
- * - Easier SSL certificate management
+ * - Single S3 bucket for all sites
+ * - Simple directory structure (docs/, demo/, examples/)
+ * - Single CloudFront origin - no complex cache behaviors needed
+ * - Easier to manage and debug
  * 
  * Architecture:
- * - Multiple S3 buckets (one per site)
- * - Single CloudFront distribution
- * - Path-based cache behaviors for routing
- * - CloudFront Functions for path rewriting
+ * - Single S3 bucket with directory structure:
+ *   - /docs/ → API Documentation
+ *   - /demo/ → Demo Site  
+ *   - /examples/ → Example Projects
+ * - Single CloudFront distribution with one origin
+ * - Simple path-based routing (no CloudFront Functions needed)
  * 
  * Validates Requirements: 1.1, 1.2, 2.1, 2.2, 2.3
  */
@@ -70,7 +71,7 @@ export interface UnifiedSiteProps {
  * UnifiedSiteConstruct - Creates infrastructure for multiple sites under a single domain
  * 
  * This construct implements the unified deployment pattern where all sites are served
- * from a single CloudFront distribution using path-based routing.
+ * from a single S3 bucket with directory structure and a single CloudFront distribution.
  * 
  * Example usage:
  * ```typescript
@@ -82,13 +83,13 @@ export interface UnifiedSiteProps {
  *       siteName: 'api-docs',
  *       sourceDir: 'docs/api/',
  *       pathPattern: '/docs/*',
- *       pathRewrite: '/docs'
+ *       targetDir: 'docs'
  *     },
  *     {
  *       siteName: 'demo',
  *       sourceDir: 'demo/dist/',
  *       pathPattern: '/demo/*',
- *       pathRewrite: '/demo'
+ *       targetDir: 'demo'
  *     }
  *   ]
  * });
@@ -96,9 +97,9 @@ export interface UnifiedSiteProps {
  */
 export class UnifiedSiteConstruct extends Construct {
   /**
-   * Map of S3 buckets for each site (keyed by site name)
+   * The single S3 bucket containing all sites
    */
-  public readonly buckets: Map<string, s3.Bucket>;
+  public readonly bucket: s3.Bucket;
   
   /**
    * Map of bucket deployments for each site (keyed by site name)
@@ -143,9 +144,6 @@ export class UnifiedSiteConstruct extends Construct {
     // Validate props
     this.validateProps(props);
     
-    // Initialize buckets map
-    this.buckets = new Map<string, s3.Bucket>();
-    
     // Initialize deployments map
     this.deployments = new Map<string, s3deploy.BucketDeployment>();
     
@@ -157,10 +155,10 @@ export class UnifiedSiteConstruct extends Construct {
       this.logBucket = this.createLogBucket();
     }
     
-    // Create S3 buckets for each site
-    this.createS3Buckets(props.sites);
+    // Create single S3 bucket for all sites
+    this.bucket = this.createMainBucket();
     
-    // Create CloudFront distribution with multiple origins
+    // Create CloudFront distribution with single origin
     this.distribution = this.createCloudFrontDistribution(props);
     
     // Set distribution URL
@@ -171,7 +169,7 @@ export class UnifiedSiteConstruct extends Construct {
       this.route53Record = this.createRoute53Records(props);
     }
     
-    // Create bucket deployments for each site with automatic invalidation
+    // Create bucket deployments for each site to different directories
     this.createBucketDeployments(props.sites);
   }
   
@@ -231,122 +229,69 @@ export class UnifiedSiteConstruct extends Construct {
   }
   
   /**
-   * Creates S3 buckets for each site with proper security configuration
+   * Creates the main S3 bucket for all sites with proper security configuration
    * 
-   * Each bucket is configured with:
+   * The bucket is configured with:
    * - Block public access enabled (all four settings)
    * - Server-side encryption (AES256)
    * - Lifecycle policies for cost optimization
    * - Appropriate removal policy
    * 
+   * Directory structure:
+   * - /docs/ → API Documentation
+   * - /demo/ → Demo Site
+   * - /examples/ → Example Projects
+   * 
    * Validates Requirements: 1.1, 5.1, 5.2, 5.5
    * 
-   * @param sites - Array of site configurations
+   * @returns The created S3 bucket
    */
-  private createS3Buckets(sites: SiteOriginConfig[]): void {
-    for (const site of sites) {
-      // Create S3 bucket with security configuration
-      const bucket = new s3.Bucket(this, `${site.siteName}-bucket`, {
-        // Block all public access - content served exclusively through CloudFront
-        blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
-        
-        // Enable server-side encryption with AES256
-        encryption: s3.BucketEncryption.S3_MANAGED,
-        
-        // Disable versioning (not needed for static sites)
-        versioned: false,
-        
-        // Enforce SSL/TLS for all requests
-        enforceSSL: true,
-        
-        // Lifecycle rules for cost optimization
-        lifecycleRules: [
-          {
-            // Transition to Infrequent Access after 90 days
-            transitions: [
-              {
-                storageClass: s3.StorageClass.INFREQUENT_ACCESS,
-                transitionAfter: Duration.days(90),
-              },
-            ],
-            // Abort incomplete multipart uploads after 7 days
-            abortIncompleteMultipartUploadAfter: Duration.days(7),
-          },
-        ],
-        
-        // Removal policy: DESTROY to allow clean stack deletion
-        removalPolicy: RemovalPolicy.DESTROY,
-        
-        // Auto-delete objects when stack is destroyed
-        autoDeleteObjects: true,
-      });
+  private createMainBucket(): s3.Bucket {
+    // Create S3 bucket with security configuration
+    const bucket = new s3.Bucket(this, 'MainBucket', {
+      // Block all public access - content served exclusively through CloudFront
+      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       
-      // Store bucket in map for later reference
-      this.buckets.set(site.siteName, bucket);
-    }
-  }
-  
-  /**
-   * Creates a CloudFront Function for path rewriting
-   * 
-   * The function strips the path prefix before forwarding requests to S3.
-   * For example, /docs/index.html becomes /index.html for the S3 origin.
-   * Also handles default document (index.html) for directory requests.
-   * 
-   * Validates Requirements: 1.5
-   * 
-   * @param site - Site configuration
-   * @returns The created CloudFront Function
-   */
-  private createPathRewriteFunction(site: SiteOriginConfig): cloudfront.Function {
-    // Determine the path prefix to strip
-    const pathPrefix = site.pathRewrite || site.pathPattern.replace('/*', '');
-    
-    // Create the function code
-    const functionCode = `function handler(event) {
-  var request = event.request;
-  var uri = request.uri;
-  
-  // Remove path prefix for S3 origin
-  if (uri.startsWith('${pathPrefix}/')) {
-    request.uri = uri.substring(${pathPrefix.length});
-  } else if (uri === '${pathPrefix}') {
-    request.uri = '/index.html';
-  }
-  
-  // Ensure URI starts with /
-  if (!request.uri.startsWith('/')) {
-    request.uri = '/' + request.uri;
-  }
-  
-  // Default to index.html for directory requests
-  if (request.uri.endsWith('/')) {
-    request.uri += 'index.html';
-  } else if (!request.uri.includes('.')) {
-    // If no file extension, assume it's a directory
-    request.uri += '/index.html';
-  }
-  
-  return request;
-}`;
-    
-    // Create CloudFront Function
-    const cfFunction = new cloudfront.Function(this, `${site.siteName}-path-rewrite`, {
-      code: cloudfront.FunctionCode.fromInline(functionCode),
-      comment: `Path rewrite function for ${site.siteName}`,
-      functionName: `${site.siteName}-path-rewrite-${this.node.addr.substring(0, 8)}`,
+      // Enable server-side encryption with AES256
+      encryption: s3.BucketEncryption.S3_MANAGED,
+      
+      // Disable versioning (not needed for static sites)
+      versioned: false,
+      
+      // Enforce SSL/TLS for all requests
+      enforceSSL: true,
+      
+      // Lifecycle rules for cost optimization
+      lifecycleRules: [
+        {
+          // Transition to Infrequent Access after 90 days
+          transitions: [
+            {
+              storageClass: s3.StorageClass.INFREQUENT_ACCESS,
+              transitionAfter: Duration.days(90),
+            },
+          ],
+          // Abort incomplete multipart uploads after 7 days
+          abortIncompleteMultipartUploadAfter: Duration.days(7),
+        },
+      ],
+      
+      // Removal policy: DESTROY to allow clean stack deletion
+      removalPolicy: RemovalPolicy.DESTROY,
+      
+      // Auto-delete objects when stack is destroyed
+      autoDeleteObjects: true,
     });
     
-    return cfFunction;
+    return bucket;
   }
   
   /**
-   * Creates CloudFront distribution with multiple S3 origins
+   * Creates CloudFront distribution with single S3 origin
    * 
    * The distribution is configured with:
-   * - Multiple S3 origins (one per site) with Origin Access Control
-   * - Path-based cache behaviors for routing requests to correct origins
-   * - CloudFront Functions for path rewriting
+   * - Single S3 origin with Origin Access Control
+   * - Simple path-based routing (no CloudFront Functions needed!)
    * - Custom domain name and SSL certificate
    * - HTTPS enforcement (redirect HTTP to HTTPS)
    * - Compression enabled for cost optimization
@@ -364,123 +309,27 @@ export class UnifiedSiteConstruct extends Construct {
       signing: cloudfront.Signing.SIGV4_NO_OVERRIDE,
     });
     
-    // Create origins map for each site
-    const siteOrigins = new Map<string, cloudfront.IOrigin>();
+    // Create single S3 origin
+    const origin = origins.S3BucketOrigin.withOriginAccessControl(this.bucket, {
+      originAccessControl: oac,
+    });
     
-    for (const site of props.sites) {
-      const bucket = this.buckets.get(site.siteName);
-      if (!bucket) {
-        throw new Error(`Bucket not found for site: ${site.siteName}`);
-      }
-      
-      // Create S3 origin with Origin Access Control
-      const origin = origins.S3BucketOrigin.withOriginAccessControl(bucket, {
-        originAccessControl: oac,
-      });
-      
-      siteOrigins.set(site.siteName, origin);
-    }
+    console.log(`🌐 Creating CloudFront distribution with single origin`);
+    console.log(`📁 S3 bucket: ${this.bucket.bucketName}`);
+    console.log(`🔗 Domain: ${props.domainName}`);
     
-    // Create path rewrite function for each site
-    const sitePathFunctions = new Map<string, cloudfront.Function>();
-    
-    for (const site of props.sites) {
-      const pathRewriteFunction = this.createPathRewriteFunction(site);
-      sitePathFunctions.set(site.siteName, pathRewriteFunction);
-    }
-    
-    // Create cache behaviors for ALL sites with specific path patterns
-    const additionalBehaviors: Record<string, cloudfront.BehaviorOptions> = {};
-    
-    console.log(`🔀 Creating cache behaviors for ${props.sites.length} sites:`);
-    
-    for (const site of props.sites) {
-      const origin = siteOrigins.get(site.siteName);
-      const pathFunction = sitePathFunctions.get(site.siteName);
-      
-      if (!origin) {
-        throw new Error(`Origin not found for site: ${site.siteName}`);
-      }
-      
-      if (!pathFunction) {
-        throw new Error(`Path function not found for site: ${site.siteName}`);
-      }
-      
-      console.log(`  - ${site.pathPattern} → ${site.siteName} (${site.sourceDir})`);
-      
-      // Create cache behavior for this path pattern
-      additionalBehaviors[site.pathPattern] = {
+    // Create the CloudFront distribution with simple configuration
+    const distribution = new cloudfront.Distribution(this, 'Distribution', {
+      // Single default behavior - no complex cache behaviors needed!
+      defaultBehavior: {
         origin: origin,
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
         cachedMethods: cloudfront.CachedMethods.CACHE_GET_HEAD_OPTIONS,
         compress: true,
         cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
-        functionAssociations: [
-          {
-            function: pathFunction,
-            eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
-          },
-        ],
-      };
-      
-      // Also add patterns without trailing /* to catch edge cases
-      const basePattern = site.pathPattern.replace('/*', '');
-      if (basePattern !== site.pathPattern) {
-        additionalBehaviors[basePattern] = {
-          origin: origin,
-          viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-          allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
-          cachedMethods: cloudfront.CachedMethods.CACHE_GET_HEAD_OPTIONS,
-          compress: true,
-          cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
-          functionAssociations: [
-            {
-              function: pathFunction,
-              eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
-            },
-          ],
-        };
-        console.log(`  - ${basePattern} → ${site.siteName} (edge case)`);
-      }
-    }
-    
-    // Use the first site as the default origin, but this should rarely be hit
-    // Most requests should match the specific cache behaviors above
-    const firstSite = props.sites[0];
-    const defaultOrigin = siteOrigins.get(firstSite.siteName);
-    const defaultFunction = sitePathFunctions.get(firstSite.siteName);
-    
-    if (!defaultOrigin) {
-      throw new Error(`Default origin not found for site: ${firstSite.siteName}`);
-    }
-    
-    if (!defaultFunction) {
-      throw new Error(`Default function not found for site: ${firstSite.siteName}`);
-    }
-    
-    console.log(`🏠 Default behavior → ${firstSite.siteName} (fallback only)`);
-    
-    // Create the CloudFront distribution
-    const distribution = new cloudfront.Distribution(this, 'Distribution', {
-      // Default behavior (for the first site's path pattern)
-      defaultBehavior: {
-        origin: defaultOrigin,
-        viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-        allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
-        cachedMethods: cloudfront.CachedMethods.CACHE_GET_HEAD_OPTIONS,
-        compress: true,
-        cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
-        functionAssociations: [
-          {
-            function: defaultFunction,
-            eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
-          },
-        ],
+        // No CloudFront Functions needed - S3 handles the directory structure!
       },
-      
-      // Additional behaviors for other sites
-      additionalBehaviors: additionalBehaviors,
       
       // Custom domain configuration
       domainNames: [props.domainName],
@@ -537,60 +386,59 @@ export class UnifiedSiteConstruct extends Construct {
   }
   
   /**
-   * Creates bucket deployments for each site with automatic CloudFront invalidation
+   * Creates bucket deployments for each site to different directories in the single bucket
    * 
    * Each deployment:
-   * - Uploads files from the source directory to the S3 bucket
-   * - Creates a CloudFront invalidation for all paths (/*) after deployment
+   * - Uploads files from the source directory to a specific directory in the S3 bucket
+   * - Creates a CloudFront invalidation for the specific path after deployment
    * - Waits for invalidation completion before reporting success
    * - Ensures content updates are immediately visible to users
-   * - Supports selective invalidation to optimize cache invalidation
+   * 
+   * Directory structure:
+   * - docs/ → API Documentation (from docs/api/)
+   * - demo/ → Demo Site (from demo/dist/)
+   * - examples/ → Example Projects (from examples/genesis-ai/dist/)
    * 
    * Validates Requirements: 3.5, 7.1, 7.2, 7.5
    * 
    * @param sites - Array of site configurations
    */
   private createBucketDeployments(sites: SiteOriginConfig[]): void {
+    console.log(`📦 Creating bucket deployments for ${sites.length} sites:`);
+    
     for (const site of sites) {
-      const bucket = this.buckets.get(site.siteName);
+      // Determine the target directory in the bucket
+      // For /docs/* pattern, we want to deploy to docs/ directory
+      const targetDir = site.pathPattern.replace('/*', '').replace('/', '');
       
-      if (!bucket) {
-        throw new Error(`Bucket not found for site: ${site.siteName}`);
-      }
+      console.log(`  - ${site.siteName}: ${site.sourceDir} → s3://${this.bucket.bucketName}/${targetDir}/`);
       
-      // Create bucket deployment with automatic CloudFront invalidation
+      // Create bucket deployment to specific directory
       const deployment = new s3deploy.BucketDeployment(this, `${site.siteName}-deployment`, {
         // Source directory containing build artifacts
         sources: [s3deploy.Source.asset(site.sourceDir)],
         
-        // Destination S3 bucket
-        destinationBucket: bucket,
+        // Destination S3 bucket and directory
+        destinationBucket: this.bucket,
+        destinationKeyPrefix: targetDir + '/',
         
         // CloudFront distribution to invalidate
         distribution: this.distribution,
         
-        // Invalidation paths - invalidate all paths for this site
-        // Using /* ensures all content is refreshed after deployment
-        // Requirement 7.1: Create invalidation for all paths
-        // Requirement 7.5: Selective invalidation can be implemented by using
-        // SelectiveBucketDeployment construct instead
-        distributionPaths: ['/*'],
+        // Invalidation paths - invalidate only this site's path
+        distributionPaths: [site.pathPattern],
         
         // Wait for CloudFront invalidation to complete before reporting success
-        // This ensures users see updated content immediately after deployment completes
-        // Requirement 7.2: Wait for invalidation completion
         waitForDistributionInvalidation: true,
         
-        // Prune - remove files from bucket that are not in the source
-        // This ensures the bucket exactly matches the source directory
+        // Prune - remove files from this directory that are not in the source
+        // This ensures the directory exactly matches the source directory
         prune: true,
         
         // Memory size for the Lambda function that performs the deployment
-        // 256 MB is sufficient for most static site deployments
         memoryLimit: 256,
         
         // Ephemeral storage size for the Lambda function
-        // 512 MB provides adequate space for temporary file operations
         ephemeralStorageSize: Size.mebibytes(512),
       });
       

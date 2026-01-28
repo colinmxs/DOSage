@@ -282,14 +282,11 @@ export class DeploymentStack extends Stack {
       });
     }
     
-    // Bucket names for each site
-    this.unifiedSite.buckets.forEach((bucket, siteName) => {
-      const outputId = `${this.toPascalCase(siteName)}BucketName`;
-      new CfnOutput(this, outputId, {
-        value: bucket.bucketName,
-        description: `S3 bucket name for ${siteName}`,
-        exportName: `${this.stackName}-${outputId}`,
-      });
+    // Bucket name for the unified bucket
+    new CfnOutput(this, 'MainBucketName', {
+      value: this.unifiedSite.bucket.bucketName,
+      description: 'S3 bucket name for all sites',
+      exportName: `${this.stackName}-MainBucketName`,
     });
     
     // Site URLs (with path patterns)
