@@ -1,0 +1,79 @@
+name: Deploy CDK Stack
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      skip_build:
+        description: 'Skip building artifacts'
+        required: false
+        type: boolean
+        default: false
+
+env:
+  NODE_VERSION: '18'
+  AWS_REGION: ${{ vars.AWS_REGION || 'us-east-1' }}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Build library
+        run: npm run build
+
+      - name: Build API documentation
+        if: ${{ !inputs.skip_build }}
+        run: npm run docs
+
+      - name: Build demo site
+        if: ${{ !inputs.skip_build }}
+        run: |
+          cd demo
+          npm ci
+          npm run build
+
+      - name: Build example site
+        if: ${{ !inputs.skip_build }}
+        run: |
+          cd examples/genesis-ai
+          npm ci
+          npm run build
+
+      - name: Install CDK dependencies
+        working-directory: cdk-deployment
+        run: npm ci
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: CDK Bootstrap (if needed)
+        working-directory: cdk-deployment
+        run: npx cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/${{ env.AWS_REGION }}
+
+      - name: CDK Deploy
+        working-directory: cdk-deployment
+        run: npx cdk deploy --require-approval never
+        env:
+          CDK_DOMAIN_NAME: ${{ vars.CDK_DOMAIN_NAME }}
+          CDK_CERTIFICATE_ARN: ${{ secrets.CDK_CERTIFICATE_ARN }}

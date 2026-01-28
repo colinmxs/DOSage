@@ -1,0 +1,46 @@
+{
+  "name": "cdk-deployment",
+  "version": "1.0.0",
+  "description": "AWS CDK infrastructure for deploying DOSage static sites",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "cdk": "ts-node bin/cdk-with-build.ts",
+    "cdk:raw": "cdk",
+    "synth": "ts-node bin/cdk-with-build.ts synth",
+    "diff": "ts-node bin/cdk-with-build.ts diff",
+    "deploy": "ts-node bin/deploy.ts",
+    "destroy": "cdk destroy"
+  },
+  "keywords": [
+    "aws",
+    "cdk",
+    "cloudfront",
+    "s3",
+    "static-site",
+    "deployment"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "aws-cdk-lib": "^2.236.0",
+    "constructs": "^10.4.5",
+    "source-map-support": "^0.5.21"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.0.10",
+    "@types/source-map-support": "^0.5.10",
+    "aws-cdk": "^2.1103.0",
+    "fast-check": "^4.5.3",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

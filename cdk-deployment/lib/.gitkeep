@@ -1,0 +1,7 @@
+# This directory will contain CDK constructs and stacks
+# Files will be created in subsequent tasks:
+# - configuration-manager.ts (Task 2)
+# - unified-site-construct.ts (Task 3)
+# - static-site-construct.ts (Task 5)
+# - deployment-stack.ts (Task 6)
+# - build-integration.ts (Task 8)
