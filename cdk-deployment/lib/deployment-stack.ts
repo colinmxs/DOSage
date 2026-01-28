@@ -13,6 +13,7 @@
  */
 
 import { Stack, StackProps, CfnOutput } from 'aws-cdk-lib';
+import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 import { Construct } from 'constructs';
 import { ConfigurationManager } from './configuration-manager';
 import { DeploymentConfig, SiteOriginConfig } from './config-types';
@@ -311,15 +312,15 @@ export class DeploymentStack extends Stack {
    * 
    * @returns CloudFront PriceClass enum value
    */
-  private getPriceClass(): any {
-    const priceClassMap: Record<string, any> = {
-      'PRICE_CLASS_100': 'PriceClass100',
-      'PRICE_CLASS_200': 'PriceClass200',
-      'PRICE_CLASS_ALL': 'PriceClassAll',
+  private getPriceClass(): cloudfront.PriceClass {
+    const priceClassMap: Record<string, cloudfront.PriceClass> = {
+      'PRICE_CLASS_100': cloudfront.PriceClass.PRICE_CLASS_100,
+      'PRICE_CLASS_200': cloudfront.PriceClass.PRICE_CLASS_200,
+      'PRICE_CLASS_ALL': cloudfront.PriceClass.PRICE_CLASS_ALL,
     };
     
     const priceClass = this.config.priceClass || 'PRICE_CLASS_100';
-    return priceClassMap[priceClass] || 'PriceClass100';
+    return priceClassMap[priceClass] || cloudfront.PriceClass.PRICE_CLASS_100;
   }
   
   /**
