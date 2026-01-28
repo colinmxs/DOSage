@@ -268,11 +268,13 @@ export class DeploymentStack extends Stack {
       exportName: `${this.stackName}-DomainName`,
     });
     
-    // DNS instructions
-    new CfnOutput(this, 'DnsInstructions', {
-      value: `Create a CNAME record for ${this.unifiedSite.domainName} pointing to ${this.unifiedSite.distribution.distributionDomainName}`,
-      description: 'DNS configuration instructions',
-    });
+    // Route53 record status
+    if (this.unifiedSite.route53Record) {
+      new CfnOutput(this, 'Route53RecordCreated', {
+        value: 'Yes',
+        description: 'Route53 A record automatically created',
+      });
+    }
     
     // Bucket names for each site
     this.unifiedSite.buckets.forEach((bucket, siteName) => {

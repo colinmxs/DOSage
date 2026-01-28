@@ -26,6 +26,9 @@ import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
+import * as acm from 'aws-cdk-lib/aws-certificatemanager';
+import * as route53 from 'aws-cdk-lib/aws-route53';
+import * as targets from 'aws-cdk-lib/aws-route53-targets';
 import { SiteOriginConfig } from './config-types';
 
 /**
@@ -55,6 +58,12 @@ export interface UnifiedSiteProps {
   
   /** Maximum paths for selective invalidation (default: 1000) */
   maxInvalidationPaths?: number;
+  
+  /** Whether to create Route53 records automatically (default: true) */
+  createRoute53Records?: boolean;
+  
+  /** Route53 hosted zone ID (optional, will be looked up if not provided) */
+  hostedZoneId?: string;
 }
 
 /**
@@ -117,6 +126,11 @@ export class UnifiedSiteConstruct extends Construct {
   public readonly logBucket?: s3.Bucket;
   
   /**
+   * The Route53 A record for the custom domain (if created)
+   */
+  public readonly route53Record?: route53.ARecord;
+  
+  /**
    * Creates a new UnifiedSiteConstruct
    * 
    * @param scope - The parent construct
@@ -151,6 +165,11 @@ export class UnifiedSiteConstruct extends Construct {
     
     // Set distribution URL
     this.distributionUrl = `https://${this.distribution.distributionDomainName}`;
+    
+    // Create Route53 records if enabled
+    if (props.createRoute53Records !== false) {
+      this.route53Record = this.createRoute53Records(props);
+    }
     
     // Create bucket deployments for each site with automatic invalidation
     this.createBucketDeployments(props.sites);
@@ -323,6 +342,7 @@ export class UnifiedSiteConstruct extends Construct {
    * - Multiple S3 origins (one per site) with Origin Access Control
    * - Path-based cache behaviors for routing requests to correct origins
    * - CloudFront Functions for path rewriting
+   * - Custom domain name and SSL certificate
    * - HTTPS enforcement (redirect HTTP to HTTPS)
    * - Compression enabled for cost optimization
    * - Custom error responses for SPA routing support
@@ -418,6 +438,16 @@ export class UnifiedSiteConstruct extends Construct {
       
       // Additional behaviors for other sites
       additionalBehaviors: additionalBehaviors,
+      
+      // Custom domain configuration
+      domainNames: [props.domainName],
+      
+      // SSL certificate (must be in us-east-1 for CloudFront)
+      certificate: acm.Certificate.fromCertificateArn(
+        this,
+        'Certificate',
+        props.certificateArn
+      ),
       
       // Default root object
       defaultRootObject: props.defaultRootObject || 'index.html',
@@ -524,6 +554,37 @@ export class UnifiedSiteConstruct extends Construct {
       // Store deployment in map for later reference
       this.deployments.set(site.siteName, deployment);
     }
+  }
+  
+  /**
+   * Creates Route53 A record pointing to the CloudFront distribution
+   * 
+   * This method automatically creates an A record (alias) that points the custom domain
+   * to the CloudFront distribution. It will look up the hosted zone by domain name
+   * if hostedZoneId is not provided.
+   * 
+   * @param props - Configuration properties
+   * @returns The created Route53 A record
+   */
+  private createRoute53Records(props: UnifiedSiteProps): route53.ARecord {
+    // Look up the hosted zone for the domain
+    const hostedZone = props.hostedZoneId
+      ? route53.HostedZone.fromHostedZoneId(this, 'HostedZone', props.hostedZoneId)
+      : route53.HostedZone.fromLookup(this, 'HostedZone', {
+          domainName: props.domainName,
+        });
+    
+    // Create A record (alias) pointing to CloudFront distribution
+    const aRecord = new route53.ARecord(this, 'AliasRecord', {
+      zone: hostedZone,
+      recordName: props.domainName,
+      target: route53.RecordTarget.fromAlias(
+        new targets.CloudFrontTarget(this.distribution)
+      ),
+      comment: `A record for ${props.domainName} pointing to CloudFront distribution`,
+    });
+    
+    return aRecord;
   }
   
   /**
