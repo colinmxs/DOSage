@@ -162,8 +162,12 @@ export class UnifiedSiteConstruct extends Construct {
    * The log bucket is configured with:
    * - Block public access enabled
    * - Server-side encryption (AES256)
+   * - ACLs enabled (required for CloudFront logging as of April 2023)
    * - Lifecycle policy to delete logs after 30 days
    * - Appropriate removal policy
+   * 
+   * CloudFront requires ACL access to grant FULL_CONTROL permission to the
+   * awslogsdelivery account (canonical ID: c4c1ede66af53448b93c283ce9448c4ba468c9432aa01d700d3878632f77d2d0)
    * 
    * Validates Requirements: 9.4
    * 
@@ -182,6 +186,10 @@ export class UnifiedSiteConstruct extends Construct {
       
       // Enforce SSL/TLS for all requests
       enforceSSL: true,
+      
+      // Enable ACLs for CloudFront logging (required as of April 2023)
+      // CloudFront needs to grant FULL_CONTROL to awslogsdelivery account
+      objectOwnership: s3.ObjectOwnership.BUCKET_OWNER_PREFERRED,
       
       // Lifecycle rule to delete logs after 30 days
       lifecycleRules: [
