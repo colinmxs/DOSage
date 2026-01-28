@@ -65,11 +65,11 @@ export function createChatWindow(props: ChatWindowProps): ChatWindowInstance {
     autoScroll,
     onCopyMessage,
     onDeleteMessage,
-    onStartChat: () => {
+    onStartChat: onStartNewChat || (() => {
       // Focus the actual textarea element directly
       const textareaEl = chatInput.element.querySelector('textarea');
       if (textareaEl) textareaEl.focus();
-    },
+    }),
   });
 
   messageList.element.style.flex = '1';
