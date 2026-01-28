@@ -70,9 +70,6 @@
     "@aws-cdk/custom-resources:logApiResponseDataPropertyTrueDefault": false,
     "@aws-cdk/aws-s3:keepNotificationInImportedBucket": false,
     "deployment": {
-      "region": "us-east-1",
-      "domainName": "dosage.dev",
-      "certificateArn": "",
       "sites": {
         "apiDocs": {
           "enabled": true,
