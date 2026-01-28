@@ -161,17 +161,17 @@ export class ConfigurationManager {
       certificateArn: '',
       sites: {
         apiDocs: {
-          enabled: false,
+          enabled: true,
           pathPattern: '/docs/*',
           sourceDir: '../docs/api/',
         },
         demo: {
-          enabled: false,
+          enabled: true,
           pathPattern: '/demo/*',
           sourceDir: '../demo/dist/',
         },
         example: {
-          enabled: false,
+          enabled: true,
           pathPattern: '/examples/*',
           sourceDir: '../examples/genesis-ai/dist/',
         },

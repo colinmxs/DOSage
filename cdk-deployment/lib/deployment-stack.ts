@@ -220,6 +220,12 @@ export class DeploymentStack extends Stack {
       return;
     }
     
+    // Log which sites are being deployed
+    console.log(`📦 Deploying ${sites.length} sites:`);
+    sites.forEach(site => {
+      console.log(`  - ${site.siteName}: ${site.pathPattern} → ${site.sourceDir}`);
+    });
+    
     // Create unified site construct
     this.unifiedSite = new UnifiedSiteConstruct(this, 'UnifiedSite', {
       domainName: this.config.domainName,

@@ -314,6 +314,11 @@ export class UnifiedSiteConstruct extends Construct {
     request.uri = '/index.html';
   }
   
+  // Ensure URI starts with /
+  if (!request.uri.startsWith('/')) {
+    request.uri = '/' + request.uri;
+  }
+  
   // Default to index.html for directory requests
   if (request.uri.endsWith('/')) {
     request.uri += 'index.html';
@@ -376,30 +381,32 @@ export class UnifiedSiteConstruct extends Construct {
       siteOrigins.set(site.siteName, origin);
     }
     
-    // Get the first site as the default origin
-    const firstSite = props.sites[0];
-    const defaultOrigin = siteOrigins.get(firstSite.siteName);
+    // Create path rewrite function for each site
+    const sitePathFunctions = new Map<string, cloudfront.Function>();
     
-    if (!defaultOrigin) {
-      throw new Error(`Default origin not found for site: ${firstSite.siteName}`);
+    for (const site of props.sites) {
+      const pathRewriteFunction = this.createPathRewriteFunction(site);
+      sitePathFunctions.set(site.siteName, pathRewriteFunction);
     }
     
-    // Create path rewrite function for the first site
-    const defaultFunction = this.createPathRewriteFunction(firstSite);
-    
-    // Create cache behaviors for each site (except the first one which is default)
+    // Create cache behaviors for ALL sites with specific path patterns
     const additionalBehaviors: Record<string, cloudfront.BehaviorOptions> = {};
     
-    for (let i = 1; i < props.sites.length; i++) {
-      const site = props.sites[i];
+    console.log(`🔀 Creating cache behaviors for ${props.sites.length} sites:`);
+    
+    for (const site of props.sites) {
       const origin = siteOrigins.get(site.siteName);
+      const pathFunction = sitePathFunctions.get(site.siteName);
       
       if (!origin) {
         throw new Error(`Origin not found for site: ${site.siteName}`);
       }
       
-      // Create path rewrite function for this site
-      const pathRewriteFunction = this.createPathRewriteFunction(site);
+      if (!pathFunction) {
+        throw new Error(`Path function not found for site: ${site.siteName}`);
+      }
+      
+      console.log(`  - ${site.pathPattern} → ${site.siteName} (${site.sourceDir})`);
       
       // Create cache behavior for this path pattern
       additionalBehaviors[site.pathPattern] = {
@@ -411,11 +418,25 @@ export class UnifiedSiteConstruct extends Construct {
         cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
         functionAssociations: [
           {
-            function: pathRewriteFunction,
+            function: pathFunction,
             eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
           },
         ],
       };
+    }
+    
+    // Use the first site as the default origin for the default behavior
+    // The default behavior will handle requests that don't match any path pattern
+    const firstSite = props.sites[0];
+    const defaultOrigin = siteOrigins.get(firstSite.siteName);
+    const defaultFunction = sitePathFunctions.get(firstSite.siteName);
+    
+    if (!defaultOrigin) {
+      throw new Error(`Default origin not found for site: ${firstSite.siteName}`);
+    }
+    
+    if (!defaultFunction) {
+      throw new Error(`Default function not found for site: ${firstSite.siteName}`);
     }
     
     // Create the CloudFront distribution
