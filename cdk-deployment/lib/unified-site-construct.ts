@@ -423,10 +423,30 @@ export class UnifiedSiteConstruct extends Construct {
           },
         ],
       };
+      
+      // Also add patterns without trailing /* to catch edge cases
+      const basePattern = site.pathPattern.replace('/*', '');
+      if (basePattern !== site.pathPattern) {
+        additionalBehaviors[basePattern] = {
+          origin: origin,
+          viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+          allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
+          cachedMethods: cloudfront.CachedMethods.CACHE_GET_HEAD_OPTIONS,
+          compress: true,
+          cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
+          functionAssociations: [
+            {
+              function: pathFunction,
+              eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
+            },
+          ],
+        };
+        console.log(`  - ${basePattern} → ${site.siteName} (edge case)`);
+      }
     }
     
-    // Use the first site as the default origin for the default behavior
-    // The default behavior will handle requests that don't match any path pattern
+    // Use the first site as the default origin, but this should rarely be hit
+    // Most requests should match the specific cache behaviors above
     const firstSite = props.sites[0];
     const defaultOrigin = siteOrigins.get(firstSite.siteName);
     const defaultFunction = sitePathFunctions.get(firstSite.siteName);
@@ -438,6 +458,8 @@ export class UnifiedSiteConstruct extends Construct {
     if (!defaultFunction) {
       throw new Error(`Default function not found for site: ${firstSite.siteName}`);
     }
+    
+    console.log(`🏠 Default behavior → ${firstSite.siteName} (fallback only)`);
     
     // Create the CloudFront distribution
     const distribution = new cloudfront.Distribution(this, 'Distribution', {
