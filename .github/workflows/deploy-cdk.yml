@@ -73,7 +73,7 @@ jobs:
 
       - name: CDK Deploy
         working-directory: cdk-deployment
-        run: npx cdk deploy --require-approval never
+        run: npx cdk deploy --require-approval never --context domainName="${{ vars.CDK_DOMAIN_NAME }}" --context certificateArn="${{ secrets.CDK_CERTIFICATE_ARN }}" --context region="${{ env.AWS_REGION }}"
         env:
           CDK_DOMAIN_NAME: ${{ vars.CDK_DOMAIN_NAME }}
           CDK_CERTIFICATE_ARN: ${{ secrets.CDK_CERTIFICATE_ARN }}

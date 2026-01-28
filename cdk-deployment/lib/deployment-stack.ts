@@ -95,8 +95,9 @@ export class DeploymentStack extends Stack {
    * 
    * Priority order:
    * 1. Configuration passed in props
-   * 2. Configuration from CDK context
-   * 3. Default configuration
+   * 2. CDK context parameters (--context flags)
+   * 3. Configuration from CDK context
+   * 4. Default configuration
    * 
    * @param props - Stack properties
    * @returns Complete deployment configuration
@@ -107,9 +108,29 @@ export class DeploymentStack extends Stack {
       return props.config;
     }
     
-    // Otherwise, load from CDK context
+    // Load from CDK context parameters first (highest priority)
+    const contextDomainName = this.node.tryGetContext('domainName');
+    const contextCertificateArn = this.node.tryGetContext('certificateArn');
+    const contextRegion = this.node.tryGetContext('region');
+    
+    // Load base configuration from CDK context
     const context = this.node.tryGetContext('deployment');
-    return ConfigurationManager.loadConfig({ deployment: context });
+    const config = ConfigurationManager.loadConfig({ deployment: context });
+    
+    // Override with context parameters if provided
+    if (contextDomainName) {
+      config.domainName = contextDomainName;
+    }
+    
+    if (contextCertificateArn) {
+      config.certificateArn = contextCertificateArn;
+    }
+    
+    if (contextRegion) {
+      config.region = contextRegion;
+    }
+    
+    return config;
   }
   
   /**
