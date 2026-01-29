@@ -5,11 +5,16 @@ import {
   createButton, 
   createCard,
   createBox,
+  createGrid,
+  createGridItem,
   createASCIIArt,
   createBadge,
   createDivider,
   initTheme 
 } from '@dosage/index.js';
+
+// Import only essential DOSage styles
+import './styles.css';
 
 // Initialize the DOS theme
 initTheme();
@@ -21,103 +26,160 @@ const app = document.getElementById('app');
 const container = createContainer({
   maxWidth: '1200px',
   padding: { all: 'xl' },
+  centered: true,
   className: 'landing-container'
 });
 
-// ASCII Art Header
-const asciiArt = createASCIIArt({
-  text: 'DOSage',
-  font: 'block',
+// ASCII Art Header with spacing
+const asciiHeader = createBox({
+  padding: { y: 'xl' },
   className: 'ascii-header'
 });
+const asciiArt = createASCIIArt({
+  text: 'DOSage',
+  font: 'block'
+});
+asciiHeader.appendChild(asciiArt);
 
-// Main heading
+// Main heading with spacing
+const headingBox = createBox({
+  padding: { y: 'md' }
+});
 const heading = createHeading({
   level: 1,
   children: 'Welcome to DOSage',
-  align: 'center',
-  className: 'main-heading'
+  align: 'center'
 });
+headingBox.appendChild(heading);
 
-// Subtitle
+// Subtitle with spacing
+const subtitleBox = createBox({
+  padding: { bottom: 'md' }
+});
 const subtitle = createText({
   children: 'Retro UI Library for Modern Web Applications',
   size: 'lg',
-  align: 'center',
-  className: 'subtitle'
+  align: 'center'
 });
+subtitleBox.appendChild(subtitle);
 
-// Version badge
+// Version badge with spacing
+const badgeBox = createBox({
+  padding: { bottom: 'xl' },
+  display: 'flex',
+  className: 'center-content'
+});
 const versionBadge = createBadge({
-  children: 'v0.1.0',
-  variant: 'success',
-  className: 'version-badge'
+  label: 'v0.1.0',
+  variant: 'success'
 });
+badgeBox.appendChild(versionBadge.element);
 
-// Description
+// Description with max width and spacing
+const descriptionBox = createBox({
+  padding: { bottom: 'xxl' },
+  display: 'flex',
+  className: 'center-content'
+});
 const description = createText({
   children: 'DOSage brings the nostalgic charm of DOS-era interfaces to modern web development. Built with TypeScript, it offers a comprehensive set of components that recreate the authentic look and feel of classic computing.',
-  className: 'description'
+  align: 'center',
+  className: 'description-text'
+});
+descriptionBox.appendChild(description);
+
+// Navigation Cards using Grid
+const navGrid = createGrid({
+  columns: 'repeat(auto-fit, minmax(300px, 1fr))',
+  gap: 'xl',
+  className: 'nav-grid'
 });
 
-// Navigation Cards Container
-const navContainer = createBox({
-  padding: { all: 'lg' },
-  className: 'nav-container'
-});
-
-// API Documentation Card
+// API Documentation Card - Using GridItem for consistent layout
+const docsGridItem = createGridItem();
 const docsCard = createCard({
-  title: '📚 API Documentation',
+  header: '📚 API Documentation',
   content: 'Complete reference for all DOSage components, props, and methods. Perfect for developers who want to dive deep into the library.',
-  className: 'nav-card'
+  bordered: true,
+  elevated: false,
+  interactive: false,
+  selected: false
 });
 
+const docsButtonBox = createBox({
+  padding: { top: 'md' }
+});
 const docsButton = createButton({
-  children: 'Browse Documentation',
+  label: 'Browse Documentation',
   variant: 'primary',
-  onClick: () => window.location.href = '/docs/',
-  className: 'nav-button'
+  onClick: () => window.location.href = '/docs/'
 });
+docsButtonBox.appendChild(docsButton);
+docsCard.element.appendChild(docsButtonBox);
+docsGridItem.appendChild(docsCard.element);
 
-// Demo Card
+// Demo Card - Using GridItem for consistent layout
+const demoGridItem = createGridItem();
 const demoCard = createCard({
-  title: '🎮 Interactive Demo',
+  header: '🎮 Interactive Demo',
   content: 'Try out all DOSage components in an interactive playground. See the library in action and experiment with different configurations.',
-  className: 'nav-card'
+  bordered: true,
+  elevated: false,
+  interactive: false,
+  selected: false
 });
 
+const demoButtonBox = createBox({
+  padding: { top: 'md' }
+});
 const demoButton = createButton({
-  children: 'Launch Demo',
-  variant: 'secondary',
-  onClick: () => window.location.href = '/demo/',
-  className: 'nav-button'
+  label: 'Launch Demo',
+  variant: 'primary',
+  onClick: () => window.location.href = '/demo/'
 });
+demoButtonBox.appendChild(demoButton);
+demoCard.element.appendChild(demoButtonBox);
+demoGridItem.appendChild(demoCard.element);
 
-// Examples Card
+// Examples Card - Using GridItem for consistent layout
+const examplesGridItem = createGridItem();
 const examplesCard = createCard({
-  title: '🤖 Genesis AI Example',
+  header: '🤖 Genesis AI Example',
   content: 'A complete application built with DOSage showcasing real-world usage patterns and advanced component combinations.',
-  className: 'nav-card'
+  bordered: true,
+  elevated: false,
+  interactive: false,
+  selected: false
 });
 
+const examplesButtonBox = createBox({
+  padding: { top: 'md' }
+});
 const examplesButton = createButton({
-  children: 'View Example',
-  variant: 'accent',
-  onClick: () => window.location.href = '/examples/genesis-ai/',
-  className: 'nav-button'
+  label: 'View Example',
+  variant: 'primary',
+  onClick: () => window.location.href = '/examples/genesis-ai/'
 });
+examplesButtonBox.appendChild(examplesButton);
+examplesCard.element.appendChild(examplesButtonBox);
+examplesGridItem.appendChild(examplesCard.element);
 
-// Features section
+// Features section with spacing
+const featuresBox = createBox({
+  padding: { top: 'xxl', bottom: 'xl' }
+});
 const featuresHeading = createHeading({
   level: 2,
   children: 'Features',
-  align: 'center',
-  className: 'features-heading'
+  align: 'center'
 });
+featuresBox.appendChild(featuresHeading);
 
-const featuresList = createBox({
-  className: 'features-list'
+// Features list using Grid
+const featuresGrid = createGrid({
+  columns: 'repeat(auto-fit, minmax(250px, 1fr))',
+  gap: 'md',
+  className: 'features-grid'
 });
 
 const features = [
@@ -130,140 +192,57 @@ const features = [
 ];
 
 features.forEach(feature => {
-  const featureText = createText({
-    children: feature,
-    className: 'feature-item'
+  const featureGridItem = createGridItem();
+  const featureBox = createBox({
+    padding: 'sm'
   });
-  featuresList.appendChild(featureText);
+  const featureText = createText({
+    children: feature
+  });
+  featureBox.appendChild(featureText);
+  featureGridItem.appendChild(featureBox);
+  featuresGrid.appendChild(featureGridItem);
 });
 
-// Divider
+// Divider with spacing
+const dividerBox = createBox({
+  padding: { y: 'xl' },
+  display: 'flex',
+  className: 'center-content'
+});
 const divider = createDivider({
   variant: 'double',
   className: 'section-divider'
 });
+dividerBox.appendChild(divider);
 
-// Footer
+// Footer with spacing
+const footerBox = createBox({
+  padding: { top: 'xl' }
+});
 const footer = createText({
   children: 'Built with ❤️ using DOSage • Open Source • MIT License',
   size: 'sm',
-  align: 'center',
-  className: 'footer'
+  align: 'center'
 });
+footerBox.appendChild(footer);
 
-// Append buttons to cards
-docsCard.element.appendChild(docsButton);
-demoCard.element.appendChild(demoButton);
-examplesCard.element.appendChild(examplesButton);
+// Add cards to navigation grid
+navGrid.appendChild(docsGridItem);
+navGrid.appendChild(demoGridItem);
+navGrid.appendChild(examplesGridItem);
 
-// Append cards to navigation container
-navContainer.appendChild(docsCard.element);
-navContainer.appendChild(demoCard.element);
-navContainer.appendChild(examplesCard.element);
-
-// Build the page
-container.appendChild(asciiArt);
-container.appendChild(heading);
-container.appendChild(subtitle);
-container.appendChild(versionBadge.element);
-container.appendChild(description);
-container.appendChild(navContainer);
-container.appendChild(divider);
-container.appendChild(featuresHeading);
-container.appendChild(featuresList);
-container.appendChild(footer);
+// Build the page structure
+container.appendChild(asciiHeader);
+container.appendChild(headingBox);
+container.appendChild(subtitleBox);
+container.appendChild(badgeBox);
+container.appendChild(descriptionBox);
+container.appendChild(navGrid);
+container.appendChild(dividerBox);
+container.appendChild(featuresBox);
+container.appendChild(featuresGrid);
+container.appendChild(footerBox);
 
 app.appendChild(container);
 
-// Add some custom styles
-const style = document.createElement('style');
-style.textContent = `
-  .landing-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  .ascii-header {
-    margin: 2rem 0;
-  }
-
-  .main-heading {
-    margin: 1rem 0;
-  }
-
-  .subtitle {
-    margin-bottom: 1rem;
-    opacity: 0.9;
-  }
-
-  .version-badge {
-    margin-bottom: 2rem;
-  }
-
-  .description {
-    max-width: 600px;
-    text-align: center;
-    line-height: 1.6;
-    margin-bottom: 3rem;
-  }
-
-  .nav-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    width: 100%;
-    max-width: 1000px;
-  }
-
-  .nav-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  .nav-button {
-    margin-top: auto;
-    margin-top: 1rem;
-  }
-
-  .features-heading {
-    margin: 3rem 0 2rem 0;
-  }
-
-  .features-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-    max-width: 800px;
-    margin-bottom: 3rem;
-  }
-
-  .feature-item {
-    padding: 0.5rem;
-  }
-
-  .section-divider {
-    width: 100%;
-    max-width: 600px;
-    margin: 2rem 0;
-  }
-
-  .footer {
-    margin-top: 2rem;
-    opacity: 0.7;
-  }
-
-  @media (max-width: 768px) {
-    .nav-container {
-      grid-template-columns: 1fr;
-    }
-    
-    .features-list {
-      grid-template-columns: 1fr;
-    }
-  }
-`;
-document.head.appendChild(style);

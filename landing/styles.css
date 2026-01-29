@@ -1,0 +1,65 @@
+/**
+ * DOSage Landing Page Styles
+ * Minimal custom styles - most layout handled by DOSage components
+ */
+
+/* Import DOSage base styles */
+@import '../src/themes/base.css';
+@import '../src/themes/presets/index.css';
+@import '../src/styles/cursor.css';
+@import '../src/styles/reset.css';
+@import '../src/styles/global.css';
+
+/* ===== BASE STYLES ===== */
+html {
+  font-size: var(--dos-font-size);
+}
+
+body {
+  font-family: var(--dos-font-family);
+  background-color: var(--dos-color-bg);
+  color: var(--dos-color-fg);
+  line-height: var(--dos-line-height);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== MINIMAL LANDING PAGE STYLES ===== */
+
+/* Container layout - using DOSage Container component with centered prop */
+.landing-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Helper class for centering content */
+.center-content {
+  justify-content: center;
+  align-items: center;
+}
+
+/* Description text max-width constraint */
+.description-text {
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* Navigation grid - responsive handled by DOSage Grid component */
+.nav-grid {
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* Features grid - responsive handled by DOSage Grid component */
+.features-grid {
+  max-width: 800px;
+}
+
+/* Section divider width constraint */
+.section-divider {
+  width: 100%;
+  max-width: 600px;
+}
