@@ -3,16 +3,15 @@ import {
   createHeading, 
   createText, 
   createButton, 
-  createCard,
   createBox,
   createGrid,
   createGridItem,
   createASCIIArt,
-  createBadge,
-  createDivider,
   createProgressBar,
   createLoadingSpinner,
-  createWindow,
+  createPanel,
+  createLink,
+  getPanelContent,
   initTheme 
 } from '@dosage/index.js';
 
@@ -24,10 +23,6 @@ initTheme();
 
 // Get the main app container
 const app = document.getElementById('app');
-
-// Boot sequence state
-let bootComplete = false;
-let windowTimers = new Map(); // Track auto-popup timers
 
 // Create boot screen
 function createBootScreen() {
@@ -122,7 +117,7 @@ const bootMessages = [
   'Starting Windows 98 emulation... FAILED', 
   'Starting MS-DOS 6.22... SUCCESS!',
   'Loading DOSage UI library... OK',
-  'Preparing annoying popup windows... OK',
+  'Initializing program launcher... OK',
   'System ready.'
 ];
 
@@ -169,7 +164,6 @@ async function runBootSequence() {
       document.removeEventListener('keydown', handleInput);
       document.removeEventListener('click', handleInput);
       bootContainer.remove();
-      bootComplete = true;
       resolve();
     };
     
@@ -202,86 +196,9 @@ function createMainContent() {
   });
   systemHeader.appendChild(systemTitle);
 
-  // System info panel (like DOS system info)
-  const systemInfoPanel = createBox({
-    border: true,
-    padding: 'lg',
-    className: 'system-info-panel'
-  });
-
-  const systemInfoTitle = createText({
-    children: 'SYSTEM INFORMATION',
-    size: 'lg',
-    align: 'center'
-  });
-
-  // Use DOSage Box for spacing instead of custom CSS
-  const systemInfoGridContainer = createBox({
-    padding: { top: 'md' }
-  });
-
-  const systemInfoGrid = createGrid({
-    columns: 2,
-    gap: 'md'
-  });
-
-  // System info items
-  const infoItems = [
-    ['System Name:', 'DOSage UI Library'],
-    ['Version:', 'v0.1.0'],
-    ['Components:', '60+ Available'],
-    ['Memory:', '640K of Awesome'],
-    ['Graphics:', 'Retro VGA Mode'],
-    ['Status:', 'Ready for Development']
-  ];
-
-  infoItems.forEach(([label, value]) => {
-    const labelItem = createGridItem();
-    const valueItem = createGridItem();
-    
-    const labelText = createText({ children: label });
-    const valueText = createText({ children: value });
-    
-    labelItem.appendChild(labelText);
-    valueItem.appendChild(valueText);
-    
-    systemInfoGrid.appendChild(labelItem);
-    systemInfoGrid.appendChild(valueItem);
-  });
-
-  systemInfoGridContainer.appendChild(systemInfoGrid);
-  systemInfoPanel.appendChild(systemInfoTitle);
-  systemInfoPanel.appendChild(systemInfoGridContainer);
-
-  // Available programs section (replaces the old nav cards)
-  const programsSection = createBox({
-    padding: { top: 'xl' }
-  });
-
-  const programsTitle = createHeading({
-    level: 3,
-    children: 'Available Programs',
-    align: 'center'
-  });
-
-  // Use DOSage Box for spacing instead of custom CSS
-  const programsNoteContainer = createBox({
-    padding: { top: 'sm' }
-  });
-
-  const programsNote = createText({
-    children: 'Click on any program icon to launch. Programs will auto-restart if closed.',
-    size: 'sm',
-    align: 'center'
-  });
-
-  programsNoteContainer.appendChild(programsNote);
-  programsSection.appendChild(programsTitle);
-  programsSection.appendChild(programsNoteContainer);
-
-  // DOS-style command prompt area
+  // DOS-style command prompt area with all the important info
   const commandSection = createBox({
-    padding: { top: 'xl' }
+    padding: { top: 'lg' }
   });
 
   const commandPrompt = createBox({
@@ -289,274 +206,111 @@ function createMainContent() {
     padding: 'md'
   });
 
-  const promptText = createText({
-    children: 'C:\\DOSAGE> Welcome to DOSage - Retro UI Library for Modern Web Development\nC:\\DOSAGE> Built with TypeScript • Zero Dependencies • 60+ Components\nC:\\DOSAGE> Ready for your next retro project!\nC:\\DOSAGE> _',
-    className: 'command-prompt-text'
+  // Create the command prompt content with inline GitHub link
+  const promptContainer = document.createElement('div');
+  promptContainer.className = 'command-prompt-text';
+  
+  const promptContent = `C:\\DOSAGE> Welcome to DOSage - Retro UI Library for Modern Web Development
+C:\\DOSAGE> Built with TypeScript • Zero Dependencies • 60+ Components
+C:\\DOSAGE> Ready for your next retro project!
+C:\\DOSAGE> 
+C:\\DOSAGE> GitHub: `;
+
+  const endContent = `
+C:\\DOSAGE> _`;
+
+  // Create text node for the beginning
+  const startText = document.createTextNode(promptContent);
+  
+  // Create the GitHub link using DOSage Link component
+  const githubLink = createLink({
+    href: 'https://github.com/colinmxs/DOSage',
+    label: 'https://github.com/colinmxs/DOSage',
+    external: true
+  });
+  
+  // Create text node for the end
+  const endText = document.createTextNode(endContent);
+  
+  // Append all parts to the container
+  promptContainer.appendChild(startText);
+  promptContainer.appendChild(githubLink);
+  promptContainer.appendChild(endText);
+
+  commandPrompt.appendChild(promptContainer);
+  commandSection.appendChild(commandPrompt);
+
+  // Create fixed program panels using Panel components
+  const programPanelsContainer = createBox({
+    padding: { top: 'lg' },
+    display: 'flex'
   });
 
-  commandPrompt.appendChild(promptText);
-  commandSection.appendChild(commandPrompt);
+  // Create the three program panels
+  const docsPanel = createProgramPanel(
+    '📚 API Documentation',
+    'Complete reference for all DOSage components, props, and methods. Perfect for developers who want to dive deep into the library.',
+    'Browse Documentation',
+    () => window.location.href = '/docs/'
+  );
+
+  const demoPanel = createProgramPanel(
+    '🎮 Interactive Demo', 
+    'Try out all DOSage components in an interactive playground. See the library in action and experiment with different configurations.',
+    'Launch Demo',
+    () => window.location.href = '/demo/'
+  );
+
+  const examplesPanel = createProgramPanel(
+    '🤖 Genesis AI Example',
+    'A complete application built with DOSage showcasing real-world usage patterns and advanced component combinations.',
+    'View Example',
+    () => window.location.href = '/examples/genesis-ai/'
+  );
+
+  programPanelsContainer.appendChild(docsPanel);
+  programPanelsContainer.appendChild(demoPanel);
+  programPanelsContainer.appendChild(examplesPanel);
 
   // Build the desktop
   container.appendChild(systemHeader);
-  container.appendChild(systemInfoPanel);
-  container.appendChild(programsSection);
   container.appendChild(commandSection);
+  container.appendChild(programPanelsContainer);
 
   return container;
 }
 
-// Create popup windows for navigation
-function createPopupWindows() {
-  const windows = [];
-
-  // Documentation Window
-  const docsWindow = createWindow({
-    title: '📚 API Documentation',
-    width: 350,
-    height: 250,
-    x: getRandomPosition().x,
-    y: getRandomPosition().y,
-    draggable: true,
-    resizable: false,
-    content: createWindowContent(
-      'Complete reference for all DOSage components, props, and methods. Perfect for developers who want to dive deep into the library.',
-      'Browse Documentation',
-      () => window.location.href = '/docs/'
-    ),
-    onClose: () => scheduleWindowReopen('docs', createDocsWindow)
+// Create a fixed program panel using Panel component
+function createProgramPanel(title, description, buttonText, onClick) {
+  const panel = createPanel({
+    title: title
   });
 
-  // Demo Window  
-  const demoWindow = createWindow({
-    title: '🎮 Interactive Demo',
-    width: 350,
-    height: 250,
-    x: getRandomPosition().x,
-    y: getRandomPosition().y,
-    draggable: true,
-    resizable: false,
-    content: createWindowContent(
-      'Try out all DOSage components in an interactive playground. See the library in action and experiment with different configurations.',
-      'Launch Demo',
-      () => window.location.href = '/demo/'
-    ),
-    onClose: () => scheduleWindowReopen('demo', createDemoWindow)
-  });
+  // Get the panel content area
+  const panelContent = getPanelContent(panel);
 
-  // Examples Window
-  const examplesWindow = createWindow({
-    title: '🤖 Genesis AI Example',
-    width: 350,
-    height: 250,
-    x: getRandomPosition().x,
-    y: getRandomPosition().y,
-    draggable: true,
-    resizable: false,
-    content: createWindowContent(
-      'A complete application built with DOSage showcasing real-world usage patterns and advanced component combinations.',
-      'View Example',
-      () => window.location.href = '/examples/genesis-ai/'
-    ),
-    onClose: () => scheduleWindowReopen('examples', createExamplesWindow)
-  });
-
-  windows.push(
-    { id: 'docs', window: docsWindow },
-    { id: 'demo', window: demoWindow },
-    { id: 'examples', window: examplesWindow }
-  );
-
-  return windows;
-}
-
-// Individual window creators for recreation
-function createDocsWindow(position = null) {
-  const windowId = 'docs-' + Date.now(); // Unique ID
-  const pos = position || getRandomPosition();
-  const window = createWindow({
-    title: '📚 API Documentation',
-    width: 350,
-    height: 250,
-    x: pos.x,
-    y: pos.y,
-    draggable: true,
-    resizable: false,
-    id: windowId, // Ensure unique ID
-    content: createWindowContent(
-      'Complete reference for all DOSage components, props, and methods. Perfect for developers who want to dive deep into the library.',
-      'Browse Documentation',
-      () => window.location.href = '/docs/'
-    ),
-    onClose: () => {
-      // Just remove from DOM, don't call destroy() which might break dragging
-      if (window.element && window.element.parentNode) {
-        window.element.parentNode.removeChild(window.element);
-      }
-      scheduleWindowReopen('docs', createDocsWindow);
-    }
-  });
-  return window;
-}
-
-function createDemoWindow(position = null) {
-  const windowId = 'demo-' + Date.now(); // Unique ID
-  const pos = position || getRandomPosition();
-  const window = createWindow({
-    title: '🎮 Interactive Demo',
-    width: 350,
-    height: 250,
-    x: pos.x,
-    y: pos.y,
-    draggable: true,
-    resizable: false,
-    id: windowId, // Ensure unique ID
-    content: createWindowContent(
-      'Try out all DOSage components in an interactive playground. See the library in action and experiment with different configurations.',
-      'Launch Demo',
-      () => window.location.href = '/demo/'
-    ),
-    onClose: () => {
-      // Just remove from DOM, don't call destroy() which might break dragging
-      if (window.element && window.element.parentNode) {
-        window.element.parentNode.removeChild(window.element);
-      }
-      scheduleWindowReopen('demo', createDemoWindow);
-    }
-  });
-  return window;
-}
-
-function createExamplesWindow(position = null) {
-  const windowId = 'examples-' + Date.now(); // Unique ID
-  const pos = position || getRandomPosition();
-  const window = createWindow({
-    title: '🤖 Genesis AI Example',
-    width: 350,
-    height: 250,
-    x: pos.x,
-    y: pos.y,
-    draggable: true,
-    resizable: false,
-    id: windowId, // Ensure unique ID
-    content: createWindowContent(
-      'A complete application built with DOSage showcasing real-world usage patterns and advanced component combinations.',
-      'View Example',
-      () => window.location.href = '/examples/genesis-ai/'
-    ),
-    onClose: () => {
-      // Just remove from DOM, don't call destroy() which might break dragging
-      if (window.element && window.element.parentNode) {
-        window.element.parentNode.removeChild(window.element);
-      }
-      scheduleWindowReopen('examples', createExamplesWindow);
-    }
-  });
-  return window;
-}
-
-// Fun randomization utilities!
-function getRandomPosition() {
-  // Get viewport dimensions
-  const maxX = Math.max(100, window.innerWidth - 400); // Leave room for window width
-  const maxY = Math.max(100, window.innerHeight - 300); // Leave room for window height
-  
-  return {
-    x: Math.floor(Math.random() * maxX) + 50, // At least 50px from left
-    y: Math.floor(Math.random() * maxY) + 50  // At least 50px from top
-  };
-}
-
-// Even more chaotic positioning for extra silliness
-function getChaosPosition() {
-  const positions = [
-    { x: 50, y: 50 },     // Top-left
-    { x: 400, y: 50 },    // Top-right-ish
-    { x: 50, y: 300 },    // Bottom-left-ish
-    { x: 300, y: 200 },   // Center-ish
-    { x: 150, y: 100 },   // Random spot 1
-    { x: 250, y: 250 },   // Random spot 2
-    { x: 100, y: 400 },   // Lower area
-    { x: 350, y: 150 }    // Right area
-  ];
-  
-  return positions[Math.floor(Math.random() * positions.length)];
-}
-
-// Create window content
-function createWindowContent(description, buttonText, onClick) {
-  const contentBox = createBox({
-    padding: 'md',
-    display: 'flex',
-    className: 'window-content'
-  });
-
+  // Add description text
   const descText = createText({
-    children: description,
-    className: 'window-description'
+    children: description
   });
 
-  const buttonBox = createBox({
-    padding: { top: 'md' },
-    display: 'flex',
-    className: 'center-content'
+  // Add some spacing
+  const spacer = createText({
+    children: ' '
   });
 
+  // Add button
   const button = createButton({
     label: buttonText,
-    variant: 'primary',
     onClick: onClick
   });
 
-  buttonBox.appendChild(button);
-  contentBox.appendChild(descText);
-  contentBox.appendChild(buttonBox);
+  // Add content to panel
+  panelContent.appendChild(descText);
+  panelContent.appendChild(spacer);
+  panelContent.appendChild(button);
 
-  return contentBox;
-}
-
-// Schedule window to reopen after being closed
-function scheduleWindowReopen(windowId, windowCreatorFn) {
-  // Clear any existing timer
-  if (windowTimers.has(windowId)) {
-    clearTimeout(windowTimers.get(windowId));
-  }
-
-  // Set new timer (1-3 seconds) - MUCH more annoying!
-  const delay = 1000 + Math.random() * 2000;
-  const timer = setTimeout(() => {
-    if (bootComplete) {
-      // Get position first
-      const position = getChaosPosition();
-      
-      // Create window with the position already set (don't call setPosition later)
-      const newWindow = windowCreatorFn(position);
-      
-      // Add to DOM and show - NO FOCUSING AT ALL
-      document.body.appendChild(newWindow.element);
-      newWindow.open();
-      
-      // No focus calls - let user focus manually
-    }
-    windowTimers.delete(windowId);
-  }, delay);
-
-  windowTimers.set(windowId, timer);
-}
-
-// Show popup windows with staggered timing
-function showPopupWindows(windows) {
-  windows.forEach((item, index) => {
-    setTimeout(() => {
-      document.body.appendChild(item.window.element);
-      item.window.open();
-      
-      // Focus the first window
-      if (index === 0) {
-        setTimeout(() => item.window.focus(), 100);
-      }
-    }, index * 1000 + 2000); // Stagger by 1 second each, start after 2 seconds
-  });
+  return panel;
 }
 
 // Main initialization
@@ -567,10 +321,6 @@ async function init() {
   // Show main content
   const mainContent = createMainContent();
   app.appendChild(mainContent);
-  
-  // Create and show popup windows
-  const windows = createPopupWindows();
-  showPopupWindows(windows);
 }
 
 // Start the experience!

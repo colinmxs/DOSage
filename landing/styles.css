@@ -80,30 +80,4 @@ body {
 .command-prompt-text {
   font-family: var(--dos-font-family);
   white-space: pre-line;
-}
-
-/* ===== WINDOW CONTENT STYLES ===== */
-.window-content {
-  flex-direction: column;
-  height: 100%;
-}
-
-.window-description {
-  flex: 1;
-  line-height: 1.4;
-  margin-bottom: 1rem;
-}
-
-/* Fix window title text visibility when focused */
-.dos-window.dos-window--focused .dos-window__title {
-  color: var(--dos-color-bg) !important;
-}
-
-/* Alternative: ensure title text is always visible */
-.dos-window__title {
-  color: var(--dos-color-fg) !important;
-}
-
-.dos-window.dos-window--focused .dos-window__title {
-  color: var(--dos-color-bg) !important;
-}
+} 
