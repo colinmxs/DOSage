@@ -25,13 +25,48 @@ body {
   padding: 0;
 }
 
+/* ===== BOOT SEQUENCE STYLES ===== */
+/* Only essential styles - most should be DOSage components */
+
+.boot-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--dos-color-bg);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Essential: Enable scrolling for boot messages in DOSage Box */
+.dos-box[style*="height: 200px"] {
+  overflow-y: auto;
+  width: 100%;
+  max-width: 600px;
+}
+
+.press-key-blink {
+  animation: blink 1s infinite;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
 /* ===== MINIMAL LANDING PAGE STYLES ===== */
 
-/* Container layout - using DOSage Container component with centered prop */
-.landing-container {
+/* DOS Desktop layout - keep centered like boot sequence */
+.dos-desktop {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
@@ -41,25 +76,34 @@ body {
   align-items: center;
 }
 
-/* Description text max-width constraint */
-.description-text {
-  max-width: 600px;
-  line-height: 1.6;
+/* Essential: Command prompt text formatting */
+.command-prompt-text {
+  font-family: var(--dos-font-family);
+  white-space: pre-line;
 }
 
-/* Navigation grid - responsive handled by DOSage Grid component */
-.nav-grid {
-  width: 100%;
-  max-width: 1000px;
+/* ===== WINDOW CONTENT STYLES ===== */
+.window-content {
+  flex-direction: column;
+  height: 100%;
 }
 
-/* Features grid - responsive handled by DOSage Grid component */
-.features-grid {
-  max-width: 800px;
+.window-description {
+  flex: 1;
+  line-height: 1.4;
+  margin-bottom: 1rem;
 }
 
-/* Section divider width constraint */
-.section-divider {
-  width: 100%;
-  max-width: 600px;
+/* Fix window title text visibility when focused */
+.dos-window.dos-window--focused .dos-window__title {
+  color: var(--dos-color-bg) !important;
+}
+
+/* Alternative: ensure title text is always visible */
+.dos-window__title {
+  color: var(--dos-color-fg) !important;
+}
+
+.dos-window.dos-window--focused .dos-window__title {
+  color: var(--dos-color-bg) !important;
 }
