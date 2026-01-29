@@ -34,14 +34,14 @@ const asciiArt = createASCIIArt({
 // Main heading
 const heading = createHeading({
   level: 1,
-  text: 'Welcome to DOSage',
+  children: 'Welcome to DOSage',
   align: 'center',
   className: 'main-heading'
 });
 
 // Subtitle
 const subtitle = createText({
-  text: 'Retro UI Library for Modern Web Applications',
+  children: 'Retro UI Library for Modern Web Applications',
   size: 'lg',
   align: 'center',
   className: 'subtitle'
@@ -49,14 +49,14 @@ const subtitle = createText({
 
 // Version badge
 const versionBadge = createBadge({
-  text: 'v0.1.0',
+  children: 'v0.1.0',
   variant: 'success',
   className: 'version-badge'
 });
 
 // Description
 const description = createText({
-  text: 'DOSage brings the nostalgic charm of DOS-era interfaces to modern web development. Built with TypeScript, it offers a comprehensive set of components that recreate the authentic look and feel of classic computing.',
+  children: 'DOSage brings the nostalgic charm of DOS-era interfaces to modern web development. Built with TypeScript, it offers a comprehensive set of components that recreate the authentic look and feel of classic computing.',
   className: 'description'
 });
 
@@ -74,7 +74,7 @@ const docsCard = createCard({
 });
 
 const docsButton = createButton({
-  text: 'Browse Documentation',
+  children: 'Browse Documentation',
   variant: 'primary',
   onClick: () => window.location.href = '/docs/',
   className: 'nav-button'
@@ -88,7 +88,7 @@ const demoCard = createCard({
 });
 
 const demoButton = createButton({
-  text: 'Launch Demo',
+  children: 'Launch Demo',
   variant: 'secondary',
   onClick: () => window.location.href = '/demo/',
   className: 'nav-button'
@@ -102,7 +102,7 @@ const examplesCard = createCard({
 });
 
 const examplesButton = createButton({
-  text: 'View Example',
+  children: 'View Example',
   variant: 'accent',
   onClick: () => window.location.href = '/examples/genesis-ai/',
   className: 'nav-button'
@@ -111,7 +111,7 @@ const examplesButton = createButton({
 // Features section
 const featuresHeading = createHeading({
   level: 2,
-  text: 'Features',
+  children: 'Features',
   align: 'center',
   className: 'features-heading'
 });
@@ -131,7 +131,7 @@ const features = [
 
 features.forEach(feature => {
   const featureText = createText({
-    text: feature,
+    children: feature,
     className: 'feature-item'
   });
   featuresList.appendChild(featureText);
@@ -145,7 +145,7 @@ const divider = createDivider({
 
 // Footer
 const footer = createText({
-  text: 'Built with ❤️ using DOSage • Open Source • MIT License',
+  children: 'Built with ❤️ using DOSage • Open Source • MIT License',
   size: 'sm',
   align: 'center',
   className: 'footer'
