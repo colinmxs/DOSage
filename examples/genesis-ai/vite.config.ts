@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
 export default defineConfig({
+  base: '/examples/',
   resolve: {
     alias: {
       dosage: resolve(__dirname, '../../src/index.ts'),

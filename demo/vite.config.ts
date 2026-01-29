@@ -3,6 +3,7 @@ import { resolve } from 'path';
 
 export default defineConfig({
   root: resolve(__dirname),
+  base: '/demo/',
   resolve: {
     alias: {
       // Allow importing from 'dosage' as if it were the published package

@@ -354,22 +354,6 @@ export class UnifiedSiteConstruct extends Construct {
       // Enable HTTP/2 and HTTP/3
       httpVersion: cloudfront.HttpVersion.HTTP2_AND_3,
       
-      // Custom error responses for SPA routing
-      errorResponses: [
-        {
-          httpStatus: 403,
-          responseHttpStatus: 200,
-          responsePagePath: '/index.html',
-          ttl: Duration.minutes(5),
-        },
-        {
-          httpStatus: 404,
-          responseHttpStatus: 200,
-          responsePagePath: '/index.html',
-          ttl: Duration.minutes(5),
-        },
-      ],
-      
       // Enable logging if specified
       enableLogging: props.enableLogging !== false,
       
