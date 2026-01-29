@@ -134,7 +134,8 @@ features.forEach(feature => {
     text: feature,
     className: 'feature-item'
   });
-  featuresList.appendChild(featureText);
+  const featureTextElement = featureText.element || featureText;
+  featuresListElement.appendChild(featureTextElement);
 });
 
 // Divider
@@ -151,28 +152,48 @@ const footer = createText({
   className: 'footer'
 });
 
+// Append buttons to cards (get the actual DOM element)
+const docsCardElement = docsCard.element || docsCard;
+const demoCardElement = demoCard.element || demoCard;
+const examplesCardElement = examplesCard.element || examplesCard;
+const docsButtonElement = docsButton.element || docsButton;
+const demoButtonElement = demoButton.element || demoButton;
+const examplesButtonElement = examplesButton.element || examplesButton;
+
+docsCardElement.appendChild(docsButtonElement);
+demoCardElement.appendChild(demoButtonElement);
+examplesCardElement.appendChild(examplesButtonElement);
+
 // Append cards to navigation container
-docsCard.appendChild(docsButton);
-demoCard.appendChild(demoButton);
-examplesCard.appendChild(examplesButton);
+const navContainerElement = navContainer.element || navContainer;
+navContainerElement.appendChild(docsCardElement);
+navContainerElement.appendChild(demoCardElement);
+navContainerElement.appendChild(examplesCardElement);
 
-navContainer.appendChild(docsCard);
-navContainer.appendChild(demoCard);
-navContainer.appendChild(examplesCard);
+// Build the page (get actual DOM elements)
+const containerElement = container.element || container;
+const asciiArtElement = asciiArt.element || asciiArt;
+const headingElement = heading.element || heading;
+const subtitleElement = subtitle.element || subtitle;
+const versionBadgeElement = versionBadge.element || versionBadge;
+const descriptionElement = description.element || description;
+const dividerElement = divider.element || divider;
+const featuresHeadingElement = featuresHeading.element || featuresHeading;
+const featuresListElement = featuresList.element || featuresList;
+const footerElement = footer.element || footer;
 
-// Build the page
-container.appendChild(asciiArt);
-container.appendChild(heading);
-container.appendChild(subtitle);
-container.appendChild(versionBadge);
-container.appendChild(description);
-container.appendChild(navContainer);
-container.appendChild(divider);
-container.appendChild(featuresHeading);
-container.appendChild(featuresList);
-container.appendChild(footer);
+containerElement.appendChild(asciiArtElement);
+containerElement.appendChild(headingElement);
+containerElement.appendChild(subtitleElement);
+containerElement.appendChild(versionBadgeElement);
+containerElement.appendChild(descriptionElement);
+containerElement.appendChild(navContainerElement);
+containerElement.appendChild(dividerElement);
+containerElement.appendChild(featuresHeadingElement);
+containerElement.appendChild(featuresListElement);
+containerElement.appendChild(footerElement);
 
-app.appendChild(container);
+app.appendChild(containerElement);
 
 // Add some custom styles
 const style = document.createElement('style');

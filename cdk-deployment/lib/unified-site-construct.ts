@@ -401,13 +401,22 @@ export class UnifiedSiteConstruct extends Construct {
   var uri = request.uri;
   
   // Handle specific directory paths (with or without trailing slash)
-  if (uri === '/demo' || uri === '/demo/') {
+  if (uri === '/demo') {
     request.uri = '/demo/index.html';
   }
-  else if (uri === '/docs' || uri === '/docs/') {
+  else if (uri === '/demo/') {
+    request.uri = '/demo/index.html';
+  }
+  else if (uri === '/docs') {
     request.uri = '/docs/index.html';
   }
-  else if (uri === '/examples/genesis-ai' || uri === '/examples/genesis-ai/') {
+  else if (uri === '/docs/') {
+    request.uri = '/docs/index.html';
+  }
+  else if (uri === '/examples/genesis-ai') {
+    request.uri = '/examples/genesis-ai/index.html';
+  }
+  else if (uri === '/examples/genesis-ai/') {
     request.uri = '/examples/genesis-ai/index.html';
   }
   // Generic rule: if URI ends with /, append index.html
