@@ -31,6 +31,7 @@
     "build": "vite build && npm run build:types",
     "build:types": "tsc --project tsconfig.build.json --declaration --emitDeclarationOnly --outDir dist/types",
     "build:demo": "vite build --config demo/vite.config.ts",
+    "build:landing": "vite build --config landing/vite.config.ts",
     "preview": "vite preview --config demo/vite.config.ts",
     "test": "vitest run",
     "test:watch": "vitest",

@@ -50,6 +50,10 @@ jobs:
         if: ${{ !inputs.skip_build }}
         run: npm run build:demo
 
+      - name: Build landing page
+        if: ${{ !inputs.skip_build }}
+        run: npm run build:landing
+
       - name: Build example site
         if: ${{ !inputs.skip_build }}
         run: |

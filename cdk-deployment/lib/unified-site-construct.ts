@@ -503,13 +503,13 @@ export class UnifiedSiteConstruct extends Construct {
   private createBucketDeployments(sites: SiteOriginConfig[]): void {
     console.log(`📦 Creating bucket deployments for ${sites.length} sites + root:`);
     
-    // Deploy root landing page
+    // Deploy root landing page (DOSage-powered)
     const rootDeployment = new s3deploy.BucketDeployment(this, 'root-deployment', {
-      sources: [s3deploy.Source.asset('public')],
+      sources: [s3deploy.Source.asset('../landing/dist')],
       destinationBucket: this.bucket,
       // No prefix - deploy to root
       distribution: this.distribution,
-      distributionPaths: ['/index.html'],
+      distributionPaths: ['/index.html', '/assets/*'],
       waitForDistributionInvalidation: true,
       prune: false, // Don't prune root to avoid affecting other directories
       memoryLimit: 256,
@@ -517,7 +517,7 @@ export class UnifiedSiteConstruct extends Construct {
     });
     
     this.deployments.set('root', rootDeployment);
-    console.log(`  - root: public/ → s3://${this.bucket.bucketName}/`);
+    console.log(`  - root: ../landing/dist/ → s3://${this.bucket.bucketName}/`);
     
     for (const site of sites) {
       // Determine the target directory in the bucket
