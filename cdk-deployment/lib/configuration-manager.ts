@@ -172,7 +172,7 @@ export class ConfigurationManager {
         },
         example: {
           enabled: true,
-          pathPattern: '/examples/*',
+          pathPattern: '/examples/genesis-ai/*',
           sourceDir: '../examples/genesis-ai/dist/',
         },
       },

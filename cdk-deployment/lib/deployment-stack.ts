@@ -306,8 +306,8 @@ export class DeploymentStack extends Stack {
     
     if (this.config.sites.example.enabled) {
       new CfnOutput(this, 'ExampleUrl', {
-        value: `https://${this.unifiedSite.domainName}${this.config.sites.example.pathPattern.replace('*', '')}`,
-        description: 'Example site URL',
+        value: `https://${this.unifiedSite.domainName}/examples/genesis-ai/`,
+        description: 'Genesis AI example site URL',
       });
     }
   }

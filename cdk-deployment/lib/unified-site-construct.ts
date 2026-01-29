@@ -295,11 +295,10 @@ export class UnifiedSiteConstruct extends Construct {
    * 
    * The distribution is configured with:
    * - Single S3 origin with Origin Access Control
-   * - Simple path-based routing (no CloudFront Functions needed!)
+   * - CloudFront Function for directory index handling
    * - Custom domain name and SSL certificate
    * - HTTPS enforcement (redirect HTTP to HTTPS)
    * - Compression enabled for cost optimization
-   * - Custom error responses for SPA routing support
    * - Appropriate cache TTLs
    * 
    * Validates Requirements: 1.2, 1.3, 1.5, 5.3, 5.4
@@ -318,13 +317,16 @@ export class UnifiedSiteConstruct extends Construct {
       originAccessControl: oac,
     });
     
+    // Create CloudFront Function to handle directory index requests
+    const indexFunction = this.createDirectoryIndexFunction();
+    
     console.log(`🌐 Creating CloudFront distribution with single origin`);
     console.log(`📁 S3 bucket: ${this.bucket.bucketName}`);
     console.log(`🔗 Domain: ${props.domainName}`);
     
     // Create the CloudFront distribution with simple configuration
     const distribution = new cloudfront.Distribution(this, 'Distribution', {
-      // Single default behavior - no complex cache behaviors needed!
+      // Single default behavior with directory index handling
       defaultBehavior: {
         origin: origin,
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
@@ -332,7 +334,13 @@ export class UnifiedSiteConstruct extends Construct {
         cachedMethods: cloudfront.CachedMethods.CACHE_GET_HEAD_OPTIONS,
         compress: true,
         cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
-        // No CloudFront Functions needed - S3 handles the directory structure!
+        // Add CloudFront Function to handle directory requests
+        functionAssociations: [
+          {
+            function: indexFunction,
+            eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
+          },
+        ],
       },
       
       // Custom domain configuration
@@ -371,6 +379,57 @@ export class UnifiedSiteConstruct extends Construct {
     });
     
     return distribution;
+  }
+  
+  /**
+   * Creates a CloudFront Function to handle directory index requests
+   * 
+   * This function automatically appends 'index.html' to directory requests:
+   * - /demo → /demo/index.html
+   * - /demo/ → /demo/index.html
+   * - /docs → /docs/index.html
+   * - /docs/ → /docs/index.html
+   * - /examples/genesis-ai → /examples/genesis-ai/index.html
+   * - /examples/genesis-ai/ → /examples/genesis-ai/index.html
+   * - / → /index.html (handled by defaultRootObject)
+   * 
+   * @returns The created CloudFront Function
+   */
+  private createDirectoryIndexFunction(): cloudfront.Function {
+    const functionCode = `function handler(event) {
+  var request = event.request;
+  var uri = request.uri;
+  
+  // Handle specific directory paths (with or without trailing slash)
+  if (uri === '/demo' || uri === '/demo/') {
+    request.uri = '/demo/index.html';
+  }
+  else if (uri === '/docs' || uri === '/docs/') {
+    request.uri = '/docs/index.html';
+  }
+  else if (uri === '/examples/genesis-ai' || uri === '/examples/genesis-ai/') {
+    request.uri = '/examples/genesis-ai/index.html';
+  }
+  // Generic rule: if URI ends with /, append index.html
+  else if (uri.endsWith('/')) {
+    request.uri = uri + 'index.html';
+  }
+  // Generic rule: if URI has no file extension and doesn't end with /, assume it's a directory
+  else if (!uri.includes('.') && uri !== '/') {
+    // For paths that don't match our specific rules, try appending /index.html
+    request.uri = uri + '/index.html';
+  }
+  
+  return request;
+}`;
+    
+    const cfFunction = new cloudfront.Function(this, 'DirectoryIndexFunction', {
+      code: cloudfront.FunctionCode.fromInline(functionCode),
+      comment: 'Handles directory index requests by appending index.html',
+      functionName: `directory-index-${this.node.addr.substring(0, 8)}`,
+    });
+    
+    return cfFunction;
   }
   
   /**
@@ -432,6 +491,7 @@ export class UnifiedSiteConstruct extends Construct {
    * - Ensures content updates are immediately visible to users
    * 
    * Directory structure:
+   * - / → Landing page (from public/)
    * - docs/ → API Documentation (from docs/api/)
    * - demo/ → Demo Site (from demo/dist/)
    * - examples/ → Example Projects (from examples/genesis-ai/dist/)
@@ -441,12 +501,35 @@ export class UnifiedSiteConstruct extends Construct {
    * @param sites - Array of site configurations
    */
   private createBucketDeployments(sites: SiteOriginConfig[]): void {
-    console.log(`📦 Creating bucket deployments for ${sites.length} sites:`);
+    console.log(`📦 Creating bucket deployments for ${sites.length} sites + root:`);
+    
+    // Deploy root landing page
+    const rootDeployment = new s3deploy.BucketDeployment(this, 'root-deployment', {
+      sources: [s3deploy.Source.asset('public')],
+      destinationBucket: this.bucket,
+      // No prefix - deploy to root
+      distribution: this.distribution,
+      distributionPaths: ['/index.html'],
+      waitForDistributionInvalidation: true,
+      prune: false, // Don't prune root to avoid affecting other directories
+      memoryLimit: 256,
+      ephemeralStorageSize: Size.mebibytes(512),
+    });
+    
+    this.deployments.set('root', rootDeployment);
+    console.log(`  - root: public/ → s3://${this.bucket.bucketName}/`);
     
     for (const site of sites) {
       // Determine the target directory in the bucket
       // For /docs/* pattern, we want to deploy to docs/ directory
-      const targetDir = site.pathPattern.replace('/*', '').replace('/', '');
+      // For /examples/genesis-ai/* pattern, we want to deploy to examples/genesis-ai/ directory
+      let targetDir = site.pathPattern.replace('/*', '').replace('/', '');
+      
+      // Handle nested paths like /examples/genesis-ai/*
+      if (targetDir.includes('/')) {
+        // Keep the full path structure
+        targetDir = targetDir;
+      }
       
       console.log(`  - ${site.siteName}: ${site.sourceDir} → s3://${this.bucket.bucketName}/${targetDir}/`);
       
