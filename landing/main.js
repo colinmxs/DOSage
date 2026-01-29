@@ -152,20 +152,20 @@ const footer = createText({
 });
 
 // Append buttons to cards
-docsCard.appendChild(docsButton);
-demoCard.appendChild(demoButton);
-examplesCard.appendChild(examplesButton);
+docsCard.element.appendChild(docsButton);
+demoCard.element.appendChild(demoButton);
+examplesCard.element.appendChild(examplesButton);
 
 // Append cards to navigation container
-navContainer.appendChild(docsCard);
-navContainer.appendChild(demoCard);
-navContainer.appendChild(examplesCard);
+navContainer.appendChild(docsCard.element);
+navContainer.appendChild(demoCard.element);
+navContainer.appendChild(examplesCard.element);
 
 // Build the page
 container.appendChild(asciiArt);
 container.appendChild(heading);
 container.appendChild(subtitle);
-container.appendChild(versionBadge);
+container.appendChild(versionBadge.element);
 container.appendChild(description);
 container.appendChild(navContainer);
 container.appendChild(divider);
