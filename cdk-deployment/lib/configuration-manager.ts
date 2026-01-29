@@ -80,6 +80,9 @@ export class ConfigurationManager {
       
       // Load site configurations
       if (ctxDeployment.sites) {
+        if (ctxDeployment.sites.landing) {
+          config.sites.landing = this.loadSiteConfig(ctxDeployment.sites.landing);
+        }
         if (ctxDeployment.sites.apiDocs) {
           config.sites.apiDocs = this.loadSiteConfig(ctxDeployment.sites.apiDocs);
         }
@@ -160,6 +163,11 @@ export class ConfigurationManager {
       domainName: '',
       certificateArn: '',
       sites: {
+        landing: {
+          enabled: true,
+          pathPattern: '/',
+          sourceDir: '../landing/dist/',
+        },
         apiDocs: {
           enabled: true,
           pathPattern: '/docs/*',
@@ -272,12 +280,15 @@ export class ConfigurationManager {
     }
     
     // Check if at least one site is enabled
-    const enabledSites = [sites.apiDocs?.enabled, sites.demo?.enabled, sites.example?.enabled].filter(Boolean);
+    const enabledSites = [sites.landing?.enabled, sites.apiDocs?.enabled, sites.demo?.enabled, sites.example?.enabled].filter(Boolean);
     if (enabledSites.length === 0) {
       warnings.push('No sites are enabled for deployment');
     }
     
     // Validate each site
+    if (sites.landing?.enabled) {
+      this.validateSite('sites.landing', sites.landing, errors);
+    }
     if (sites.apiDocs?.enabled) {
       this.validateSite('sites.apiDocs', sites.apiDocs, errors);
     }

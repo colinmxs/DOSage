@@ -57,6 +57,7 @@ export interface DeploymentConfig {
   
   /** Configuration for each site */
   sites: {
+    landing: SiteConfig;
     apiDocs: SiteConfig;
     demo: SiteConfig;
     example: SiteConfig;

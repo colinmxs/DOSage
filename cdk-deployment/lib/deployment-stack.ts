@@ -187,6 +187,15 @@ export class DeploymentStack extends Stack {
     // Build array of site configurations for enabled sites
     const sites: SiteOriginConfig[] = [];
     
+    if (this.config.sites.landing.enabled) {
+      sites.push({
+        siteName: 'landing',
+        sourceDir: this.config.sites.landing.sourceDir,
+        pathPattern: this.config.sites.landing.pathPattern,
+        pathRewrite: this.config.sites.landing.pathRewrite,
+      });
+    }
+    
     if (this.config.sites.apiDocs.enabled) {
       sites.push({
         siteName: 'api-docs',
@@ -290,6 +299,13 @@ export class DeploymentStack extends Stack {
     });
     
     // Site URLs (with path patterns)
+    if (this.config.sites.landing.enabled) {
+      new CfnOutput(this, 'LandingUrl', {
+        value: `https://${this.unifiedSite.domainName}/`,
+        description: 'Landing page URL',
+      });
+    }
+    
     if (this.config.sites.apiDocs.enabled) {
       new CfnOutput(this, 'ApiDocsUrl', {
         value: `https://${this.unifiedSite.domainName}${this.config.sites.apiDocs.pathPattern.replace('*', '')}`,
