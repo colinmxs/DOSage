@@ -22,7 +22,7 @@
  */
 
 import { Construct } from 'constructs';
-import { RemovalPolicy, Duration, Size } from 'aws-cdk-lib';
+import { RemovalPolicy, Duration, Size, Aws } from 'aws-cdk-lib';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
@@ -30,6 +30,7 @@ import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
 import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 import * as route53 from 'aws-cdk-lib/aws-route53';
 import * as targets from 'aws-cdk-lib/aws-route53-targets';
+import * as iam from 'aws-cdk-lib/aws-iam';
 import { SiteOriginConfig } from './config-types';
 
 /**
@@ -160,6 +161,9 @@ export class UnifiedSiteConstruct extends Construct {
     
     // Create CloudFront distribution with single origin
     this.distribution = this.createCloudFrontDistribution(props);
+    
+    // Add S3 bucket policy to allow CloudFront access
+    this.addCloudFrontBucketPolicy();
     
     // Set distribution URL
     this.distributionUrl = `https://${this.distribution.distributionDomainName}`;
@@ -383,6 +387,55 @@ export class UnifiedSiteConstruct extends Construct {
     });
     
     return distribution;
+  }
+  
+  /**
+   * Adds S3 bucket policy to allow CloudFront Origin Access Control (OAC) access
+   * 
+   * This method adds the necessary IAM policy statement to the S3 bucket to allow
+   * CloudFront to access objects using Origin Access Control. The policy grants:
+   * - s3:GetObject permission for all objects in the bucket
+   * - s3:ListBucket permission for directory listing (404 vs 403 responses)
+   * 
+   * The policy is restricted to the specific CloudFront distribution using the
+   * AWS:SourceArn condition.
+   * 
+   * @private
+   */
+  private addCloudFrontBucketPolicy(): void {
+    console.log(`🔐 Adding S3 bucket policy for CloudFront OAC access`);
+    
+    // Add s3:GetObject permission for CloudFront to access all objects
+    this.bucket.addToResourcePolicy(
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: ['s3:GetObject'],
+        principals: [new iam.ServicePrincipal('cloudfront.amazonaws.com')],
+        resources: [this.bucket.arnForObjects('*')],
+        conditions: {
+          StringEquals: {
+            'AWS:SourceArn': `arn:${Aws.PARTITION}:cloudfront::${Aws.ACCOUNT_ID}:distribution/${this.distribution.distributionId}`
+          }
+        }
+      })
+    );
+    
+    // Add s3:ListBucket permission for better error handling (404 vs 403)
+    this.bucket.addToResourcePolicy(
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: ['s3:ListBucket'],
+        principals: [new iam.ServicePrincipal('cloudfront.amazonaws.com')],
+        resources: [this.bucket.bucketArn],
+        conditions: {
+          StringEquals: {
+            'AWS:SourceArn': `arn:${Aws.PARTITION}:cloudfront::${Aws.ACCOUNT_ID}:distribution/${this.distribution.distributionId}`
+          }
+        }
+      })
+    );
+    
+    console.log(`✅ S3 bucket policy added for distribution ${this.distribution.distributionId}`);
   }
   
   /**
