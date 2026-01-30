@@ -142,7 +142,7 @@ function handler(event) {
       destinationBucket: bucket,
       destinationKeyPrefix: 'demo/',
       distribution,
-      distributionPaths: ['/demo/*'],
+      distributionPaths: ['/demo/*', '/demo/index.html', '/demo/assets/*'],
       prune: true,
     });
 
