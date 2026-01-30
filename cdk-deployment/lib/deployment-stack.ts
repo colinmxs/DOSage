@@ -76,6 +76,12 @@ function handler(event) {
       priceClass: cloudfront.PriceClass.PRICE_CLASS_100,
       errorResponses: [
         {
+          httpStatus: 403,
+          responseHttpStatus: 404,
+          responsePagePath: '/404.html',
+          ttl: Duration.minutes(5),
+        },
+        {
           httpStatus: 404,
           responseHttpStatus: 200,
           responsePagePath: '/index.html',
@@ -91,6 +97,21 @@ function handler(event) {
         actions: ['s3:GetObject'],
         principals: [new iam.ServicePrincipal('cloudfront.amazonaws.com')],
         resources: [bucket.arnForObjects('*')],
+        conditions: {
+          StringEquals: {
+            'AWS:SourceArn': `arn:aws:cloudfront::${this.account}:distribution/${distribution.distributionId}`
+          }
+        }
+      })
+    );
+
+    // Add ListBucket permission for better error handling
+    bucket.addToResourcePolicy(
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: ['s3:ListBucket'],
+        principals: [new iam.ServicePrincipal('cloudfront.amazonaws.com')],
+        resources: [bucket.bucketArn],
         conditions: {
           StringEquals: {
             'AWS:SourceArn': `arn:aws:cloudfront::${this.account}:distribution/${distribution.distributionId}`
