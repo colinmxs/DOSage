@@ -42,8 +42,8 @@ function handler(event) {
   if (uri.endsWith('/')) {
     request.uri = uri + 'index.html';
   }
-  // Handle paths without extension (assume they're directories)
-  else if (!uri.includes('.') && uri !== '/') {
+  // Handle specific directory paths without trailing slash
+  else if (uri === '/demo' || uri === '/docs' || uri === '/examples/genesis-ai') {
     request.uri = uri + '/index.html';
   }
   
