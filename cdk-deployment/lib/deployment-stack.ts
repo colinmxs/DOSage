@@ -123,6 +123,7 @@ function handler(event) {
       destinationBucket: bucket,
       distribution,
       distributionPaths: ['/*'],
+      prune: true,
     });
 
     // API Docs
@@ -132,6 +133,7 @@ function handler(event) {
       destinationKeyPrefix: 'docs/',
       distribution,
       distributionPaths: ['/docs/*'],
+      prune: true,
     });
 
     // Demo
@@ -141,6 +143,7 @@ function handler(event) {
       destinationKeyPrefix: 'demo/',
       distribution,
       distributionPaths: ['/demo/*'],
+      prune: true,
     });
 
     // Genesis AI Example
@@ -150,6 +153,7 @@ function handler(event) {
       destinationKeyPrefix: 'examples/genesis-ai/',
       distribution,
       distributionPaths: ['/examples/*'],
+      prune: true,
     });
 
     // Outputs
