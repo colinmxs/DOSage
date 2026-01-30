@@ -3,19 +3,26 @@ import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { DeploymentStack } from '../lib/deployment-stack';
 
-/**
- * CDK Application Entry Point
- * 
- * Initializes the CDK app and creates the deployment stack.
- * Configuration is loaded from cdk.json context or environment variables.
- */
-
 const app = new cdk.App();
 
+const domainName = app.node.tryGetContext('domainName');
+const certificateArn = app.node.tryGetContext('certificateArn');
+const region = app.node.tryGetContext('region') || 'us-west-2';
+
+if (!domainName) {
+  throw new Error('domainName context is required');
+}
+
+if (!certificateArn) {
+  throw new Error('certificateArn context is required');
+}
+
 new DeploymentStack(app, 'DeploymentStack', {
+  domainName,
+  certificateArn,
   env: {
+    region,
     account: process.env.CDK_DEFAULT_ACCOUNT,
-    region: process.env.CDK_DEFAULT_REGION || 'us-east-1',
   },
 });
 
