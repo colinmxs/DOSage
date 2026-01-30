@@ -14,10 +14,11 @@ on:
 
 env:
   NODE_VERSION: '18'
-  AWS_REGION: ${{ vars.AWS_REGION || 'us-east-1' }}
+  AWS_REGION: ${{ vars.AWS_REGION || 'us-west-2' }}
   CDK_DOMAIN_NAME: ${{ vars.CDK_DOMAIN_NAME }}
   CDK_CERTIFICATE_ARN: ${{ secrets.CDK_CERTIFICATE_ARN }}
   AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+  AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
 
 jobs:
   build-and-deploy:
@@ -68,13 +69,13 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: CDK Bootstrap (if needed)
         working-directory: cdk-deployment
-        run: npx cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/${{ env.AWS_REGION }}
+        run: npx cdk bootstrap aws://${{ env.AWS_ACCOUNT_ID }}/${{ env.AWS_REGION }}
 
       - name: CDK Deploy
         working-directory: cdk-deployment
-        run: npx cdk deploy --require-approval never --context domainName="${{ vars.CDK_DOMAIN_NAME }}" --context certificateArn="${{ secrets.CDK_CERTIFICATE_ARN }}" --context region="${{ env.AWS_REGION }}"
+        run: npx cdk deploy --require-approval never --context domainName="${{ env.CDK_DOMAIN_NAME }}" --context certificateArn="${{ env.CDK_CERTIFICATE_ARN }}" --context region="${{ env.AWS_REGION }}"
