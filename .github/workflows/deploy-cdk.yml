@@ -76,6 +76,12 @@ jobs:
         working-directory: cdk-deployment
         run: npx cdk bootstrap aws://${{ env.AWS_ACCOUNT_ID }}/${{ env.AWS_REGION }}
 
+      - name: Debug Environment Variables
+        run: |
+          echo "CDK_DOMAIN_NAME: ${{ env.CDK_DOMAIN_NAME }}"
+          echo "CDK_CERTIFICATE_ARN: ${{ env.CDK_CERTIFICATE_ARN }}"
+          echo "AWS_REGION: ${{ env.AWS_REGION }}"
+
       - name: CDK Deploy
         working-directory: cdk-deployment
         run: npx cdk deploy --require-approval never --context domainName="${{ env.CDK_DOMAIN_NAME }}" --context certificateArn="${{ env.CDK_CERTIFICATE_ARN }}" --context region="${{ env.AWS_REGION }}"

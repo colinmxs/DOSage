@@ -9,6 +9,11 @@ const domainName = app.node.tryGetContext('domainName');
 const certificateArn = app.node.tryGetContext('certificateArn');
 const region = app.node.tryGetContext('region') || 'us-west-2';
 
+console.log('CDK Context Values:');
+console.log('domainName:', domainName);
+console.log('certificateArn:', certificateArn);
+console.log('region:', region);
+
 if (!domainName) {
   throw new Error('domainName context is required');
 }
