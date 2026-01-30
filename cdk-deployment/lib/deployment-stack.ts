@@ -74,20 +74,6 @@ function handler(event) {
       certificate: acm.Certificate.fromCertificateArn(this, 'Certificate', props.certificateArn),
       defaultRootObject: 'index.html',
       priceClass: cloudfront.PriceClass.PRICE_CLASS_100,
-      errorResponses: [
-        {
-          httpStatus: 403,
-          responseHttpStatus: 404,
-          responsePagePath: '/404.html',
-          ttl: Duration.minutes(5),
-        },
-        {
-          httpStatus: 404,
-          responseHttpStatus: 200,
-          responsePagePath: '/index.html',
-          ttl: Duration.minutes(5),
-        },
-      ],
     });
 
     // S3 Bucket Policy for CloudFront
