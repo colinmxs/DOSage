@@ -251,21 +251,21 @@ C:\\DOSAGE> _`;
     '📚 API Documentation',
     'Complete reference for all DOSage components, props, and methods. Perfect for developers who want to dive deep into the library.',
     'Browse Documentation',
-    () => window.location.href = '/docs/'
+    () => window.location.href = '/docs/index.html'
   );
 
   const demoPanel = createProgramPanel(
     '🎮 Interactive Demo', 
     'Try out all DOSage components in an interactive playground. See the library in action and experiment with different configurations.',
     'Launch Demo',
-    () => window.location.href = '/demo/'
+    () => window.location.href = '/demo/index.html'
   );
 
   const examplesPanel = createProgramPanel(
     '🤖 Genesis AI Example',
     'A complete application built with DOSage showcasing real-world usage patterns and advanced component combinations.',
     'View Example',
-    () => window.location.href = '/examples/genesis-ai/'
+    () => window.location.href = '/examples/genesis-ai/index.html'
   );
 
   programPanelsContainer.appendChild(docsPanel);
