@@ -532,13 +532,7 @@ export class UnifiedSiteConstruct extends Construct {
       // Determine the target directory in the bucket
       // For /docs/* pattern, we want to deploy to docs/ directory
       // For /examples/genesis-ai/* pattern, we want to deploy to examples/genesis-ai/ directory
-      let targetDir = site.pathPattern.replace('/*', '').replace('/', '');
-      
-      // Handle nested paths like /examples/genesis-ai/*
-      if (targetDir.includes('/')) {
-        // Keep the full path structure
-        targetDir = targetDir;
-      }
+      let targetDir = site.pathPattern.replace('/*', '').substring(1); // Remove leading slash
       
       console.log(`  - ${site.siteName}: ${site.sourceDir} → s3://${this.bucket.bucketName}/${targetDir}/`);
       
