@@ -52,6 +52,10 @@ jobs:
         if: ${{ !inputs.skip_build }}
         run: npm run build:demo # Fresh build to fix asset filename mismatch
 
+      - name: Debug demo build output
+        if: ${{ !inputs.skip_build }}
+        run: ls -la demo/dist/assets/
+
       - name: Build landing page
         if: ${{ !inputs.skip_build }}
         run: npm run build:landing
