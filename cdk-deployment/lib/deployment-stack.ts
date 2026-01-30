@@ -31,6 +31,28 @@ export class DeploymentStack extends Stack {
       signing: cloudfront.Signing.SIGV4_NO_OVERRIDE,
     });
 
+    // CloudFront Function for directory index handling
+    const indexFunction = new cloudfront.Function(this, 'DirectoryIndexFunction', {
+      code: cloudfront.FunctionCode.fromInline(`
+function handler(event) {
+  var request = event.request;
+  var uri = request.uri;
+  
+  // Handle directory requests by appending index.html
+  if (uri.endsWith('/')) {
+    request.uri = uri + 'index.html';
+  }
+  // Handle paths without extension (assume they're directories)
+  else if (!uri.includes('.') && uri !== '/') {
+    request.uri = uri + '/index.html';
+  }
+  
+  return request;
+}
+      `),
+      comment: 'Handles directory index requests',
+    });
+
     // CloudFront Distribution
     const distribution = new cloudfront.Distribution(this, 'Distribution', {
       defaultBehavior: {
@@ -41,6 +63,12 @@ export class DeploymentStack extends Stack {
         allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
         compress: true,
         cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
+        functionAssociations: [
+          {
+            function: indexFunction,
+            eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
+          },
+        ],
       },
       domainNames: [props.domainName],
       certificate: acm.Certificate.fromCertificateArn(this, 'Certificate', props.certificateArn),
