@@ -137,6 +137,26 @@ describe('Popover', () => {
         expect(arrow).toBeNull();
       });
 
+      it('applies default background color', () => {
+        popover = createPopover({
+          content: 'Test',
+          target,
+        });
+
+        expect(popover.element.style.backgroundColor).toBe('var(--dos-color-bg-secondary)');
+      });
+
+      it('applies custom background color', () => {
+        popover = createPopover({
+          content: 'Test',
+          target,
+          backgroundColor: '#ff0000',
+        });
+
+        expect(popover.element.style.backgroundColor).toBe('rgb(255, 0, 0)');
+        expect(popover.element.style.getPropertyValue('--dos-popover-bg')).toBe('#ff0000');
+      });
+
       it('starts closed', () => {
         popover = createPopover({
           content: 'Test',
