@@ -134,13 +134,13 @@ export function createLoadingSpinner(props: LoadingSpinnerProps = {}): LoadingSp
       ? window.matchMedia('(prefers-reduced-motion: reduce)').matches 
       : false;
     
+    element.className = buildClassName(size, style, false, className);
+    
     if (prefersReducedMotion) {
       // Don't start animation if user prefers reduced motion
-      element.className = buildClassName(size, style, false, className);
       return;
     }
 
-    element.className = buildClassName(size, style, false, className);
     animationId = setInterval(updateFrame, speed);
   }
 
