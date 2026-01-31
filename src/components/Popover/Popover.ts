@@ -50,6 +50,7 @@ export function createPopover(props: PopoverProps): PopoverInstance {
     className,
     id = `dos-popover-${++popoverIdCounter}`,
     offset = 8,
+    backgroundColor = 'var(--dos-color-bg-secondary)',
     onOpen,
     onClose,
   } = props;
@@ -66,6 +67,12 @@ export function createPopover(props: PopoverProps): PopoverInstance {
     popoverEl.classList.add(className);
   }
   popoverEl.classList.add(`dos-popover--${currentPosition}`);
+
+  // Apply background color
+  popoverEl.style.backgroundColor = backgroundColor;
+  
+  // Set CSS custom property for arrow background
+  popoverEl.style.setProperty('--dos-popover-bg', backgroundColor);
 
   // Set ARIA attributes
   popoverEl.setAttribute('role', 'dialog');

@@ -104,6 +104,7 @@
   width: 40px;
   padding: var(--dos-space-xs) var(--dos-space-sm);
   text-align: center;
+  white-space: nowrap;
 }
 
 .dos-table__checkbox {

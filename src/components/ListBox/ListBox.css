@@ -85,7 +85,9 @@
   margin-right: 8px;
   font-family: inherit;
   width: 20px;
+  min-width: 20px;
   text-align: center;
+  white-space: nowrap;
 }
 
 /* Icon */

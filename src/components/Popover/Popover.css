@@ -99,7 +99,7 @@
   height: 0;
   border-style: solid;
   border-width: 6px 6px 0 6px;
-  border-color: var(--dos-color-bg-secondary) transparent transparent transparent;
+  border-color: var(--dos-popover-bg, var(--dos-color-bg-secondary)) transparent transparent transparent;
 }
 
 /* Arrow for bottom position (points up) */
@@ -120,7 +120,7 @@
   height: 0;
   border-style: solid;
   border-width: 0 6px 6px 6px;
-  border-color: transparent transparent var(--dos-color-bg-secondary) transparent;
+  border-color: transparent transparent var(--dos-popover-bg, var(--dos-color-bg-secondary)) transparent;
 }
 
 /* Arrow for left position (points right) */
@@ -141,7 +141,7 @@
   height: 0;
   border-style: solid;
   border-width: 6px 0 6px 6px;
-  border-color: transparent transparent transparent var(--dos-color-bg-secondary);
+  border-color: transparent transparent transparent var(--dos-popover-bg, var(--dos-color-bg-secondary));
 }
 
 /* Arrow for right position (points left) */
@@ -162,5 +162,5 @@
   height: 0;
   border-style: solid;
   border-width: 6px 6px 6px 0;
-  border-color: transparent var(--dos-color-bg-secondary) transparent transparent;
+  border-color: transparent var(--dos-popover-bg, var(--dos-color-bg-secondary)) transparent transparent;
 }

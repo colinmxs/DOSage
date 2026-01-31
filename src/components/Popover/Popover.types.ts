@@ -80,6 +80,12 @@ export interface PopoverProps {
   offset?: number;
 
   /**
+   * Background color for the popover
+   * @default 'var(--dos-color-bg-secondary)'
+   */
+  backgroundColor?: string;
+
+  /**
    * Callback when popover opens
    */
   onOpen?: () => void;
