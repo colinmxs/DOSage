@@ -129,7 +129,18 @@ export function createLoadingSpinner(props: LoadingSpinnerProps = {}): LoadingSp
       return; // Already running
     }
 
+    // Check if user prefers reduced motion (with fallback for test environments)
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia 
+      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches 
+      : false;
+    
     element.className = buildClassName(size, style, false, className);
+    
+    if (prefersReducedMotion) {
+      // Don't start animation if user prefers reduced motion
+      return;
+    }
+
     animationId = setInterval(updateFrame, speed);
   }
 

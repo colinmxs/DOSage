@@ -3096,7 +3096,7 @@ createLoadingSpinner({ style: 'dots' });`,
       row.appendChild(spinner.element);
 
       const label = document.createElement('span');
-      label.innerHTML = `<strong>${name}:</strong> ${frames}`;
+      label.innerHTML = `<strong>${name}</strong>`;
       row.appendChild(label);
 
       stylesExample.appendChild(row);

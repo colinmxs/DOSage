@@ -103,13 +103,8 @@
     opacity: 1;
   }
 
-  /* Show static character when motion is reduced */
+  /* Stop animation when motion is reduced - character remains visible */
   .dos-loading-spinner .dos-loading-spinner__character {
-    font-size: 0;
-  }
-
-  .dos-loading-spinner .dos-loading-spinner__character::before {
-    content: '○';
-    font-size: 1rem;
+    animation: none;
   }
 }
