@@ -32,7 +32,7 @@
 ## Installation
 
 ```bash
-npm install dosage
+no npm package exists...yet...
 ```
 
 ## Quick Start
