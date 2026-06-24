@@ -123,6 +123,8 @@ export interface TextareaElement extends HTMLDivElement {
   /** Set the error state */
   setError: (error: string | boolean | undefined) => void;
   /** Focus the textarea */
+  focus: () => void;
+  /** Focus the textarea (alias for focus) */
   focusTextarea: () => void;
   /** Disable/enable the textarea */
   setDisabled: (disabled: boolean) => void;

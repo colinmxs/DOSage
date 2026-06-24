@@ -232,8 +232,12 @@ export function createTextarea(props: TextareaProps): TextareaElement {
     }
   };
 
-  wrapper.focusTextarea = (): void => {
+  wrapper.focus = (): void => {
     textarea.focus();
+  };
+
+  wrapper.focusTextarea = (): void => {
+    wrapper.focus();
   };
 
   wrapper.setDisabled = (newDisabled: boolean): void => {
