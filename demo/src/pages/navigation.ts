@@ -1224,7 +1224,7 @@ document.body.appendChild(contextMenu);`,
   // Programmatic Control
   const apiSection = createDemoSection({
     title: 'Programmatic Control',
-    description: 'Open the context menu programmatically at any position.',
+    description: 'Demonstrate all programmatic API methods with clear visual feedback.',
     code: `const contextMenu = createContextMenu({
   items: [
     { label: 'Option 1' },
@@ -1242,50 +1242,187 @@ contextMenu.open({ x: 200, y: 150 });
 contextMenu.close();
 
 // Check if open
-console.log(contextMenu.isOpen());`,
+console.log(contextMenu.isOpen());
+
+// Update items dynamically
+contextMenu.setItems([
+  { label: 'New Option 1' },
+  { label: 'New Option 2' }
+]);`,
   });
 
   const apiExample = apiSection.querySelector('.dos-demo-section___examples');
   if (apiExample) {
+    // Status bar
     const statusBar = document.createElement('div');
     statusBar.style.marginBottom = 'var(--dos-space-md)';
     statusBar.style.padding = 'var(--dos-space-xs) var(--dos-space-sm)';
     statusBar.style.backgroundColor = 'var(--dos-surface-tertiary)';
     statusBar.style.fontFamily = 'var(--dos-font-family)';
-    statusBar.textContent = 'Menu state: closed';
+    statusBar.textContent = 'Status: Click a button to interact';
 
-    const buttonContainer = document.createElement('div');
-    buttonContainer.style.display = 'flex';
-    buttonContainer.style.gap = 'var(--dos-space-sm)';
-    buttonContainer.style.marginBottom = 'var(--dos-space-md)';
+    // Visual target area with marker
+    const targetArea = document.createElement('div');
+    targetArea.style.position = 'relative';
+    targetArea.style.height = '300px';
+    targetArea.style.marginBottom = 'var(--dos-space-md)';
+    targetArea.style.padding = 'var(--dos-space-md)';
+    targetArea.style.border = '1px solid var(--dos-border-color)';
+    targetArea.style.backgroundColor = 'var(--dos-surface-secondary)';
+    targetArea.style.fontFamily = 'var(--dos-font-family)';
+    targetArea.textContent = '↓ Menu will appear at marked positions in this area';
+
+    // Position markers
+    const positions = [
+      { x: 50, y: 80, label: 'Top-Left' },
+      { x: 200, y: 80, label: 'Top-Center' },
+      { x: 50, y: 200, label: 'Bottom-Left' },
+    ];
+
+    positions.forEach((pos) => {
+      const marker = document.createElement('div');
+      marker.style.position = 'absolute';
+      marker.style.left = `${pos.x}px`;
+      marker.style.top = `${pos.y}px`;
+      marker.style.width = '8px';
+      marker.style.height = '8px';
+      marker.style.backgroundColor = 'var(--dos-accent-color)';
+      marker.textContent = '✕';
+      marker.style.fontSize = '10px';
+      marker.style.lineHeight = '8px';
+      marker.style.textAlign = 'center';
+      marker.setAttribute('title', pos.label);
+      targetArea.appendChild(marker);
+
+      const label = document.createElement('div');
+      label.style.position = 'absolute';
+      label.style.left = `${pos.x + 12}px`;
+      label.style.top = `${pos.y - 2}px`;
+      label.style.fontSize = '11px';
+      label.style.color = 'var(--dos-text-secondary)';
+      label.textContent = pos.label;
+      targetArea.appendChild(label);
+    });
+
+    // Button containers
+    const buttonRow1 = document.createElement('div');
+    buttonRow1.style.display = 'flex';
+    buttonRow1.style.gap = 'var(--dos-space-sm)';
+    buttonRow1.style.marginBottom = 'var(--dos-space-sm)';
+    buttonRow1.style.flexWrap = 'wrap';
+
+    const buttonRow2 = document.createElement('div');
+    buttonRow2.style.display = 'flex';
+    buttonRow2.style.gap = 'var(--dos-space-sm)';
+    buttonRow2.style.marginBottom = 'var(--dos-space-md)';
+    buttonRow2.style.flexWrap = 'wrap';
 
     const apiItems: DropdownMenuItem[] = [
-      { label: 'Option 1', action: () => (statusBar.textContent = 'Selected: Option 1') },
-      { label: 'Option 2', action: () => (statusBar.textContent = 'Selected: Option 2') },
-      { label: 'Option 3', action: () => (statusBar.textContent = 'Selected: Option 3') },
+      { id: 'opt1', label: 'Option 1', action: () => (statusBar.textContent = 'Selected: Option 1') },
+      { id: 'opt2', label: 'Option 2', action: () => (statusBar.textContent = 'Selected: Option 2') },
+      { id: 'opt3', label: 'Option 3', action: () => (statusBar.textContent = 'Selected: Option 3') },
     ];
 
     const contextMenu = createContextMenu({
       items: apiItems,
-      onOpen: () => (statusBar.textContent = 'Menu state: open'),
-      onClose: () => (statusBar.textContent = 'Menu state: closed'),
+      onOpen: (position) => {
+        statusBar.textContent = `Menu opened at (${position.x}, ${position.y})`;
+      },
+      onClose: () => {
+        statusBar.textContent = 'Menu closed';
+      },
     });
 
-    const openButton = createButton({
-      label: 'Open at (100, 300)',
-      onClick: () => contextMenu.open({ x: 100, y: 300 }),
+    // Position buttons
+    const openTopLeftBtn = createButton({
+      label: 'Open Top-Left',
+      onClick: () => {
+        const rect = targetArea.getBoundingClientRect();
+        contextMenu.open({ x: rect.left + 50, y: rect.top + 80 });
+      },
     });
 
-    const closeButton = createButton({
-      label: 'Close',
+    const openTopCenterBtn = createButton({
+      label: 'Open Top-Center',
+      onClick: () => {
+        const rect = targetArea.getBoundingClientRect();
+        contextMenu.open({ x: rect.left + 200, y: rect.top + 80 });
+      },
+    });
+
+    const openBottomLeftBtn = createButton({
+      label: 'Open Bottom-Left',
+      onClick: () => {
+        const rect = targetArea.getBoundingClientRect();
+        contextMenu.open({ x: rect.left + 50, y: rect.top + 200 });
+      },
+    });
+
+    const closeBtn = createButton({
+      label: 'Close Menu',
       variant: 'secondary',
-      onClick: () => contextMenu.close(),
+      onClick: () => {
+        contextMenu.close();
+      },
     });
 
-    buttonContainer.appendChild(openButton);
-    buttonContainer.appendChild(closeButton);
-    apiExample.appendChild(buttonContainer);
+    // API method buttons
+    const checkStateBtn = createButton({
+      label: 'Check isOpen()',
+      variant: 'secondary',
+      onClick: () => {
+        const isOpen = contextMenu.isOpen();
+        statusBar.textContent = `Menu is currently: ${isOpen ? 'OPEN' : 'CLOSED'}`;
+      },
+    });
+
+    const updateItemsBtn = createButton({
+      label: 'Update Items',
+      variant: 'secondary',
+      onClick: () => {
+        const newItems: DropdownMenuItem[] = [
+          { label: '★ New Item 1', action: () => (statusBar.textContent = 'Selected: New Item 1') },
+          { label: '★ New Item 2', action: () => (statusBar.textContent = 'Selected: New Item 2') },
+          { label: '★ New Item 3', action: () => (statusBar.textContent = 'Selected: New Item 3') },
+        ];
+        contextMenu.setItems(newItems);
+        statusBar.textContent = 'Items updated! Open menu to see new items.';
+      },
+    });
+
+    const resetItemsBtn = createButton({
+      label: 'Reset Items',
+      variant: 'secondary',
+      onClick: () => {
+        contextMenu.setItems(apiItems);
+        statusBar.textContent = 'Items reset to original.';
+      },
+    });
+
+    const toggleDisableBtn = createButton({
+      label: 'Disable Option 2',
+      variant: 'secondary',
+      onClick: () => {
+        contextMenu.setItemDisabled('opt2', true);
+        statusBar.textContent = 'Option 2 disabled.';
+      },
+    });
+
+    // Arrange buttons
+    buttonRow1.appendChild(openTopLeftBtn);
+    buttonRow1.appendChild(openTopCenterBtn);
+    buttonRow1.appendChild(openBottomLeftBtn);
+    buttonRow1.appendChild(closeBtn);
+
+    buttonRow2.appendChild(checkStateBtn);
+    buttonRow2.appendChild(updateItemsBtn);
+    buttonRow2.appendChild(resetItemsBtn);
+    buttonRow2.appendChild(toggleDisableBtn);
+
+    apiExample.appendChild(buttonRow1);
+    apiExample.appendChild(buttonRow2);
     apiExample.appendChild(statusBar);
+    apiExample.appendChild(targetArea);
     apiExample.appendChild(contextMenu);
   }
   content.appendChild(apiSection);
