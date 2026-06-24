@@ -1560,6 +1560,94 @@ const sidebar = createSidebar({
   }
   content.appendChild(collapsibleSection);
 
+  // Scrollable Section Content
+  const scrollableSection = createDemoSection({
+    title: 'Scrollable Section Content',
+    description: 'Section content shows a scrollbar when it has many items.',
+    code: `import { createSidebar } from 'dosage';
+
+const sidebar = createSidebar({
+  items: [
+    {
+      id: 'events',
+      label: 'Events Log',
+      icon: '▣',
+      items: [
+        { id: 'evt1', label: 'System Start' },
+        { id: 'evt2', label: 'User Login' },
+        { id: 'evt3', label: 'File Created' },
+        { id: 'evt4', label: 'File Modified' },
+        { id: 'evt5', label: 'File Saved' },
+        { id: 'evt6', label: 'Network Connected' },
+        { id: 'evt7', label: 'Data Received' },
+        { id: 'evt8', label: 'Task Completed' },
+        { id: 'evt9', label: 'Warning Issued' },
+        { id: 'evt10', label: 'Error Logged' },
+        { id: 'evt11', label: 'User Logout' },
+        { id: 'evt12', label: 'System Shutdown' }
+      ]
+    }
+  ]
+});`,
+  });
+
+  const scrollableExample = scrollableSection.querySelector('.dos-demo-section___examples');
+  if (scrollableExample) {
+    const container = document.createElement('div');
+    container.style.display = 'flex';
+    container.style.height = '350px';
+    container.style.border = '2px solid var(--dos-color-border)';
+
+    const statusDiv = document.createElement('div');
+    statusDiv.style.flex = '1';
+    statusDiv.style.padding = 'var(--dos-space-md)';
+    statusDiv.style.fontFamily = 'var(--dos-font-family)';
+    statusDiv.innerHTML = '<strong>Selected:</strong> (none)<br><br>Notice the scrollbar in the Events Log section when it has many items.';
+
+    const sidebar = createSidebar({
+      items: [
+        { id: 'home', label: 'Home', icon: '■' },
+        {
+          id: 'events',
+          label: 'Events Log',
+          icon: '▣',
+          items: [
+            { id: 'evt1', label: 'System Start' },
+            { id: 'evt2', label: 'User Login' },
+            { id: 'evt3', label: 'File Created' },
+            { id: 'evt4', label: 'File Modified' },
+            { id: 'evt5', label: 'File Saved' },
+            { id: 'evt6', label: 'Network Connected' },
+            { id: 'evt7', label: 'Data Received' },
+            { id: 'evt8', label: 'Task Completed' },
+            { id: 'evt9', label: 'Warning Issued' },
+            { id: 'evt10', label: 'Error Logged' },
+            { id: 'evt11', label: 'User Logout' },
+            { id: 'evt12', label: 'System Shutdown' },
+          ],
+        },
+        {
+          id: 'tools',
+          label: 'Tools',
+          icon: '◆',
+          items: [
+            { id: 'calculator', label: 'Calculator' },
+            { id: 'notepad', label: 'Notepad' },
+          ],
+        },
+      ],
+      width: '200px',
+      onSelect: (item) => {
+        statusDiv.innerHTML = `<strong>Selected:</strong> ${item.label}<br><br>Notice the scrollbar in the Events Log section when it has many items.`;
+      },
+    });
+
+    container.appendChild(sidebar);
+    container.appendChild(statusDiv);
+    scrollableExample.appendChild(container);
+  }
+  content.appendChild(scrollableSection);
+
   // Disabled Items
   const disabledSection = createDemoSection({
     title: 'Disabled Items',
