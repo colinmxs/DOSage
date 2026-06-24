@@ -227,6 +227,20 @@ describe('Stepper', () => {
       const stepElements = stepper.querySelectorAll('.dos-stepper___step');
       expect(stepElements[1]?.classList.contains('dos-stepper___step--disabled')).toBe(true);
     });
+
+    it('applies both completed and current classes when step is completed and current', () => {
+      const steps: Step[] = [
+        { label: 'Step 1', completed: true },
+        { label: 'Step 2', completed: true },
+        { label: 'Step 3' },
+      ];
+      const stepper = createStepper({ steps, currentStep: 1 });
+      container.appendChild(stepper);
+
+      const stepElements = stepper.querySelectorAll('.dos-stepper___step');
+      expect(stepElements[1]?.classList.contains('dos-stepper___step--completed')).toBe(true);
+      expect(stepElements[1]?.classList.contains('dos-stepper___step--current')).toBe(true);
+    });
   });
 
   describe('clickable steps', () => {

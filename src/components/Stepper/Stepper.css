@@ -100,6 +100,12 @@ button.dos-stepper___step-indicator:disabled {
   color: var(--dos-color-bg, #000000);
 }
 
+/* Completed AND currently selected step indicator - combines both states */
+.dos-stepper___step--completed.dos-stepper___step--current .dos-stepper___step-indicator {
+  outline: 2px solid var(--dos-color-primary, #5555FF);
+  outline-offset: 2px;
+}
+
 /* Error step indicator */
 .dos-stepper___step--error .dos-stepper___step-indicator {
   border-color: var(--dos-color-error, #FF5555);
