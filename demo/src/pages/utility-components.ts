@@ -278,40 +278,123 @@ export function renderKeyboardShortcutsPage(): HTMLElement {
   content.className = 'dos-main___content';
 
   // Basic Example
-  const basicSection = createDemoSection('Try These Shortcuts', 'Press the keyboard shortcuts below');
+  const basicSection = createDemoSection('Try These Shortcuts', 'Press the keyboard shortcuts below to see them intercepted. Browser default behavior is prevented!');
   const basicExamples = createExamplesContainer();
 
+  // Instructions
+  const instructions = document.createElement('div');
+  instructions.style.cssText = 'font-family: var(--dos-font-family); margin-bottom: 16px; padding: 12px; background: rgba(0, 170, 170, 0.1); border: 1px solid var(--dos-text-secondary);';
+  instructions.innerHTML = `
+    <strong>Try these shortcuts:</strong><br>
+    • Ctrl+S normally saves the page - we prevent that!<br>
+    • Ctrl+Z normally undoes - we prevent that!<br>
+    • Ctrl+P normally prints - we prevent that!<br>
+    • Escape is also captured<br><br>
+    Watch the feedback panel below to see when shortcuts are triggered.
+  `;
+
+  // Feedback output with counters
   const output = document.createElement('div');
-  output.style.cssText = 'font-family: var(--dos-font-family); padding: 12px; border: 1px solid var(--dos-text-secondary); min-height: 60px; margin-top: 12px;';
-  output.textContent = 'Press a shortcut to see it here...';
+  output.style.cssText = 'font-family: var(--dos-font-family); padding: 12px; border: 2px solid var(--dos-focus-color); min-height: 100px; margin-top: 12px; background: var(--dos-bg-primary);';
+  
+  const lastTriggered = document.createElement('div');
+  lastTriggered.style.cssText = 'color: var(--dos-success-color, #55FF55); font-weight: bold; margin-bottom: 8px;';
+  lastTriggered.textContent = 'Waiting for shortcut...';
+  
+  const counters = document.createElement('div');
+  counters.style.cssText = 'color: var(--dos-text-secondary); font-size: 0.9em;';
+  
+  output.appendChild(lastTriggered);
+  output.appendChild(counters);
+
+  // Counter tracking
+  const triggerCounts: Record<string, number> = {
+    'save': 0,
+    'undo': 0,
+    'print': 0,
+    'cancel': 0,
+  };
+
+  function updateCounters() {
+    counters.innerHTML = `
+      <strong>Trigger counts:</strong><br>
+      Ctrl+S (Save): ${triggerCounts['save']}×<br>
+      Ctrl+Z (Undo): ${triggerCounts['undo']}×<br>
+      Ctrl+P (Print): ${triggerCounts['print']}×<br>
+      Escape (Cancel): ${triggerCounts['cancel']}×
+    `;
+  }
+
+  updateCounters();
 
   const handler = createKeyboardShortcutHandler({ scope: 'global' });
 
-  handler.register({ key: 'a', ctrl: true }, () => {
-    output.textContent = '✓ Ctrl+A was pressed!';
+  // Register shortcuts with correct API signature
+  handler.register({
+    id: 'save',
+    key: 's',
+    modifiers: { ctrl: true },
+    description: 'Save document',
+    preventDefault: true, // This prevents the browser save dialog!
+    callback: () => {
+      triggerCounts['save']++;
+      const now = new Date().toLocaleTimeString();
+      lastTriggered.textContent = `✓ Ctrl+S pressed at ${now} - Browser save dialog PREVENTED!`;
+      updateCounters();
+    }
   });
 
-  handler.register({ key: 's', ctrl: true }, () => {
-    output.textContent = '✓ Ctrl+S was pressed!';
+  handler.register({
+    id: 'undo',
+    key: 'z',
+    modifiers: { ctrl: true },
+    description: 'Undo action',
+    preventDefault: true, // This prevents the browser undo!
+    callback: () => {
+      triggerCounts['undo']++;
+      const now = new Date().toLocaleTimeString();
+      lastTriggered.textContent = `✓ Ctrl+Z pressed at ${now} - Browser undo PREVENTED!`;
+      updateCounters();
+    }
   });
 
-  handler.register({ key: 'Escape' }, () => {
-    output.textContent = '✓ Escape was pressed!';
+  handler.register({
+    id: 'print',
+    key: 'p',
+    modifiers: { ctrl: true },
+    description: 'Print document',
+    preventDefault: true, // This prevents the browser print dialog!
+    callback: () => {
+      triggerCounts['print']++;
+      const now = new Date().toLocaleTimeString();
+      lastTriggered.textContent = `✓ Ctrl+P pressed at ${now} - Browser print dialog PREVENTED!`;
+      updateCounters();
+    }
   });
 
-  handler.register({ key: 'k', ctrl: true }, () => {
-    output.textContent = '✓ Ctrl+K was pressed!';
+  handler.register({
+    id: 'cancel',
+    key: 'Escape',
+    description: 'Cancel action',
+    preventDefault: true,
+    callback: () => {
+      triggerCounts['cancel']++;
+      const now = new Date().toLocaleTimeString();
+      lastTriggered.textContent = `✓ Escape pressed at ${now}`;
+      updateCounters();
+    }
   });
 
   const shortcuts = document.createElement('div');
   shortcuts.innerHTML = `
-    <p><kbd>Ctrl</kbd> + <kbd>A</kbd> - Select all (intercepted)</p>
-    <p><kbd>Ctrl</kbd> + <kbd>S</kbd> - Save (intercepted)</p>
-    <p><kbd>Ctrl</kbd> + <kbd>K</kbd> - Quick action</p>
-    <p><kbd>Escape</kbd> - Cancel</p>
+    <p><kbd>Ctrl</kbd> + <kbd>S</kbd> - Save (prevents browser save dialog)</p>
+    <p><kbd>Ctrl</kbd> + <kbd>Z</kbd> - Undo (prevents browser undo)</p>
+    <p><kbd>Ctrl</kbd> + <kbd>P</kbd> - Print (prevents browser print dialog)</p>
+    <p><kbd>Escape</kbd> - Cancel action</p>
   `;
   shortcuts.style.cssText = 'font-family: var(--dos-font-family); line-height: 2;';
 
+  basicExamples.appendChild(instructions);
   basicExamples.appendChild(shortcuts);
   basicExamples.appendChild(output);
   basicSection.appendChild(basicExamples);
@@ -320,15 +403,29 @@ export function renderKeyboardShortcutsPage(): HTMLElement {
 
 const handler = createKeyboardShortcutHandler({ scope: 'global' });
 
-handler.register({ key: 's', ctrl: true }, () => {
-  console.log('Save!');
+// Register shortcuts with ShortcutDefinition objects
+handler.register({
+  id: 'save',
+  key: 's',
+  modifiers: { ctrl: true },
+  description: 'Save document',
+  preventDefault: true, // Prevents browser save dialog
+  callback: () => {
+    console.log('Save triggered!');
+  }
 });
 
-handler.register({ key: 'Escape' }, () => {
-  console.log('Cancel!');
+handler.register({
+  id: 'cancel',
+  key: 'Escape',
+  description: 'Cancel action',
+  preventDefault: true,
+  callback: () => {
+    console.log('Cancel triggered!');
+  }
 });
 
-// Cleanup
+// Cleanup when done
 handler.destroy();`));
 
   content.appendChild(basicSection);
